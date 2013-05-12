@@ -1,0 +1,85 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<!-- Constant -->
+	<constant name="struts.action.extension" value="htm" />
+	#if($chaoexpo_production == "true")
+		<constant name="struts.devMode" value="false" />
+	#else
+		<constant name="struts.devMode" value="true" />
+	#end
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.velocity.toolboxlocation" value="WEB-INF/velocity-toolbox.xml" />  
+	<constant name="struts.velocity.configfile" value="WEB-INF/velocity.properties" />
+	 
+	<constant name="struts.objectFactory" value="spring"></constant>
+
+	<include file="struts-default.xml" />
+
+	<package name="default" extends="struts-default">
+		
+		<result-types>
+			<result-type name="velocity" class="com.doucome.chaoexpo.web.common.velocity.VelocityLayoutResult" />
+		</result-types>
+		 
+		<interceptors>
+			
+			 <interceptor name="setBopsContextInterceptor" class="com.doucome.chaoexpo.web.bops.interceptor.SetContextInterceptor">
+			 	<param name="domain">${chaoexpo_bops_domainName}</param>
+			 </interceptor>
+			 
+			 <interceptor name="bopsAuthzContextInterceptor" class="com.doucome.chaoexpo.web.bops.interceptor.AuthzInterceptor"></interceptor>
+			 
+			 <interceptor-stack name="doucomeDefaultStack">
+				<interceptor-ref name="defaultStack">
+					<param name="exception.logEnabled">true</param>  
+    				<param name="exception.logLevel">error</param> 
+				</interceptor-ref>
+			</interceptor-stack>
+			
+			<interceptor-stack name="doucomeBasicStack">
+				<interceptor-ref name="basicStack">
+					<param name="exception.logEnabled">true</param>  
+    				<param name="exception.logLevel">error</param> 
+				</interceptor-ref>
+			</interceptor-stack>
+			
+		</interceptors>
+		 
+		<global-results>
+			<result name="exception" type="velocity">/zhe/zhe.error/404.vm</result>
+			<result name="adminLogin" type="redirect">/bops/login.htm?Done=${Done}</result>
+			<result name="bopsError" type="velocity">/bops/error.vm</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping result="exception" exception="java.lang.Exception" />
+		</global-exception-mappings>
+
+
+	</package>
+	
+	<package name="struts-json" extends="default">
+        <result-types>
+            <result-type name="json" class="org.apache.struts2.json.JSONResult">
+            	<param name="excludeNullProperties">true</param>
+            </result-type>
+			<result-type name="json2" class="org.apache.struts2.json.JSONResult">
+            	<param name="excludeNullProperties">true</param>
+            	<param name="root">json</param>
+            </result-type>
+        </result-types>
+        <interceptors>
+            <interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
+        </interceptors>
+    </package>
+    
+    
+	<include file="struts-bops.xml" />	
+	<include file="struts-home.xml" />	
+	<include file="struts-task.xml" />
+	
+</struts>

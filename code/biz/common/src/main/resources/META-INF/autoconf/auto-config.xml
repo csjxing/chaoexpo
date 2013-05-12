@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	- 自动配置描述文件
+	-
+	- @author 
+-->
+<config description="自动配置">
+	<group name="common config">
+		<property name="chaoexpo.output" description="应用程序的输出目录"  defaultValue="/home/${chaoexpo_unix_user}/output"/>
+		<property name="chaoexpo.production" description="生产模式"  defaultValue="false">
+			<validator name="choice" choice="true,false"/>
+		</property>
+		<property name="chaoexpo.loggingRoot" defaultValue="${chaoexpo_output}/logs"  description="日志"></property>
+		<property name="chaoexpo.loggingLevel" defaultValue="info"  description="日志输出级别"></property>
+	</group>
+
+	<group name="cache">
+		<property name="chaoexpo.memcached.address" defaultValue="42.121.17.63:11211" description="memcached 服务地址，多个用空格隔开"/>
+		<property name="chaoexpo.memcached.key.prefix" defaultValue="rel" description="memcached key 的前置值，为了区分开发和线上"/>
+	</group>
+
+	<group name="database">
+		<property name="chaoexpo.database.driver.url" description="数据库的url" defaultValue="jdbc:mysql://110.76.47.90:3306/chaoexpo_dev?useUnicode=true&amp;characterEncoding=gbk&amp;autoReconnect=true"/>
+		<property name="chaoexpo.database.driver.username" description="数据库的username" defaultValue="trek"/>
+		<property name="chaoexpo.database.driver.password" description="数据库的password" defaultValue="trek"/>
+	</group>
+	
+	<group name="web">
+		<property name="chaoexpo.static.url" defaultValue="http://style.diandianzhe.com/chaoexpo" description="static"></property>
+		<property name="chaoexpo.domainName" defaultValue="doucome.com" description="domain"></property>
+		<property name="chaoexpo.port" defaultValue="80" description="port">
+			<validator name="number"></validator>
+		</property>
+		<property name="chaoexpo.appserver.port" defaultValue="8080" description="appserver port">
+			<validator name="number"></validator>
+		</property>
+	</group>
+	
+	<group name="upload img">
+		<property name="chaoexpo.picture.uploaded.img.url" defaultValue="http://img.doucome.com" description="上传图片访问URL"></property>		
+		<property name="chaoexpo.upyun.api.domainName" defaultValue="v0.api.upyun.com" description="又拍API域名"/>
+		<property name="chaoexpo.upyun.api.username" defaultValue="langben" description="又拍操作员账号"></property>
+		<property name="chaoexpo.upyun.api.password" defaultValue="caoshenjia" description="又拍操作员密码"></property>
+		<property name="chaoexpo.upyun.bucketname.img" defaultValue="doucome-img-test" description="操作的又拍图片空间名-头像及其他"></property>
+	</group>
+	
+	<group name="util">
+		<property name="chaoexpo.cookie.entrypt.secretKey" defaultValue="IHsd*0sz." description="cookie加密密钥"></property>
+	</group>
+	
+	<group name="bops">
+		<property name="chaoexpo.bops.domainName" defaultValue="bops.doucome.com" description="bops域名"></property>
+	</group>
+	
+	<group name="task">
+		<property name="chaoexpo.taskhome" defaultValue="/home/${chaoexpo_unix_user}/task" description="任务的home目录"></property>
+	</group>
+
+	<script>
+		<generate template="commonConfig.properties.vm" destfile="commonConfig.properties" charset="GBK" />
+		<generate template="struts.xml.vm" destfile="struts.xml" charset="GBK" />
+		<generate template="log4j.xml" destfile="log4j.xml" charset="GBK" />
+	</script>
+</config>
+
+

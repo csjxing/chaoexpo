@@ -1,0 +1,3 @@
+#set($layout="bops/default_bops.vm")
+
+出错啦！！  <a href="${env.bopsRoot}/bops/index.htm">返回首页</a>

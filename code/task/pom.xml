@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.doucome.chaoexpo</groupId>
+		<artifactId>chaoexpo.all</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<groupId>com.doucome.chaoexpo</groupId>
+	<artifactId>chaoexpo.task</artifactId>
+	<packaging>jar</packaging>
+	<name>task</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.doucome.chaoexpo</groupId>
+			<artifactId>chaoexpo.biz.core</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.doucome.chaoexpo</groupId>
+			<artifactId>chaoexpo.web.common</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>quartz</artifactId>
+		</dependency>
+	</dependencies>
+
+	<properties>
+        <uberjar_final_name>${pom.artifactId}-uber.jar</uberjar_final_name>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <includeTypes>jar</includeTypes>
+                    <overWriteSnapshots>true</overWriteSnapshots>
+                    <type>jar</type>
+                    <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>assembly-package</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+							    <mkdir dir="${release_directory}"/>
+                                <zip destfile="${release_directory}/${uberjar_final_name}">
+                                    <zipfileset dir="${project.build.outputDirectory}/com" includes="**" prefix="WORLDS-INF/classes/com"/>
+                                    <zipfileset dir="${project.build.directory}/lib" includes="**" prefix="WORLDS-INF/lib"/>
+                                    <zipfileset dir="${project.build.outputDirectory}/META-INF" includes="**" prefix="META-INF"/>
+                                    <zipfileset dir="${project.build.outputDirectory}/bin" includes="**"  prefix="bin"/>
+                                </zip>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+	    <profile>
+            <id>release</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>release</value>
+                </property>
+            </activation>
+            <properties>
+                <release_directory>${project.parent.build.directory}</release_directory>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>!release</value>
+                </property>
+            </activation>
+            <properties>
+                <release_directory>${project.build.directory}</release_directory>
+            </properties>
+            <build>
+                <plugins>
+                	<plugin>
+						<groupId>com.doucome.maven.plugins</groupId>
+						<artifactId>maven-autoconf-plugin</artifactId>
+						<version>0.4.18</version>
+						<executions>
+							<execution>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>config</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<destFiles>
+								<destFile>${release_directory}/${uberjar_final_name}</destFile>
+							</destFiles>
+							<includeDescriptorPatterns>
+								<includeDescriptorPattern>META-INF/autoconf/auto-config.xml</includeDescriptorPattern>
+							</includeDescriptorPatterns>
+						</configuration>
+					</plugin>                		
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>unpack-package</id>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <tasks>
+                                        <unzip dest="${project.build.directory}/task" src="${project.build.directory}/${uberjar_final_name}"/>
+                                        <!-- <chmod dir="${project.build.directory}/expand/bin" includes="**" perm="755"/>--> 
+                                    </tasks>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

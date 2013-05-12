@@ -1,0 +1,51 @@
+
+#set ($title = $page.title)
+#if(!$title||$title=="") 
+	#set ($title="BOPS - back office process system")
+#end
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=GBK" />
+	<title>$!title</title>
+
+	#DDZ_CSS(["../bops/bops.css"])
+	#DDZ_CSS(["../jquery-ui-1.8.21/bundle/themes/base/jquery.ui.all.css"])
+	#DDZ_JS(["lib/jquery-min.js","lib/common.js","../date-picker/WdatePicker.js"])
+	#DDZ_JS(["../jquery-ui-1.8.21/bundle/ui/jquery.ui.core.js","../jquery-ui-1.8.21/bundle/ui/jquery.ui.widget.js","../jquery-ui-1.8.21/bundle/ui/jquery.ui.datepicker.js","../jquery-ui-1.8.21/bundle/ui/i18n/jquery-ui-i18n.js"])
+
+</head>
+
+
+<body> 
+	
+	<div id="shadow_bg" class="shadow-bg dd-hide"></div>
+	
+	#parse("/common/bops/top.vm")
+	<table width="100%"   border=0 cellpadding="0" cellspacing="0" topmargin="0" >
+		<tr valign=top>
+			<td id="idMainTab" align="left" style="width: 240px;" >
+					#parse("/common/bops/left_menu.vm")
+			</td>
+			<td>
+				<div style="margin-top:10px;"></div>
+				BOPS >> $!navigation
+					$screen_content
+			</td>
+		</tr>
+	</table>
+	#parse("/common/bops/bottom.vm")
+	
+	
+	#DDZ_JS(["../bops/bops.js","../bops/dcome.js"])
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

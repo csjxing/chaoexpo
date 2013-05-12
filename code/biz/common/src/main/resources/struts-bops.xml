@@ -1,0 +1,54 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	
+	<package name="bops" namespace="/bops" extends="default">
+		<interceptors>
+			 <!-- Basic stack -->
+            <interceptor-stack name="bopsDefaultStack">
+				 <interceptor-ref name="doucomeDefaultStack" />
+				 <interceptor-ref name="setBopsContextInterceptor" />
+				 <interceptor-ref name="bopsAuthzContextInterceptor" />
+			 </interceptor-stack>
+			 <interceptor-stack name="bopsLoginStack">
+				 <interceptor-ref name="doucomeDefaultStack" />
+				 <interceptor-ref name="setBopsContextInterceptor" />
+			 </interceptor-stack>
+		</interceptors>
+		<action name="login" class="com.doucome.chaoexpo.web.bops.action.LoginAction">
+			<interceptor-ref name="defaultStack" />
+			<result name="success" type="velocity">/bops/login.vm</result>
+		</action>
+		<action name="do_login" class="com.doucome.chaoexpo.web.bops.action.LoginAction"  method="doLogin">
+			<interceptor-ref name="bopsLoginStack" />
+			<result name="success" type="redirect">/bops/index.htm</result>
+			<result name="error" type="velocity">/bops/login.vm</result>
+		</action>
+		<action name="logout" class="com.doucome.chaoexpo.web.bops.action.LoginAction"  method="doLogout">
+			<interceptor-ref name="bopsLoginStack" />
+			<result name="success" type="velocity">/bops/login.vm</result>
+		</action>
+		
+		<action name="index" class="com.doucome.chaoexpo.web.bops.action.IndexAction" >
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/index.vm</result>
+		</action>
+		
+		
+	</package>
+	
+	<package name="bops-remote-rest" namespace="/bops/remote/rest" extends="struts-json">
+	
+		<interceptors>
+			 <!-- Basic stack -->
+            <interceptor-stack name="bopsDefaultStack">
+				 <interceptor-ref name="doucomeDefaultStack" />
+				 <interceptor-ref name="setBopsContextInterceptor" />
+				 <interceptor-ref name="bopsAuthzContextInterceptor" />
+			 </interceptor-stack>
+		</interceptors>
+		
+	</package>
+</struts>

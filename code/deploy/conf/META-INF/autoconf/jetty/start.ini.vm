@@ -1,0 +1,7 @@
+OPTIONS=Server,jsp,jmx,servlets,resources,webapp
+
+$chaoexpo_jettyserverhome/etc/jetty.xml
+$chaoexpo_jettyserverhome/etc/jetty-logging.xml
+$chaoexpo_jettyserverhome/etc/jetty-jmx.xml
+$chaoexpo_jettyserverhome/etc/jetty-deploy.xml
+$chaoexpo_jettyserverhome/etc/jetty-webapps.xml

@@ -1,0 +1,100 @@
+Listen ${chaoexpo_port}
+
+ServerRoot "${chaoexpo_output}"
+DocumentRoot "${chaoexpo_htdocs_home}"
+ServerName ${chaoexpo_domainName}
+
+DefaultLanguage cn
+AddDefaultCharset UTF-8
+
+PidFile "${chaoexpo_output}/logs/httpd.pid"
+
+User  ${chaoexpo_unix_user}
+Group ${chaoexpo_unix_user}
+
+Timeout 30
+KeepAlive On
+MaxKeepAliveRequests 500
+KeepAliveTimeout 25
+
+<IfModule worker.c>
+     StartServers     5
+     MaxClients       1024
+     MinSpareThreads  25
+     MaxSpareThreads  75
+     ThreadsPerChild  64
+     ThreadLimit      128
+     ServerLimit      16
+</IfModule>
+
+
+# Assume no memory leaks at all
+MaxRequestsPerChild 20000
+
+LogFormat "%h %{ORIG_CLIENT_IP}i %l %u %t \"%m /%{HOST}i%U%q %H\" %>s %b %D \"%{Referer}i\" \"%{User-Agent}i\"" cookie_log
+CustomLog "|/usr/sbin/cronolog ${chaoexpo_output}/logs/cookie_logs/%w_cookie_log" cookie_log
+
+ErrorLog  "${chaoexpo_output}/logs/apache_error.log"
+
+<Directory />
+    Options FollowSymLinks
+    AllowOverride None
+    order allow,deny
+    allow from all
+</Directory>
+
+<Directory "${chaoexpo_htdocs_home}">
+    Options FollowSymLinks
+    AllowOverride None
+    order allow,deny
+    allow from all
+</Directory>
+
+TypesConfig ${chaoexpo_httpdhome}/conf/mime.types
+DefaultType text/plain
+DirectoryIndex index.html
+
+
+NameVirtualHost *
+
+# if maintain 
+#<VirtualHost *>
+# RewriteEngine on
+# RewriteRule ^\/$ http://help.diandianzhe.com/help/web/wh.html [L,R]
+#</VirtualHost>
+
+<VirtualHost *>
+    ServerAdmin ${chaoexpo_unix_user}
+	DocumentRoot "${chaoexpo_htdocs_home}"
+    RewriteEngine on
+		
+</VirtualHost>
+
+SetOutputFilter DEFLATE
+<Location />
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+</Location>
+
+#if("${chaoexpo_production}" =="true")
+ErrorDocument 404 http://www.diandianzhe.com/zhe/error.htm
+ErrorDocument 509 http://www.diandianzhe.com/zhe/error.htm
+#end
+
+##Include mod_jk's specific configuration file-zgl
+##Include ${chaoexpo_deployhome}/conf/mod_jk.conf
+
+##Include mod_proxy
+Include ${chaoexpo_deployhome}/conf/mod_proxy.conf
+
+# hide the server info in http header
+ServerTokens Prod
+
+
+<IfModule mod_headers.c>
+        Header set X-Content-Type-Options "nosniff"    
+        Header set X-XSS-protection "1;mode=block"   
+        RequestHeader unset Range
+</IfModule>

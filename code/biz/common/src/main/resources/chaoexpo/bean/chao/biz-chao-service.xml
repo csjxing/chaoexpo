@@ -9,17 +9,8 @@
 			http://roma.alibaba.com/schema http://roma.alibaba.com/schema/roma-component.xsd
 			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
-			default-autowire="byName">
+	default-autowire="byName">
 
-	
-	<import resource="classpath:chaoexpo/bean/biz-common.xml" />
-	<import resource="classpath:chaoexpo/bean/biz-dao.xml" />
-	<import resource="classpath:chaoexpo/bean/biz-service.xml" />
-	<import resource="classpath:chaoexpo/bean/biz-datasource.xml" />
-	<import resource="classpath:chaoexpo/bean/biz-uri.xml" />
-	<import resource="classpath:chaoexpo/bean/web/biz-web-service.xml" />
-	
-	<import resource="classpath:chaoexpo/bean/chao/biz-chao-dao.xml" />
-	<import resource="classpath:chaoexpo/bean/chao/biz-chao-service.xml" />
+	<bean id="chaoActivityService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoActivityService"/>
 	
 </beans>

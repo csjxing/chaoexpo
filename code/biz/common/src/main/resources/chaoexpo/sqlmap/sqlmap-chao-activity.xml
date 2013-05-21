@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ChaoActivity">
+	<typeAlias alias="TA-ChaoActivity"
+		type="com.doucome.chaoexpo.biz.dal.dataobject.ChaoActivityDO" />
+
+	<resultMap id="RM-ChaoActivity" class="TA-ChaoActivity">
+		<result property="id" column="ID" />
+		<result property="name" column="NAME" />
+		<result property="location" column="LOCATION" />
+		<result property="contactName" column="CONTACT_NAME"/>
+		<result property="contactPhone" column="CONTACT_PHONE"/>
+		<result property="intro" column="INTRO"/>
+		<result property="picUrls" column="PIC_URLS"/>
+		<result property="notice" column="NOTICE"/>
+		<result property="countesyReminder" column="COUNTESY_REMINDER"/>
+		<result property="standPicUrls" column="STAND_PIC_URLS"/>
+		<result property="subjectIds" column="SUBJECT_IDS"/>
+		<result property="gmtCreate" column="GMT_CREATE"/>
+		<result property="gmtModified" column="GMT_MODIFIED" />
+	</resultMap>
+
+	<insert id="insertActivity">
+		INSERT INTO
+			CHAO_ACTIVITY(ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,INTRO,PIC_URLS,NOTICE,COUNTESY_REMINDER,STAND_PIC_URLS,SUBJECT_IDS,GMT_CREATE,GMT_MODIFIED)
+		VALUES
+			(#id#,#name#,#location#,#contactName#,#contactPhone#,#intro#,#picUrls#,#notice#,#countesyReminder#,#standPicUrls#,#subjectIds#,now(),now())
+		<selectKey resultClass="java.lang.Long" keyProperty="id">
+   			<![CDATA[
+			SELECT LAST_INSERT_ID() AS ID
+			]]>
+	    </selectKey>
+	</insert>
+	
+	<select id="queryActivityById" resultMap="RM-ChaoActivity">
+		SELECT 
+			ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,INTRO,PIC_URLS,NOTICE,COUNTESY_REMINDER,STAND_PIC_URLS,SUBJECT_IDS,GMT_CREATE,GMT_MODIFIED
+		FROM
+			CHAO_ACTIVITY
+		WHERE
+			ID = #id#
+	</select>
+	
+	<select id="queryActivityWithPagination" resultMap="RM-ChaoActivity">
+		SELECT 
+			ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,INTRO,PIC_URLS,NOTICE,COUNTESY_REMINDER,STAND_PIC_URLS,SUBJECT_IDS,GMT_CREATE,GMT_MODIFIED
+		FROM
+			CHAO_ACTIVITY
+		<isParameterPresent open="WHERE" removeFirstPrepend="true">
+	    	<isNotEmpty property="ids" prepend="AND">
+	    		ID IN
+			    <iterate property="sourceList" open="("  close=")"  conjunction=",">
+					#ids[]#
+				</iterate>
+			</isNotEmpty>
+		</isParameterPresent>
+		ORDER BY 
+	    	GMT_CREATE DESC
+	    LIMIT 
+	    	#start#, #size#
+	</select>
+	
+	
+	<select id="countActivityWithPagination" resultClass="java.lang.Integer">
+		SELECT 
+			COUNT(ID)
+		FROM
+			CHAO_ACTIVITY
+		<isParameterPresent open="WHERE" removeFirstPrepend="true">
+	    	<isNotEmpty property="ids" prepend="AND">
+	    		ID IN
+			    <iterate property="sourceList" open="("  close=")"  conjunction=",">
+					#ids[]#
+				</iterate>
+			</isNotEmpty>
+		</isParameterPresent>
+	</select>
+	
+	<update id="updateActivityById">
+		UPDATE
+			CHAO_ACTIVITY
+		SET
+			<isNotEmpty property="name">
+				NAME = #name# ,
+			</isNotEmpty>
+			<isNotEmpty property="location">
+				LOCATION = #location# ,
+			</isNotEmpty>
+			<isNotEmpty property="contactName">
+				CONTACT_NAME = #contactName# ,
+			</isNotEmpty>
+			<isNotEmpty property="contactPhone">
+				CONTACT_PHONE = #contactPhone# ,
+			</isNotEmpty>
+			<isNotEmpty property="intro">
+				INTRO = #intro# ,
+			</isNotEmpty>
+			<isNotEmpty property="name">
+				PIC_URLS = #picUrls# ,
+			</isNotEmpty>
+			<isNotEmpty property="name">
+				NOTICE = #notice# ,
+			</isNotEmpty>
+			<isNotEmpty property="name">
+				COUNTESY_REMINDER = #countesyReminder# ,
+			</isNotEmpty>
+			<isNotEmpty property="name">
+				STAND_PIC_URLS = #standPicUrls# ,
+			</isNotEmpty>
+			<isNotEmpty property="name">
+				SUBJECT_IDS = #subjectIds# ,
+			</isNotEmpty>
+			GMT_MODIFIED = now()
+		WHERE
+			ID = #id#
+	</update>
+</sqlMap>

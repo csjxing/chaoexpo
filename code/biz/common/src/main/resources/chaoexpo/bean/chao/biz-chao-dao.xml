@@ -12,5 +12,6 @@
 	default-autowire="byName">
 
 	<bean id="chaoActivityDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoActivityDAO"/>
+	<bean id="chaoUserDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoUserDAO"/>
 	
 </beans>

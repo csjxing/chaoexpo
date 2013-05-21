@@ -11,15 +11,43 @@ import com.doucome.chaoexpo.biz.dal.dataobject.ChaoActivityDO;
  * @author langben 2013-5-21
  *
  */
-public interface ChaoActivityDAO {
+public interface ChaoActivityDAO{
 
+	/**
+	 * 
+	 * @param activity
+	 * @return
+	 */
 	Long insertActivity(ChaoActivityDO activity) ;
 	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	ChaoActivityDO queryActivityById(Long id) ;
 	
+	/**
+	 * 
+	 * @param condition
+	 * @param start
+	 * @param size
+	 * @return
+	 */
 	List<ChaoActivityDO> queryActivityWithPagination(ChaoActivitySearchCondition condition , int start , int size) ;
 	
+	/**
+	 * 
+	 * @param condition
+	 * @return
+	 */
 	int countActivityWithPagination(ChaoActivitySearchCondition condition) ;
 	
+	/**
+	 * 
+	 * @param id
+	 * @param condition
+	 * @return
+	 */
 	int updateActivityById(Long id , ChaoActivityUpdateCondition condition) ;
 }

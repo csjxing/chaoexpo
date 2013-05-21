@@ -9,5 +9,14 @@
 	
 	<package name="chao-remote" namespace="/chao/remote/rest" extends="struts-json">
 		
+		<action name="query_activity_list" class="com.doucome.chaoexpo.web.chao.action.ajax.QueryActivityListAction">
+			<interceptor-ref name="doucomeDefaultStack" />
+			<result name="success" type="json2"></result>
+		</action>
+		
+		<action name="query_activity_detail" class="com.doucome.chaoexpo.web.chao.action.ajax.QueryActivityDetailAction">
+			<interceptor-ref name="doucomeDefaultStack" />
+			<result name="success" type="json2"></result>
+		</action>
 	</package>
 </struts>

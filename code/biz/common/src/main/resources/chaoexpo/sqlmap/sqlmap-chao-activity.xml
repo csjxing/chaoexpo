@@ -16,6 +16,8 @@
 		<result property="countesyReminder" column="COUNTESY_REMINDER"/>
 		<result property="standPicUrls" column="STAND_PIC_URLS"/>
 		<result property="subjectIds" column="SUBJECT_IDS"/>
+		<result property="followCount" column="FOLLOW_COUNT"/>
+		<result property="commentCount" column="COMMENT_COUNT"/>
 		<result property="gmtCreate" column="GMT_CREATE"/>
 		<result property="gmtModified" column="GMT_MODIFIED" />
 	</resultMap>
@@ -34,7 +36,7 @@
 	
 	<select id="queryActivityById" resultMap="RM-ChaoActivity">
 		SELECT 
-			ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,INTRO,PIC_URLS,NOTICE,COUNTESY_REMINDER,STAND_PIC_URLS,SUBJECT_IDS,GMT_CREATE,GMT_MODIFIED
+			ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,INTRO,PIC_URLS,NOTICE,COUNTESY_REMINDER,STAND_PIC_URLS,SUBJECT_IDS,FOLLOW_COUNT,COMMENT_COUNT,GMT_CREATE,GMT_MODIFIED
 		FROM
 			CHAO_ACTIVITY
 		WHERE
@@ -43,7 +45,7 @@
 	
 	<select id="queryActivityWithPagination" resultMap="RM-ChaoActivity">
 		SELECT 
-			ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,INTRO,PIC_URLS,NOTICE,COUNTESY_REMINDER,STAND_PIC_URLS,SUBJECT_IDS,GMT_CREATE,GMT_MODIFIED
+			ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,PIC_URLS,STAND_PIC_URLS,SUBJECT_IDS,FOLLOW_COUNT,COMMENT_COUNT,GMT_CREATE,GMT_MODIFIED
 		FROM
 			CHAO_ACTIVITY
 		<isParameterPresent open="WHERE" removeFirstPrepend="true">
@@ -109,6 +111,12 @@
 			</isNotEmpty>
 			<isNotEmpty property="name">
 				SUBJECT_IDS = #subjectIds# ,
+			</isNotEmpty>
+			<isNotEmpty property="incrFollowCount">
+				FOLLOW_COUNT = FOLLOW_COUNT + #incrFollowCount# ,
+			</isNotEmpty>
+			<isNotEmpty property="incrCommentCount">
+				COMMENT_COUNT = COMMENT_COUNT + #incrCommentCount# ,
 			</isNotEmpty>
 			GMT_MODIFIED = now()
 		WHERE

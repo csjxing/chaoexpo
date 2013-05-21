@@ -23,14 +23,23 @@
 		</result-types>
 
 		<interceptors>
+		
+			<interceptor name="setChaoContextInterceptor"
+				class="com.doucome.chaoexpo.web.chao.interceptor.SetContextInterceptor">
+				<param name="domain">dev.chaoexpo.com</param>
+			</interceptor>
 
 			<interceptor name="setBopsContextInterceptor"
 				class="com.doucome.chaoexpo.web.bops.interceptor.SetContextInterceptor">
-				<param name="domain">bops-dev.diandianzhe.com</param>
+				<param name="domain">bops-dev.chaoexpo.com</param>
 			</interceptor>
 			
 			<interceptor name="bopsAuthzContextInterceptor"
 				class="com.doucome.chaoexpo.web.bops.interceptor.AuthzInterceptor">
+			</interceptor>
+			
+			<interceptor name="chaoAuthzContextInterceptor"
+				class="com.doucome.chaoexpo.web.chao.interceptor.AuthzInterceptor">
 			</interceptor>
 			
 			<interceptor-stack name="doucomeDefaultStack">

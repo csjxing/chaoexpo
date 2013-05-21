@@ -26,10 +26,15 @@
 		</result-types>
 		 
 		<interceptors>
+			 <interceptor name="setChaoContextInterceptor" class="com.doucome.chaoexpo.web.chao.interceptor.SetContextInterceptor">
+				<param name="domain">${chaoexpo_domainName}</param>
+			 </interceptor>
 			
 			 <interceptor name="setBopsContextInterceptor" class="com.doucome.chaoexpo.web.bops.interceptor.SetContextInterceptor">
 			 	<param name="domain">${chaoexpo_bops_domainName}</param>
 			 </interceptor>
+			 
+			 <interceptor name="chaoAuthzContextInterceptor" class="com.doucome.chaoexpo.web.chao.interceptor.AuthzInterceptor"></interceptor>
 			 
 			 <interceptor name="bopsAuthzContextInterceptor" class="com.doucome.chaoexpo.web.bops.interceptor.AuthzInterceptor"></interceptor>
 			 

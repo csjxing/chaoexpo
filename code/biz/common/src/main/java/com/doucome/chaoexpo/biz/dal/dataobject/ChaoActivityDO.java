@@ -63,6 +63,16 @@ public class ChaoActivityDO  extends AbstractModel{
 	 */
 	private Long subjectIds ;
 	
+	/**
+	 * 关注数
+	 */
+	private Integer followCount ;
+	
+	/**
+	 * 评论数
+	 */
+	private Integer commentCount ;
+	
 	private Date gmtCreate ;
 	
 	private Date gmtModified ;
@@ -169,6 +179,22 @@ public class ChaoActivityDO  extends AbstractModel{
 
 	public void setGmtModified(Date gmtModified) {
 		this.gmtModified = gmtModified;
+	}
+
+	public Integer getFollowCount() {
+		return followCount;
+	}
+
+	public void setFollowCount(Integer followCount) {
+		this.followCount = followCount;
+	}
+
+	public Integer getCommentCount() {
+		return commentCount;
+	}
+
+	public void setCommentCount(Integer commentCount) {
+		this.commentCount = commentCount;
 	}
 	
 	

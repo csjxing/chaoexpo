@@ -14,4 +14,7 @@
 	<bean id="bopsSessionOperator" class="com.doucome.chaoexpo.web.bops.authz.impl.DefaultBopsSessionOperator"/>
 	<bean id="bopsAuthz" class="com.doucome.chaoexpo.web.bops.authz.impl.DefaultAuthzImpl"/>
 	
+	<bean id="chaoSessionOperator" class="com.doucome.chaoexpo.web.chao.authz.impl.DefaultChaoSessionOperator"/>
+	<bean id="chaoAuthz" class="com.doucome.chaoexpo.web.chao.authz.impl.DefaultAuthzImpl"/>
+	
 </beans>

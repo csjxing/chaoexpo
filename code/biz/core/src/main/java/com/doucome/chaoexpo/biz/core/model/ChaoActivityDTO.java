@@ -62,6 +62,14 @@ public class ChaoActivityDTO extends AbstractModel {
 	public Long getSubjectIds() {
 		return activity.getSubjectIds();
 	}
+	
+	public Integer getFollowCount() {
+		return activity.getFollowCount();
+	}
+
+	public Integer getCommentCount() {
+		return activity.getCommentCount();
+	}
 
 	public Date getGmtCreate() {
 		return activity.getGmtCreate();

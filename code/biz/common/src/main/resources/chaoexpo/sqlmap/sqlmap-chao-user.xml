@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ChaoUser">
+	<typeAlias alias="TA-ChaoUser"
+		type="com.doucome.chaoexpo.biz.dal.dataobject.ChaoUserDO" />
+
+	<resultMap id="RM-ChaoUser" class="TA-ChaoUser">
+		<result property="id" column="ID" />
+		<result property="userName" column="USER_NAME" />
+		<result property="md5Password" column="MD5_PASSWORD" />
+		<result property="followActivityCount" column="FOLLOW_ACTIVITY_COUNT"/>
+		<result property="favoriteSubjectCount" column="FAVORITE_SUBJECT_COUNT"/>
+		<result property="checkinActivityCount" column="CHECKIN_ACTIVITY_COUNT"/>
+		<result property="authKey" column="AUTH_KEY"/>
+		<result property="registerIMEI" column="REGISTER_IMEI"/>
+		<result property="gmtAuth" column="GMT_AUTH"/>		
+		<result property="gmtCreate" column="GMT_CREATE"/>
+		<result property="gmtModified" column="GMT_MODIFIED" />
+	</resultMap>
+	
+	<statement id="chao_user_fields">
+		ID,USER_NAME,FOLLOW_ACTIVITY_COUNT,FAVORITE_SUBJECT_COUNT,CHECKIN_ACTIVITY_COUNT,AUTH_KEY,REGISTER_IMEI,GMT_AUTH,GMT_CREATE,GMT_MODIFIED
+	</statement>
+
+	<insert id="insertUser">
+		INSERT INTO
+			CHAO_USER(ID,USER_NAME,MD5_PASSWORD,AUTH_KEY,REGISTER_IMEI,GMT_AUTH,GMT_CREATE,GMT_MODIFIED)
+		VALUES
+			(#id#,#userName#,#md5Password#,#authKey#,#registerIMEI#,#now()#,now(),now())
+		<selectKey resultClass="java.lang.Long" keyProperty="id">
+   			<![CDATA[
+			SELECT LAST_INSERT_ID() AS ID
+			]]>
+	    </selectKey>
+	</insert>
+	
+	<select id="queryUserByUserName" resultMap="RM-ChaoUser">
+		SELECT 
+			<include refid="chao_user_fields"/>
+		FROM
+			CHAO_ACTIVITY
+		WHERE
+			USER_NAME = #userName#
+	</select>
+	
+	<select id="queryUserByUserNameAndAuthKey" resultMap="RM-ChaoUser">
+		SELECT 
+			<include refid="chao_user_fields"/>
+		FROM
+			CHAO_ACTIVITY
+		WHERE
+			USER_NAME = #userName#
+		AND
+			AUTH_KEY = #authKey#
+	</select>
+	
+	<update id="updateUserByUserName">
+		UPDATE
+			CHAO_ACTIVITY
+		SET
+			<isNotEmpty property="incrFollowActivityCount">
+				FOLLOW_ACTIVITY_COUNT = FOLLOW_ACTIVITY_COUNT + #incrFollowActivityCount# ,
+			</isNotEmpty>
+			<isNotEmpty property="incrFavoriteSubjectCount">
+				FAVORITE_SUBJECT_COUNT = FAVORITE_SUBJECT_COUNT + #incrFavoriteSubjectCount# ,
+			</isNotEmpty>
+			<isNotEmpty property="incrCheckinActivityCount">
+				CHECKIN_ACTIVITY_COUNT = CHECKIN_ACTIVITY_COUNT + #incrCheckinActivityCount# ,
+			</isNotEmpty>
+			GMT_MODIFIED = now()
+		WHERE
+			USER_NAME = #userName#
+	</update>
+</sqlMap>

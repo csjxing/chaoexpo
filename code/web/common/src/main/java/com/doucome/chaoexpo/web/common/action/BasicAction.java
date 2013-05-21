@@ -22,12 +22,8 @@ import com.opensymphony.xwork2.util.ValueStack;
  */
 @SuppressWarnings("serial")
 public class BasicAction extends ActionSupport {
-
-    public static final String MEMBER_NOT_LOGIN = "memberLogin";
-
-    public static final String DDZ_INDEX        = "ddzIndex";
     
-    public static final String DDZ_LOGIN = "ddzLogin" ;
+    public static final String CHAO_LOGIN = "chaoLogin" ;
 
     protected HttpServletRequest getRequest() {
         return ServletActionContext.getRequest();

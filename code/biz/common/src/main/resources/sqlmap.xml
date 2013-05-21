@@ -15,5 +15,6 @@
     
   	<sqlMap resource="chaoexpo/sqlmap/sqlmap-bops-admin.xml" />
   	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-activity.xml" />
+  	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-user.xml" />
   	
 </sqlMapConfig>

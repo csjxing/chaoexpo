@@ -11,6 +11,7 @@
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
 	default-autowire="byName">
 
-	<bean id="chaoActivityService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoActivityService"/>
+	<bean id="chaoActivityService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoActivityServiceImpl"/>
+	<bean id="chaoUserService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoUserServiceImpl"/>
 	
 </beans>

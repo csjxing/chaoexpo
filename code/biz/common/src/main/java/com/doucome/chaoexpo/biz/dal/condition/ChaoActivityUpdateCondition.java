@@ -57,6 +57,10 @@ public class ChaoActivityUpdateCondition extends AbstractModel  {
 	 */
 	private Long subjectIds ;
 	
+	private Integer incrFollowCount ;
+	
+	private Integer incrCommentCount ;
+	
 	public Map<String,Object> toMap() {
 		Map<String,Object> map = new HashMap<String,Object>() ;
 		map.put("name", name) ;
@@ -69,6 +73,9 @@ public class ChaoActivityUpdateCondition extends AbstractModel  {
 		map.put("countesyReminder", countesyReminder) ;
 		map.put("standPicUrls", standPicUrls) ;
 		map.put("subjectIds", subjectIds) ;
+		
+		map.put("incrFollowCount", incrFollowCount) ;
+		map.put("incrCommentCount", incrCommentCount) ;
 		return map ;
 	}
 
@@ -150,6 +157,22 @@ public class ChaoActivityUpdateCondition extends AbstractModel  {
 
 	public void setSubjectIds(Long subjectIds) {
 		this.subjectIds = subjectIds;
+	}
+
+	public Integer getIncrFollowCount() {
+		return incrFollowCount;
+	}
+
+	public void setIncrFollowCount(Integer incrFollowCount) {
+		this.incrFollowCount = incrFollowCount;
+	}
+
+	public Integer getIncrCommentCount() {
+		return incrCommentCount;
+	}
+
+	public void setIncrCommentCount(Integer incrCommentCount) {
+		this.incrCommentCount = incrCommentCount;
 	}
 	
 }

@@ -1,0 +1,52 @@
+.dd-tip-layer {
+    background-color: #FFFFFF;
+    color: #565656;
+    position: absolute;
+    text-align: left;
+    z-index: 99;
+}
+
+.dd-tip-layer .bg {
+    background: url(../../../../img/layer/layer_bg.png) repeat scroll 0 0 transparent;
+    border-radius: 4px 4px 4px 4px;
+    padding: 3px;
+}
+
+.dd-tip-layer .arrow,
+.dd-tip-layer .arrow_hui {
+    background: url(../../../../img/layer/layer_arrow.png) no-repeat scroll 0 0 transparent;
+    overflow: hidden;
+    position: absolute;
+    z-index: 999;
+}
+
+.dd-tip-layer .arrow_t,
+.dd-tip-layer .arrow_b {
+    background-position: 0 0;
+    height: 9px;
+    right: 30px;
+    top: -5px;
+    width: 14px;
+}
+
+.dd-tip-layer .arrow_r, .dd-tip-layer .arrow_l {
+	width: 9px;
+	height: 14px;
+	top: 20px;
+	right: -5px;
+	background-position: -8px -24px;
+}
+
+.dd-tip-layer .arrow_b {
+	top: auto;
+	bottom: -5px;
+	background-position: 0 -8px;
+}
+
+.dd-tip-layer .content {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px 2px 2px 2px;
+    padding: 3px 8px;
+    position: relative;
+}

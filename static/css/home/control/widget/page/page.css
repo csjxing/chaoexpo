@@ -1,0 +1,47 @@
+.ddz .pagination {
+	margin:0 auto ;
+	padding: 0;
+	display: inline-block;
+}
+
+.ddz .pagination a {
+	float: left;
+	height: 20px;
+	line-height: 20px;
+	color: #666;
+	padding: 3px 10px;
+	margin-left: 5px;
+	font-size: 14px;
+	border: 1px solid #EBEBEB;
+	background: white;
+	overflow: hidden;
+	border-radius: 0px;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	white-space: nowrap;
+	text-decoration: none;
+}
+
+.ddz .pagination a:hover {
+	border:1px solid #ccc;
+	color:#666;
+	background:#fff;
+}
+
+.ddz .pagination .page-cur {
+	background: #999;
+	color: white;
+	border: 1px solid #EBEBEB;
+	font-weight: normal;
+}
+
+
+.ddz .pagination span {
+	float: left;
+	height: 20px;
+	line-height: 20px;
+	padding: 3px 10px;
+	margin-left: 5px;
+	color: #666;
+	font-size: 14px;
+}

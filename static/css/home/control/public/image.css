@@ -1,0 +1,385 @@
+.tb-login,
+.header-logo,
+.header-logo-bubble,
+.tool-left-icon,
+.tool-center-icon,
+.tool-right-icon,
+.main-result-ipt,
+.main-result-buy,
+.tool-item-title-arrow,
+.item-price-discount-ipt,
+.item-price-discount,
+.tool-item-arrow,
+.logo,
+.content .submit,
+.alipay-count-submit,
+.show-url .left-arrow,
+.light-icon,
+.list-top-search button ,
+.item-price-discount-allowance-gift ,
+.end{
+	background-image: url(../../../../img/btn.v1.png);
+	_background-image: url(../../../../img/ie6/btn.v1.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: inline-block;
+}
+
+.dd-brands-tab-down,
+.dd-buyings-tab-down,
+.dd-dialog-head,
+.dd-dialog-slogan,
+.dd-dialog-submit
+{
+	background-image: url(../../../../img/back.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: inline-block;
+}
+
+.ddz .search {
+	background-image: url(../../../../img/bglist.v1.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: inline-block;
+}
+
+.jcarousel-skin-tango,
+.end{
+	background-image: url(../../../../img/carousel.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: inline-block;
+	margin-left:156px;
+}
+
+.bglight{
+	background-image: url(../../../../img/bglight.jpg);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: inline-block;
+}
+
+.list-top-logo
+{
+	background-image: url(../../../../img/logo_200x100.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: inline-block;
+}
+
+.list-top-search,
+.list-search-filter-check,
+.list-search-order-down,
+.list-search-keyword-submit,
+.list-search-order-up,
+.list-search-order-default
+{
+	background-image: url(../../../../img/bglist.v1.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: inline-block;	
+}
+.list-search-keyword,
+.list-search-order
+{
+	background-image: url(../../../../img/bglist_kwd.png);
+	background-repeat: repeat-x;
+	background-color: transparent;
+	display: inline-block;	
+}
+.tool .tool-center,.tool .tool-right ,.tool .tool-left {
+	background-image: url(../../../../img/imgb.png);
+	background-repeat: no-repeat;
+	display: inline-block;
+}
+
+.tool .tool-favorite .icon,.tool .tool-help .icon ,.tool .tool-feedback .icon {
+	background-image: url(../../../../img/imgb_small.png);
+	background-repeat: no-repeat;
+	display: inline-block;
+}
+
+.step1{
+	background-image: url(../../../../img/newguide/new1.png);
+	display: inline-block;
+	background-repeat: no-repeat;
+}
+
+.errurl-prompt {
+	background-image: url(../../../../img/newguide/new_prompt.png);
+	display: inline-block;
+	background-repeat: no-repeat;
+}
+.step2{
+	background-image: url(../../../../img/newguide/new2.png);
+	display: inline-block;
+	background-repeat: no-repeat;
+}
+.newGuide{
+	background-image: url(../../../../img/newguide/newGuide.png);
+	display: inline-block;
+	background-repeat: no-repeat;
+}
+.step3{
+	background-image: url(../../../../img/newguide/new3.png);
+	display: inline-block;
+	background-repeat: no-repeat;
+}
+.step4{
+	background-image: url(../../../../img//newguide/new4.png);
+	display: inline-block;
+	background-repeat: no-repeat;
+}
+.step5{
+	background-image: url(../../../../img/newguide/new5.png);
+	display: inline-block;
+	background-repeat: no-repeat;
+}
+.step6{
+	background-image: url(../../../../img/new5.png);
+	display: inline-block;
+	background-repeat: no-repeat;
+}
+.guidedone {
+	background-image: url(../../../../img/newguide/done.png);
+	display: inline-block;
+	background-repeat: no-repeat;
+}
+.bottom i.social_gray , 
+.ddz .top-cs .weibo i {
+	background-image: url(../../../../img/social_ico.gif) ;
+	background-repeat: no-repeat;
+	background-color: transparent;
+    display: inline-block;
+}
+
+.taobaos8 a {
+	background-image: url(../../../../img/tborange.png);
+	display: inline-block;
+	background-color: transparent;
+	background-repeat: no-repeat;
+}
+
+.layer_tips .arrow_up , .layer_tips .arrow_down {
+	background-image: url(../../../../img/layer_arrow.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+    display: inline-block;
+}
+
+.new-guide-40{
+	background-image: url(../../../../img/newGuide40.png);
+	background-repeat: no-repeat;
+	display: inline-block;
+}
+
+.item-price-view .pop-for-help i {
+	background-image: url(../../../../img/icon.gif);
+	background-repeat: no-repeat;
+	background-color: transparent;
+    display: inline-block;
+}
+.item-buy-go {
+	background-image: url(../../../../img/taobaobuy.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+    display: inline-block;
+}
+
+.ddz .login-tip {
+	background-image: url(../../../../img/login_tip.png);
+	background-repeat: no-repeat;
+}
+
+.angle-right {
+	background-image: url(../../../../images/angle_right.png);
+	display: inline-block;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	background-color: transparent;
+}
+
+.angle-top {
+	background-image: url(../../../../images/angle_top.png);
+	display: inline-block;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	background-color: transparent;
+}
+
+.go-btn {
+	background-image: url(../../../../img/orange_btns.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+}
+
+.ddz .item-price-view .rumour i {
+	background-image: url(../../../../img/ico_warn.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+}
+
+.ui-video-xbox .ui-show-video {
+	background-image: url(../../../../img/ui-video-xbox.png);
+	_background-image: url(../../../../img/ui-video-xbox-fix.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+}
+
+.jfb-icon19x19 {
+	background-image: url(../../../../images/jfb19x19.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+    display: inline-block;
+}
+
+.jfb-icon16x16 {
+	background-image: url(../../../../images/jfb16x16.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+    display: inline-block;
+}
+
+.jfb-icon12x12 {
+	background-image: url(../../../../images/jfb12x12.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+    display: inline-block;
+}
+
+.jfb-icon10x10 {
+	background-image: url(../../../../images/jfb10x10.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+    display: inline-block;
+}
+
+.ddz .fl-one-day ,
+.ddz .fl-alipay ,
+.ddz .fl-alipay-ipt ,
+.ddz .fl-tishi {
+	background-image: url(../../../../img/fl-one-day.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+    display: inline-block;
+}
+
+.ddz .cutoff {
+	background-image: url(../../../../img/ddz-cutoff.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+    display: inline-block;
+}
+
+.ddz .fav-arrow {
+	background-image: url(../../../../img/fav-arrow.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+}
+
+.ddz .new-guide-arrow {
+	background-image: url(../../../../img/newguide/arrow.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+}
+
+.ddz .ju16x16 {
+	background-image: url(../../../../img/ju16x16.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: inline-block ;
+}
+
+.ddz .meiti .neteasy ,
+.ddz .meiti .qq {
+	background-image: url(../../../../img/meiti/meiti70.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: inline-block;
+}
+
+.ddz .meiti .cnhan {
+	background-image: url(../../../../img/meiti/cnhan70.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: inline-block;
+}
+
+.ddz .meiti .china {
+	background-image: url(../../../../img/meiti/china70.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: inline-block;
+}
+
+.ddz .meiti .sohu {
+	background-image: url(../../../../img/meiti/sohu70.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: inline-block;
+}
+
+.ddz .menu .tixian ,
+.ddz .top-shortcut-icon ,
+.ddz .top-favorite-icon ,
+.ddz .top-help-icon ,
+.ddz .top-feedback-icon ,
+.ddz .menu .icon ,
+.ddz .menu .user-center-icon ,
+.ddz .menu .user-center .arrow ,
+.ddz .menu .nav-split-icon{
+	background-image: url(../../../../img/ddz-top-icons.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: inline-block;
+}
+
+.ddz .alipay-area-ipt .back {
+	background-image: url(../../../../img/common/close.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: inline-block;
+}
+
+.ddz .icon-ww-online {
+	background-image: url(../../../../img/flags_new.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: inline-block;
+}
+
+.ddz .alipay-err-layer {
+	background-image: url(../../../../img/newguide/alipay-err-layer.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+}
+
+.ddz .alipay-err-layer .err-msg .err-icon {
+	background: url(../../../../images/ico-pa.png);
+	background-repeat: no-repeat;
+	display: inline-block;
+}
+
+.ddz .ie-menu-shadow {
+	background: url(../../../../img/menu/menu-shadow.png);
+	background-repeat: repeat-x;
+}
+
+.ddz .menu .cur .indicator  {
+	background-image: url(../../../../img/menu/menu-indicator.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: inline-block;
+}
+
+.ddz .ddz-index-main .segment .channels li i ,
+.ddz .ddz-index-main .segment .channels .on .tip-text ,
+.ddz .ddz-index-main .segment .new-guide a ,
+.ddz .ddz-index-main .segment .new-guide .first-rebate ,
+.ddz .ddz-index-main .segment .item-list .ddz-recomm-save {
+	background-image: url(../../../../img/index-merge.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: inline-block;
+}

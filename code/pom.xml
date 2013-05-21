@@ -14,6 +14,7 @@
 		<module>./biz/core</module>
 		<module>./web/common</module>
 		<module>./web/bops</module>
+		<module>./web/chao</module>
 		<module>./task</module>
 		<module>./bundle/war</module>
 		<module>./deploy</module>

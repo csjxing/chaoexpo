@@ -5,7 +5,7 @@
 #end
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=GBK" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>$!title</title>
 
 	#DDZ_CSS(["../bops/bops.css"])

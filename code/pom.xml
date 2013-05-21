@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="GBK"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -24,7 +24,7 @@
 	<properties>
 		<sourceEncoding>UTF-8</sourceEncoding>
 		<encoding>UTF-8</encoding>
-		<file_encoding>GBK</file_encoding>
+		<file_encoding>UTF-8</file_encoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 		<spring.version>3.0.0.RELEASE</spring.version>

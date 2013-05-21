@@ -78,8 +78,9 @@
     </package>
     
     
+	<include file="struts-home.xml" />
+	<include file="struts-chao.xml" />
 	<include file="struts-bops.xml" />	
-	<include file="struts-home.xml" />	
 	<include file="struts-task.xml" />
 	
 </struts>

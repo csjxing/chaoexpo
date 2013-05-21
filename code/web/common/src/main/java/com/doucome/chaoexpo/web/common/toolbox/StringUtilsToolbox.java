@@ -19,7 +19,7 @@ public class StringUtilsToolbox extends StringUtils {
 
     public static String urlEncode(String url) {
         try {
-            return URLEncoder.encode(url, "GBK");
+            return URLEncoder.encode(url, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             return "";
         }
@@ -74,7 +74,7 @@ public class StringUtilsToolbox extends StringUtils {
     }
 
     /**
-     * 处理字符串到指定长度，多余的字符以“strAfter”处理
+     * 
      * 
      * @param str
      * @param end
@@ -143,7 +143,7 @@ public class StringUtilsToolbox extends StringUtils {
     }
     
     /**
-     * 解析格式： a:b=> key=a , value=b
+     *  
      * @param str
      * @return
      */

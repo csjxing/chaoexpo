@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ChaoSubject">
+	<typeAlias alias="TA-ChaoSubject"
+		type="com.doucome.chaoexpo.biz.dal.dataobject.ChaoSubjectDO" />
+
+	<resultMap id="RM-ChaoSubject" class="TA-ChaoSubject">
+		<result property="id" column="ID" />
+		<result property="name" column="NAME" />
+		<result property="picUrls" column="PIC_URLS"/>
+		<result property="webUrl" column="WEB_URL"/>
+		<result property="gmtCreate" column="GMT_CREATE"/>
+		<result property="gmtModified" column="GMT_MODIFIED" />
+	</resultMap>
+
+	<insert id="insertSubject">
+		INSERT INTO
+			CHAO_SUBJECT(ID,NAME,PIC_URLS,WEB_URL,GMT_CREATE,GMT_MODIFIED)
+		VALUES
+			(#id#,#name#,#picUrls#,#webUrl#,now(),now())
+		<selectKey resultClass="java.lang.Long" keyProperty="id">
+   			<![CDATA[
+			SELECT LAST_INSERT_ID() AS ID
+			]]>
+	    </selectKey>
+	</insert>
+	
+	<select id="querySubjectById" resultMap="RM-ChaoSubject">
+		SELECT 
+			ID,NAME,PIC_URLS,WEB_URL,GMT_CREATE,GMT_MODIFIED
+		FROM
+			CHAO_SUBJECT
+		WHERE
+			ID = #id#
+	</select>
+	
+	<select id="querySubjectsWithPagination" resultMap="RM-ChaoSubject">
+		SELECT 
+			ID,NAME,PIC_URLS,WEB_URL,GMT_CREATE,GMT_MODIFIED
+		FROM
+			CHAO_SUBJECT
+		<isParameterPresent open="WHERE" removeFirstPrepend="true">
+	    	
+		</isParameterPresent>
+		ORDER BY 
+	    	GMT_CREATE DESC
+	    LIMIT 
+	    	#start#, #size#
+	</select>
+	
+	
+	<select id="countSubjectsWithPagination" resultClass="java.lang.Integer">
+		SELECT 
+			COUNT(ID)
+		FROM
+			CHAO_SUBJECT
+		<isParameterPresent open="WHERE" removeFirstPrepend="true">
+	    	
+		</isParameterPresent>
+	</select>
+	
+	<update id="updateSubjectById">
+		UPDATE
+			CHAO_ACTIVITY
+		SET
+			<isNotEmpty property="name">
+				NAME = #name# ,
+			</isNotEmpty>
+			<isNotEmpty property="picUrls">
+				PIC_URLS = #picUrls# ,
+			</isNotEmpty>
+			<isNotEmpty property="webUrl">
+				WEB_URL = #webUrl# ,
+			</isNotEmpty>
+			GMT_MODIFIED = now()
+		WHERE
+			ID = #id#
+	</update>
+</sqlMap>

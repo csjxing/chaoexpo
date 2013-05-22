@@ -8,6 +8,8 @@ import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
 public class ChaoActivityDTO extends AbstractModel {
 	
 	private ChaoActivityDO activity ;
+	
+	private ChaoSubjectDTO subject ;
 
 	public ChaoActivityDTO(ChaoActivityDO activity) {
 		if(activity == null) {
@@ -59,8 +61,8 @@ public class ChaoActivityDTO extends AbstractModel {
 		return activity.getStandPicUrls();
 	}
 
-	public Long getSubjectIds() {
-		return activity.getSubjectIds();
+	public Long getSubjectId() {
+		return activity.getSubjectId();
 	}
 	
 	public Integer getFollowCount() {
@@ -77,6 +79,14 @@ public class ChaoActivityDTO extends AbstractModel {
 
 	public Date getGmtModified() {
 		return activity.getGmtModified();
+	}
+
+	public ChaoSubjectDTO getSubject() {
+		return subject;
+	}
+
+	public void setSubject(ChaoSubjectDTO subject) {
+		this.subject = subject;
 	}
 
 }

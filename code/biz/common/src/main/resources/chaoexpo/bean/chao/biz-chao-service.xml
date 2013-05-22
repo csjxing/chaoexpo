@@ -13,5 +13,6 @@
 
 	<bean id="chaoActivityService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoActivityServiceImpl"/>
 	<bean id="chaoUserService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoUserServiceImpl"/>
+	<bean id="chaoSubjectService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoSubjectServiceImpl"/>
 	
 </beans>

@@ -13,5 +13,6 @@
 
 	<bean id="chaoActivityDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoActivityDAO"/>
 	<bean id="chaoUserDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoUserDAO"/>
+	<bean id="chaoSubjectDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoSubjectDAO"/>
 	
 </beans>

@@ -59,9 +59,9 @@ public class ChaoActivityDO  extends AbstractModel{
 	private String standPicUrls ;
 	
 	/**
-	 * 专题列表（“,”隔开）
+	 * 对应专题
 	 */
-	private Long subjectIds ;
+	private Long subjectId ;
 	
 	/**
 	 * 关注数
@@ -157,12 +157,12 @@ public class ChaoActivityDO  extends AbstractModel{
 		this.standPicUrls = standPicUrls;
 	}
 
-	public Long getSubjectIds() {
-		return subjectIds;
+	public Long getSubjectId() {
+		return subjectId;
 	}
 
-	public void setSubjectIds(Long subjectIds) {
-		this.subjectIds = subjectIds;
+	public void setSubjectId(Long subjectId) {
+		this.subjectId = subjectId;
 	}
 
 	public Date getGmtCreate() {

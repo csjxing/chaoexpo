@@ -18,9 +18,9 @@
 		<result property="gmtModified" column="GMT_MODIFIED" />
 	</resultMap>
 	
-	<statement id="chao_user_fields">
+	<sql id="chao_user_fields">
 		ID,USER_NAME,FOLLOW_ACTIVITY_COUNT,FAVORITE_SUBJECT_COUNT,CHECKIN_ACTIVITY_COUNT,AUTH_KEY,REGISTER_IMEI,GMT_AUTH,GMT_CREATE,GMT_MODIFIED
-	</statement>
+	</sql>
 
 	<insert id="insertUser">
 		INSERT INTO

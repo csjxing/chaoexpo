@@ -52,7 +52,7 @@
 	<pluginRepositories>
 		<pluginRepository>
 			<id>Doucome-plugin-repo</id>
-			<url>http://repo.doucome.com:8081/nexus/content/repositories/releases</url>
+			<url>http://repo.diandianzhe.com:8081/nexus/content/repositories/releases</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>

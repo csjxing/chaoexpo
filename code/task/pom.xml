@@ -140,7 +140,7 @@
                                 <configuration>
                                     <tasks>
                                         <unzip dest="${project.build.directory}/task" src="${project.build.directory}/${uberjar_final_name}"/>
-                                        <!-- <chmod dir="${project.build.directory}/expand/bin" includes="**" perm="755"/>--> 
+                                        <chmod dir="${project.build.directory}/expand/bin" includes="**" perm="755"/>
                                     </tasks>
                                 </configuration>
                             </execution>

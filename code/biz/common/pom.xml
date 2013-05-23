@@ -82,7 +82,6 @@
 
 			<build>
 				<plugins>
-
 					<plugin>
 						<groupId>com.doucome.maven.plugins</groupId>
 						<artifactId>maven-autoconf-plugin</artifactId>

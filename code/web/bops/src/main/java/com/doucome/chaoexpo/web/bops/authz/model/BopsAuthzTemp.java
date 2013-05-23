@@ -12,7 +12,7 @@ import com.doucome.chaoexpo.biz.core.utils.MD5Util;
  */
 public class BopsAuthzTemp {
 
-    private String adminId;
+    private String adminId; 
 
     private String password;
 

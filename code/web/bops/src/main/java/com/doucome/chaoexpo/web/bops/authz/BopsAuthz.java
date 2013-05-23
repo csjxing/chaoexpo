@@ -7,7 +7,7 @@ import com.doucome.chaoexpo.biz.dal.dataobject.BopsAdminDO;
  * 
  * @author ib 2012-3-24 下午01:27:16
  */
-public interface BopsAuthz {
+public interface BopsAuthz { 
 
     /**
      * 判断用户是否登录状态

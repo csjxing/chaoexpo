@@ -15,7 +15,7 @@ import com.doucome.chaoexpo.web.chao.context.AuthzContextModelEnums;
  * 
  * @author ib 2012-3-24 下午01:27:48
  */
-public class DefaultAuthzImpl implements ChaoAuthz {
+public class DefaultAuthzImpl implements ChaoAuthz { 
 
 	@Autowired
 	private ChaoUserService chaoUserService ;

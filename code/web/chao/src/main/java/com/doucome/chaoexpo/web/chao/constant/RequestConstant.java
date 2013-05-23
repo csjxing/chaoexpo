@@ -1,6 +1,6 @@
 package com.doucome.chaoexpo.web.chao.constant;
-
-public class RequestConstant {
+ 
+public class RequestConstant { 
 
 	public static final String USER_AUTH_KEY = "authKey" ;
 	

@@ -1,15 +1,13 @@
 ﻿package com.doucome.chaoexpo.web.chao.context;
 
 /**
- * 类AuthzContextHolder.java的实现描述：TODO 类实现描述
  * 
- * @author ib 2012-3-24 下午01:36:13
  */
 public class AuthzContextHolder {
 
     private static ThreadLocal<AuthzContext> contextHolder = new ThreadLocal<AuthzContext>();
 
-    public static AuthzContext getContext() {
+    public static AuthzContext getContext() { 
         if (contextHolder.get() == null) {
             setContext(new AuthzContext());
         }

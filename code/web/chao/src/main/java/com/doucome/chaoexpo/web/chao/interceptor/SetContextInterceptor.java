@@ -14,7 +14,6 @@ import com.doucome.chaoexpo.web.chao.authz.ChaoSessionOperator;
 import com.doucome.chaoexpo.web.chao.constant.RequestConstant;
 import com.doucome.chaoexpo.web.chao.context.AuthzContext;
 import com.doucome.chaoexpo.web.chao.context.AuthzContextHolder;
-import com.doucome.chaoexpo.web.chao.context.AuthzContextModelEnums;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import com.opensymphony.xwork2.interceptor.PreResultListener;
@@ -26,7 +25,7 @@ private static final Log log = LogFactory.getLog(SetContextInterceptor.class);
     @Autowired
     private EncryptBean      cookieEncryptBean;
    
-    @Autowired
+    @Autowired   
     private ChaoAuthz         chaoAuthz;
     
     @Autowired

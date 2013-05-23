@@ -25,7 +25,7 @@ import com.opensymphony.xwork2.interceptor.PreResultListener;
 
 /**
  * @author langben 2012-3-19
- */
+ */ 
 @SuppressWarnings("serial")
 public class SetContextInterceptor extends AbstractInterceptor {
 

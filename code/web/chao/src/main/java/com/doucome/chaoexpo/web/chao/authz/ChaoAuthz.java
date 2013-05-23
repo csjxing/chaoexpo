@@ -1,4 +1,4 @@
-package com.doucome.chaoexpo.web.chao.authz;
+﻿package com.doucome.chaoexpo.web.chao.authz;
 
 /**
  * 
@@ -6,8 +6,8 @@ package com.doucome.chaoexpo.web.chao.authz;
  *
  */
 public interface ChaoAuthz {
-
-    public boolean isLogin();
+  
+    public boolean isLogin(); 
 
     public String getUserName() ;
 }

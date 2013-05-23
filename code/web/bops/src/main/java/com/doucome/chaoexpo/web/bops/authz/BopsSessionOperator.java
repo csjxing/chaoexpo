@@ -7,7 +7,7 @@ import com.doucome.chaoexpo.biz.dal.dataobject.BopsAdminDO;
  * 
  * @author ib 2012-3-31 上午01:52:07
  */
-public interface BopsSessionOperator {
+public interface BopsSessionOperator { 
 
     public boolean load(BopsAdminDO adminDO);
 

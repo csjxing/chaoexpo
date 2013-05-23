@@ -8,8 +8,8 @@ import java.util.Map;
  * 
  * @author ib 2012-3-24 下午01:35:03
  */
-public class AuthzContext {
-
+public class AuthzContext { 
+ 
     private Map<AuthzContextModelEnums, Object> modelMap = new HashMap<AuthzContextModelEnums, Object>();
     /**
      * 是否需要重写cookie

@@ -1,4 +1,4 @@
-package com.doucome.chaoexpo.web.bops.context;
+﻿package com.doucome.chaoexpo.web.bops.context;
 
 /**
  * 类AuthzContextHolder.java的实现描述：认证信息ThreadLocal操作

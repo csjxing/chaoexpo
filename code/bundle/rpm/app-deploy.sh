@@ -9,9 +9,10 @@ function deploy_template() {
 
 function deploy_task() {
   echo "run app-deploy.sh  deploy_task  target = $TARGET and task_home=$TASK_HOME"
-  mkdir -p $TASK_HOME 
-  deploy $TARGET/chaoexpo.task-uber.jar $TASK_HOME
-  chmod 755 $TASK_HOME/bin/*
+  echo "=== Skip deply task ===="
+  #mkdir -p $TASK_HOME 
+  #deploy $TARGET/chaoexpo.task-uber.jar $TASK_HOME
+  #chmod 755 $TASK_HOME/bin/*
 }
 
 function deploy_war() {

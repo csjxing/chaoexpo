@@ -10,42 +10,39 @@ import com.doucome.chaoexpo.web.chao.context.AuthzContext;
 import com.doucome.chaoexpo.web.chao.context.AuthzContextHolder;
 import com.doucome.chaoexpo.web.chao.context.AuthzContextModelEnums;
 
-/**
- * 类DefaultAuthzImpl.java的实现描述：Authz.java的默认实现
- * 
- * @author ib 2012-3-24 下午01:27:48
- */
-public class DefaultAuthzImpl implements ChaoAuthz { 
+public class DefaultAuthzImpl implements ChaoAuthz {
 
 	@Autowired
-	private ChaoUserService chaoUserService ;
-	
-    @Override
-    public boolean isLogin() {
-        return AuthzContextHolder.getContext().isAuthentication();
-    }
+	private ChaoUserService chaoUserService;
+
+	@Override
+	public boolean isLogin() {
+		return AuthzContextHolder.getContext().isAuthentication();
+	}
 
 	@Override
 	public String getUserName() {
 		AuthzContext authzContext = AuthzContextHolder.getContext();
-		String authKey = authzContext.getAuthKey() ;
-		String userName = authzContext.getUserName() ;
-		
-		ChaoUserDTO user = (ChaoUserDTO)authzContext.getModel(AuthzContextModelEnums.USER_KEY) ;
-		if(user == null && StringUtils.isNotBlank(userName) && StringUtils.isNotBlank(authKey)) {
-			user = chaoUserService.getUserByUserNameAndAuthKey(userName, authKey) ;
-			if(user != null) {
-				authzContext.setModel(AuthzContextModelEnums.USER_KEY, user) ;
-				authzContext.setAuthentication(true,true) ;
+		String authKey = authzContext.getAuthKey();
+		String userName = authzContext.getUserName();
+
+		ChaoUserDTO user = (ChaoUserDTO) authzContext
+				.getModel(AuthzContextModelEnums.USER_KEY);
+		if (user == null && StringUtils.isNotBlank(userName)
+				&& StringUtils.isNotBlank(authKey)) {
+			user = chaoUserService.getUserByUserNameAndAuthKey(userName,
+					authKey);
+			if (user != null) {
+				authzContext.setModel(AuthzContextModelEnums.USER_KEY, user);
+				authzContext.setAuthentication(true, true);
 			}
 		}
-		
-		if(user != null) {
-			return userName ;
+
+		if (user != null) {
+			return userName;
 		}
-		
+
 		return null;
 	}
-
 
 }

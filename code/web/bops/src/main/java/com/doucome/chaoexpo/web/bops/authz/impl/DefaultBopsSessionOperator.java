@@ -1,5 +1,4 @@
 ﻿package com.doucome.chaoexpo.web.bops.authz.impl;
-
 import org.apache.commons.lang.StringUtils;
 
 import com.doucome.chaoexpo.biz.dal.dataobject.BopsAdminDO;
@@ -8,11 +7,6 @@ import com.doucome.chaoexpo.web.bops.context.AuthzContext;
 import com.doucome.chaoexpo.web.bops.context.AuthzContextHolder;
 import com.doucome.chaoexpo.web.bops.context.AuthzContextModelEnum;
 
-/**
- * 类DefaultDdzSessionOperator.java的实现描述：认证信息写入操作工具
- * 
- * @author ib 2012-3-31 上午01:53:54
- */
 public class DefaultBopsSessionOperator implements BopsSessionOperator {
 
     @Override

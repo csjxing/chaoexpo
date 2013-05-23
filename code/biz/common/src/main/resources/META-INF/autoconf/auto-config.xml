@@ -57,9 +57,9 @@
 	</group>
 
 	<script>
-		<generate template="commonConfig.properties.vm" destfile="commonConfig.properties" charset="GBK" />
-		<generate template="struts.xml.vm" destfile="struts.xml" charset="GBK" />
-		<generate template="log4j.xml" destfile="log4j.xml" charset="GBK" />
+		<generate template="commonConfig.properties.vm" destfile="commonConfig.properties" charset="UTF-8" />
+		<generate template="struts.xml.vm" destfile="struts.xml" charset="UTF-8" />
+		<generate template="log4j.xml" destfile="log4j.xml" charset="UTF-8" />
 	</script>
 </config>
 

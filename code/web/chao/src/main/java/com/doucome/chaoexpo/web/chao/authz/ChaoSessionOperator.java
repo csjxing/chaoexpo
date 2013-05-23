@@ -11,5 +11,5 @@ public interface ChaoSessionOperator {
  
 	 boolean load(ChaoUserDTO user) ;
 	 
-	 boolean unload() ;
+	 boolean unload() ; 
 }

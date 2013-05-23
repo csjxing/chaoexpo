@@ -3,17 +3,11 @@ package com.doucome.chaoexpo.web.chao.context;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * 类AuthzContext.java的实现描述：ddz认证信息上下文
- * 
- * @author ib 2012-3-24 下午01:35:03
- */
+
 public class AuthzContext { 
  
     private Map<AuthzContextModelEnums, Object> modelMap = new HashMap<AuthzContextModelEnums, Object>();
-    /**
-     * 是否需要重写cookie
-     */
+   
     private boolean                            touch;
 
     private boolean                            authentication;

@@ -8,12 +8,9 @@ import com.doucome.chaoexpo.web.chao.context.AuthzContext;
 import com.doucome.chaoexpo.web.chao.context.AuthzContextHolder;
 import com.doucome.chaoexpo.web.chao.context.AuthzContextModelEnums;
 
-/**
- * 
- * @author ib 2012-3-31 ионГ01:53:54
- */
-public class DefaultChaoSessionOperator implements ChaoSessionOperator {
 
+public class DefaultChaoSessionOperator implements ChaoSessionOperator {
+ 
      
     @Override 
 	public boolean load(ChaoUserDTO user) {

@@ -1,4 +1,4 @@
-﻿package com.doucome.chaoexpo.web.bops.authz.impl;
+package com.doucome.chaoexpo.web.bops.authz.impl;
 
 import com.doucome.chaoexpo.biz.dal.dataobject.BopsAdminDO;
 import com.doucome.chaoexpo.web.bops.authz.BopsAuthz;

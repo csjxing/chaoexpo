@@ -17,7 +17,7 @@ function deploy_task() {
 
 function deploy_war() {
 	
-  # echo "run app-deploy.sh deploy_war target = $TARGET  and  webapp_home=$WEBAPP_HOME"
+  echo "run app-deploy.sh deploy_war target = $TARGET  and  webapp_home=$WEBAPP_HOME"
   
   if [ $PRODUCTION == true ]; then
 	echo "COPY  $TARGET/chaoexpo.bundle.war-1.0-SNAPSHOT.war to $WEBAPP_HOME/web.war "

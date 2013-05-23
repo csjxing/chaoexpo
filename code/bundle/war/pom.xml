@@ -37,11 +37,6 @@
 		</dependency>
 		<dependency>
 			<groupId>com.doucome.chaoexpo</groupId>
-			<artifactId>chaoexpo.task</artifactId>
-			<version>${pom.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.doucome.chaoexpo</groupId>
 			<artifactId>chaoexpo.templates</artifactId>
 			<version>${pom.version}</version>
 		</dependency>

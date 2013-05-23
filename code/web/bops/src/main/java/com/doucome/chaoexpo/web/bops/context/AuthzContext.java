@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 类AuthzContext.java的实现描述：BOPS认证信息上下文
  * 
- * @author ib 2012-3-24 下午01:35:03
+ * @author langben 2013-5-23
+ *
  */
 public class AuthzContext {
 

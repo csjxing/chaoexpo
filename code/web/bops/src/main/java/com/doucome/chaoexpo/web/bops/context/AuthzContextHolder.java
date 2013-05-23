@@ -1,5 +1,10 @@
 ﻿package com.doucome.chaoexpo.web.bops.context;
 
+/**
+ * 
+ * @author langben 2013-5-23
+ *
+ */
 public class AuthzContextHolder {
 
 	private static ThreadLocal<AuthzContext> contextHolder = new ThreadLocal<AuthzContext>();

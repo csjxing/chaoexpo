@@ -5,6 +5,11 @@ import com.doucome.chaoexpo.web.bops.authz.BopsAuthz;
 import com.doucome.chaoexpo.web.bops.context.AuthzContextHolder;
 import com.doucome.chaoexpo.web.bops.context.AuthzContextModelEnum;
 
+/**
+ * Authz实现
+ * @author langben 2013-5-23
+ *
+ */
 public class DefaultAuthzImpl implements BopsAuthz {
 	@Override
 	public BopsAdminDO getAdminDO() {

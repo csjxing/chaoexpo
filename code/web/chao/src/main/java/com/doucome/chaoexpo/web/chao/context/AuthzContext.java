@@ -1,18 +1,18 @@
-ï»¿package com.doucome.chaoexpo.web.chao.context;
+package com.doucome.chaoexpo.web.chao.context;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * ç±»AuthzContext.javaçš„å®ç°æè¿°ï¼šddzè®¤è¯ä¿¡æ¯ä¸Šä¸‹æ–‡
+ * ÀàAuthzContext.javaµÄÊµÏÖÃèÊö£ºddzÈÏÖ¤ĞÅÏ¢ÉÏÏÂÎÄ
  * 
- * @author ib 2012-3-24 ä¸‹åˆ01:35:03
+ * @author ib 2012-3-24 ÏÂÎç01:35:03
  */
 public class AuthzContext { 
  
     private Map<AuthzContextModelEnums, Object> modelMap = new HashMap<AuthzContextModelEnums, Object>();
     /**
-     * æ˜¯å¦éœ€è¦é‡å†™cookie
+     * ÊÇ·ñĞèÒªÖØĞ´cookie
      */
     private boolean                            touch;
 

@@ -1,4 +1,4 @@
-﻿package com.doucome.chaoexpo.web.chao.authz;
+package com.doucome.chaoexpo.web.chao.authz;
 
 import com.doucome.chaoexpo.biz.core.model.ChaoUserDTO;
 

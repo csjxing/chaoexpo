@@ -1,4 +1,4 @@
-Ôªøpackage com.doucome.chaoexpo.web.chao.authz.impl;
+package com.doucome.chaoexpo.web.chao.authz.impl;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -10,7 +10,7 @@ import com.doucome.chaoexpo.web.chao.context.AuthzContextModelEnums;
 
 /**
  * 
- * @author ib 2012-3-31 ‰∏äÂçà01:53:54
+ * @author ib 2012-3-31 …œŒÁ01:53:54
  */
 public class DefaultChaoSessionOperator implements ChaoSessionOperator {
 

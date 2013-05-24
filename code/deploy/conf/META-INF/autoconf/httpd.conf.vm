@@ -57,12 +57,6 @@ DirectoryIndex index.html
 
 NameVirtualHost *
 
-# if maintain 
-#<VirtualHost *>
-# RewriteEngine on
-# RewriteRule ^\/$ http://help.diandianzhe.com/help/web/wh.html [L,R]
-#</VirtualHost>
-
 <VirtualHost *>
     ServerAdmin ${chaoexpo_unix_user}
 	DocumentRoot "${chaoexpo_htdocs_home}"

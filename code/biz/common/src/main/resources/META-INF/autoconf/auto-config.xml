@@ -27,7 +27,7 @@
 	
 	<group name="web">
 		<property name="chaoexpo.static.url" defaultValue="http://style.diandianzhe.com/chaoexpo" description="static"></property>
-		<property name="chaoexpo.domainName" defaultValue="doucome.com" description="domain"></property>
+		<property name="chaoexpo.domainName" defaultValue="dp-app.com" description="domain"></property>
 		<property name="chaoexpo.port" defaultValue="80" description="port">
 			<validator name="number"></validator>
 		</property>
@@ -49,7 +49,7 @@
 	</group>
 	
 	<group name="bops">
-		<property name="chaoexpo.bops.domainName" defaultValue="bops.doucome.com" description="bops域名"></property>
+		<property name="chaoexpo.bops.domainName" defaultValue="bops.dp-app.com" description="bops域名"></property>
 	</group>
 	
 	<group name="task">
@@ -57,9 +57,9 @@
 	</group>
 
 	<script>
-		<generate template="struts.xml.vm" destfile="struts.xml" charset="UTF-8" />
-		<generate template="log4j.xml" destfile="log4j.xml" charset="UTF-8" />
-		<generate template="commonConfig.properties.vm" destfile="commonConfig.properties" charset="UTF-8" />
+		<generate template="struts.xml.vm" destfile="struts.xml" charset="GBK" />
+		<generate template="log4j.xml" destfile="log4j.xml" charset="GBK" />
+		<generate template="commonConfig.properties.vm" destfile="commonConfig.properties" charset="GBK" />
 	</script>
 </config>
 

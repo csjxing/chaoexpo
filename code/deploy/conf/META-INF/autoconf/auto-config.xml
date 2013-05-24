@@ -21,10 +21,10 @@
     
     <script>
 	   
-        <generate template="httpd.conf.vm" destfile="conf/httpd.conf" charset="UTF-8"/>
-        <generate template="jetty/bin/httpd.vm" destfile="bin/httpd" charset="UTF-8"/>
-        <generate template="jetty/start.ini.vm" destfile="conf/jetty/start.ini" charset="UTF-8"/>
-        <generate template="jetty/bin/env.sh.vm" destfile="bin/env.sh" charset="UTF-8"/>
-        <generate template="mod_proxy.conf.vm" destfile="conf/mod_proxy.conf" charset="UTF-8"/>
+        <generate template="httpd.conf.vm" destfile="conf/httpd.conf" charset="GBK"/>
+        <generate template="jetty/bin/httpd.vm" destfile="bin/httpd" charset="GBK"/>
+        <generate template="jetty/start.ini.vm" destfile="conf/jetty/start.ini" charset="GBK"/>
+        <generate template="jetty/bin/env.sh.vm" destfile="bin/env.sh" charset="GBK"/>
+        <generate template="mod_proxy.conf.vm" destfile="conf/mod_proxy.conf" charset="GBK"/>
     </script>
 </config>

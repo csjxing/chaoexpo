@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 ####################################################################################
 # !!!DO NOT EDIT!!!
 # This script is designed to be invoked both by RPM and manually, so that
@@ -21,6 +21,7 @@ function auto_config () {
   
   rm -f $LOG
   if [ $NONINTERACT ]; then
+    echo "config with arg NONINTERACT"
     antxconfig -I -u $ANTX_PROP $* > $LOG
   else
     antxconfig -u $ANTX_PROP $* | tee $LOG

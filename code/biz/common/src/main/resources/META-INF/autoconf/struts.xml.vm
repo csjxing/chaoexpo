@@ -70,10 +70,8 @@
 	<package name="struts-json" extends="default">
         <result-types>
             <result-type name="json" class="org.apache.struts2.json.JSONResult">
-            	<param name="excludeNullProperties">true</param>
             </result-type>
 			<result-type name="json2" class="org.apache.struts2.json.JSONResult">
-            	<param name="excludeNullProperties">true</param>
             	<param name="root">json</param>
             </result-type>
         </result-types>

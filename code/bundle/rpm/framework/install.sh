@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 ####################################################################################
 # !!!DO NOT EDIT!!!
 # This script is designed to be invoked both by RPM and manually, so that
@@ -13,7 +13,7 @@ function fail () {
 
 function auto_config () {
   local LOG=$TARGET/rpm/antxconfig.log
-  local SUCCESSMSG1='总耗费时间'
+  local SUCCESSMSG1='�ܺķ�ʱ��'
   local SUCCESSMSG2='Generating log file'
   local RUNNING=-1
   local SUCCESS=-1

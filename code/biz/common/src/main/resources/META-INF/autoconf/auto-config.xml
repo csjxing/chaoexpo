@@ -5,7 +5,7 @@
 	- @author 
 -->
 <config description="自动配置">
-
+<!-- 
 	<group name="common config">
 		<property name="chaoexpo.output" description="应用程序的输出目录"  defaultValue="/home/${chaoexpo_unix_user}/output"/>
 		<property name="chaoexpo.production" description="生产模式"  defaultValue="false">
@@ -56,7 +56,7 @@
 	<group name="task">
 		<property name="chaoexpo.taskhome" defaultValue="/home/${chaoexpo_unix_user}/task" description="任务的home目录"></property>
 	</group>
-
+ -->
 	<script>
 		<generate template="struts.xml.vm" destfile="struts.xml" charset="GBK" />
 		<generate template="log4j.xml" destfile="log4j.xml" charset="GBK" />

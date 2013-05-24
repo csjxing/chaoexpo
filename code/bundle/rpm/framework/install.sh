@@ -21,7 +21,6 @@ function auto_config () {
   
   rm -f $LOG
   if [ $NONINTERACT ]; then
-    echo "config with arg NONINTERACT"
     antxconfig -I -u $ANTX_PROP $* > $LOG
   else
     antxconfig -u $ANTX_PROP $* | tee $LOG
@@ -31,6 +30,7 @@ function auto_config () {
     SUCCESS1=`tail -n 3 $LOG | grep -c "$SUCCESSMSG1"`
     SUCCESS2=`tail -n 5 $LOG | grep -c "$SUCCESSMSG2"`
     if [[ $SUCCESS1 == 1 && $SUCCESS2 == 1 ]]; then
+    	echo "Find Succ msg : $SUCCESSMSG1 and $SUCCESSMSG2"
       return
     fi
     echo -e ".\c"

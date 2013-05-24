@@ -1,29 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="GBK"?>
 <!--
-	- è‡ªåŠ¨é…ç½®æè¿°æ–‡ä»¶
+	- ×Ô¶¯ÅäÖÃÃèÊöÎÄ¼þ
 	-
 	- @author 
 -->
-<config description="è‡ªåŠ¨é…ç½®">
-<!-- 
+<config description="×Ô¶¯ÅäÖÃ">
+
 	<group name="common config">
-		<property name="chaoexpo.output" description="åº”ç”¨ç¨‹åºçš„è¾“å‡ºç›®å½•"  defaultValue="/home/${chaoexpo_unix_user}/output"/>
-		<property name="chaoexpo.production" description="ç”Ÿäº§æ¨¡å¼"  defaultValue="false">
+		<property name="chaoexpo.output" description="Ó¦ÓÃ³ÌÐòµÄÊä³öÄ¿Â¼"  defaultValue="/home/${chaoexpo_unix_user}/output"/>
+		<property name="chaoexpo.production" description="Éú²úÄ£Ê½"  defaultValue="false">
 			<validator name="choice" choice="true,false"/>
 		</property>
-		<property name="chaoexpo.loggingRoot" defaultValue="${chaoexpo_output}/logs"  description="æ—¥å¿—"></property>
-		<property name="chaoexpo.loggingLevel" defaultValue="info"  description="æ—¥å¿—è¾“å‡ºçº§åˆ«"></property>
+		<property name="chaoexpo.loggingRoot" defaultValue="${chaoexpo_output}/logs"  description="ÈÕÖ¾"></property>
+		<property name="chaoexpo.loggingLevel" defaultValue="info"  description="ÈÕÖ¾Êä³ö¼¶±ð"></property>
 	</group>
 
 	<group name="cache">
-		<property name="chaoexpo.memcached.address" defaultValue="42.121.17.63:11211" description="memcached æœåŠ¡åœ°å€ï¼Œå¤šä¸ªç”¨ç©ºæ ¼éš”å¼€"/>
-		<property name="chaoexpo.memcached.key.prefix" defaultValue="rel" description="memcached key çš„å‰ç½®å€¼ï¼Œä¸ºäº†åŒºåˆ†å¼€å‘å’Œçº¿ä¸Š"/>
+		<property name="chaoexpo.memcached.address" defaultValue="42.121.17.63:11211" description="memcached ·þÎñµØÖ·£¬¶à¸öÓÃ¿Õ¸ñ¸ô¿ª"/>
+		<property name="chaoexpo.memcached.key.prefix" defaultValue="rel" description="memcached key µÄÇ°ÖÃÖµ£¬ÎªÁËÇø·Ö¿ª·¢ºÍÏßÉÏ"/>
 	</group>
 
 	<group name="database">
-		<property name="chaoexpo.database.driver.url" description="æ•°æ®åº“çš„url" defaultValue="jdbc:mysql://110.76.47.90:3306/chaoexpo_dev?useUnicode=true&amp;characterEncoding=gbk&amp;autoReconnect=true"/>
-		<property name="chaoexpo.database.driver.username" description="æ•°æ®åº“çš„username" defaultValue="trek"/>
-		<property name="chaoexpo.database.driver.password" description="æ•°æ®åº“çš„password" defaultValue="trek"/>
+		<property name="chaoexpo.database.driver.url" description="Êý¾Ý¿âµÄurl" defaultValue="jdbc:mysql://110.76.47.90:3306/chaoexpo_dev?useUnicode=true&amp;characterEncoding=gbk&amp;autoReconnect=true"/>
+		<property name="chaoexpo.database.driver.username" description="Êý¾Ý¿âµÄusername" defaultValue="trek"/>
+		<property name="chaoexpo.database.driver.password" description="Êý¾Ý¿âµÄpassword" defaultValue="trek"/>
 	</group>
 	
 	<group name="web">
@@ -38,25 +38,25 @@
 	</group>
 	
 	<group name="upload img">
-		<property name="chaoexpo.picture.uploaded.img.url" defaultValue="http://img.doucome.com" description="ä¸Šä¼ å›¾ç‰‡è®¿é—®URL"></property>		
-		<property name="chaoexpo.upyun.api.domainName" defaultValue="v0.api.upyun.com" description="åˆæ‹APIåŸŸå"/>
-		<property name="chaoexpo.upyun.api.username" defaultValue="langben" description="åˆæ‹æ“ä½œå‘˜è´¦å·"></property>
-		<property name="chaoexpo.upyun.api.password" defaultValue="caoshenjia" description="åˆæ‹æ“ä½œå‘˜å¯†ç "></property>
-		<property name="chaoexpo.upyun.bucketname.img" defaultValue="doucome-img-test" description="æ“ä½œçš„åˆæ‹å›¾ç‰‡ç©ºé—´å-å¤´åƒåŠå…¶ä»–"></property>
+		<property name="chaoexpo.picture.uploaded.img.url" defaultValue="http://img.doucome.com" description="ÉÏ´«Í¼Æ¬·ÃÎÊURL"></property>		
+		<property name="chaoexpo.upyun.api.domainName" defaultValue="v0.api.upyun.com" description="ÓÖÅÄAPIÓòÃû"/>
+		<property name="chaoexpo.upyun.api.username" defaultValue="langben" description="ÓÖÅÄ²Ù×÷Ô±ÕËºÅ"></property>
+		<property name="chaoexpo.upyun.api.password" defaultValue="caoshenjia" description="ÓÖÅÄ²Ù×÷Ô±ÃÜÂë"></property>
+		<property name="chaoexpo.upyun.bucketname.img" defaultValue="doucome-img-test" description="²Ù×÷µÄÓÖÅÄÍ¼Æ¬¿Õ¼äÃû-Í·Ïñ¼°ÆäËû"></property>
 	</group>
 	
 	<group name="util">
-		<property name="chaoexpo.cookie.entrypt.secretKey" defaultValue="IHsd*0sz." description="cookieåŠ å¯†å¯†é’¥"></property>
+		<property name="chaoexpo.cookie.entrypt.secretKey" defaultValue="IHsd*0sz." description="cookie¼ÓÃÜÃÜÔ¿"></property>
 	</group>
 	
 	<group name="bops">
-		<property name="chaoexpo.bops.domainName" defaultValue="bops.dp-app.com" description="bopsåŸŸå"></property>
+		<property name="chaoexpo.bops.domainName" defaultValue="bops.dp-app.com" description="bopsÓòÃû"></property>
 	</group>
 	
 	<group name="task">
-		<property name="chaoexpo.taskhome" defaultValue="/home/${chaoexpo_unix_user}/task" description="ä»»åŠ¡çš„homeç›®å½•"></property>
+		<property name="chaoexpo.taskhome" defaultValue="/home/${chaoexpo_unix_user}/task" description="ÈÎÎñµÄhomeÄ¿Â¼"></property>
 	</group>
- -->
+
 	<script>
 		<generate template="struts.xml.vm" destfile="struts.xml" charset="GBK" />
 		<generate template="log4j.xml" destfile="log4j.xml" charset="GBK" />

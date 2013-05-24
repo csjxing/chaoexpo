@@ -17,7 +17,6 @@
 		<module>./web/chao</module>
 		<module>./task</module>
 		<module>./bundle/war</module>
-		<module>./bundle/rpm</module>
 		<module>./deploy</module>
 		<module>./templates</module>
 	</modules>

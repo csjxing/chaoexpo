@@ -22,6 +22,21 @@
 		<result property="gmtModified" column="GMT_MODIFIED" />
 	</resultMap>
 
+	<resultMap id="RM-ChaoActivity-Short" class="TA-ChaoActivity">
+		<result property="id" column="ID" />
+		<result property="name" column="NAME" />
+		<result property="location" column="LOCATION" />
+		<result property="contactName" column="CONTACT_NAME"/>
+		<result property="contactPhone" column="CONTACT_PHONE"/>
+		<result property="picUrls" column="PIC_URLS"/>
+		<result property="standPicUrls" column="STAND_PIC_URLS"/>
+		<result property="subjectId" column="SUBJECT_ID"/>
+		<result property="followCount" column="FOLLOW_COUNT"/>
+		<result property="commentCount" column="COMMENT_COUNT"/>
+		<result property="gmtCreate" column="GMT_CREATE"/>
+		<result property="gmtModified" column="GMT_MODIFIED" />
+	</resultMap>
+
 	<insert id="insertActivity">
 		INSERT INTO
 			CHAO_ACTIVITY(ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,INTRO,PIC_URLS,NOTICE,COUNTESY_REMINDER,STAND_PIC_URLS,SUBJECT_ID,GMT_CREATE,GMT_MODIFIED)
@@ -43,7 +58,7 @@
 			ID = #id#
 	</select>
 	
-	<select id="queryActivityWithPagination" resultMap="RM-ChaoActivity">
+	<select id="queryActivityWithPagination" resultMap="RM-ChaoActivity-Short">
 		SELECT 
 			ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,PIC_URLS,STAND_PIC_URLS,SUBJECT_ID,FOLLOW_COUNT,COMMENT_COUNT,GMT_CREATE,GMT_MODIFIED
 		FROM

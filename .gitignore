@@ -34,3 +34,6 @@
 /code/web/chao/target
 /code/web/chao/.classpath
 /code/web/chao/.project
+/code/bundle/rpm/.classpath
+/code/bundle/rpm/.project
+/code/bundle/rpm/.settings

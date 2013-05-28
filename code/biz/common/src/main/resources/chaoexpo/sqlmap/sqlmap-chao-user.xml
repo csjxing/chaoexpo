@@ -19,14 +19,14 @@
 	</resultMap>
 	
 	<sql id="chao_user_fields">
-		ID,USER_NAME,FOLLOW_ACTIVITY_COUNT,FAVORITE_SUBJECT_COUNT,CHECKIN_ACTIVITY_COUNT,AUTH_KEY,REGISTER_IMEI,GMT_AUTH,GMT_CREATE,GMT_MODIFIED
+		ID,USER_NAME,MD5_PASSWORD,FOLLOW_ACTIVITY_COUNT,FAVORITE_SUBJECT_COUNT,CHECKIN_ACTIVITY_COUNT,AUTH_KEY,REGISTER_IMEI,GMT_AUTH,GMT_CREATE,GMT_MODIFIED
 	</sql>
 
 	<insert id="insertUser">
 		INSERT INTO
 			CHAO_USER(ID,USER_NAME,MD5_PASSWORD,AUTH_KEY,REGISTER_IMEI,GMT_AUTH,GMT_CREATE,GMT_MODIFIED)
 		VALUES
-			(#id#,#userName#,#md5Password#,#authKey#,#registerIMEI#,#now()#,now(),now())
+			(#id#,#userName#,#md5Password#,#authKey#,#registerIMEI#,#gmtAuth#,now(),now())
 		<selectKey resultClass="java.lang.Long" keyProperty="id">
    			<![CDATA[
 			SELECT LAST_INSERT_ID() AS ID
@@ -38,7 +38,7 @@
 		SELECT 
 			<include refid="chao_user_fields"/>
 		FROM
-			CHAO_ACTIVITY
+			CHAO_USER
 		WHERE
 			USER_NAME = #userName#
 	</select>
@@ -47,7 +47,7 @@
 		SELECT 
 			<include refid="chao_user_fields"/>
 		FROM
-			CHAO_ACTIVITY
+			CHAO_USER
 		WHERE
 			USER_NAME = #userName#
 		AND
@@ -56,7 +56,7 @@
 	
 	<update id="updateUserByUserName">
 		UPDATE
-			CHAO_ACTIVITY
+			CHAO_USER
 		SET
 			<isNotEmpty property="incrFollowActivityCount">
 				FOLLOW_ACTIVITY_COUNT = FOLLOW_ACTIVITY_COUNT + #incrFollowActivityCount# ,
@@ -71,4 +71,11 @@
 		WHERE
 			USER_NAME = #userName#
 	</update>
+	
+	<select id="queryMaxId" resultClass="java.lang.Long">
+		SELECT 
+			MAX(ID)
+		FROM
+			CHAO_USER
+	</select>
 </sqlMap>

@@ -38,4 +38,10 @@ public interface ChaoUserDAO {
 	 * @return
 	 */
 	int updateUserByUserName(String userName , ChaoUserUpdateCondition condition) ;
+	
+	/**
+	 * 
+	 * @return
+	 */
+	long queryMaxId() ;
 }

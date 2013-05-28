@@ -41,6 +41,9 @@ public class ChaoUserServiceImpl implements ChaoUserService {
 		return chaoUserDAO.updateUserByUserName(userName, condition) ;
 	}
 
-	
+	@Override
+	public long getMaxId() {
+		return chaoUserDAO.queryMaxId() ;
+	}
 
 }

@@ -37,6 +37,11 @@ public class IBatisChaoUserDAO extends SqlMapClientDaoSupport implements ChaoUse
 		return getSqlMapClientTemplate().update("ChaoUser.updateUserByUserName" , map);
 	}
 
+	@Override
+	public long queryMaxId() {
+		return NumberUtils.parseLong((Long)getSqlMapClientTemplate().queryForObject("ChaoUser.queryMaxId")) ;
+	}
+
 	
 
 }

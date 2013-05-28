@@ -19,4 +19,18 @@
 			<result name="success" type="json2"></result>
 		</action>
 	</package>
+	
+	<package name="chao-user-remote" namespace="/chao/user/remote/rest" extends="struts-json">
+	
+		<action name="register_user" class="com.doucome.chaoexpo.web.chao.action.user.ajax.RegisterUserAction">
+			<interceptor-ref name="doucomeDefaultStack" />
+			<result name="success" type="json2"></result>
+		</action>
+		
+		<action name="follow_activity" class="com.doucome.chaoexpo.web.chao.action.user.ajax.AddFollowAction" method="followActivity">
+			<interceptor-ref name="doucomeDefaultStack" />
+			<result name="success" type="json2"></result>
+		</action>
+		
+	</package>
 </struts>

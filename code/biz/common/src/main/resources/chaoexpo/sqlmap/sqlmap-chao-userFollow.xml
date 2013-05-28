@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ChaoUserFollow">
+	<typeAlias alias="TA-ChaoUserFollow"
+		type="com.doucome.chaoexpo.biz.dal.dataobject.ChaoUserFollowDO" />
+
+	<resultMap id="RM-ChaoUserFollow" class="TA-ChaoUserFollow">
+		<result property="id" column="ID" />
+		<result property="userName" column="USER_NAME" />
+		<result property="activityId" column="ACTIVITY_ID" />
+		<result property="subjectId" column="SUBJECT_ID" />
+		<result property="tenantId" column="TENANT_ID" />
+		<result property="type" column="TYPE" />
+		<result property="gmtCreate" column="GMT_CREATE"/>
+		<result property="gmtModified" column="GMT_MODIFIED" />
+	</resultMap>
+
+	<insert id="insertFollow">
+		INSERT INTO
+			CHAO_USER_FOLLOW(ID,USER_NAME,ACTIVITY_ID,SUBJECT_ID,TENANT_ID,TYPE,GMT_CREATE,GMT_MODIFIED)
+		VALUES
+			(#id#,#userName#,#activityId#,#subjectId#,#tenantId#,#type#,now(),now())
+		<selectKey resultClass="java.lang.Long" keyProperty="id">
+   			<![CDATA[
+			SELECT LAST_INSERT_ID() AS ID
+			]]>
+	    </selectKey>
+	</insert>
+	
+	<select id="queryFollowsWithPagination" resultMap="RM-ChaoActivity-Short">
+		SELECT 
+			ID,USER_NAME,ACTIVITY_ID,SUBJECT_ID,TENANT_ID,TYPE,GMT_CREATE,GMT_MODIFIED
+		FROM
+			CHAO_USER_FOLLOW
+		<isParameterPresent open="WHERE" removeFirstPrepend="true">
+	    	<isNotEmpty property="userName" prepend="AND">
+	    		USER_NAME = #userName# 
+			</isNotEmpty>
+			<isNotEmpty property="activityId" prepend="AND">
+	    		ACTIVITY_ID = #activityId# 
+			</isNotEmpty>
+			<isNotEmpty property="subjectId" prepend="AND">
+	    		SUBJECT_ID = #subjectId# 
+			</isNotEmpty>
+			<isNotEmpty property="tenantId" prepend="AND">
+	    		TENANT_ID = #tenantId# 
+			</isNotEmpty>
+			<isNotEmpty property="type" prepend="AND">
+	    		TYPE = #type# 
+			</isNotEmpty>
+		</isParameterPresent>
+		ORDER BY 
+	    	GMT_CREATE DESC
+	    LIMIT 
+	    	#start#, #size#
+	</select>
+	
+	
+	<select id="countFollowsWithPagination" resultClass="java.lang.Integer">
+		SELECT 
+			COUNT(ID)
+		FROM
+			CHAO_USER_FOLLOW
+		<isParameterPresent open="WHERE" removeFirstPrepend="true">
+	    	<isNotEmpty property="userName" prepend="AND">
+	    		USER_NAME = #userName# 
+			</isNotEmpty>
+			<isNotEmpty property="activityId" prepend="AND">
+	    		ACTIVITY_ID = #activityId# 
+			</isNotEmpty>
+			<isNotEmpty property="subjectId" prepend="AND">
+	    		SUBJECT_ID = #subjectId# 
+			</isNotEmpty>
+			<isNotEmpty property="tenantId" prepend="AND">
+	    		TENANT_ID = #tenantId# 
+			</isNotEmpty>
+			<isNotEmpty property="type" prepend="AND">
+	    		TYPE = #type# 
+			</isNotEmpty>
+		</isParameterPresent>
+	</select>
+	
+</sqlMap>

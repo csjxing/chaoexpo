@@ -35,4 +35,9 @@ public interface ChaoUserService {
 	 */
 	int updateUserByUserName(String userName , ChaoUserUpdateCondition condition) ;
 	
+	/**
+	 * 
+	 * @return
+	 */
+	long getMaxId() ;
 }

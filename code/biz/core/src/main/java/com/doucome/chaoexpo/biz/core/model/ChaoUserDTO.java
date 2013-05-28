@@ -12,6 +12,7 @@ public class ChaoUserDTO {
 		if(user == null) {
 			user = new ChaoUserDO() ;
 		}
+		this.user = user ;
 	}
 	
 	public Long getId() {

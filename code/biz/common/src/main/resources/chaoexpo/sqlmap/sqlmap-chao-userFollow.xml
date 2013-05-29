@@ -27,7 +27,7 @@
 	    </selectKey>
 	</insert>
 	
-	<select id="queryFollowsWithPagination" resultMap="RM-ChaoActivity-Short">
+	<select id="queryFollowsWithPagination" resultMap="RM-ChaoUserFollow">
 		SELECT 
 			ID,USER_NAME,ACTIVITY_ID,SUBJECT_ID,TENANT_ID,TYPE,GMT_CREATE,GMT_MODIFIED
 		FROM

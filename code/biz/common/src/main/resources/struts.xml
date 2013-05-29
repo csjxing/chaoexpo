@@ -18,8 +18,11 @@
 	<package name="default" extends="struts-default">
 
 		<result-types>
-			<result-type name="velocity"
-				class="com.doucome.chaoexpo.web.common.velocity.VelocityLayoutResult" />
+			<result-type name="velocity" class="com.doucome.chaoexpo.web.common.velocity.VelocityLayoutResult" />
+			<result-type name="json" class="org.apache.struts2.json.JSONResult"></result-type>
+			<result-type name="json2" class="org.apache.struts2.json.JSONResult">
+				<param name="root">json</param>
+			</result-type>
 		</result-types>
 
 		<interceptors>
@@ -42,6 +45,9 @@
 				class="com.doucome.chaoexpo.web.chao.interceptor.AuthzInterceptor">
 			</interceptor>
 			
+			<interceptor name="json"
+				class="org.apache.struts2.json.JSONInterceptor" />
+			
 			<interceptor-stack name="doucomeDefaultStack">
 				<interceptor-ref name="defaultStack">
 					<param name="exception.logEnabled">true</param>  
@@ -55,6 +61,8 @@
     				<param name="exception.logLevel">error</param> 
 				</interceptor-ref>
 			</interceptor-stack>
+			
+			
 		</interceptors>
 
 		<global-results>
@@ -66,22 +74,7 @@
 		<global-exception-mappings>
 			<exception-mapping result="exception" exception="java.lang.Exception" />
 		</global-exception-mappings>
-		
-		
-	</package>
-
-	<package name="struts-json" extends="default">
-		<result-types>
-			<result-type name="json" class="org.apache.struts2.json.JSONResult">
-			</result-type>
-			<result-type name="json2" class="org.apache.struts2.json.JSONResult">
-				<param name="root">json</param>
-			</result-type>
-		</result-types>
-		<interceptors>
-			<interceptor name="json"
-				class="org.apache.struts2.json.JSONInterceptor" />
-		</interceptors>
+	
 	</package>
 	
 	<include file="struts-home.xml" />

@@ -1,0 +1,10 @@
+#set($layout="bops/default_bops.vm")
+
+#set($navigation = "news")
+
+<input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
+<input type="hidden"  id="bopsPage" value="news"/>
+
+<div class="bops">
+    
+</div>

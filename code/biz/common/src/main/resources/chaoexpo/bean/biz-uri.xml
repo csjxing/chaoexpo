@@ -14,6 +14,7 @@
 	<bean id="uriService" class="com.doucome.chaoexpo.biz.core.service.impl.DefaultUriService" lazy-init="false">
 		<property name="uriMappings">
 			<map>
+			    <entry key="chaoServer" value="${chaoexpo.domainName}"/>
 				<entry key="staticServer" value="${chaoexpo.static.url}"/>
 				<entry key="bopsServer" value="http://${chaoexpo.bops.domainName}:${chaoexpo.port}"/>
 				<entry key="bopsLoginLink"  value="http://${chaoexpo.bops.domainName}:${chaoexpo.port}/bops/login.htm" />

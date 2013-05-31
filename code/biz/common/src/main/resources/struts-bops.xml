@@ -35,8 +35,14 @@
 			<interceptor-ref name="bopsDefaultStack" />
 			<result name="success" type="velocity">/bops/index.vm</result>
 		</action>
-		
-		
+		<action name="news" class="com.doucome.chaoexpo.web.bops.action.ChaoNewsAction" >
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/news.vm</result>
+		</action>
+		<action name="new_news" class="com.doucome.chaoexpo.web.bops.action.NewChaoNewsAction" >
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="redirect">/bops/news.vm</result>
+		</action>
 	</package>
 	
 	<package name="bops-remote-rest" namespace="/bops/remote/rest" extends="struts-json">

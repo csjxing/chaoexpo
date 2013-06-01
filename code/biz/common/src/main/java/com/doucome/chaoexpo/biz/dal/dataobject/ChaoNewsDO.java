@@ -54,6 +54,11 @@ public class ChaoNewsDO extends AbstractModel {
 	private Long displayOrder ;
 	
 	/**
+	 * 是否置顶
+	 */
+	private String isTop ;
+	
+	/**
 	 * 来源
 	 */
 	private String source ;
@@ -171,6 +176,14 @@ public class ChaoNewsDO extends AbstractModel {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getIsTop() {
+		return isTop;
+	}
+
+	public void setIsTop(String isTop) {
+		this.isTop = isTop;
 	}
 	
 }

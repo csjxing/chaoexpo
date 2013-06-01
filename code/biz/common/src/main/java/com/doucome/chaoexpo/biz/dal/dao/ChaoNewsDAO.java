@@ -6,6 +6,11 @@ import com.doucome.chaoexpo.biz.dal.condition.ChaoNewsSearchCondition;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoNewsUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoNewsDO;
 
+/**
+ * 新闻资讯
+ * @author langben 2013-5-27
+ *
+ */
 public interface ChaoNewsDAO {
 
 	/**
@@ -21,7 +26,7 @@ public interface ChaoNewsDAO {
 	 * @return
 	 */
 	ChaoNewsDO queryNewsById(long id) ;
-	
+
 	/**
 	 * 
 	 * @param condition
@@ -44,4 +49,11 @@ public interface ChaoNewsDAO {
 	 * @return
 	 */
 	int updateNewsById(long id , ChaoNewsUpdateCondition condition) ;
+
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	int updateDisplayOrderById(Long id);
 }

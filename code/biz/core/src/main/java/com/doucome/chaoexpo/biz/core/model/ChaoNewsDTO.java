@@ -67,4 +67,7 @@ public class ChaoNewsDTO {
 		return news.getContent();
 	}
 
+	public String getIsTop() {
+		return news.getIsTop() ;
+	}
 }

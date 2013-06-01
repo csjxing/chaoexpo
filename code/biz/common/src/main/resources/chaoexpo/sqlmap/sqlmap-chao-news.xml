@@ -71,7 +71,8 @@
 	    	
 		</isParameterPresent>
 		ORDER BY 
-	    	GMT_CREATE DESC
+	    	IS_TOP DESC , 
+	    	DISPLAY_ORDER DESC
 	    LIMIT 
 	    	#start#, #size#
 	</select>
@@ -114,13 +115,15 @@
 			<isNotEmpty property="displayOrder">
 				DISPLAY_ORDER = #displayOrder# ,
 			</isNotEmpty>
+			<isNotEmpty property="isTop">
+				IS_TOP = #isTop# ,
+			</isNotEmpty>
 			<isNotEmpty property="source">
 				SOURCE = #source# ,
 			</isNotEmpty>
 			GMT_MODIFIED = now()
 		WHERE
 			ID = #id#
-	</update>
-	
-	
+	</update>	
+
 </sqlMap>

@@ -15,7 +15,6 @@
 
 </head>
 
-
 <body> 
 	
 	<div id="shadow_bg" class="shadow-bg dd-hide"></div>
@@ -39,13 +38,3 @@
 	#DDZ_JS(["../bops/bops.js","../bops/dcome.js"])
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-

@@ -34,8 +34,10 @@ public interface ChaoNewsService {
 	
 	/**
 	 * 
+	 * @param id
 	 * @param condition
 	 * @return
 	 */
 	int updateNewsById(long id , ChaoNewsUpdateCondition condition) ;
+	
 }

@@ -21,6 +21,8 @@ private String title ;
 	
 	private Long displayOrder ;
 	
+	private String isTop ;
+	
 	private String source ;
 	
 	public Map<String,Object> toMap() {
@@ -34,6 +36,7 @@ private String title ;
 		map.put("content", content) ;
 		map.put("categoryId", categoryId) ;
 		map.put("displayOrder", displayOrder) ;
+		map.put("isTop", isTop) ;
 		map.put("source", source) ;
 
 		return map ;
@@ -109,6 +112,14 @@ private String title ;
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getIsTop() {
+		return isTop;
+	}
+
+	public void setIsTop(String isTop) {
+		this.isTop = isTop;
 	}
 	
 }

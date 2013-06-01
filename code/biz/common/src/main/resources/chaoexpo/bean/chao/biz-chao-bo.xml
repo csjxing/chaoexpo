@@ -13,4 +13,6 @@
 
 	<bean id="chaoUserBO" class="com.doucome.chaoexpo.biz.core.bo.ChaoUserBO"/>
 	
+	<bean id="chaoNewsBO" class="com.doucome.chaoexpo.biz.core.bo.ChaoNewsBO"/>
+	
 </beans>

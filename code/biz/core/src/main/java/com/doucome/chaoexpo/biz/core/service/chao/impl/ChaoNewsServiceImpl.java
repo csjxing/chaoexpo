@@ -55,5 +55,5 @@ public class ChaoNewsServiceImpl implements ChaoNewsService {
 	public int updateNewsById(long id, ChaoNewsUpdateCondition condition) {
 		return chaoNewsDAO.updateNewsById(id, condition) ;
 	}
-
+	
 }

@@ -29,12 +29,12 @@
 		
 			<interceptor name="setChaoContextInterceptor"
 				class="com.doucome.chaoexpo.web.chao.interceptor.SetContextInterceptor">
-				<param name="domain">dev.chaoexpo.com</param>
+				<param name="domain">dev.dp-app.com</param>
 			</interceptor>
 
 			<interceptor name="setBopsContextInterceptor"
 				class="com.doucome.chaoexpo.web.bops.interceptor.SetContextInterceptor">
-				<param name="domain">bops-dev.chaoexpo.com</param>
+				<param name="domain">bops-dev.dp-app.com</param>
 			</interceptor>
 			
 			<interceptor name="bopsAuthzContextInterceptor"

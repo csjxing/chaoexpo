@@ -37,5 +37,10 @@ public interface ChaoSubjectService {
 	 * @return
 	 */
 	int updateSubjectById(Long id , ChaoSubjectUpdateCondition condition) ;
-	
+	/**
+	 * 
+	 * @param subjectDTO
+	 * @return
+	 */
+	int updateSubject(ChaoSubjectDTO subjectDTO);
 }

@@ -1,8 +1,12 @@
 package com.doucome.chaoexpo.biz.core.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import com.doucome.chaoexpo.biz.core.enums.ChaoStatusEnum;
 import com.doucome.chaoexpo.biz.core.model.param.PictureModel;
+import com.doucome.chaoexpo.biz.core.utils.ChaoDisplayOrderUtils;
 import com.doucome.chaoexpo.biz.core.utils.JacksonHelper;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoNewsDO;
 import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
@@ -21,7 +25,21 @@ public class ChaoNewsDTO extends AbstractModel {
 		this.news = news ;
 		if(news == null) {
 			this.news = new ChaoNewsDO() ;
+			this.news.setStatus(ChaoStatusEnum.ENABLE.getValue());
+			this.news.setDisplayOrder(ChaoDisplayOrderUtils.getDisplayOrder());
 		}
+	}
+	
+	public List<String> getSummaryPicUrls() {
+		List<String> result = new ArrayList<String>();
+		
+		return result;
+	}
+
+	public List<String> getDetailPicUrls() {
+        List<String> result = new ArrayList<String>();
+		
+		return result;
 	}
 	
 	public Long getId() {
@@ -122,6 +140,14 @@ public class ChaoNewsDTO extends AbstractModel {
 	
 	public void setDisplayOrder(Long displayOrder) {
 		news.setDisplayOrder(displayOrder);
+	}
+	
+	public String getStatus() {
+		return news.getStatus();
+	}
+	
+	public void setStatus(String status) {
+		news.setStatus(status);
 	}
 	
 	public Date getGmtPublish() {

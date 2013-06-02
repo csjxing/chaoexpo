@@ -1,5 +1,7 @@
 package com.doucome.chaoexpo.biz.core.model.param;
 
+import java.awt.Dimension;
+
 import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
 
 /**
@@ -39,5 +41,13 @@ public class PictureModel extends AbstractModel {
 
 	public void setWidth(int width) {
 		this.width = width;
+	}
+	
+	public void setDimension(Dimension dimension) {
+		if (dimension == null) {
+			return ;
+		}
+		width = (int) dimension.getWidth();
+		height = (int) dimension.getHeight();
 	}
 }

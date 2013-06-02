@@ -1,0 +1,87 @@
+#set($layout="bops/default_bops.vm")
+
+#set($navigation = "分类列表")
+
+<input type="hidden"  id="ddzBopsRoot" value="${env.bopsRoot}"/>
+<input type="hidden"  id="ddzBopsPage" value="categoryList"/>
+
+<style>
+	th a {
+		text-decoration:none;
+		color:#000 ;
+	}
+</style>
+
+#set($pagination = $categoryResult.pagination)
+
+#set($searchUrl = ${env.bopsRoot}+"/bops/category_list.htm?")
+#set($searchQuery = ["status:$!status"])
+
+<div class="bops">
+    <div style="MT20 MB20">&nbsp;</div>
+    
+	<form action="${env.bopsRoot}/bops/category_list.htm" method="GET">
+		<div class="settleipt MB10 MT10">
+			<span>状态：</span>
+			<select name="status">
+	            <option value="">全部</option>
+				<option value="N" #if($!status == "N") selected #end>有效</option>
+				<option value="D" #if($!status == "D") selected #end>无效</option>
+	        </select>
+			<input type="submit" value="查询" />[<a href="javascript:;" id="settleIptMoreBtn" style="font-size:12px;">更多查询条件</a>]
+		</div>
+	</form>
+	
+	<div class="MB20 MT20">
+		<form action="${env.bopsRoot}/bops/add_category.htm" method="post">
+			<input type="text" name="name" style="width: 120px; line-height: 20px; padding: 3px 5px;"/>
+			<input type="submit" name="提交" style="width: 30px; line-height: 20px; padding: 3px 5px;" />
+		</form>
+	</div>
+	 
+	 <table width="700" style="font-size:14px;" id="categoryTable">
+		<tr>
+			<th width="100">分类ID</th>
+    		<th width="200">名称</th>
+			<th width="100" align="center">状态</th>
+			<th width="100">修改时间</th>
+			<th width="100">创建时间</th>
+			<th width="100">操作</th>
+    	</tr>
+		#if($!categoryResult.totalRecords > 0)
+    		#foreach($category in $!categoryResult.items)
+            	<tr data-index="$!category.id">
+					<td class="id">$!category.id</td>
+					<td>
+						<span>$!category.name</span>
+						<a class="modify-btn" href="javascript:;" title="修改">修改</a>
+					</td>
+            		<td class="">
+            		    #if($!category.status == 'E')
+            		    	<span>有效<span><a href="${env.bopsRoot}/bops/add_category.htm?id=$!category.id&status=D" title="置为无效">无效</a>
+    		            #else
+    		                <span>无效<span><a href="${env.bopsRoot}/bops/add_category.htm?id=$!category.id&status=E" title="置为有效">有效</a>
+    		            #end
+            		</td>
+					<td align="center">
+						$dateUtils.format($!category.gmtModefied, 'yyyy-MM-dd HH:mm:ss')
+					</td>
+					<td align="center">
+						$dateUtils.format($!category.gmtCreate, 'yyyy-MM-dd HH:mm:ss')
+					</td>
+					<td align="center">
+						<a class="delete-btn" href="javascript:;" title="删除">删除</a>
+					</td>
+            	</tr>
+    		#end
+		#else
+            <tr><td colspan="6">没有查询到记录</td></tr>
+		#end
+     </table>
+</div>
+<script>
+#set($bopsJs=["category.js"])
+!(function($){
+	
+})(jQuery);
+</script>

@@ -150,23 +150,16 @@ public class UpYunServiceImpl implements UpYunService , InitializingBean{
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
-
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-
+	
 	public void setTimeout(int timeout) {
 		this.timeout = timeout;
 	}
-
-
+	
 	public void setUploadUrl(String uploadUrl) {
 		this.uploadUrl = uploadUrl;
 	}
-
-
-	
-	
 }

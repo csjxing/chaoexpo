@@ -20,5 +20,7 @@ public interface ChaoActivityService {
 	
 	QueryResult<ChaoActivityDTO> getActivityWithPagination(ChaoActivitySearchCondition condition , Pagination pagination) ;
 	
+	int updateActivity(ChaoActivityDTO activity);
+	
 	int updateActivityById(Long id , ChaoActivityUpdateCondition condition) ;
 }

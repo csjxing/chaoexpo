@@ -57,4 +57,8 @@ public class EnvPropertiesToolbox {
 	public String getBopsRoot(){
 		return DefaultUriService.getFactoryURI(URIConstant.BOPS_SERVER) ;
 	}
+	
+	public String getPictureRoot() {
+		return DefaultUriService.getFactoryURI(URIConstant.PICTURE_ROOT) ;
+	}
 }

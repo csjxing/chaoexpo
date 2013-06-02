@@ -6,11 +6,21 @@ import java.util.Map;
 
 public class ChaoNewsCondition {
 	
+	private Long newsId;
+	
 	private Long categoryId;
+	
+	private String keyword;
+	
+	private String status;
 	
 	private Date gmtPublishStart;
 	
 	private Date gmtPublishEnd;
+	
+	private Date gmtCreateStart;
+	
+	private Date gmtCreateEnd;
 	
 	private String orderColumn;
 	
@@ -18,9 +28,14 @@ public class ChaoNewsCondition {
 	
 	public Map<String,Object> toMap() {
 		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("newsId", newsId);
 		result.put("categoryId", categoryId);
+		result.put("keyword", keyword);
+		result.put("status", status);
 		result.put("gmtPublishStart", gmtPublishStart);
 		result.put("gmtPublishEnd", gmtPublishEnd);
+		result.put("gmtCreateStart", gmtCreateStart);
+		result.put("gmtCreateEnd", gmtCreateEnd);
 		result.put("orderColumn", orderColumn);
 		if (isDesc) {
 			result.put("order", "desc");
@@ -66,5 +81,45 @@ public class ChaoNewsCondition {
 
 	public void setDesc(boolean isDesc) {
 		this.isDesc = isDesc;
+	}
+
+	public Long getNewsId() {
+		return newsId;
+	}
+
+	public void setNewsId(Long newsId) {
+		this.newsId = newsId;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Date getGmtCreateStart() {
+		return gmtCreateStart;
+	}
+
+	public void setGmtCreateStart(Date gmtCreateStart) {
+		this.gmtCreateStart = gmtCreateStart;
+	}
+
+	public Date getGmtCreateEnd() {
+		return gmtCreateEnd;
+	}
+
+	public void setGmtCreateEnd(Date gmtCreateEnd) {
+		this.gmtCreateEnd = gmtCreateEnd;
 	}
 }

@@ -1,0 +1,144 @@
+#set($layout="bops/default_bops.vm")
+
+#set($navigation = "新闻列表")
+
+<input type="hidden"  id="ddzBopsRoot" value="${env.bopsRoot}"/>
+<input type="hidden"  id="ddzBopsPage" value="newsList"/>
+
+<style>
+	th a {
+		text-decoration:none;
+		color:#000 ;
+	}
+	
+	.item-id-search {
+		width:100px;
+	}
+	
+	.onoff-sale-area {
+		width:1000px;
+		clear:both;
+		font-size:12px;
+	}
+	
+	.settle-memo-dialog {
+		text-align: center;
+		width: 120px;
+		height:25px;
+		line-height:25px;
+		position:relative;
+	}
+	
+</style>
+
+#set($gmtPublishStartFmt = $dateUtils.format($!gmtPublishStart,'yyyy-MM-dd'))
+#set($gmtPublishEndFmt = $dateUtils.format($!gmtPublishEnd,'yyyy-MM-dd'))
+
+#set($pagination = $newsResult.pagination)
+
+#set($searchUrl = ${env.bopsRoot}+"/bops/news_list.htm?")
+#set($searchQuery = ["newsId:$!newsId","categoryId:$!categoryId","keyword:$!keyword","status:$!status",
+                     "gmtPublishStart:$!gmtPublishStart","gmtPublishEnd:$!gmtPublishEnd"])
+
+<div class="bops">
+    <div style="MT20 MB20">&nbsp;</div>
+		
+	<form action="${env.bopsRoot}/bops/news_list.htm" method="GET">
+		<div class="settleipt MB10 MT10">
+			新闻ID： <input  type="text" class="item-id-search" name="newsId" value="$!newsId" />&nbsp;&nbsp;
+			关键字：<input  type="text" name="keyword" value="$!keyword" />&nbsp;&nbsp;
+			新闻状态：
+			<select name="status">
+	            <option value="">全部</option>
+				<option value="N" #if($!status == "N") selected #end>有效</option>
+				<option value="D" #if($!status == "D") selected #end>无效</option>
+	        </select>
+	        <br />
+			<div id="settleIptMore" class="settleIptMore #if(!$gmtModifiedStart && !$gmtModifiedStart && !$gmtCreateStart && !$gmtCreateEnd && !$categoryId && !$genWay) dd-hide #end">
+				<span>发布时间： 
+					<input type="text" id="gmtPublishStart" name="gmtPublishStart" class="dateIpt" value="$!gmtPublishStart"/> - 
+					<input type="text" id="gmtPublishEnd" name="gmtPublishEnd"class="dateIpt" value="$!gmtPublishEnd"/>
+                </span>
+                <span>创建时间： 
+					<input type="text" id="gmtCreateStart" name="gmtCreateStart" class="dateIpt" value="$!gmtCreateStartFormat"/> - 
+					<input type="text" id="gmtCreateEnd" name="gmtCreateEnd"class="dateIpt" value="$!gmtCreateEndFormat"/>
+                </span>
+			</div>
+			<input type="submit" value="查询" />[<a href="javascript:;" id="settleIptMoreBtn" style="font-size:12px;">更多查询条件</a>]
+		</div>
+	</form>
+	
+	<div class="MB20 MT20"><a href="${env.bopsRoot}/bops/news.htm" target="_blank">新增新闻</a></div>
+	
+	#parse("/common/bops/page/newsPagination.vm")
+	 
+	 <table width="1100" style="font-size:14px;" id="itemTable">
+		<tr>
+			<th width="25">新闻ID</th>
+    		<th width="45">图片</th>
+			<th width="200" align="center">标题|备注</th>
+			<th width="240">摘要</th>
+			<th width="90">摘要图片</th>
+			<th width="100">新闻链接</th>
+			<th width="60">分类</th>
+			<th width="60">状态</th>
+			<th width="60">发布时间</th>
+			<th width="60">修改时间</th>
+    	</tr>
+		#if($!newsResult.totalRecords > 0)
+    		#foreach($news in $newsResult.items)
+            	<tr data-index="$!news.id">
+					<td class="id">$!news.id</td>
+					<td>
+					    <div class="pic-box" style="width: 80px; height: 80px; overflow: hidden; padding: 1px 1px; border: 1px solid #999999;">
+					    	
+    					</div>
+					</td>
+            		<td class="">
+            		    <div class="title text-ellipsis" style="text-overflow: ellipsis; white-space: no-wrap; width: 200px; overflow: hidden;">$!news.title</div>
+            		    <div class="other"><span class="gmt-create">$dateUtils.format($!news.gmtCreate, 'yyyy-MM-dd HH:mm:ss')</span></div>
+            		</td>
+                    <td>
+						<div class="summary text-ellipsis" style="width: 200px; height: 80px; line-height: 20px; overflow: hidden;">$!news.summary</div>
+					</td>
+					<td>
+					    <div class="pic-box" style="width: 80px; height: 80px; overflow: hidden; padding: 1px 1px; border: 1px solid #999999;">
+					    	
+    					</div>
+					</td>
+					<th>
+						<div class="source-url text-ellipsis" style="text-overflow: ellipsis; white-space: no-wrap; width: 100px; overflow: hidden;">$!news.sourceUrl</div>
+					</th>
+                    <td align="center">
+						<div class="category-box">
+						    <select name="categoryId" data-category-id="$!news.categoryId">
+    						</select>
+						</div>
+					</td>
+					<td align="center">
+						#if($!news.status == 'D')
+							<span>无效<a class="enable-btn" href="javascript:;" title="有效"></a>
+						#else
+						    <span>有效<a class="disable-btn" href="javascript:;" title="无效"></a>
+						#end
+					</td>
+					<td align="center">
+						$dateUtils.format($!new.gmtPublish, 'yyyy-MM-dd')
+					</td>
+					<td align="center">
+						$dateUtils.format($!new.modified, 'yyyy-MM-dd')
+					</td>
+            	</tr>
+    		#end
+		#else
+            <tr><td colspan="6">没有查询到记录</td></tr>
+		#end
+     </table>
+	 #parse("/common/bops/page/newsPagination.vm")
+</div>
+#BOPS_JS(["newsList.js"])
+<script>
+!(function($){
+	
+})(jQuery);
+</script>

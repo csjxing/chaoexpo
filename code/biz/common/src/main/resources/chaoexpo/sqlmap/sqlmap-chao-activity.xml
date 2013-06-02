@@ -16,6 +16,7 @@
 		<result property="countesyReminder" column="COUNTESY_REMINDER"/>
 		<result property="standPicUrls" column="STAND_PIC_URLS"/>
 		<result property="subjectId" column="SUBJECT_ID"/>
+		<result property="gmtActivity" column="GMT_ACTIVITY"/>
 		<result property="followCount" column="FOLLOW_COUNT"/>
 		<result property="commentCount" column="COMMENT_COUNT"/>
 		<result property="gmtCreate" column="GMT_CREATE"/>
@@ -39,9 +40,9 @@
 
 	<insert id="insertActivity">
 		INSERT INTO
-			CHAO_ACTIVITY(ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,INTRO,PIC_URLS,NOTICE,COUNTESY_REMINDER,STAND_PIC_URLS,SUBJECT_ID,GMT_CREATE,GMT_MODIFIED)
+			CHAO_ACTIVITY(ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,INTRO,PIC_URLS,NOTICE,COUNTESY_REMINDER,STAND_PIC_URLS,SUBJECT_ID,GMT_ACTIVITY,GMT_CREATE,GMT_MODIFIED)
 		VALUES
-			(#id#,#name#,#location#,#contactName#,#contactPhone#,#intro#,#picUrls#,#notice#,#countesyReminder#,#standPicUrls#,#subjectId#,now(),now())
+			(#id#,#name#,#location#,#contactName#,#contactPhone#,#intro#,#picUrls#,#notice#,#countesyReminder#,#standPicUrls#,#subjectId#,#gmtActivity#,now(),now())
 		<selectKey resultClass="java.lang.Long" keyProperty="id">
    			<![CDATA[
 			SELECT LAST_INSERT_ID() AS ID
@@ -49,9 +50,12 @@
 	    </selectKey>
 	</insert>
 	
+	<sql id="activity-fields">
+	    ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,INTRO,PIC_URLS,NOTICE,COUNTESY_REMINDER,STAND_PIC_URLS,SUBJECT_ID,GMT_ACTIVITY,FOLLOW_COUNT,COMMENT_COUNT,GMT_CREATE,GMT_MODIFIED
+	</sql>
+	
 	<select id="queryActivityById" resultMap="RM-ChaoActivity">
-		SELECT 
-			ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,INTRO,PIC_URLS,NOTICE,COUNTESY_REMINDER,STAND_PIC_URLS,SUBJECT_ID,FOLLOW_COUNT,COMMENT_COUNT,GMT_CREATE,GMT_MODIFIED
+		SELECT <include refid="activity-fields" />
 		FROM
 			CHAO_ACTIVITY
 		WHERE
@@ -59,17 +63,31 @@
 	</select>
 	
 	<select id="queryActivityWithPagination" resultMap="RM-ChaoActivity-Short">
-		SELECT 
-			ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,PIC_URLS,STAND_PIC_URLS,SUBJECT_ID,FOLLOW_COUNT,COMMENT_COUNT,GMT_CREATE,GMT_MODIFIED
+		SELECT <include refid="activity-fields" />
 		FROM
 			CHAO_ACTIVITY
 		<isParameterPresent open="WHERE" removeFirstPrepend="true">
-	    	<isNotEmpty property="ids" prepend="AND">
+		    <isNotNull property="id" prepend="AND">
+	    		ID = #id#
+			</isNotNull>
+	    	<isNotNull property="ids" prepend="AND">
 	    		ID IN
 			    <iterate property="sourceList" open="("  close=")"  conjunction=",">
 					#ids[]#
 				</iterate>
+			</isNotNull>
+			<isNotEmpty property="keyword" prepend="AND">
+	    		NAME LIKE '%'||#keyword#||'%'
 			</isNotEmpty>
+			<isNotNull property="subjectId" prepend="AND">
+	    		SUBJECT_ID = #subjectId# 
+			</isNotNull>
+			<isNotNull property="gmtActivityStart" prepend="AND">
+	    		GMT_ACTIVITY <![CDATA[>=]]> #gmtActivityStart# 
+			</isNotNull>
+			<isNotNull property="gmtActivityStart" prepend="AND">
+	    		GMT_ACTIVITY <![CDATA[<]]> #gmtActivityEnd# 
+			</isNotNull>
 		</isParameterPresent>
 		ORDER BY 
 	    	GMT_CREATE DESC
@@ -84,14 +102,71 @@
 		FROM
 			CHAO_ACTIVITY
 		<isParameterPresent open="WHERE" removeFirstPrepend="true">
-	    	<isNotEmpty property="ids" prepend="AND">
+		    <isNotNull property="id" prepend="AND">
+	    		ID = #id#
+			</isNotNull>
+	    	<isNotNull property="ids" prepend="AND">
 	    		ID IN
 			    <iterate property="sourceList" open="("  close=")"  conjunction=",">
 					#ids[]#
 				</iterate>
+			</isNotNull>
+			<isNotEmpty property="keyword" prepend="AND">
+	    		NAME LIKE '%'||#keyword#||'%'
 			</isNotEmpty>
+			<isNotNull property="subjectId" prepend="AND">
+	    		SUBJECT_ID = #subjectId# 
+			</isNotNull>
+			<isNotNull property="gmtActivityStart" prepend="AND">
+	    		GMT_ACTIVITY <![CDATA[>=]]> #gmtActivityStart# 
+			</isNotNull>
+			<isNotNull property="gmtActivityStart" prepend="AND">
+	    		GMT_ACTIVITY <![CDATA[<]]> #gmtActivityEnd# 
+			</isNotNull>
 		</isParameterPresent>
 	</select>
+	
+	<update id="updateActivity">
+		UPDATE
+			CHAO_ACTIVITY
+		SET
+			<isNotEmpty property="name">
+				NAME = #name# ,
+			</isNotEmpty>
+			<isNotNull property="gmtActivity">
+				GMT_ACTIVITY = #gmtActivity# ,
+			</isNotNull>
+			<isNotEmpty property="location">
+				LOCATION = #location# ,
+			</isNotEmpty>
+			<isNotEmpty property="contactName">
+				CONTACT_NAME = #contactName# ,
+			</isNotEmpty>
+			<isNotEmpty property="contactPhone">
+				CONTACT_PHONE = #contactPhone# ,
+			</isNotEmpty>
+			<isNotEmpty property="intro">
+				INTRO = #intro# ,
+			</isNotEmpty>
+			<isNotEmpty property="picUrls">
+				PIC_URLS = #picUrls# ,
+			</isNotEmpty>
+			<isNotEmpty property="notice">
+				NOTICE = #notice# ,
+			</isNotEmpty>
+			<isNotEmpty property="countesyReminder">
+				COUNTESY_REMINDER = #countesyReminder# ,
+			</isNotEmpty>
+			<isNotEmpty property="standPicUrls">
+				STAND_PIC_URLS = #standPicUrls# ,
+			</isNotEmpty>
+			<isNotEmpty property="subjectId">
+				SUBJECT_ID = #subjectId# ,
+			</isNotEmpty>
+			GMT_MODIFIED = now()
+		WHERE
+			ID = #id#
+	</update>
 	
 	<update id="updateActivityById">
 		UPDATE

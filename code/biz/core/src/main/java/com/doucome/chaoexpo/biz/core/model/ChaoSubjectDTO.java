@@ -10,12 +10,8 @@ import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
 public class ChaoSubjectDTO extends AbstractModel {
 
 	private ChaoSubjectDO subject ;
-	
-	public ChaoSubjectDTO() {
-		this(null);
-	}
-	
-	public ChaoSubjectDTO(ChaoSubjectDO subject) {
+
+	private Boolean isUserFollowed ;	public ChaoSubjectDTO(ChaoSubjectDO subject) {
 		if(subject == null) {
 			subject = new ChaoSubjectDO() ;
 		}
@@ -64,6 +60,14 @@ public class ChaoSubjectDTO extends AbstractModel {
 
 	public Date getGmtModified() {
 		return subject.getGmtModified();
+	}
+
+	public Boolean getIsUserFollowed() {
+		return isUserFollowed;
+	}
+
+	public void setIsUserFollowed(Boolean isUserFollowed) {
+		this.isUserFollowed = isUserFollowed;
 	}
 	
 	public ChaoSubjectDO toDO() {

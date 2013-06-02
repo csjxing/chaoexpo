@@ -5,156 +5,187 @@ import java.util.Date;
 import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
 
 /**
- * 活动
- * @author ze2200
+ * 新闻
+ * @author langben 2013-6-1
  *
  */
-public class ChaoNewsDO  extends AbstractModel{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class ChaoNewsDO extends AbstractModel {
 
 	private Long id ;
 	
 	/**
-	 * 标题
+	 * 新闻标题
 	 */
-	private String title;
+	private String title ;
 	
 	/**
-	 * 摘要
+	 * 正文摘要
 	 */
-	private String summary;
-	/**
-	 * 概要图片地址
-	 */
-	private String summaryPictures;
+	private String summary ;
 	
 	/**
-	 * 详情图片
+	 * 概要图片
 	 */
-	private String detailPictures;
+	private String summaryPics ;
 	
 	/**
-	 * 正文Url
+	 * 正文图片
 	 */
-	private String sourceUrl;
+	private String detailPics ;
 	
 	/**
-	 * 分类id
+	 * 正文
 	 */
-	private String categoryId;
+	private String content ;
 	
 	/**
-	 * 排序编号.
+	 * 正文URL
 	 */
-	private Long displayOrder;
+	private String detailUrl ;
+	
 	/**
-	 * 
+	 * 新闻分类
 	 */
+	private Long categoryId ;
+	
+	/**
+	 * 排序，一般是当前时间戳
+	 */
+	private Long displayOrder ;
+
 	private String status;
 	/**
-	 * 时间
-	 */
-	private Date gmtPublish;
-	/**
-	 * 
-	 */
-	private Date gmtModified;
-	/**
-	 * 
-	 */
-	private Date gmtCreate;
+	 * 时间	 */
+	private String isTop ;
 	
+	/**
+	 * 来源
+	 */
+	private String source ;
+	
+	/**
+	 * 发表时间
+	 */
+	private Date gmtPublish ;
+	
+	private Date gmtCreate ;
+	
+	private Date gmtModified ;
+
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}
-	
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
 	public String getSummary() {
 		return summary;
 	}
-	
+
 	public void setSummary(String summary) {
 		this.summary = summary;
 	}
-	
-	public String getSummaryPictures() {
-		return summaryPictures;
+
+	public String getSummaryPics() {
+		return summaryPics;
 	}
-	
-	public void setSummaryPictures(String summaryPictures) {
-		this.summaryPictures = summaryPictures;
+
+	public void setSummaryPics(String summaryPics) {
+		this.summaryPics = summaryPics;
 	}
-	
-	public String getDetailPictures() {
-		return detailPictures;
+
+	public String getDetailPics() {
+		return detailPics;
 	}
-	
-	public void setDetailPictures(String detailPictures) {
-		this.detailPictures = detailPictures;
+
+	public void setDetailPics(String detailPics) {
+		this.detailPics = detailPics;
 	}
-	
-	public String getSourceUrl() {
-		return sourceUrl;
-	}
-	
-	public void setSourceUrl(String sourceUrl) {
-		this.sourceUrl = sourceUrl;
-	}
-	
-	public String getCategoryId() {
+
+
+	public Long getCategoryId() {
 		return categoryId;
 	}
-	
-	public void setCategoryId(String categoryId) {
+
+	public void setCategoryId(Long categoryId) {
 		this.categoryId = categoryId;
 	}
-	
-	public Long getDisplayOrder() {
-		return displayOrder;
-	}
-	
-	public void setDisplayOrder(Long displayOrder) {
-		this.displayOrder = displayOrder;
-	}
-	
+
+
 	public Date getGmtPublish() {
 		return gmtPublish;
 	}
-	
+
 	public void setGmtPublish(Date gmtPublish) {
 		this.gmtPublish = gmtPublish;
 	}
-	
-	public Date getGmtModified() {
-		return gmtModified;
-	}
-	
-	public void setGmtModified(Date gmtModified) {
-		this.gmtModified = gmtModified;
-	}
-	
+
 	public Date getGmtCreate() {
 		return gmtCreate;
 	}
-	
+
 	public void setGmtCreate(Date gmtCreate) {
 		this.gmtCreate = gmtCreate;
 	}
+
+	public Date getGmtModified() {
+		return gmtModified;
+	}
+
+	public void setGmtModified(Date gmtModified) {
+		this.gmtModified = gmtModified;
+	}
+
+	public String getDetailUrl() {
+		return detailUrl;
+	}
+
+	public void setDetailUrl(String detailUrl) {
+		this.detailUrl = detailUrl;
+	}
+
+	public Long getDisplayOrder() {
+		return displayOrder;
+	}
+
+	public void setDisplayOrder(Long displayOrder) {
+		this.displayOrder = displayOrder;
+	}
+
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getIsTop() {
+		return isTop;
+	}
+
+	public void setIsTop(String isTop) {
+		this.isTop = isTop;
+	}
+	
 
 	public String getStatus() {
 		return status;

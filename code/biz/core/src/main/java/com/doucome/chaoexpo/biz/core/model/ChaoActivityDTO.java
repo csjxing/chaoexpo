@@ -12,6 +12,8 @@ public class ChaoActivityDTO extends AbstractModel {
 	private ChaoActivityDO activity ;
 	
 	private ChaoSubjectDTO subject ;
+	
+	private Boolean isUserFollowed ;
 
 	public ChaoActivityDTO() {
 		this(null);
@@ -163,4 +165,12 @@ public class ChaoActivityDTO extends AbstractModel {
 	public ChaoActivityDO toDO() {
 		return activity;
 	}
+	public Boolean getIsUserFollowed() {
+		return isUserFollowed;
+	}
+
+	public void setIsUserFollowed(Boolean isUserFollowed) {
+		this.isUserFollowed = isUserFollowed;
+	}
+
 }

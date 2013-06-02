@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ChaoNewsCategory">
+	<typeAlias alias="TA-ChaoNewsCategory"
+		type="com.doucome.chaoexpo.biz.dal.dataobject.ChaoNewsCategoryDO" />
+
+	<resultMap id="RM-ChaoNewsCategory" class="TA-ChaoNewsCategory">
+		<result property="id" column="ID" />
+		<result property="catName" column="CAT_NAME" />
+		<result property="gmtCreate" column="GMT_CREATE"/>
+	</resultMap>
+
+	<insert id="insertCategory">
+		INSERT INTO
+			CHAO_NEWS_CATEGORY(ID,CAT_NAME,GMT_CREATE)
+		VALUES
+			(#id#,#catName#,now())
+		<selectKey resultClass="java.lang.Long" keyProperty="id">
+   			<![CDATA[
+			SELECT LAST_INSERT_ID() AS ID
+			]]>
+	    </selectKey>
+	</insert>
+	
+	<select id="queryCategoriesByIds" resultMap="RM-ChaoNewsCategory">
+		SELECT 
+			ID,CAT_NAME,GMT_CREATE
+		FROM
+			CHAO_NEWS_CATEGORY
+		WHERE
+			ID IN 
+		<iterate prepend="" property="ids" open="("  close=")"  conjunction=",">
+		      #ids[]#
+		</iterate>
+	</select>
+	
+	<select id="queryCategoriesWithPagination" resultMap="RM-ChaoNewsCategory">
+		SELECT 
+			ID,CAT_NAME,GMT_CREATE
+		FROM
+			CHAO_NEWS_CATEGORY
+		ORDER BY 
+	    	GMT_CREATE DESC
+	    LIMIT 
+	    	#start#, #size#
+	</select>
+	
+	
+	<select id="countCategoriesWithPagination" resultClass="java.lang.Integer">
+		SELECT 
+			COUNT(ID)
+		FROM
+			CHAO_NEWS_CATEGORY
+	</select>
+	
+</sqlMap>

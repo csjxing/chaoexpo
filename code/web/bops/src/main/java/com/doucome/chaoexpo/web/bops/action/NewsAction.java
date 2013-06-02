@@ -19,7 +19,7 @@ public class NewsAction extends BopsBasicAction {
 	@Override
 	public String execute() throws Exception {
 		if (IDUtils.isCorrect(id)) {
-			news = chaoNewsService.getNews(id);
+			news = chaoNewsService.getNewsById(id);
 		}
 		return SUCCESS ;
 	}

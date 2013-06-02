@@ -45,9 +45,4 @@ public class IBatisChaoNewsDAO extends SqlMapClientDaoSupport implements ChaoNew
 		return getSqlMapClientTemplate().update("ChaoNews.updateNewsById" , map) ;
 	}
 
-	@Override
-	public int updateDisplayOrderById(Long id) {
-		return getSqlMapClientTemplate().update("ChaoNews.updateDisplayOrderById" , System.currentTimeMillis()) ;
-	}
-
 }

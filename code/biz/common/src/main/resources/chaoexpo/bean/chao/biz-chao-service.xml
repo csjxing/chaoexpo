@@ -16,5 +16,5 @@
 	<bean id="chaoSubjectService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoSubjectServiceImpl"/>
 	<bean id="chaoUserFollowService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoUserFollowServiceImpl"/>
 	<bean id="chaoNewsService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoNewsServiceImpl"/>
-
+	<bean id="chaoNewsCategoryService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoNewsCategoryServiceImpl"/>
 </beans>

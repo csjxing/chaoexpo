@@ -50,10 +50,4 @@ public interface ChaoNewsDAO {
 	 */
 	int updateNewsById(long id , ChaoNewsUpdateCondition condition) ;
 
-	/**
-	 * 
-	 * @param id
-	 * @return
-	 */
-	int updateDisplayOrderById(Long id);
 }

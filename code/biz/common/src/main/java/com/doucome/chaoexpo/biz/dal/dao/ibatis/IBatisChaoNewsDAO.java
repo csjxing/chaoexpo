@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.doucome.chaoexpo.biz.dal.condition.ChaoNewsCondition;
+import com.doucome.chaoexpo.biz.dal.condition.ChaoNewsSearchCondition;
+import com.doucome.chaoexpo.biz.dal.condition.ChaoNewsUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dao.ChaoNewsDAO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoNewsDO;
 
@@ -18,12 +20,7 @@ public class IBatisChaoNewsDAO extends SqlMapClientDaoSupport implements ChaoNew
 	
 	@Override
 	public Long insertNews(ChaoNewsDO news) {
-		return (Long) getSqlMapClientTemplate().insert("chaoNews.insertNews", news);
-	}
-
-	@Override
-	public ChaoNewsDO queryNews(long id) {
-		return (ChaoNewsDO) getSqlMapClientTemplate().queryForObject("chaoNews.insertNews", id);
+		return (Long) getSqlMapClientTemplate().insert("ChaoNews.insertNews", news);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -32,21 +29,42 @@ public class IBatisChaoNewsDAO extends SqlMapClientDaoSupport implements ChaoNew
 		Map<String, Object> params = condition.toMap();
 		params.put("start", start);
 		params.put("size", size);
-		return (List<ChaoNewsDO>) getSqlMapClientTemplate().queryForList("chaoNews.queryNewsPage", params);
+		return (List<ChaoNewsDO>) getSqlMapClientTemplate().queryForList("ChaoNews.queryNewsPage", params);
 	}
 
 	@Override
 	public int countNews(ChaoNewsCondition condition) {
-		return (Integer) getSqlMapClientTemplate().queryForObject("chaoNews.countNews", condition.toMap());
+		return (Integer) getSqlMapClientTemplate().queryForObject("ChaoNews.countNews", condition.toMap());
 	}
 
 	@Override
 	public int updateNews(ChaoNewsDO newsDO) {
-		return (Integer) getSqlMapClientTemplate().update("chaoNews.updateNews", newsDO);
+		return (Integer) getSqlMapClientTemplate().update("ChaoNews.updateNews", newsDO);
 	}
-	
+
 	@Override
-	public int updateNewsDisplayOrder(Long id) {
-		return (Integer) getSqlMapClientTemplate().update("chaoNews.updateNews", id);
+	public ChaoNewsDO queryNewsById(long id) {
+		return (ChaoNewsDO) getSqlMapClientTemplate().queryForObject("ChaoNews.queryNewsById", id);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ChaoNewsDO> queryNewsSummarysWithPagination(ChaoNewsSearchCondition condition, int start, int size) {
+		Map<String, Object> params = condition.toMap();
+		params.put("start", start);
+		params.put("size", size);
+		return (List<ChaoNewsDO>) getSqlMapClientTemplate().queryForList("ChaoNews.queryNewsSummarysWithPagination", params);
+	}
+
+	@Override
+	public int countNewsSummarysWithPagination(ChaoNewsSearchCondition condition) {
+		return (Integer) getSqlMapClientTemplate().queryForObject("ChaoNews.countNewsSummarysWithPagination", condition.toMap());
+	}
+
+	@Override
+	public int updateNewsById(long id, ChaoNewsUpdateCondition condition) {
+		Map<String, Object> params = condition.toMap();
+		params.put("id", id);
+		return (Integer) getSqlMapClientTemplate().update("ChaoNews.updateNewsById", params);
 	}
 }

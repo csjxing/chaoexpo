@@ -11,7 +11,13 @@ public class ChaoSubjectDTO extends AbstractModel {
 
 	private ChaoSubjectDO subject ;
 
-	private Boolean isUserFollowed ;	public ChaoSubjectDTO(ChaoSubjectDO subject) {
+	private Boolean isUserFollowed ;
+	
+	public ChaoSubjectDTO() {
+		this(null);
+	}
+	
+	public ChaoSubjectDTO(ChaoSubjectDO subject) {
 		if(subject == null) {
 			subject = new ChaoSubjectDO() ;
 		}

@@ -16,7 +16,8 @@
   	<sqlMap resource="chaoexpo/sqlmap/sqlmap-bops-admin.xml" />
   	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-activity.xml" />
   	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-user.xml" />
+  	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-news.xml" />
   	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-subject.xml" />
   	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-userFollow.xml" />
-  	
-  	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-category.xml" /></sqlMapConfig>
+  	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-newsCategory.xml" />
+</sqlMapConfig>

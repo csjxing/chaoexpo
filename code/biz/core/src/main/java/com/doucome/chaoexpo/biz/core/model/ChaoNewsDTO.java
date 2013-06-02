@@ -4,11 +4,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.doucome.chaoexpo.biz.core.utils.JacksonHelper;import com.doucome.chaoexpo.biz.dal.dataobject.ChaoNewsDO;
+import com.doucome.chaoexpo.biz.core.enums.ChaoStatusEnum;
+import com.doucome.chaoexpo.biz.core.utils.ChaoDisplayOrderUtils;
+import com.doucome.chaoexpo.biz.dal.dataobject.ChaoNewsDO;
 
 public class ChaoNewsDTO {
 
 	private ChaoNewsDO news ;
+	
+	public ChaoNewsDTO() {
+		this(null);
+	}
 	
 	public ChaoNewsDTO(ChaoNewsDO news) {
 		if(news == null) {
@@ -93,5 +99,9 @@ public class ChaoNewsDTO {
 
 	public String getIsTop() {
 		return news.getIsTop() ;
+	}
+	
+	public ChaoNewsDO toDO() {
+		return news;
 	}
 }

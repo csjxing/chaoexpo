@@ -1,6 +1,6 @@
 #set($bopsCss=["news.css"])
 #set($layout="bops/default_bops.vm")
-#set($navigation = "news")
+#set($navigation = "新增新闻")
 
 <input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
 <input type="hidden"  id="bopsPage" value="news"/>
@@ -67,11 +67,9 @@
 				<div class="content-box" style="">
 				    <ul>
 						<li class="">
-							<div class="left-div dd-l">
-								<span class="lbl" style="">名称：</span>
-								<div class="dd-l">
-									<input type="text" name="title" value="$!news.title"/>
-								</div>
+							<span class="lbl" style="">名称：</span>
+							<div class="dd-l">
+								<input type="text" name="title" value="$!news.title"/>
 							</div>
 						</li>
 						<li class="">

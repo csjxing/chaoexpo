@@ -31,8 +31,8 @@
 	
 </style>
 
-#set($gmtPublishStartFmt = $dateUtils.format($!gmtPublishStart,'yyyy-MM-dd'))
-#set($gmtPublishEndFmt = $dateUtils.format($!gmtPublishEnd,'yyyy-MM-dd'))
+#set($gmtPublishStartFmt = $!dateUtils.format($!gmtPublishStart,'yyyy-MM-dd'))
+#set($gmtPublishEndFmt = $!dateUtils.format($!gmtPublishEnd,'yyyy-MM-dd'))
 
 #set($pagination = $newsResult.pagination)
 
@@ -54,7 +54,7 @@
 				<option value="D" #if($!status == "D") selected #end>无效</option>
 	        </select>
 	        <br />
-			<div id="settleIptMore" class="settleIptMore #if(!$gmtModifiedStart && !$gmtModifiedStart && !$gmtCreateStart && !$gmtCreateEnd && !$categoryId && !$genWay) dd-hide #end">
+			<div id="settleIptMore" class="settleIptMore">
 				<span>发布时间： 
 					<input type="text" id="gmtPublishStart" name="gmtPublishStart" class="dateIpt" value="$!gmtPublishStart"/> - 
 					<input type="text" id="gmtPublishEnd" name="gmtPublishEnd"class="dateIpt" value="$!gmtPublishEnd"/>
@@ -63,8 +63,9 @@
 					<input type="text" id="gmtCreateStart" name="gmtCreateStart" class="dateIpt" value="$!gmtCreateStartFormat"/> - 
 					<input type="text" id="gmtCreateEnd" name="gmtCreateEnd"class="dateIpt" value="$!gmtCreateEndFormat"/>
                 </span>
+                <input type="submit" value="查询" />[<a href="javascript:;" id="settleIptMoreBtn" style="font-size:12px;">更多查询条件</a>]
 			</div>
-			<input type="submit" value="查询" />[<a href="javascript:;" id="settleIptMoreBtn" style="font-size:12px;">更多查询条件</a>]
+			
 		</div>
 	</form>
 	
@@ -96,19 +97,19 @@
 					</td>
             		<td class="">
             		    <div class="title text-ellipsis" style="text-overflow: ellipsis; white-space: no-wrap; width: 200px; overflow: hidden;">$!news.title</div>
-            		    <div class="other"><span class="gmt-create">$dateUtils.format($!news.gmtCreate, 'yyyy-MM-dd HH:mm:ss')</span></div>
+            		    <div class="other"><span class="gmt-create">$!dateUtils.format($!news.gmtCreate, 'yyyy-MM-dd HH:mm:ss')</span></div>
             		</td>
                     <td>
-						<div class="summary text-ellipsis" style="width: 200px; height: 80px; line-height: 20px; overflow: hidden;">$!news.summary</div>
+						<div class="summary text-ellipsis" style="width: 200px; height: 60px; line-height: 20px; overflow: hidden;">$!news.summary</div>
 					</td>
 					<td>
-					    <div class="pic-box" style="width: 80px; height: 80px; overflow: hidden; padding: 1px 1px; border: 1px solid #999999;">
+					    <div class="pic-box" style="width: 60px; height: 60px; overflow: hidden; padding: 1px 1px; border: 1px solid #999999;">
 					    	
     					</div>
 					</td>
-					<th>
+					<td>
 						<div class="source-url text-ellipsis" style="text-overflow: ellipsis; white-space: no-wrap; width: 100px; overflow: hidden;">$!news.sourceUrl</div>
-					</th>
+					</td>
                     <td align="center">
 						<div class="category-box">
 						    <select name="categoryId" data-category-id="$!news.categoryId">
@@ -123,10 +124,10 @@
 						#end
 					</td>
 					<td align="center">
-						$dateUtils.format($!new.gmtPublish, 'yyyy-MM-dd')
+						$!dateUtils.format($!new.gmtPublish, 'yyyy-MM-dd')
 					</td>
 					<td align="center">
-						$dateUtils.format($!new.modified, 'yyyy-MM-dd')
+						$!dateUtils.format($!new.modified, 'yyyy-MM-dd')
 					</td>
             	</tr>
     		#end

@@ -2,15 +2,14 @@ package com.doucome.chaoexpo.web.bops.action;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.doucome.chaoexpo.biz.core.model.ChaoNewsDTO;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoNewsService;
-import com.doucome.chaoexpo.biz.core.utils.ChaoNewsUtils;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoNewsUpdateCondition;
-import com.doucome.chaoexpo.biz.dal.dataobject.ChaoNewsDO;
 import com.opensymphony.xwork2.ModelDriven;
 
 @SuppressWarnings("serial")
-public class NewNewsAction extends BopsBasicAction implements ModelDriven<ChaoNewsDTO> {	
-	private ChaoNewsDO news = new ChaoNewsDO();
+public class AddNewsAction extends BopsBasicAction implements ModelDriven<ChaoNewsDTO> {	
+	
+	private ChaoNewsDTO news = new ChaoNewsDTO();
 	
 	@Autowired
 	private ChaoNewsService chaoNewsService;
@@ -19,10 +18,9 @@ public class NewNewsAction extends BopsBasicAction implements ModelDriven<ChaoNe
 	public String execute() throws Exception {
 		
 		if (news.getId() == null) {
-		    chaoNewsService.createNews(news);
+		    chaoNewsService.createNews(news.toDO());
 		} else {
-			ChaoNewsUpdateCondition condition = ChaoNewsUtils.fromNewDO(news) ;
-			chaoNewsService.updateNewsById(news.getId() , condition );
+			chaoNewsService.updateNews(news);
 		}
 		
 		return SUCCESS ;

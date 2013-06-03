@@ -3,7 +3,9 @@ package com.doucome.chaoexpo.biz.core.utils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 
+import com.doucome.chaoexpo.biz.core.constant.URIConstant;
 import com.doucome.chaoexpo.biz.core.enums.PictureSizeEnums;
+import com.doucome.chaoexpo.biz.core.service.impl.DefaultUriService;
 
 /**
  * 图片工具
@@ -46,5 +48,41 @@ public class PictureUtils {
 			}
 		}
 		return picUrl;
+	}
+	
+	/**
+	 * 
+	 * @param picPath
+	 * @param sizeEnum
+	 * @return
+	 */
+	public static String getPicAbsoluteUrl(String picPath, PictureSizeEnums sizeEnum) {
+		if (StringUtils.isEmpty(picPath)) {
+			return picPath;
+		}
+		StringBuilder tempPath = new StringBuilder();
+		if (!picPath.startsWith("http://")) {
+			tempPath.append(DefaultUriService.getFactoryURI(URIConstant.PICTURE_ROOT));
+		}
+		tempPath.append(picPath);
+		if (sizeEnum != null && sizeEnum != PictureSizeEnums.NONE) {
+			tempPath.append("_").append(sizeEnum.getName()).append(".jpg");
+		}
+		return tempPath.toString();
+	}
+	
+	/**
+	 * 
+	 * @param picPath
+	 * @param sizeEnum
+	 * @return
+	 */
+	public static String getPicPath(String picPath, PictureSizeEnums sizeEnum) {
+		if (sizeEnum == null || sizeEnum == PictureSizeEnums.NONE) {
+			return picPath;
+		}
+		StringBuilder tempPath = new StringBuilder();
+		tempPath.append(picPath).append("_").append(sizeEnum.getName()).append(".jpg");
+		return tempPath.toString();
 	}
 }

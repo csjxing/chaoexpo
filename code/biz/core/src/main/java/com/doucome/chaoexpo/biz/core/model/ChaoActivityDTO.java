@@ -3,12 +3,16 @@ package com.doucome.chaoexpo.biz.core.model;
 import java.util.Date;
 import java.util.List;
 
+import com.doucome.chaoexpo.biz.core.enums.PictureSizeEnums;
 import com.doucome.chaoexpo.biz.core.utils.ArrayStringUtils;
+import com.doucome.chaoexpo.biz.core.utils.PictureUtils;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoActivityDO;
 import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
 
 public class ChaoActivityDTO extends AbstractModel {
 	
+	private static final long serialVersionUID = 1L;
+
 	private ChaoActivityDO activity ;
 	
 	private ChaoSubjectDTO subject ;
@@ -24,6 +28,65 @@ public class ChaoActivityDTO extends AbstractModel {
 			activity = new ChaoActivityDO() ;
 		}
 		this.activity = activity ;
+	}
+	
+	/**
+	 * 
+	 * @param index
+	 * @param sizeType
+	 * @return
+	 */
+	public String getPicAbsoluteUrl(int index, String sizeType) {
+		PictureSizeEnums sizeEnum = PictureSizeEnums.toEnum(sizeType);
+		List<String> picUrls = getPicUrlList();
+		if (index >= picUrls.size()) {
+			return "";
+		}
+		return PictureUtils.getPicAbsoluteUrl(picUrls.get(index), sizeEnum);
+	}
+	
+	/**
+	 * 
+	 * @param index
+	 * @param sizeType
+	 * @return
+	 */
+	public String getPicPath(int index, String sizeType) {
+		PictureSizeEnums sizeEnum = PictureSizeEnums.toEnum(sizeType);
+		List<String> picUrls = getPicUrlList();
+		if (index >= picUrls.size()) {
+			return "";
+		}
+		return PictureUtils.getPicPath(picUrls.get(index), sizeEnum);
+	}
+	/**
+	 * 
+	 * @param index
+	 * @param sizeType
+	 * @return
+	 */
+	public String getStandPicAbsoluteUrl(int index, String sizeType) {
+		PictureSizeEnums sizeEnum = PictureSizeEnums.toEnum(sizeType);
+		List<String> picUrls = getStandPicUrlList();
+		if (index >= picUrls.size()) {
+			return "";
+		}
+		return PictureUtils.getPicAbsoluteUrl(picUrls.get(index), sizeEnum);
+	}
+	
+	/**
+	 * 
+	 * @param index
+	 * @param sizeType
+	 * @return
+	 */
+	public String getStandPicPath(int index, String sizeType) {
+		PictureSizeEnums sizeEnum = PictureSizeEnums.toEnum(sizeType);
+		List<String> picUrls = getStandPicUrlList();
+		if (index >= picUrls.size()) {
+			return "";
+		}
+		return PictureUtils.getPicPath(picUrls.get(index), sizeEnum);
 	}
 	
 	public Long getId() {

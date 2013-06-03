@@ -42,13 +42,15 @@
 						</div>
 						<ul class="pics pictures dd-l">
 							#if(!$!collectionUtils.isEmpty($!activity.picUrlList))
+								#set($idx=0)
 								#foreach($picUrl in $activity.picUrlList)
 							        <li class="#if(!$collectionUtils.isEmpty($activity.picUrlList) && $velocityCount == 1)active#end">
 							        	<a class="small-picture" href="javascript:;">
-							        	    
+							        	    <img src="$!activity.getPicAbsoluteUrl($idx, '40x40')" width="40" height="40"/>
 							        	</a>
 							        	<input type="hidden" name="picUrlList" value="$picUrl"/>
 							        </li>
+							        #set($idx = $idx+1)
 							    #end
 							#end
 							<li class=""><a class="add-pic-btn" href="javascript:;" title="新增活动图片"></a></li>
@@ -57,11 +59,15 @@
 					<div class="bottom-box dd-l">
 					    <ul class="stand-pics pictures dd-l" style="">
 							#if(!$!collectionUtils.isEmpty($!activity.standPicUrlList))
+								#set($idx=0)
 								#foreach($picUrl in $!activity.standPicUrlList)
 							        <li class="#if($collectionUtils.isEmpty($activity.picUrlList) && $velocityCount == 1)active#end">
-							        	<a class="small-picture" href="javascript:;"></a>
+							        	<a class="small-picture" href="javascript:;">
+							        	    <img src="$!activity.getStandPicAbsoluteUrl($idx, '40x40')" width="40" height="40" />
+							        	</a>
 							        	<input type="hidden" name="standPicUrlList" value="$picUrl"/>
 							        </li>
+							        #set($idx = $idx+1)
 							    #end
 							#end
 							<li class=""><a class="add-stand-pic-btn" href="javascript:;" title="新增展位图片"></a></li>

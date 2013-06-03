@@ -52,10 +52,10 @@ public class ChaoNewsDO extends AbstractModel {
 	 * 排序，一般是当前时间戳
 	 */
 	private Long displayOrder ;
-	
+
+	private String status;
 	/**
-	 * 是否置顶
-	 */
+	 * 时间	 */
 	private String isTop ;
 	
 	/**
@@ -186,4 +186,12 @@ public class ChaoNewsDO extends AbstractModel {
 		this.isTop = isTop;
 	}
 	
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 }

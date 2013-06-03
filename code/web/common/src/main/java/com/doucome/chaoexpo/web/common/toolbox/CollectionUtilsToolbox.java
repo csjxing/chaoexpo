@@ -26,4 +26,8 @@ public class CollectionUtilsToolbox extends CollectionUtils {
 		list.add(element) ;
 		return list ;
 	}
+	
+	public static boolean isEmpty(Collection collection) {
+		return (collection == null || collection.isEmpty());
+	}
 }

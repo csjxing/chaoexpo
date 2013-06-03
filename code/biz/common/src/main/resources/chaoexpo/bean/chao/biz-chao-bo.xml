@@ -12,7 +12,16 @@
 	default-autowire="byName">
 
 	<bean id="chaoUserBO" class="com.doucome.chaoexpo.biz.core.bo.ChaoUserBO"/>
-	
-	<bean id="chaoNewsBO" class="com.doucome.chaoexpo.biz.core.bo.ChaoNewsBO"/>
-	
-</beans>
+	<bean id="imageUploadBO" class="com.doucome.chaoexpo.biz.core.bo.ImageUploadBO">
+		<property name="imgBucketname" value="${chaoexpo.upyun.bucketname.img}"/>
+		<property name="uploadRoot" value="/upload"/>
+		<property name="allowExtensions">
+		    <list>
+		        <value>jpeg</value>
+		        <value>jpg</value>
+		        <value>gif</value>
+		        <value>png</value>
+		        <value>bmp</value>
+		    </list>
+		</property>
+	</bean></beans>

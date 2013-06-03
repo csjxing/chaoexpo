@@ -87,6 +87,88 @@
 		</isParameterPresent>
 	</select>
 	
+	<select id="queryNewsPage" resultMap="RM-ChaoNews">
+		SELECT <include refid="chao_news_fields" />
+		  FROM CHAO_NEWS
+		  <isParameterPresent open="WHERE" removeFirstPrepend="true">
+	    	  <isNotNull property="categoryId" prepend="AND">
+	    		  CATEGORY_ID = #categoryId# 
+			  </isNotNull>
+			  <isNotNull property="gmtPublishStart" prepend="AND">
+	    		  GMT_PUBLISH <![CDATA[>=]]> #gmtPublishStart# 
+			  </isNotNull>
+			  <isNotNull property="gmtPublishEnd" prepend="AND">
+	    		  GMT_PUBLISH <![CDATA[<]]> #gmtPublishEnd# 
+			  </isNotNull>
+		  </isParameterPresent>
+		  <isNotEmpty property="orderColumn" prepend="">
+		      ORDER BY #GMT_CREATE#
+		  </isNotEmpty>
+		  <isEmpty property="orderColumn" prepend="">
+		      ORDER BY GMT_CREATE
+		  </isEmpty>
+		  <isEqual property="order" compareValue="desc" prepend=" ">
+		      DESC
+		  </isEqual>
+	      LIMIT #start#, #size#
+	</select>
+	
+	<select id="countNews" resultClass="java.lang.Integer">
+		SELECT COUNT(ID)
+		  FROM CHAO_NEWS
+		  <isParameterPresent open="WHERE" removeFirstPrepend="true">
+	    	  <isNotNull property="categoryId" prepend="AND">
+	    		  CATEGORY_ID = #categoryId# 
+			  </isNotNull>
+			  <isNotNull property="gmtPublishStart" prepend="AND">
+	    		  GMT_PUBLISH <![CDATA[>=]]> #gmtPublishStart# 
+			  </isNotNull>
+			  <isNotNull property="gmtPublishEnd" prepend="AND">
+	    		  GMT_PUBLISH <![CDATA[<]]> #gmtPublishEnd# 
+			  </isNotNull>
+		  </isParameterPresent>
+	</select>
+	
+	<update id="updateNews">
+		UPDATE
+			CHAO_NEWS
+		SET
+			<isNotEmpty property="title">
+				TITLE = #title# ,
+			</isNotEmpty>
+			<isNotEmpty property="summary">
+				SUMMARY = #summary# ,
+			</isNotEmpty>
+			<isNotEmpty property="summaryPics">
+				SUMMARY_PICS = #summaryPics# ,
+			</isNotEmpty>
+			<isNotEmpty property="detailUrl">
+				DETAIL_URL = #detailUrl# ,
+			</isNotEmpty>
+			<isNotEmpty property="detailPics">
+				DETAIL_PICS = #detailPics# ,
+			</isNotEmpty>
+			<isNotEmpty property="content">
+				CONTENT = #content# ,
+			</isNotEmpty>
+			<isNotEmpty property="categoryId">
+				CATEGORY_ID = #categoryId# ,
+			</isNotEmpty>
+			<isNotEmpty property="displayOrder">
+				DISPLAY_ORDER = #displayOrder# ,
+			</isNotEmpty>
+			<isNotEmpty property="isTop">
+				IS_TOP = #isTop# ,
+			</isNotEmpty>
+			<isNotEmpty property="source">
+				SOURCE = #source# ,
+			</isNotEmpty>
+			GMT_MODIFIED = now()
+		WHERE
+			ID = #id#
+	</update>	
+	
+	
 	<update id="updateNewsById">
 		UPDATE
 			CHAO_NEWS

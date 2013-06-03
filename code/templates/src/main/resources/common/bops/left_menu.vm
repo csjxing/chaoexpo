@@ -2,11 +2,9 @@
     <p><a href="">BOPS管理系统</a></p>
 	<li><a href="javascript:">Back office process system</a>
     	<ul>
-    		<li id="cacheManagement"><a href="${env.bopsRoot}/bops/news_list.htm" >新闻管理</a></li>
-			<li id="bannerManagement"><a href="${env.bopsRoot}/bops/banner_management.htm" >BANNER管理</a></li>
-			<li id="smsLog"><a href="${env.bopsRoot}/bops/log/sms_log_list.htm" >短信日志</a></li>
-			<li id="mailLog"><a href="${env.bopsRoot}/bops/log/mail_log_list.htm" >邮件日志</a></li>
-			<li id="mailLog"><a href="${env.bopsRoot}/bops/log/task_schedule_list.htm" >任务调度</a></li>
+    		<li id="newsList"><a href="${env.bopsRoot}/bops/news_list.htm" >新闻管理</a></li>
+			<li id="categoryList"><a href="${env.bopsRoot}/bops/category_list.htm" >新闻分类管理</a></li>
+			<li id="activityList"><a href="${env.bopsRoot}/bops/activity_list.htm" >活动管理</a></li>
     	</ul>
     </li>
 </ul>

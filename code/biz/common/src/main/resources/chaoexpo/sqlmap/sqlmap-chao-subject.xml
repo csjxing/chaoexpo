@@ -76,4 +76,22 @@
 		WHERE
 			ID = #id#
 	</update>
+	
+	<update id="updateSubject">
+		UPDATE
+			CHAO_ACTIVITY
+		SET
+			<isNotEmpty property="name">
+				NAME = #name# ,
+			</isNotEmpty>
+			<isNotEmpty property="picUrls">
+				PIC_URLS = #picUrls# ,
+			</isNotEmpty>
+			<isNotEmpty property="webUrl">
+				WEB_URL = #webUrl# ,
+			</isNotEmpty>
+			GMT_MODIFIED = now()
+		WHERE
+			ID = #id#
+	</update>
 </sqlMap>

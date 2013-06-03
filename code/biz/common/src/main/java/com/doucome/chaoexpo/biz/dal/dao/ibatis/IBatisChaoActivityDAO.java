@@ -39,6 +39,11 @@ public class IBatisChaoActivityDAO extends SqlMapClientDaoSupport implements Cha
 	}
 
 	@Override
+	public int updateActivity(ChaoActivityDO activity) {
+		return getSqlMapClientTemplate().update("ChaoActivity.updateActivity", activity);
+	}
+	
+	@Override
 	public int updateActivityById(Long id, ChaoActivityUpdateCondition condition) {
 		Map<String,Object> map = condition.toMap() ;
 		map.put("id", id) ;

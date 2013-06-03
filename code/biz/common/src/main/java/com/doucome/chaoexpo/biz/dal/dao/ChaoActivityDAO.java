@@ -42,7 +42,12 @@ public interface ChaoActivityDAO{
 	 * @return
 	 */
 	int countActivityWithPagination(ChaoActivitySearchCondition condition) ;
-	
+	/**
+	 * 
+	 * @param activity
+	 * @return
+	 */
+	int updateActivity(ChaoActivityDO activity);
 	/**
 	 * 
 	 * @param id

@@ -18,6 +18,7 @@
 				<entry key="staticServer" value="${chaoexpo.static.url}"/>
 				<entry key="bopsServer" value="http://${chaoexpo.bops.domainName}:${chaoexpo.port}"/>
 				<entry key="bopsLoginLink"  value="http://${chaoexpo.bops.domainName}:${chaoexpo.port}/bops/login.htm" />
+				<entry key="pictureRoot"  value="${chaoexpo.picture.uploaded.img.url}" />
 			</map>
 		</property>
 	</bean>

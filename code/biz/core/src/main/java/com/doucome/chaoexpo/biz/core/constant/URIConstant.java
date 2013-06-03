@@ -15,5 +15,9 @@ public class URIConstant {
 	/**
 	 * BOPS登陆
 	 */
-	public static final String BOPS_LOGIN_LINK = "bopsLoginLink" ;
+	public static final String BOPS_LOGIN_LINK = "bopsLoginLink";
+	/**
+	 * 图片服务器
+	 */
+	public static final String PICTURE_ROOT = "pictureRoot" ;
 }

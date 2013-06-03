@@ -17,7 +17,10 @@ public class ChaoActivityDO  extends AbstractModel{
 	 * 活动名
 	 */
 	private String name ;
-	
+	/**
+	 * 
+	 */
+	private Date gmtActivity;
 	/**
 	 * 地点
 	 */
@@ -91,6 +94,14 @@ public class ChaoActivityDO  extends AbstractModel{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Date getGmtActivity() {
+		return gmtActivity;
+	}
+
+	public void setGmtActivity(Date gmtActivity) {
+		this.gmtActivity = gmtActivity;
 	}
 
 	public String getLocation() {

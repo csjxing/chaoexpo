@@ -1,7 +1,11 @@
 package com.doucome.chaoexpo.biz.core.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import com.doucome.chaoexpo.biz.core.enums.ChaoStatusEnum;
+import com.doucome.chaoexpo.biz.core.utils.ChaoDisplayOrderUtils;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoNewsDO;
 
 public class ChaoNewsDTO {
@@ -9,14 +13,32 @@ public class ChaoNewsDTO {
 	private ChaoNewsDO news ;
 	
 	private ChaoNewsCategoryDTO cat ;
+
+	public ChaoNewsDTO() {
+		this(null);
+	}
 	
 	public ChaoNewsDTO(ChaoNewsDO news) {
 		if(news == null) {
 			news = new ChaoNewsDO() ;
+			this.news.setStatus(ChaoStatusEnum.ENABLE.getValue());
+			this.news.setDisplayOrder(ChaoDisplayOrderUtils.getDisplayOrder());
 		}
 		this.news = news ;
 	}
 
+	public List<String> getSummaryPicUrls() {
+		List<String> result = new ArrayList<String>();
+		
+		return result;
+	}
+
+	public List<String> getDetailPicUrls() {
+        List<String> result = new ArrayList<String>();
+		
+		return result;
+	}
+	
 	public Long getId() {
 		return news.getId();
 	}
@@ -41,6 +63,14 @@ public class ChaoNewsDTO {
 		return news.getCategoryId();
 	}
 
+	public String getStatus() {
+		return news.getStatus();
+	}
+	
+	public void setStatus(String status) {
+		news.setStatus(status);
+	}
+	
 	public Date getGmtPublish() {
 		return news.getGmtPublish();
 	}
@@ -81,4 +111,8 @@ public class ChaoNewsDTO {
 		this.cat = cat;
 	}
 	
+	public ChaoNewsDO toDO() {
+		return news;
+	}
+
 }

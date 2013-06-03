@@ -27,6 +27,9 @@ public class ChaoActivityServiceImpl implements ChaoActivityService {
 	
 	@Override
 	public Long createActivity(ChaoActivityDO activity) {
+		if (activity == null) {
+			return 0l;
+		}
 		return chaoActivityDAO.insertActivity(activity) ;
 	}
 
@@ -53,6 +56,10 @@ public class ChaoActivityServiceImpl implements ChaoActivityService {
         	}
         }
         return new QueryResult<ChaoActivityDTO>(dtoList, pagination, totalRecords);
+	}
+	
+	public int updateActivity(ChaoActivityDTO activity) {
+		return chaoActivityDAO.updateActivity(activity.toDO());
 	}
 
 	@Override

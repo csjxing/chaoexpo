@@ -1,0 +1,133 @@
+#set($bopsCss=["activity.css"])
+#set($layout="bops/default_bops.vm")
+#set($navigation = "活动")
+
+<input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
+<input type="hidden"  id="bopsPage" value="activity"/>
+<input type="hidden"  id="pictureRoot" value="${env.pictureRoot}"/>
+
+<div class="bops">
+    <div class="main-box">
+    	<div id="pictureUploadLayer" class="pic-upload-layer dd-hide">
+		    <div class="wrap">
+			    <div class="header" style="">
+				    <span>上传图片</span>
+					<a class="close-btn" href="javascript:;"></a>
+				</div>
+				<div class="content">
+					##<form id="urlPicUploadForm" method="post" action="${env.bopsRoot}/bops/upload_local_picture.htm" enctype="multipart/form-data">
+						<div class="url-pic" style="">
+						    <div class="tip"><span>网络图片上传</span></div>
+						    <div class="tip"><span class="error"></span></div>
+							<input class="picture-url" type="text" name="pictureUrl"/>
+							<input class="confirm-btn" type="button" value="确定"/>
+						</div>
+					##</form>
+				</div>
+			</div>
+		</div>
+    	<form id="activityForm" method="post" action="${env.bopsRoot}/bops/add_activity.htm">
+    		<input type="hidden" name="id" value="$!activity.id" />
+		    <div class="activity-box">
+			    <div class="pic-box">
+				    <div class="top-box dd-l">
+					    <div class="picture dd-l">
+					    	#if (!$!activity.picUrlList || $!activity.picUrlList.size() == 0)
+					    		#if ($!activity.standPicUrlList && $!activity.standPicUrlList.size() > 0)
+						            <img src="${env.pictureRoot}$activity.standPicUrlList[0]" max-width="300" max-height="300" />
+						        #end
+						    #else
+						        <img src="${env.pictureRoot}$!activity.picUrlList[0]" max-width="300" max-height="300" />
+						    #end
+						</div>
+						<ul class="pics pictures dd-l">
+							#if(!$!collectionUtils.isEmpty($!activity.picUrlList))
+								#foreach($picUrl in $activity.picUrlList)
+							        <li class="#if(!$collectionUtils.isEmpty($activity.picUrlList) && $velocityCount == 1)active#end">
+							        	<a class="small-picture" href="javascript:;"></a>
+							        	<input type="hidden" name="picUrlList" value="$picUrl"/>
+							        </li>
+							    #end
+							#end
+							<li class=""><a class="add-pic-btn" href="javascript:;" title="新增活动图片"></a></li>
+						</ul>
+					</div>
+					<div class="bottom-box dd-l">
+					    <ul class="stand-pics pictures dd-l" style="">
+							#if(!$!collectionUtils.isEmpty($!activity.standPicUrlList))
+								#foreach($picUrl in $!activity.standPicUrlList)
+							        <li class="#if($collectionUtils.isEmpty($activity.picUrlList) && $velocityCount == 1)active#end">
+							        	<a class="small-picture" href="javascript:;"></a>
+							        	<input type="hidden" name="standPicUrlList" value="$picUrl"/>
+							        </li>
+							    #end
+							#end
+							<li class=""><a class="add-stand-pic-btn" href="java.javascript:;" title="新增展位图片"></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="content-box" style="">
+				    <ul>
+						<li class="">
+							<div class="left-div dd-l">
+								<span class="lbl" style="">名称：</span>
+								<div class="dd-l">
+									<input class="name width2" type="text" name="name" value="$!activity.name"/>
+								</div>
+							</div>
+							<div>
+								<span class="lbl" style="">时间：</span>
+								<div class="dd-l">
+									<input class="gmt-activity width1" type="text" name="gmtActivity" value="$!dateUtils.format($!activity.gmtActivity,'yyyy-MM-dd')" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+								</div>
+							</div>
+						</li>
+						<li class="">
+							<span class="lbl" style="">地点：</span>
+							<div class="dd-l">
+								<input class="location width3" type="text" name="location" value="$!activity.location"/>
+							</div>
+						</li>
+						<li class="">
+							<div class="left-div dd-l">
+								<span class="lbl">联系人：</span>
+								<div class="dd-l">
+									<input class="contact-name width2" type="text" name="contactName" value="$!activity.contactName"/>
+								</div>
+							</div>
+							<div>
+								<span class="lbl" style="">联系电话：</span>
+								<div class="dd-l">
+									<input class="contact-phone width1" type="text" name="contactPhone" value="$!activity.contactPhone"/>
+								</div>
+							</div>
+						</li>
+						<li class="">
+							<span class="lbl">活动介绍：</span>
+							<div class="dd-l">
+								<textarea name="summary"/>$!activity.summary</textarea>
+							</div>
+						</li>
+						<li class="">
+							<span class="lbl">参展须知：</span>
+							<div class="dd-l">
+								<textarea class="notice" name="notice"/>$!activity.notice</textarea>
+							</div>
+						</li>
+						<li class="">
+							<span class="lbl">温馨提示：</span>
+							<div class="dd-l">
+								<textarea class="countesy-reminder" name="countesyReminder"/>$!activity.countesyReminder</textarea>
+							</div>
+						</li>
+						<li class="dd-l">
+							<input type="submit" value="提交"/>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+#set($bopsJs=["../js/lib/jquery.form.js", "activity.js"])

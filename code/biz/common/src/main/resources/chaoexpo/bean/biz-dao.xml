@@ -39,6 +39,4 @@
 	</bean>
 	
 	<bean id="bopsAdminDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisBopsAdminDAO"/>
-	
-	<bean id="chaoNewsDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisNewsDAO"/>
 </beans>

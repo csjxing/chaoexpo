@@ -10,6 +10,7 @@ import com.doucome.chaoexpo.biz.core.model.ChaoNewsDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoNewsService;
+import com.doucome.chaoexpo.biz.dal.condition.ChaoNewsCondition;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoNewsSearchCondition;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoNewsUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dao.ChaoNewsDAO;
@@ -50,10 +51,38 @@ public class ChaoNewsServiceImpl implements ChaoNewsService {
         }
         return new QueryResult<ChaoNewsDTO>(dtoList, pagination, totalRecords);
 	}
+	
+	@Override
+	public QueryResult<ChaoNewsDTO> getNewsPage(ChaoNewsCondition condition, Pagination page) {
+		int count = chaoNewsDAO.countNews(condition);
+		if (count == 0) {
+			return new QueryResult<ChaoNewsDTO>(new ArrayList<ChaoNewsDTO>(), page, count);
+		}
+		List<ChaoNewsDO> temps = chaoNewsDAO.queryNewsPage(condition, page.getStart(), page.getSize());
+		return new QueryResult<ChaoNewsDTO>(convert(temps), page, count);
+	}
 
 	@Override
 	public int updateNewsById(long id, ChaoNewsUpdateCondition condition) {
 		return chaoNewsDAO.updateNewsById(id, condition) ;
+	}
+
+	@Override
+	public int updateNews(ChaoNewsDTO news) {
+		if (news == null) {
+			return 0;
+		}
+		return chaoNewsDAO.updateNews(news.toDO());
+	}
+	
+	private List<ChaoNewsDTO> convert(List<ChaoNewsDO> chaoNews) {
+		List<ChaoNewsDTO> result = new ArrayList<ChaoNewsDTO>() ;
+        if(CollectionUtils.isNotEmpty(chaoNews)){
+        	for(ChaoNewsDO news : chaoNews) {
+        		result.add(new ChaoNewsDTO(news)) ;
+        	}
+        }
+        return result;
 	}
 	
 }

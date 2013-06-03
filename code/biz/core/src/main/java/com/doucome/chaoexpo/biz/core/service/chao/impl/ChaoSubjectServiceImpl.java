@@ -54,5 +54,12 @@ public class ChaoSubjectServiceImpl implements ChaoSubjectService {
 	public int updateSubjectById(Long id, ChaoSubjectUpdateCondition condition) {
 		return chaoSubjectDAO.updateSubjectById(id, condition) ;
 	}
-
+	
+	@Override
+	public int updateSubject(ChaoSubjectDTO subject) {
+		if (subject != null) {
+			return chaoSubjectDAO.updateSubject(subject.toDO());
+		}
+		return 0;
+	}
 }

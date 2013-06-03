@@ -43,5 +43,9 @@ public class IBatisChaoSubjectDAO extends SqlMapClientDaoSupport implements Chao
 		map.put("id", id) ;
 		return getSqlMapClientTemplate().update("ChaoSubject.updateSubjectById" , map);
 	}
-
+	
+	@Override
+	public int updateSubject(ChaoSubjectDO subject) {
+		return getSqlMapClientTemplate().update("ChaoSubject.updateSubject" , subject);
+	}
 }

@@ -35,13 +35,49 @@
 			<interceptor-ref name="bopsDefaultStack" />
 			<result name="success" type="velocity">/bops/index.vm</result>
 		</action>
-		<action name="news" class="com.doucome.chaoexpo.web.bops.action.ChaoNewsAction" >
+		<action name="news_list" class="com.doucome.chaoexpo.web.bops.action.NewsListAction" >
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/newsList.vm</result>
+		</action>
+		<action name="news" class="com.doucome.chaoexpo.web.bops.action.NewsAction" >
 			<interceptor-ref name="bopsDefaultStack" />
 			<result name="success" type="velocity">/bops/news.vm</result>
 		</action>
-		<action name="new_news" class="com.doucome.chaoexpo.web.bops.action.NewChaoNewsAction" >
+		<action name="add_news" class="com.doucome.chaoexpo.web.bops.action.AddNewsAction" >
 			<interceptor-ref name="bopsDefaultStack" />
-			<result name="success" type="redirect">/bops/news.vm</result>
+			<result name="success" type="redirect">/bops/news.htm</result>
+		</action>
+		<action name="category_list" class="com.doucome.chaoexpo.web.bops.action.CategoryListAction" >
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/categoryList.vm</result>
+		</action>
+		<action name="add_category" class="com.doucome.chaoexpo.web.bops.action.AddCategoryAction" >
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="redirect">/bops/category_list.htm</result>
+		</action>
+		<action name="activity_list" class="com.doucome.chaoexpo.web.bops.action.ActivityListAction" >
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/activityList.vm</result>
+		</action>
+		<action name="activity" class="com.doucome.chaoexpo.web.bops.action.ActivityAction" >
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/activity.vm</result>
+		</action>
+		<action name="add_activity" class="com.doucome.chaoexpo.web.bops.action.AddActivityAction" >
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="redirect">/bops/activity.htm</result>
+		</action>
+		<action name="subject_list" class="com.doucome.chaoexpo.web.bops.action.SubjectListAction" >
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/subjectList.vm</result>
+		</action>
+		<action name="subject" class="com.doucome.chaoexpo.web.bops.action.SubjectAction" >
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/subject.vm</result>
+		</action>
+		<action name="add_subject" class="com.doucome.chaoexpo.web.bops.action.AddSubjectAction" >
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="redirect">/bops/subject.htm</result>
 		</action>
 	</package>
 	
@@ -56,5 +92,19 @@
 			 </interceptor-stack>
 		</interceptors>
 		
+		<action name="upload_local_picture" class="com.doucome.chaoexpo.web.bops.action.ajax.ImageUploadAction" method="uploadLocalPicture">
+		    <interceptor-ref name="bopsDefaultStack" />
+		    <result name="success" type="json"></result>
+		</action>
+		
+		<action name="upload_url_picture" class="com.doucome.chaoexpo.web.bops.action.ajax.ImageUploadAction" method="uploadUrlPicture">
+		    <interceptor-ref name="bopsDefaultStack" />
+		    <result name="success" type="json"></result>
+		</action>
+		
+		<action name="query_categories" class="com.doucome.chaoexpo.web.bops.action.ajax.CategoriesAction">
+		    <interceptor-ref name="bopsDefaultStack" />
+		    <result name="success" type="json"></result>
+		</action>
 	</package>
 </struts>

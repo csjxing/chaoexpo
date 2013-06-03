@@ -43,4 +43,10 @@ public interface ChaoSubjectDAO {
 	 * @return
 	 */
 	int updateSubjectById(Long id , ChaoSubjectUpdateCondition condition) ;
+	/**
+	 * 
+	 * @param subject
+	 * @return
+	 */
+	int updateSubject(ChaoSubjectDO subject);
 }

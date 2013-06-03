@@ -22,6 +22,15 @@
 	    </selectKey>
 	</insert>
 	
+	<select id="queryCategoryById" resultMap="RM-ChaoNewsCategory">
+		SELECT 
+			ID,CAT_NAME,GMT_CREATE
+		FROM
+			CHAO_NEWS_CATEGORY
+		WHERE
+			ID = #id#
+	</select>
+	
 	<select id="queryCategoriesByIds" resultMap="RM-ChaoNewsCategory">
 		SELECT 
 			ID,CAT_NAME,GMT_CREATE

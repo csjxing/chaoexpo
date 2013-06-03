@@ -16,6 +16,11 @@ public class IBatisChaoNewsCategoryDAO extends SqlMapClientDaoSupport implements
 	public long insertCategory(ChaoNewsCategoryDO cat) {
 		return NumberUtils.parseLong((Long)getSqlMapClientTemplate().insert("ChaoNewsCategory.insertCategory" , cat)) ;
 	}
+	
+	@Override
+	public ChaoNewsCategoryDO queryCategoryById(Long id) {
+		return (ChaoNewsCategoryDO)getSqlMapClientTemplate().queryForObject("ChaoNewsCategory.queryCategoryById" , id) ;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override

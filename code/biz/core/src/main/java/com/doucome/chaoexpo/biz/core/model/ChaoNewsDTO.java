@@ -12,6 +12,8 @@ public class ChaoNewsDTO {
 
 	private ChaoNewsDO news ;
 	
+	private ChaoNewsCategoryDTO cat ;
+
 	public ChaoNewsDTO() {
 		this(null);
 	}
@@ -100,8 +102,17 @@ public class ChaoNewsDTO {
 	public String getIsTop() {
 		return news.getIsTop() ;
 	}
+
+	public ChaoNewsCategoryDTO getCat() {
+		return cat;
+	}
+
+	public void setCat(ChaoNewsCategoryDTO cat) {
+		this.cat = cat;
+	}
 	
 	public ChaoNewsDO toDO() {
 		return news;
 	}
+
 }

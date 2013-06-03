@@ -25,6 +25,15 @@ public class ChaoNewsCategoryServiceImpl implements ChaoNewsCategoryService {
 	}
 
 	@Override
+	public ChaoNewsCategoryDTO getCategoryById(Long id) {
+		ChaoNewsCategoryDO cat = chaoNewsCategoryDAO.queryCategoryById(id) ;
+		if(cat == null) {
+			return null ;
+		}
+		return new ChaoNewsCategoryDTO(cat) ;
+	}
+	
+	@Override
 	public List<ChaoNewsCategoryDTO> getCategoriesByIds(List<Long> ids) {
 		List<ChaoNewsCategoryDO> catList = chaoNewsCategoryDAO.queryCategoriesByIds(ids) ;
 		return ChaoNewsUtils.toDTOList(catList) ;
@@ -41,5 +50,4 @@ public class ChaoNewsCategoryServiceImpl implements ChaoNewsCategoryService {
         return new QueryResult<ChaoNewsCategoryDTO>(dtoList, pagination, totalRecords);
 	}
 
-	
 }

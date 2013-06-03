@@ -15,7 +15,7 @@ public class DefaultAuthzImpl implements BopsAuthz {
 	public BopsAdminDO getAdminDO() {
 		return (BopsAdminDO) AuthzContextHolder.getContext().getModel(
 				AuthzContextModelEnum.BOPS_ADMIN_MODEL);
-	}
+	} 
 
 	@Override
 	public boolean isLogin() {

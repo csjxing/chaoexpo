@@ -22,6 +22,13 @@ public interface ChaoNewsCategoryService {
 	 * @param id
 	 * @return
 	 */
+	ChaoNewsCategoryDTO getCategoryById(Long id) ;
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	List<ChaoNewsCategoryDTO> getCategoriesByIds(List<Long> ids) ;
 
 	/**

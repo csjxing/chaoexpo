@@ -3,7 +3,9 @@ package com.doucome.chaoexpo.web.chao.action.ajax;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.doucome.chaoexpo.biz.common.utils.IDUtils;
+import com.doucome.chaoexpo.biz.core.model.ChaoNewsCategoryDTO;
 import com.doucome.chaoexpo.biz.core.model.ChaoNewsDTO;
+import com.doucome.chaoexpo.biz.core.service.chao.ChaoNewsCategoryService;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoNewsService;
 import com.doucome.chaoexpo.web.chao.ChaoBasicAction;
 import com.doucome.chaoexpo.web.common.model.JsonModel;
@@ -22,6 +24,9 @@ public class QueryNewsDetailAction extends ChaoBasicAction {
 	@Autowired
 	private ChaoNewsService chaoNewsService ;
 	
+	@Autowired
+	private ChaoNewsCategoryService chaoNewsCategoryService ;
+	
 	@Override
 	public String execute() throws Exception {
 		
@@ -38,6 +43,12 @@ public class QueryNewsDetailAction extends ChaoBasicAction {
 				json.setCode(JsonModel.CODE_ILL_ARGS) ;
 				json.setDetail("chao.news.query.news.notExists") ;
 				return SUCCESS ;
+			}
+			
+			if(IDUtils.isCorrect(news.getCategoryId())){
+				Long catId = news.getCategoryId() ;
+				ChaoNewsCategoryDTO cat = chaoNewsCategoryService.getCategoryById(catId) ;
+				news.setCat(cat) ;
 			}
 						
 			json.setCode(JsonModel.CODE_SUCCESS) ;

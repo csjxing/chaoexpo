@@ -24,6 +24,13 @@ public interface ChaoNewsCategoryDAO {
 	 * @param id
 	 * @return
 	 */
+	ChaoNewsCategoryDO queryCategoryById(Long id) ;
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	List<ChaoNewsCategoryDO> queryCategoriesByIds(List<Long> ids) ;
 
 	/**

@@ -10,6 +10,7 @@ import com.doucome.chaoexpo.biz.core.model.ChaoActivityDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoActivityService;
+import com.doucome.chaoexpo.biz.dal.condition.ChaoActivityCondition;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoActivitySearchCondition;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoActivityUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dao.ChaoActivityDAO;
@@ -58,6 +59,16 @@ public class ChaoActivityServiceImpl implements ChaoActivityService {
         return new QueryResult<ChaoActivityDTO>(dtoList, pagination, totalRecords);
 	}
 	
+	@Override
+	public QueryResult<ChaoActivityDTO> getActivityPage(ChaoActivityCondition condition, Pagination pagination) {
+		int totalRecords = chaoActivityDAO.countActivities(condition);
+        if (totalRecords <= 0) {
+            return new QueryResult<ChaoActivityDTO>(new ArrayList<ChaoActivityDTO>(), pagination, totalRecords);
+        }
+        List<ChaoActivityDO> doList = chaoActivityDAO.queryActivityPage(condition, pagination.getStart() - 1, pagination.getSize());
+        return new QueryResult<ChaoActivityDTO>(convert(doList), pagination, totalRecords);
+	} 
+	
 	public int updateActivity(ChaoActivityDTO activity) {
 		return chaoActivityDAO.updateActivity(activity.toDO());
 	}
@@ -65,6 +76,16 @@ public class ChaoActivityServiceImpl implements ChaoActivityService {
 	@Override
 	public int updateActivityById(Long id, ChaoActivityUpdateCondition condition) {
 		return chaoActivityDAO.updateActivityById(id, condition) ;
+	}
+	
+	private List<ChaoActivityDTO> convert(List<ChaoActivityDO> activities) {
+		List<ChaoActivityDTO> result = new ArrayList<ChaoActivityDTO>() ;
+        if(CollectionUtils.isNotEmpty(activities)){
+        	for(ChaoActivityDO act : activities) {
+        		result.add(new ChaoActivityDTO(act)) ;
+        	}
+        }
+        return result;
 	}
 
 }

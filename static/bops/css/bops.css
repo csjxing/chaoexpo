@@ -6,12 +6,6 @@
 	display: inline-block;
 }
 
-.dbsort_asc,.dbsort_desc,.dbsort_none {
-	background-image: url(../images/icons.png);
-	background-repeat: no-repeat;
-	background-color: transparent;
-	display: inline-block;
-}
 
 .layer_tips .arrow_up,.layer_tips .arrow_down,.layer_tips .arrow_left,.layer_tips .arrow_right
 	{
@@ -470,23 +464,7 @@ i.yen {
 }
 
 /**********************************/
-.dbsort_desc {
-	background-position: -8px -2081px;
-	height: 12px;
-	width: 12px;
-}
 
-.dbsort_asc {
-	background-position: -8px -2059px;
-	height: 12px;
-	width: 12px;
-}
-
-.dbsort_none {
-	background-position: -8px -2037px;
-	height: 12px;
-	width: 12px;
-}
 
 /**********************************/
 .layer_tips_version {
@@ -1189,12 +1167,6 @@ i.yen {
 	color:red ;
 }
 
-.text-ellipsis {
-    overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
 #exchangeItemTable .dc-item-title {
     width: 160px;
 }
@@ -1848,4 +1820,103 @@ i.yen {
 	border :1px solid #777;
 	cursor: pointer;
 	margin-top: 5px;
+}
+
+
+
+
+.text-ellipsis {
+    overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.close-btn {
+    position: absolute;
+	width: 20px;
+	height: 20px;
+	background: url(../../image/close20x20.png) no-repeat scroll 0 0;
+}
+
+.bops form input {
+    padding: 3px 5px;
+}
+
+.bops form input[type="submit"] {
+    padding: 4px 6px;
+	letter-spacing: 4px;
+	height: 30px;
+	font-weight: bold;
+	margin-left: 20px;
+}
+
+.bops form .search-div {
+    margin-right: 20px;
+}
+
+.bops form .lbl {
+    font-size: 14px;
+}
+
+.bops form .dateIpt {
+    width: 150px;
+}
+
+.bops select, .bops option {
+    padding: 3px 6px;
+}
+
+.bops table tr.even {
+    background-color: #eaf9e6;
+}
+
+.dbsort_asc,.dbsort_desc,.dbsort_none {
+	background-image: url(../../image/icons.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: inline-block;
+}
+
+.dbsort_desc {
+	background-position: -8px -2081px;
+	height: 12px;
+	width: 12px;
+}
+
+.dbsort_asc {
+	background-position: -8px -2059px;
+	height: 12px;
+	width: 12px;
+}
+
+.dbsort_none {
+	background-position: -8px -2037px;
+	height: 12px;
+	width: 12px;
+}
+
+th.more {
+    position: relative;
+}
+
+th.more a.more-icon {
+    background: url(../../image/more-icon.gif) no-repeat scroll 0 0;
+	width: 30px;
+	height: 10px;
+	display: inline-block;
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+}
+
+td .detail-layer {
+    position: absolute;
+	z-index: 999;
+	background-color: #e1e1e1;
+	border: 1px solid #999;
+	padding: 5px 8px;
+	border-radius: 3px 3px;
+	left: 0px;
+	top: 0px;
+	width: 200px;
 }

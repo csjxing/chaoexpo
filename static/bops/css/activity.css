@@ -5,7 +5,7 @@
 
 .pic-upload-layer {
     position: absolute;
-    width: 400px;
+    width: 380px;
 	background-color: #fff;
 	border: 3px solid #ddd;
 	border-radius: 4px;
@@ -18,6 +18,12 @@
 	background-color: #eee;
 	line-height: 30px;
 	font-weight: bold;
+	position: relative;
+}
+
+.pic-upload-layer .header .close-btn {
+	right: 5px;
+	top: 5px;
 }
 
 .pic-upload-layer .content {
@@ -26,6 +32,9 @@
 
 .pic-upload-layer .content .tip {
     margin-bottom: 10px;
+}
+.pic-upload-layer .content .error {
+    color: red;
 }
 
 .pic-upload-layer .content .url-pic {
@@ -117,8 +126,8 @@
 
 .main-box .content-box {
     float: left;
-    margin-left: 410px;
-	width: 500px;
+    margin-left: 380px;
+	width: 560px;
 	min-height: 400px;
 }
 
@@ -135,7 +144,7 @@
 
 .main-box .content-box ul li  .lbl {
     float: left;
-	width: 60px;
+	width: 70px;
 	line-height: 30px;
 	font-weight: bold;
 }
@@ -195,4 +204,9 @@
 	margin-left: 200px;
 	margin-top: 20px;
 	letter-spacing: 4px;
+}
+
+#activityForm label.error {
+    margin-left: 5px;
+	color: red;
 }

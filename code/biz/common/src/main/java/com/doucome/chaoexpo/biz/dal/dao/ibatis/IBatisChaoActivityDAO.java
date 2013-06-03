@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.doucome.chaoexpo.biz.common.utils.NumberUtils;
+import com.doucome.chaoexpo.biz.dal.condition.ChaoActivityCondition;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoActivitySearchCondition;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoActivityUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dao.ChaoActivityDAO;
@@ -36,6 +37,20 @@ public class IBatisChaoActivityDAO extends SqlMapClientDaoSupport implements Cha
 	public int countActivityWithPagination(ChaoActivitySearchCondition condition) {
 		Map<String,Object> map = condition.toMap() ;
 		return NumberUtils.parseInt((Integer)getSqlMapClientTemplate().queryForObject("ChaoActivity.countActivityWithPagination" , map)) ;
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<ChaoActivityDO> queryActivityPage(ChaoActivityCondition condition, int start, int size) {
+		Map<String,Object> params = condition.toMap() ;
+		params.put("start", start) ;
+		params.put("size", size) ;
+		return getSqlMapClientTemplate().queryForList("ChaoActivity.queryActivityPage" , params) ;
+	}
+	
+	@Override
+	public int countActivities(ChaoActivityCondition condition) {
+		return (Integer)getSqlMapClientTemplate().queryForObject("ChaoActivity.countActivities" , condition.toMap());
 	}
 
 	@Override

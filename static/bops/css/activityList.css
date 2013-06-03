@@ -1,0 +1,26 @@
+#activityTable {
+    margin-top: 20px;
+    font: 12px/1.5 Tahoma,Arial,"\5b8b\4f53",sans-serif
+}
+
+
+#activityTable .name {
+    padding: 2px 3px;
+	width: 150px;
+	border-bottom: 1px dashed #999;
+}
+
+#activityTable .location,#activityTable .intro,#activityTable .notice,#activityTable .countesy-reminder {
+    height: 40px;
+	line-height: 20px;
+	letter-spacing: 1px;
+	white-space: normal;
+}
+
+#activityTable .location,#activityTable .notice,#activityTable .countesy-reminder {
+	width: 120px;
+}
+
+#activityTable .intro {
+    width: 150px;
+}

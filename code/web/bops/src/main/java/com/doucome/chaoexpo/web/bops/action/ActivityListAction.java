@@ -6,15 +6,16 @@ import com.doucome.chaoexpo.biz.core.model.ChaoActivityDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoActivityService;
+import com.doucome.chaoexpo.biz.dal.condition.ChaoActivityCondition;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoActivitySearchCondition;
 import com.opensymphony.xwork2.ModelDriven;
 
 @SuppressWarnings("serial")
-public class ActivityListAction extends BopsBasicAction implements ModelDriven<ChaoActivitySearchCondition> {
+public class ActivityListAction extends BopsBasicAction implements ModelDriven<ChaoActivityCondition> {
 	
 	private QueryResult<ChaoActivityDTO> activityResult;
 	
-	private ChaoActivitySearchCondition condition = new ChaoActivitySearchCondition();
+	private ChaoActivityCondition condition = new ChaoActivityCondition();
 	
 	@Autowired
 	private ChaoActivityService chaoActivityService;
@@ -23,7 +24,7 @@ public class ActivityListAction extends BopsBasicAction implements ModelDriven<C
 	
 	@Override
 	public String execute() throws Exception {
-		activityResult = chaoActivityService.getActivityWithPagination(condition, new Pagination(page));
+		activityResult = chaoActivityService.getActivityPage(condition, new Pagination(page));
 		return SUCCESS ;
 	}
 	
@@ -31,7 +32,7 @@ public class ActivityListAction extends BopsBasicAction implements ModelDriven<C
 		return activityResult;
 	}
 	
-	public ChaoActivitySearchCondition getModel() {
+	public ChaoActivityCondition getModel() {
 		return condition;
 	}
 

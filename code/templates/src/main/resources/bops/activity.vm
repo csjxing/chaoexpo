@@ -44,7 +44,9 @@
 							#if(!$!collectionUtils.isEmpty($!activity.picUrlList))
 								#foreach($picUrl in $activity.picUrlList)
 							        <li class="#if(!$collectionUtils.isEmpty($activity.picUrlList) && $velocityCount == 1)active#end">
-							        	<a class="small-picture" href="javascript:;"></a>
+							        	<a class="small-picture" href="javascript:;">
+							        	    
+							        	</a>
 							        	<input type="hidden" name="picUrlList" value="$picUrl"/>
 							        </li>
 							    #end
@@ -62,7 +64,7 @@
 							        </li>
 							    #end
 							#end
-							<li class=""><a class="add-stand-pic-btn" href="java.javascript:;" title="新增展位图片"></a></li>
+							<li class=""><a class="add-stand-pic-btn" href="javascript:;" title="新增展位图片"></a></li>
 						</ul>
 					</div>
 				</div>
@@ -105,7 +107,7 @@
 						<li class="">
 							<span class="lbl">活动介绍：</span>
 							<div class="dd-l">
-								<textarea name="summary"/>$!activity.summary</textarea>
+								<textarea name="intro"/>$!activity.intro</textarea>
 							</div>
 						</li>
 						<li class="">
@@ -130,4 +132,4 @@
 	</div>
 </div>
 
-#set($bopsJs=["../js/lib/jquery.form.js", "activity.js"])
+#set($bopsJs=["../../js/lib/jquery.validate.min.js", "activity.js"])

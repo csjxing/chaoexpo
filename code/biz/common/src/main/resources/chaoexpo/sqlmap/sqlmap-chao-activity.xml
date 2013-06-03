@@ -85,7 +85,7 @@
 			<isNotNull property="gmtActivityStart" prepend="AND">
 	    		GMT_ACTIVITY <![CDATA[>=]]> #gmtActivityStart# 
 			</isNotNull>
-			<isNotNull property="gmtActivityStart" prepend="AND">
+			<isNotNull property="gmtActivityEnd" prepend="AND">
 	    		GMT_ACTIVITY <![CDATA[<]]> #gmtActivityEnd# 
 			</isNotNull>
 		</isParameterPresent>
@@ -94,7 +94,6 @@
 	    LIMIT 
 	    	#start#, #size#
 	</select>
-	
 	
 	<select id="countActivityWithPagination" resultClass="java.lang.Integer">
 		SELECT 
@@ -120,7 +119,81 @@
 			<isNotNull property="gmtActivityStart" prepend="AND">
 	    		GMT_ACTIVITY <![CDATA[>=]]> #gmtActivityStart# 
 			</isNotNull>
+			<isNotNull property="gmtActivityEnd" prepend="AND">
+	    		GMT_ACTIVITY <![CDATA[<]]> #gmtActivityEnd# 
+			</isNotNull>
+		</isParameterPresent>
+	</select>
+	
+	<select id="queryActivityPage" resultMap="RM-ChaoActivity">
+		SELECT <include refid="activity-fields" />
+		FROM
+			CHAO_ACTIVITY
+		<isParameterPresent open="WHERE" removeFirstPrepend="true">
+		    <isNotNull property="id" prepend="AND">
+	    		ID = #id#
+			</isNotNull>
+	    	<isNotNull property="ids" prepend="AND">
+	    		ID IN
+			    <iterate property="sourceList" open="("  close=")"  conjunction=",">
+					#ids[]#
+				</iterate>
+			</isNotNull>
+			<isNotEmpty property="keyword" prepend="AND">
+	    		NAME LIKE '%'||#keyword#||'%'
+			</isNotEmpty>
+			<isNotNull property="subjectId" prepend="AND">
+	    		SUBJECT_ID = #subjectId# 
+			</isNotNull>
 			<isNotNull property="gmtActivityStart" prepend="AND">
+	    		GMT_ACTIVITY <![CDATA[>=]]> #gmtActivityStart# 
+			</isNotNull>
+			<isNotNull property="gmtActivityEnd" prepend="AND">
+	    		GMT_ACTIVITY <![CDATA[<]]> #gmtActivityEnd# 
+			</isNotNull>
+		</isParameterPresent>
+		<isNotEmpty property="sortColumn" prepend="">
+		    ORDER BY 
+		    <isEqual property="sortColumn" compareValue="GMT_MODIFIED">GMT_MODIFIED</isEqual>
+		    <isEqual property="sortColumn" compareValue="GMT_ACTIVITY">GMT_ACTIVITY</isEqual>
+		    <isEqual property="sortColumn" compareValue="FOLLOW_COUNT">FOLLOW_COUNT</isEqual>
+		    <isEqual property="sortColumn" compareValue="COMMENT_COUNT">COMMENT_COUNT</isEqual>
+		</isNotEmpty>
+		<isEmpty property="sortColumn" prepend="">
+		    ORDER BY GMT_MODIFIED
+		</isEmpty>
+		<isNotEqual property="order" compareValue="ASC">
+		    DESC
+		</isNotEqual>
+	    LIMIT 
+	    	#start#, #size#
+	</select>
+	
+	<select id="countActivities" resultClass="java.lang.Integer">
+		SELECT 
+			COUNT(ID)
+		FROM
+			CHAO_ACTIVITY
+		<isParameterPresent open="WHERE" removeFirstPrepend="true">
+		    <isNotNull property="id" prepend="AND">
+	    		ID = #id#
+			</isNotNull>
+	    	<isNotNull property="ids" prepend="AND">
+	    		ID IN
+			    <iterate property="sourceList" open="("  close=")"  conjunction=",">
+					#ids[]#
+				</iterate>
+			</isNotNull>
+			<isNotEmpty property="keyword" prepend="AND">
+	    		NAME LIKE '%'||#keyword#||'%'
+			</isNotEmpty>
+			<isNotNull property="subjectId" prepend="AND">
+	    		SUBJECT_ID = #subjectId# 
+			</isNotNull>
+			<isNotNull property="gmtActivityStart" prepend="AND">
+	    		GMT_ACTIVITY <![CDATA[>=]]> #gmtActivityStart# 
+			</isNotNull>
+			<isNotNull property="gmtActivityEnd" prepend="AND">
 	    		GMT_ACTIVITY <![CDATA[<]]> #gmtActivityEnd# 
 			</isNotNull>
 		</isParameterPresent>

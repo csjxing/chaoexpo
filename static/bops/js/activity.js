@@ -1,4 +1,4 @@
-!(function($){
+ï»¿!(function($){
 	$.namespace("DD.activity");
 	
 	var self = DD.activity;
@@ -14,11 +14,30 @@
 			String.prototype.endsWith = function(str) {
 			    return this.indexOf(str) == (this.length - str.length);
 			};
+			self._initFieldRequird();
 		    self._initPictureDisplay();
 		    self._initPictureUpload();
+			self._initFormSubmit();
+		},
+		_initFieldRequird: function() {
+		    $("#activityForm").validate({
+			    rules: {
+				    name: {required: true},
+					gmtActivity: {required: true},
+					contactName: {required: true},
+					contactPhone: {required: true, number: true, rangelength: [11,11]}
+				},
+				messages: {
+				    name: {required: '*'},
+					gmtActivity: {required: '*'},
+					contactName: {required: '*'},
+					contactPhone: {required: '*', number: 'æ— æ•ˆå·ç ', rangelength:'æ— æ•ˆå·ç '}
+				}
+			});
 		},
 		_initPictureDisplay: function() {
-		    $(".pic-box").delegate(".small-picture", "hover", function() {
+		    $(document).delegate(".small-picture", "hover", function() {
+			    alert("test");
 			    var _this = $(this);
 				_this.closest(".pic-box").find('li').removeClass("active");
 				_this.closest("li").addClass("active");
@@ -56,7 +75,7 @@
 			    var _this = $(this);
 				var picUrl = $(".picture-url").val();
 				if (!self._isLegalPicUrl(picUrl)) {
-				    _picUploadLayer.find(".error").html("Í¼Æ¬µØÖ·ÓĞÎó£¬»òÍ¼Æ¬²»ÊÇ[jpg,jpeg,png,gif,bmp]");
+				    _picUploadLayer.find(".error").html("å›¾ç‰‡é“¾æ¥æœ‰è¯¯ï¼Œæˆ–å›¾ç‰‡ç±»å‹ä¸æ˜¯[jpg,jpeg,png,gif,bmp]");
 					return ;
 				}
 				var containerClass = _this.attr('container-class');
@@ -67,30 +86,15 @@
 				_container.find(".small-picture:first").trigger("hover");
 				_picUploadLayer.find(".close-btn").trigger("click");
 			});
-		    $("#urlPicUploadForm").on("submit", function() {
-			    $("#urlPicUploadForm").ajaxSubmit(function(message) {
-				    var result = message.result;
-					if (result.code=="success") {
-					    var pictureRoot = $("#pictureRoot").val();
-					    
-						disablePopup();
-					} else {
-						alert("ÉÏ´«Ê§°Ü");
-					}
-				});
-				return false;
-			});
-			$("#localPicUploadForm").on("submit", function() {
-			    $("#localPicUploadForm").ajaxSubmit(function(message) {
-				    var result = message.result;
-					if (result.code=="success") {
-					    var pictureRoot = $("#pictureRoot").val();
-					    
-						disablePopup();
-					} else {
-						alert("ÉÏ´«Ê§°Ü");
-					}
-				});
+		},
+		_initFormSubmit: function() {
+		    $("#activityForm").submit(function() {
+			    var submitBtn = $("#activityForm").find("input[type='submit']");
+				var isSubmiting = submitBtn.attr("data-sub");
+				if (isSubmiting == undefined || isSubmiting == 'n') {
+				    submitBtn.attr("data-sub", 'y');
+				    return true;
+				}
 				return false;
 			});
 		},

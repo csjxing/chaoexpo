@@ -81,21 +81,33 @@
 				var containerClass = _this.attr('container-class');
 				var fieldName = _this.attr("field-name")
 				var _container = $("." + containerClass);
-				_container.prepend('<li class=""><a class="small-picture" href="javascript:;"></a>'
+				_container.prepend('<li class=""><a class="small-picture" href="javascript:;"><img src="' + picUrl + '"/></a>'
 							          + '<input type="hidden" name="' + fieldName + '" value="' + picUrl + '"/></li>');
-				_container.find(".small-picture:first").trigger("hover");
+				if ($(".picture img").size() == 0) {
+				   $(".picture").append('<img src="' + picUrl + '"/>');
+				}
+				$(".picture img").attr("src", picUrl);
+				$(".pictures li").removeClass("active");
+				_container.find("li:first").addClass("active");
 				_picUploadLayer.find(".close-btn").trigger("click");
 			});
 		},
 		_initFormSubmit: function() {
 		    $("#activityForm").submit(function() {
+			    var isHidden = true;
+			    $("#activityForm").find("label.error").each(function() {
+				    isHidden = isHidden && $(this).is(":hidden");
+				});
+				if (!isHidden) {
+				    return false;
+				}
 			    var submitBtn = $("#activityForm").find("input[type='submit']");
 				var isSubmiting = submitBtn.attr("data-sub");
-				if (isSubmiting == undefined || isSubmiting == 'n') {
-				    submitBtn.attr("data-sub", 'y');
-				    return true;
+				if (isSubmiting == 'y') {
+				    return false;
 				}
-				return false;
+				submitBtn.attr("data-sub", 'y');
+				return true;
 			});
 		},
 		_isLegalPicUrl: function(picUrl) {

@@ -73,11 +73,14 @@
 	height: 300px;
 	overflow: hidden;
 	border: 1px solid #999999;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
 }
 
 .main-box .pic-box .picture img {
-    width: 300px;
-	height: 300px;
+    max-width: 300px;
+	max-height: 300px;
 }
 
 .main-box .pic-box .top-box .pics {
@@ -94,8 +97,12 @@
 .main-box .pic-box .pictures li a {
 	width: 40px;
 	height: 40px;
+	display: block;
+	overflow: hidden;
+}
+
+.main-box .pic-box .pictures li a.btn {
 	background-color: yellow;
-	display: inline-block;
 }
 
 .main-box .pic-box .top-box .pics li a {
@@ -106,6 +113,11 @@
     border: 2px solid red;
 	width: 36px;
 	height: 36px;
+}
+
+.main-box .pic-box .pictures li a img {
+    width: 40px;
+	height: 40px;
 }
 
 .main-box .pic-box .bottom-box .stand-pics {

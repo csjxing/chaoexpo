@@ -72,10 +72,6 @@ public class PictureUtils {
 	}
 	
 	/**
-	 * 
-	 * @param picPath
-	 * @param sizeEnum
-	 * @return
 	 */
 	public static String getPicPath(String picPath, PictureSizeEnums sizeEnum) {
 		if (sizeEnum == null || sizeEnum == PictureSizeEnums.NONE) {

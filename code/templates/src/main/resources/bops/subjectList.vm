@@ -1,7 +1,7 @@
 #set($bopsCss=["subjectList.css"])
 #set($layout="bops/default_bops.vm")
 
-#set($navigation = "活动主题列表")
+#set($navigation = "专题列表")
 
 <input type="hidden"  id="ddzBopsRoot" value="${env.bopsRoot}"/>
 <input type="hidden"  id="ddzBopsPage" value="subjectList"/>
@@ -29,39 +29,39 @@
 		</div>
 	</form>
 	
-	<div class="MB20 MT20"><a href="${env.bopsRoot}/bops/subject.htm" target="_blank">新增活动主题</a></div>
-    <table width="680" style="font-size:14px;" id="subjectTable">
+	<div class="MB20 MT20"><a href="${env.bopsRoot}/bops/subject.htm" target="_blank">新增专题</a></div>
+    <table width="980" style="font-size:14px;" id="subjectTable">
 		<tr>
-			<th width="60">主题ID</th>
-    		<th width="200">名称|创建时间</th>
+			<th width="60">ID</th>
+    		<th width="280">名称</th>
 			<th width="70" align="center">示意图</th>
-			<th width="150">网页地址</th>
-			<th width="100">修改时间</th>
+			<th width="280">网页地址</th>
+			<th width="100">创建时间</th>
 			<th width="100">操作</th>
     	</tr>
 		#if($!subjectResult.totalRecords > 0)
     		#foreach($subject in $!subjectResult.items)
             	<tr data-index="$!subject.id">
-					<td class="id">$!subject.id</td>
+					<td align="center">$!subject.id</td>
 					<td>
-						<div class="name text-ellipsis"><a href="${env.bopsRoot}/bops/subject.html?id=$!subject.id" target="_blank">$!subject.name</a></div>
+						<div class="name text-ellipsis"><a href="${env.bopsRoot}/bops/subject.htm?id=$!subject.id" target="_blank">$!subject.name</a></div>
 						<div class="other" style="margin-top: 3px">
 							<span>$!dateUtils.format($!subject.gmtCreate,'yyyy-MM-dd HH:mm')</span>
 						</div>
 					</td>
-            		<td class="">
+            		<td align="center">
             		    #if(!$collectionUtils.isEmpty($!subject.picUrlList))
-            		    	<img src="${env.pictureRoot}$!subject.picUrlList[0]" width="60" height="60"/>
+            		    	<img src="${env.pictureRoot}$!subject.picUrlList[0]" width="50" height="50"/>
     		            #end
             		</td>
             		<td>
             			<div class="web-url text-ellipsis"><a href="$!subject.webUrl" target="_blank">$!subject.webUrl</a></div>
 		            </td>
 					<td align="center">
-						$!dateUtils.format($!subject.gmtModified, 'yyyy-MM-dd HH:mm:ss')
+						$!dateUtils.format($!subject.gmtCreate, 'yyyy-MM-dd HH:mm:ss')
 					</td>
 					<td align="center">
-						<a class="delete-btn" href="javascript:;" title="删除">删除</a>
+						<a class="delete-btn" href="javascript:;" title="禁用">禁用</a>
 					</td>
             	</tr>
     		#end

@@ -40,12 +40,6 @@
 				<span class="lbl">关键字：</span>
 				<input  type="text" name="keyword" value="$!keyword" />&nbsp;&nbsp;
 			</span>
-			<span class="search-div">
-				<span class="lbl">主题：</span>
-				<select name="subjectId" data-subject-id="$!subjectId">
-		            <option value="">全部</option>
-		        </select>
-		    </span>
 	        <br />
 			<div id="settleIptMore" class="settleIptMore">
 				<span class="search-div">
@@ -61,12 +55,12 @@
 	<div class="MB20 MT20"><a href="${env.bopsRoot}/bops/activity.htm" target="_blank">新增活动</a></div>
 	
 	 #parse("/common/bops/page/activityPagination.vm")
-	 <table width="1300" style="font-size:14px;" id="activityTable">
+	 <table width="1080" style="font-size:14px;" id="activityTable">
 		<tr>
 			<th width="40">ID</th>
-    		<th width="150">
+    		<th width="220">
     			<a class="sort-btn" href="${env.bopsRoot}/bops/activity_list.htm?sortColumn=GMT_MODIFIED&order=$tempOrder&id=$!id&keyword=$!keyword&subjectId=$!subjectId&gmtActivityStart=$!gmtActivityStartFmt&gmtActivityEnd=$!gmtActivityEndFmt">
-    				<span>活动名称|修改时间<span>
+    				<span>活动名称<span class="split">|</span>修改时间<span>
     			    <span class="dbsort_none"></span>
     			</a>
     		</th>
@@ -78,33 +72,19 @@
     			    <span class="dbsort_none"></span>
 				</a>
 			</th>
-			<th width="120" class="more">
-				<span>活动地址</span>
-                <a class="more-icon" href="javasript:;"></a>
-            </th>
+            <th width="80">地点</th>
 			<th width="80">联系人</th>
 			<th width="80">联系电话</th>
-			<th width="150" class="more">
-				<span>活动简介</span>
-                <a class="more-icon" href="javasript:;"></a></th>
-			<th width="120" class="more">
-				<span>活动须知</span>
-                <a class="more-icon" href="javasript:;"></a>
-            </th>
-			<th width="120" class="more">
-				<span>温馨提示</span>
-                <a class="more-icon" href="javasript:;"></a>
-            </th>
 			<th width="80">专题</th>
 			<th width="60">
 				<a class="sort-btn" href="${env.bopsRoot}/bops/activity_list.htm?sortColumn=FOLLOW_COUNT&order=$tempOrder&id=$!id&keyword=$!keyword&subjectId=$!subjectId&gmtActivityStart=$!gmtActivityStartFmt&gmtActivityEnd=$!gmtActivityEndFmt">
-					<span>关注数</span>
+					<span>关注</span>
 	    			<span class="dbsort_none"></span>
 	    		</a>
 			</th>
 			<th width="60">
 				<a class="sort-btn" href="${env.bopsRoot}/bops/activity_list.htm?sortColumn=COMMENT_COUNT&order=$tempOrder&id=$!id&keyword=$!keyword&subjectId=$!subjectId&gmtActivityStart=$!gmtActivityStartFmt&gmtActivityEnd=$!gmtActivityEndFmt">
-					<span>评论数</span>
+					<span>评论</span>
 	    			<span class="dbsort_none"></span>
 	    		</a>
             </th>
@@ -113,57 +93,40 @@
 		#if($!activityResult.totalRecords > 0)
     		#foreach($activity in $!activityResult.items)
             	<tr class="#if($velocityCount%2 == 0)even#end" data-id="$!activity.id">
-					<td class="id">$!activity.id</td>
-					<td>
+					<td align="center">$!activity.id</td>
+					<td class="more">
 						<div class="name text-ellipsis content-detail" data-content="$!activity.name"><a href="${env.bopsRoot}/bops/activity.htm?id=$!activity.id" target="_blank" style="text-decoration: underline; color:#444;">$!activity.name</a></div>
 						<div class="other" style="margin-top: 3px">
 							<span>$!dateUtils.format($!activity.gmtModified,'yyyy-MM-dd HH:mm')</span>
 						</div>
 					</td>
-					<td class="">
+					<td align="center">
             		    <div class="pic-url">
             		    	#if(!$collectionUtils.isEmpty($!activity.picUrlList))
-            		    		<img src="${env.pictureRoot}$!activity.picUrlList[0]" width="60" height="60"/>
+            		    		<img src="${env.pictureRoot}$!activity.picUrlList[0]" width="50" height="50"/>
 	    		            #end
 	    		        </div>
             		</td>
-            		<td class="">
+            		<td align="center">
             		    <div class="pic-url">
             		    	#if(!$collectionUtils.isEmpty($!activity.standPicUrlList))
-            		    		<img src="${env.pictureRoot}$!activity.standPicUrlList[0]" width="60" height="60"/>
+            		    		<img src="${env.pictureRoot}$!activity.standPicUrlList[0]" width="50" height="50"/>
 	    		            #end
 	    		        </div>
             		</td>
-            		<td class="">
+            		<td align="center">
             		    <div class="gmt-activity">$!dateUtils.format($!activity.gmtActivity,'yyyy-MM-dd')</div>
             		</td>
             		<td class="more">
             		    <div class="location text-ellipsis content-detail" detail-content="$!activity.location">$!activity.location</div>
             		</td>
-            		<td class="">
-            		    <div class="contact-name text-ellipsis">$!activity.contactName</div>
-            		</td>
-            		<td class="">
-            		    <div class="contact-phone text-ellipsis">$!activity.contactPhone</div>
-            		</td>
-            		<td class="">
-            		    <div class="intro text-ellipsis content-detail" detail-content="$!activity.intro">$!activity.intro</div>
-            		</td>
-            		<td class="">
-            		    <div class="notice text-ellipsis content-detail" detail-content="$!activity.notice">$!activity.notice</div>
-            		</td>
-            		<td class="">
-            		    <div class="countesy-reminder text-ellipsis content-detail" detail-content="$!activity.countesyReminder">$!activity.countesyReminder</div>
-            		</td>
+            		<td align="center">$!activity.contactName</td>
+            		<td align="center">$!activity.contactPhone</td>
             		<td class="">
             		    <div class="subject text-ellipsis" data-subject-id="$!activity.subjectId" data-init="n">$!activity.subjectId</div>
             		</td>
-            		<td class="">
-            		    <div class="follow-count text-ellipsis">$!activity.followCount</div>
-            		</td>
-            		<td class="">
-            		    <div class="comment-count text-ellipsis">$!activity.commentCount</div>
-            		</td>
+            		<td align="center">$!activity.followCount</td>
+            		<td align="center">$!activity.commentCount</td>
 					<td align="center">
 						<a class="delete-btn" href="javascript:;" title="删除">删除</a>
 					</td>

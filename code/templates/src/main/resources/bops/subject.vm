@@ -1,6 +1,6 @@
 #set($bopsCss=["subject.css"])
 #set($layout="bops/default_bops.vm")
-#set($navigation = "新增活动主题")
+#set($navigation = "新增专题")
 
 <input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
 <input type="hidden"  id="bopsPage" value="subject"/>
@@ -36,17 +36,18 @@
 						</div>
 						<ul class="dd-l"><li style="width: 40px;"></li></ul>
 					</div>
-					<div class="bottom-box dd-l">
-					    <ul class="bottom-pics pictures dd-l">
+					<div class="sum-pics">
+						<div class="nav"><span>专题图片：</span></div>
+					    <ul>
 							#if(!$collectionUtils.isEmpty($subject.picUrlList))
-								#foreach($picUrl in $subject.picUrlList)
-							        <li class="#if($velocityCount == 1)active#end">
-							        	<a class="small-picture" href="javascript:;"></a>
+								#foreach($picModel in $subject.picModelList)
+							        <li>
+							        	<a href="javascript:;"><img src="$!picModel.getSum('80x80')"/></a>
 							        	<input type="hidden" name="picUrlList" value="$picUrl"/>
 							        </li>
 							    #end
 							#end
-							<li class=""><a class="add-pic-btn btn" href="java.javascript:;" title="新增图片">新增图片</a></li>
+							<li class="add-pic"><a class="add-pic-btn btn" href="java.javascript:;" title="新增图片"></a></li>
 						</ul>
 					</div>
 				</div>

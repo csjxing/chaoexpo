@@ -1,11 +1,10 @@
 <ul class="left_menu">
     <p><a href="">BOPS管理系统</a></p>
 	<li><a href="javascript:">Back office process system</a>
-    	<ul>
-    		<li id="newsList"><a href="${env.bopsRoot}/bops/news_list.htm" >新闻管理</a></li>
-			<li id="categoryList"><a href="${env.bopsRoot}/bops/category_list.htm" >新闻分类管理</a></li>
-			<li id="activityList"><a href="${env.bopsRoot}/bops/activity_list.htm" >活动管理</a></li>
-			<li id="subjectList"><a href="${env.bopsRoot}/bops/subject_list.htm" >主题管理</a></li>
+    		<li id="news_list"><a href="${env.bopsRoot}/bops/news_list.htm" >新闻管理</a></li>
+			<li id="category_list"><a href="${env.bopsRoot}/bops/category_list.htm" >新闻分类管理</a></li>
+			<li id="activity_list"><a href="${env.bopsRoot}/bops/activity_list.htm" >活动管理</a></li>
+			<li id="subjectList"><a href="${env.bopsRoot}/bops/subject_list.htm" >活动主题管理</a></li>
     	</ul>
     </li>
 </ul>

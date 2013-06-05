@@ -61,4 +61,8 @@ public class LoginAction extends BopsBasicAction {
         return resultCode;
     }
 
+    public static void main(String[] args) {
+    	 String password = MD5Util.getMD5("1111112");
+    	 System.out.println(password);
+	}
 }

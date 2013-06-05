@@ -9,7 +9,7 @@ import com.doucome.chaoexpo.biz.core.model.ChaoNewsCategoryDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoNewsCategoryService;
-import com.doucome.chaoexpo.biz.core.utils.ChaoNewsUtils;
+import com.doucome.chaoexpo.biz.core.utils.ChaoModelConvertUtils;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoNewsCatSearchCondition;
 import com.doucome.chaoexpo.biz.dal.dao.ChaoNewsCategoryDAO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoNewsCategoryDO;
@@ -36,7 +36,7 @@ public class ChaoNewsCategoryServiceImpl implements ChaoNewsCategoryService {
 	@Override
 	public List<ChaoNewsCategoryDTO> getCategoriesByIds(List<Long> ids) {
 		List<ChaoNewsCategoryDO> catList = chaoNewsCategoryDAO.queryCategoriesByIds(ids) ;
-		return ChaoNewsUtils.toDTOList(catList) ;
+		return ChaoModelConvertUtils.toNewsCatDTOList(catList) ;
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class ChaoNewsCategoryServiceImpl implements ChaoNewsCategoryService {
             return new QueryResult<ChaoNewsCategoryDTO>(new ArrayList<ChaoNewsCategoryDTO>(), pagination, totalRecords);
         }
         List<ChaoNewsCategoryDO> doList = chaoNewsCategoryDAO.queryCategoriesWithPagination(condition, pagination.getStart(), pagination.getSize()) ;
-        List<ChaoNewsCategoryDTO> dtoList = ChaoNewsUtils.toDTOList(doList) ;
+        List<ChaoNewsCategoryDTO> dtoList = ChaoModelConvertUtils.toNewsCatDTOList(doList) ;
         return new QueryResult<ChaoNewsCategoryDTO>(dtoList, pagination, totalRecords);
 	}
 

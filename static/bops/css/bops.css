@@ -337,14 +337,15 @@ i.yen {
 	float: left;     
 	width: 100px;
 	clear: both;
-	font: 13px 'Microsoft Yahei' , 'songti' ,Arial;
+	font-size: 13px;
+	font-family: 'Microsoft Yahei' , 'songti' ,Arial ;
 }
 
 /* Disable properties specified in the imported CSS file */
 .left_menu p {
 	border: none;
 	font-weight: bold;
-	background-color: #cccccc;
+	background-color: #DDDDDD;
 	font-color: black;
 	padding: 5px 10px;
 }
@@ -370,32 +371,43 @@ i.yen {
 	width: 200px;
 }
 
+.left_menu ul {
+	background: #f9f9f9;
+}
+
 .left_menu li {
-	display: block;
 	margin: 0;
 	padding: 0;
 	margin-bottom: 1px;
+	
 }
 
 .left_menu a {
 	display: block;
 	padding: 2px 5px;
-	color: #000;
-	background: #cccccc;
+	color: #444;
 	text-decoration: none;
+	background: #ddd;
 }
 
-.left_menu a:hover,.left_menu a:focus,.left_menu a:active {
-	background: #2edwe3;
+.left_menu ul a {
+	background: #f9f9f9;
+}
+
+.left_menu ul a:hover,
+.left_menu ul a:focus,
+.left_menu ul a:active  {
+	background: #e3e3e3;
+}
+
+.left_menu ul .cur a{
+	background: #efefef;
 }
 
 .left_menu ul li {
 	padding-left: 15px;
 }
 
-.left_menu ul a {
-	background: #e8e8e8;
-}
 
 .hidden {
 	display: none;
@@ -1966,10 +1978,6 @@ form .pic-box .top-box .right-pics li a {
 	width: 20px;
 	height: 20px;
 	background: url(../../image/close20x20.png) no-repeat scroll 0 0;
-}
-
-.bops form input {
-    padding: 3px 5px;
 }
 
 .bops form input[type="submit"] {

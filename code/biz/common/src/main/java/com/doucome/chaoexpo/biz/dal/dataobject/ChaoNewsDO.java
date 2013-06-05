@@ -19,29 +19,14 @@ public class ChaoNewsDO extends AbstractModel {
 	private String title ;
 	
 	/**
-	 * 正文摘要
-	 */
-	private String summary ;
-	
-	/**
-	 * 概要图片
-	 */
-	private String summaryPics ;
-	
-	/**
 	 * 正文图片
 	 */
-	private String detailPics ;
+	private String picUrls ;
 	
 	/**
 	 * 正文
 	 */
 	private String content ;
-	
-	/**
-	 * 正文URL
-	 */
-	private String detailUrl ;
 	
 	/**
 	 * 新闻分类
@@ -88,30 +73,21 @@ public class ChaoNewsDO extends AbstractModel {
 		this.title = title;
 	}
 
-	public String getSummary() {
-		return summary;
+	public String getPicUrls() {
+		return picUrls;
 	}
 
-	public void setSummary(String summary) {
-		this.summary = summary;
+	public void setPicUrls(String picUrls) {
+		this.picUrls = picUrls;
 	}
 
-	public String getSummaryPics() {
-		return summaryPics;
+	public String getContent() {
+		return content;
 	}
 
-	public void setSummaryPics(String summaryPics) {
-		this.summaryPics = summaryPics;
+	public void setContent(String content) {
+		this.content = content;
 	}
-
-	public String getDetailPics() {
-		return detailPics;
-	}
-
-	public void setDetailPics(String detailPics) {
-		this.detailPics = detailPics;
-	}
-
 
 	public Long getCategoryId() {
 		return categoryId;
@@ -121,6 +97,37 @@ public class ChaoNewsDO extends AbstractModel {
 		this.categoryId = categoryId;
 	}
 
+	public Long getDisplayOrder() {
+		return displayOrder;
+	}
+
+	public void setDisplayOrder(Long displayOrder) {
+		this.displayOrder = displayOrder;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getIsTop() {
+		return isTop;
+	}
+
+	public void setIsTop(String isTop) {
+		this.isTop = isTop;
+	}
+
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
 
 	public Date getGmtPublish() {
 		return gmtPublish;
@@ -146,52 +153,4 @@ public class ChaoNewsDO extends AbstractModel {
 		this.gmtModified = gmtModified;
 	}
 
-	public String getDetailUrl() {
-		return detailUrl;
-	}
-
-	public void setDetailUrl(String detailUrl) {
-		this.detailUrl = detailUrl;
-	}
-
-	public Long getDisplayOrder() {
-		return displayOrder;
-	}
-
-	public void setDisplayOrder(Long displayOrder) {
-		this.displayOrder = displayOrder;
-	}
-
-	public String getSource() {
-		return source;
-	}
-
-	public void setSource(String source) {
-		this.source = source;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public String getIsTop() {
-		return isTop;
-	}
-
-	public void setIsTop(String isTop) {
-		this.isTop = isTop;
-	}
-	
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
 }

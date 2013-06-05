@@ -30,6 +30,16 @@ public class ChaoActivityDTO extends AbstractModel {
 		this.activity = activity ;
 	}
 	
+	public List<PicModel> getPicModelList() {
+		List<String> picList = getPicUrlList() ;
+		return PictureUtils.toModelList(picList) ;
+	}
+	
+	public List<PicModel> getStandPicModelList() {
+		List<String> standPicList = getStandPicUrlList() ;
+		return PictureUtils.toModelList(standPicList) ;
+	}
+	
 	/**
 	 * 
 	 * @param index

@@ -1,0 +1,182 @@
+#set($layout="bops/default_bops.vm")
+
+#set($navigation = "分类列表")
+
+<input type="hidden"  id="ddzBopsRoot" value="${env.bopsRoot}"/>
+<input type="hidden"  id="ddzBopsPage" value="activityList"/>
+
+<style>
+	th a {
+		text-decoration:none;
+		color:#000 ;
+	}
+</style>
+
+#set($gmtActivityStartFmt = $!dateUtils.format($!gmtActivityStart,'yyyy-MM-dd'))
+#set($gmtActivityEndFmt = $!dateUtils.format($!gmtActivityEnd,'yyyy-MM-dd'))
+
+#set($pagination = $activityResult.pagination)
+
+#if($!order == 'DESC')
+	#set($tempOrder = 'ASC')
+#else
+    #set($tempOrder = 'DESC')
+#end
+#set($searchUrl = ${env.bopsRoot}+"/bops/activity_list.htm?")
+#set($searchQuery = ["id:$!id","keyword:$!keyword","subjectId:$!subjectId","gmtActivityStart:$!gmtActivityStartFmt",
+               "gmtActivityEnd:$!gmtActivityEndFmt","sortColumn:$!sortColumn","order:$!tempOrder"])
+
+<div class="bops">
+    <div style="MT20 MB20">&nbsp;</div>
+    
+	<form action="${env.bopsRoot}/bops/activity_list.htm" method="GET">
+		<div class="settleipt MB10 MT10">
+			<span class="search-div">
+				<span class="lbl">活动ID： </span>
+				<input  type="text" class="id" name="id" value="$!id" />
+			</span>
+			<span class="search-div">
+				<span class="lbl">关键字：</span>
+				<input  type="text" name="keyword" value="$!keyword" />&nbsp;&nbsp;
+			</span>
+			<span class="search-div">
+				<span class="lbl">主题：</span>
+				<select name="subjectId" data-subject-id="$!subjectId">
+		            <option value="">全部</option>
+		        </select>
+		    </span>
+	        <br />
+			<div id="settleIptMore" class="settleIptMore">
+				<span class="search-div">
+					<span class="lbl">时间：</span>
+					<input type="text" class="dateIpt" name="gmtActivityStart" value="$!gmtActivityStartFmt" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"/> - 
+					<input type="text" class="dateIpt" name="gmtActivityEnd" value="$!gmtActivityEndFmt" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+                </span>
+			    <input type="submit" value="查询" style="padding: 3px 4px;"/>
+			</div>
+		</div>
+	</form>
+	
+	<div class="MB20 MT20"><a href="${env.bopsRoot}/bops/activity.htm" target="_blank">新增活动</a></div>
+	
+	 #parse("/common/bops/page/activityPagination.vm")
+	 <table width="1300" style="font-size:14px;" id="activityTable">
+		<tr>
+			<th width="40">ID</th>
+    		<th width="150">
+    			<a class="sort-btn" href="${env.bopsRoot}/bops/activity_list.htm?sortColumn=GMT_MODIFIED&order=$tempOrder&id=$!id&keyword=$!keyword&subjectId=$!subjectId&gmtActivityStart=$!gmtActivityStartFmt&gmtActivityEnd=$!gmtActivityEndFmt">
+    				<span>活动名称|修改时间<span>
+    			    <span class="dbsort_none"></span>
+    			</a>
+    		</th>
+    		<th width="60">活动图片</th>
+    		<th width="60">展位图片</th>
+			<th width="80">
+				<a class="sort-btn" href="${env.bopsRoot}/bops/activity_list.htm?sortColumn=GMT_ACTIVITY&order=$tempOrder&id=$!id&keyword=$!keyword&subjectId=$!subjectId&gmtActivityStart=$!gmtActivityStartFmt&gmtActivityEnd=$!gmtActivityEndFmt">
+				    <span>活动时间</span>
+    			    <span class="dbsort_none"></span>
+				</a>
+			</th>
+			<th width="120" class="more">
+				<span>活动地址</span>
+                <a class="more-icon" href="javasript:;"></a>
+            </th>
+			<th width="80">联系人</th>
+			<th width="80">联系电话</th>
+			<th width="150" class="more">
+				<span>活动简介</span>
+                <a class="more-icon" href="javasript:;"></a></th>
+			<th width="120" class="more">
+				<span>活动须知</span>
+                <a class="more-icon" href="javasript:;"></a>
+            </th>
+			<th width="120" class="more">
+				<span>温馨提示</span>
+                <a class="more-icon" href="javasript:;"></a>
+            </th>
+			<th width="80">专题</th>
+			<th width="60">
+				<a class="sort-btn" href="${env.bopsRoot}/bops/activity_list.htm?sortColumn=FOLLOW_COUNT&order=$tempOrder&id=$!id&keyword=$!keyword&subjectId=$!subjectId&gmtActivityStart=$!gmtActivityStartFmt&gmtActivityEnd=$!gmtActivityEndFmt">
+					<span>关注数</span>
+	    			<span class="dbsort_none"></span>
+	    		</a>
+			</th>
+			<th width="60">
+				<a class="sort-btn" href="${env.bopsRoot}/bops/activity_list.htm?sortColumn=COMMENT_COUNT&order=$tempOrder&id=$!id&keyword=$!keyword&subjectId=$!subjectId&gmtActivityStart=$!gmtActivityStartFmt&gmtActivityEnd=$!gmtActivityEndFmt">
+					<span>评论数</span>
+	    			<span class="dbsort_none"></span>
+	    		</a>
+            </th>
+			<th width="40">操作</th>
+    	</tr>
+		#if($!activityResult.totalRecords > 0)
+    		#foreach($activity in $!activityResult.items)
+            	<tr class="#if($velocityCount%2 == 0)even#end" data-index="$!activity.id">
+					<td class="id">$!activity.id</td>
+					<td>
+						<div class="name text-ellipsis content-detail" data-content="$!activity.name"><a href="${env.bopsRoot}/bops/activity.htm?id=$!activity.id" target="_blank" style="text-decoration: underline; color:#444;">$!activity.name</a></div>
+						<div class="other" style="margin-top: 3px">
+							<span>$!dateUtils.format($!activity.gmtModified,'yyyy-MM-dd HH:mm')</span>
+						</div>
+					</td>
+					<td class="">
+            		    <div class="pic-url">
+            		    	#if(!$collectionUtils.isEmpty($!activity.picUrlList))
+            		    		<img src="${env.pictureRoot}$!activity.picUrlList[0]" width="60" height="60"/>
+	    		            #end
+	    		        </div>
+            		</td>
+            		<td class="">
+            		    <div class="pic-url">
+            		    	#if(!$collectionUtils.isEmpty($!activity.standPicUrlList))
+            		    		<img src="${env.pictureRoot}$!activity.standPicUrlList[0]" width="60" height="60"/>
+	    		            #end
+	    		        </div>
+            		</td>
+            		<td class="">
+            		    <div class="gmt-activity">$!dateUtils.format($!activity.gmtActivity,'yyyy-MM-dd')</div>
+            		</td>
+            		<td class="more">
+            		    <div class="location text-ellipsis content-detail" data-content="$!activity.location">$!activity.location</div>
+            		</td>
+            		<td class="">
+            		    <div class="contact-name text-ellipsis">$!activity.contactName</div>
+            		</td>
+            		<td class="">
+            		    <div class="contact-phone text-ellipsis">$!activity.contactPhone</div>
+            		</td>
+            		<td class="">
+            		    <div class="intro text-ellipsis content-detail" data-content="$!activity.intro">$!activity.intro</div>
+            		</td>
+            		<td class="">
+            		    <div class="notice text-ellipsis content-detail" data-content="$!activity.notice">$!activity.notice</div>
+            		</td>
+            		<td class="">
+            		    <div class="countesy-reminder text-ellipsis content-detail" data-content="$!activity.countesyReminder">$!activity.countesyReminder</div>
+            		</td>
+            		<td class="">
+            		    <div class="subject text-ellipsis">$!activity.subjectId</div>
+            		</td>
+            		<td class="">
+            		    <div class="follow-count text-ellipsis">$!activity.followCount</div>
+            		</td>
+            		<td class="">
+            		    <div class="comment-count text-ellipsis">$!activity.commentCount</div>
+            		</td>
+					<td align="center">
+						<a class="delete-btn" href="javascript:;" title="删除">删除</a>
+					</td>
+            	</tr>
+    		#end
+		#else
+            <tr><td colspan="15">没有查询到记录</td></tr>
+		#end
+     </table>
+     #parse("/common/bops/page/activityPagination.vm")
+</div>
+<script>
+#set($bopsJs=["activityList.js"])
+!(function($){
+	
+})(jQuery);
+</script>

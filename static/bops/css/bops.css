@@ -87,6 +87,14 @@
 	float: right;
 }
 
+.dd-l {
+	float: left;
+}
+
+.dd-r {
+	float: right;
+}
+
 .TAL {
 	text-align: left;
 }

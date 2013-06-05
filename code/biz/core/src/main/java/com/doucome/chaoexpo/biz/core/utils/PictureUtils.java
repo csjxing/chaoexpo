@@ -1,10 +1,15 @@
 package com.doucome.chaoexpo.biz.core.utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 
 import com.doucome.chaoexpo.biz.core.constant.URIConstant;
 import com.doucome.chaoexpo.biz.core.enums.PictureSizeEnums;
+import com.doucome.chaoexpo.biz.core.model.PicModel;
 import com.doucome.chaoexpo.biz.core.service.impl.DefaultUriService;
 
 /**
@@ -80,5 +85,15 @@ public class PictureUtils {
 		StringBuilder tempPath = new StringBuilder();
 		tempPath.append(picPath).append("_").append(sizeEnum.getName()).append(".jpg");
 		return tempPath.toString();
+	}
+	
+	public static List<PicModel> toModelList(List<String> pathList) {
+		List<PicModel> list = new ArrayList<PicModel>() ;
+		if(CollectionUtils.isNotEmpty(pathList)) {
+			for(String path : pathList) {
+				list.add(new PicModel(path)) ;
+			}
+		}
+		return list ;
 	}
 }

@@ -1,11 +1,12 @@
 package com.doucome.chaoexpo.biz.core.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import com.doucome.chaoexpo.biz.core.enums.ChaoStatusEnum;
+import com.doucome.chaoexpo.biz.core.utils.ArrayStringUtils;
 import com.doucome.chaoexpo.biz.core.utils.ChaoDisplayOrderUtils;
+import com.doucome.chaoexpo.biz.core.utils.PictureUtils;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoNewsDO;
 
 public class ChaoNewsDTO {
@@ -26,19 +27,17 @@ public class ChaoNewsDTO {
 		}
 		this.news = news ;
 	}
-
-	public List<String> getSummaryPicUrls() {
-		List<String> result = new ArrayList<String>();
-		
-		return result;
-	}
-
-	public List<String> getDetailPicUrls() {
-        List<String> result = new ArrayList<String>();
-		
-		return result;
+	
+	public List<PicModel> getSummaryPicModelList() {
+		List<String> picList = ArrayStringUtils.toList(getSummaryPics()) ;
+		return PictureUtils.toModelList(picList) ;
 	}
 	
+	public List<PicModel> getDetailPicModelList() {
+		List<String> detailPicList = ArrayStringUtils.toList(getDetailPics()) ;
+		return PictureUtils.toModelList(detailPicList) ;
+	}
+
 	public Long getId() {
 		return news.getId();
 	}

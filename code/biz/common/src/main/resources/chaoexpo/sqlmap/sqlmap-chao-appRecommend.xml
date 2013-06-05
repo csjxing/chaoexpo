@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ChaoAppRecommend">
+	<typeAlias alias="TA-ChaoAppRecommend"
+		type="com.doucome.chaoexpo.biz.dal.dataobject.ChaoAppRecommendDO" />
+
+	<resultMap id="RM-ChaoAppRecommend" class="TA-ChaoAppRecommend">
+		<result property="id" column="ID" />
+		<result property="name" column="NAME" />
+		<result property="logoUrl" column="LOGO_URL" />
+		<result property="intro" column="INTRO"/>
+		<result property="appStoreUrl" column="APP_STORE_URL"/>
+		<result property="gmtCreate" column="GMT_CREATE"/>
+		<result property="gmtModified" column="GMT_MODIFIED" />
+	</resultMap>
+
+	<insert id="insertRecommend">
+		INSERT INTO
+			CHAO_APP_RECOMMEND(ID,NAME,LOGO_URL,INTRO,APP_STORE_URL,GMT_CREATE,GMT_MODIFIED)
+		VALUES
+			(#id#,#name#,#logoUrl#,#intro#,#appStoreUrl#,now(),now())
+		<selectKey resultClass="java.lang.Long" keyProperty="id">
+   			<![CDATA[
+			SELECT LAST_INSERT_ID() AS ID
+			]]>
+	    </selectKey>
+	</insert>
+	
+	<select id="queryRecommendWithPagination" resultMap="RM-ChaoAppRecommend">
+		SELECT 
+			ID,NAME,LOGO_URL,INTRO,APP_STORE_URL,GMT_CREATE,GMT_MODIFIED
+		FROM
+			CHAO_APP_RECOMMEND
+		ORDER BY 
+	    	GMT_CREATE DESC
+	    LIMIT 
+	    	#start#, #size#
+	</select>
+	
+	<select id="countActivityWithPagination" resultClass="java.lang.Integer">
+		SELECT 
+			COUNT(ID)
+		FROM
+			CHAO_APP_RECOMMEND
+	</select>
+	
+</sqlMap>

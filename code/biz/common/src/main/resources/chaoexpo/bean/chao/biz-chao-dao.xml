@@ -17,4 +17,5 @@
 	<bean id="chaoUserFollowDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoUserFollowDAO"/>
 	<bean id="chaoNewsDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoNewsDAO"/>
 	<bean id="chaoNewsCategoryDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoNewsCategoryDAO"/>
+	<bean id="chaoAppRecommendDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoAppRecommendDAO"/>
 </beans>

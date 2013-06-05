@@ -16,6 +16,14 @@ public class ChaoAppRecommendDTO extends AbstractModel {
 		this.recommend = recommend ;
 	}
 	
+	public PicModel getLogoUrlModel() {
+		return new PicModel(getLogoUrl()) ;
+	}
+	
+	/**
+	 * ---------------------------------------------------------------------------
+	 */
+	
 	public Long getId() {
 		return recommend.getId();
 	}

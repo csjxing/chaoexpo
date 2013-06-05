@@ -28,7 +28,7 @@
     		<input type="hidden" name="id" value="$!subject.id" />
 		    <div class="subject-box">
 			    <div class="pic-box">
-				    <div class="top-box dd-l">
+				    <div class="top-box">
 					    <div class="picture dd-l">
 					    	#if ($!subject.picUrlList && $!subject.picUrlList.size() > 0)
 					    		<img src="${env.pictureRoot}$!subject.picUrlList[0]" />

@@ -1,10 +1,11 @@
-!(function($){
-	$.namespace("DD.news");
-	var self = DD.news;
+ï»¿!(function($){
+	$.namespace("DD.subject");
+	
+	var self = DD.subject;
+	
 	var bopsRoot = $("#bopsRoot").val() ;
 	var pictureRoot = $("#pictureRoot").val() ;
-	
-	$.extend(DD.news,{
+	$.extend(DD.subject,{
 		
 		init:function(){
 		    String.prototype.startsWith = function(str) {
@@ -19,18 +20,14 @@
 			self._initFormSubmit();
 		},
 		_initFieldRequird: function() {
-		    $("#newsForm").validate({
+		    $("#subjectForm").validate({
 			    rules: {
-				    name: {required: true, maxlength:60},
-					gmtPublish: {required: true},
-					source: {required: true, maxlength: 60},
-					content: {required: true}
+				    name: {required: true, maxlength: 50},
+					webUrl: {required: true, maxlength:256}
 				},
 				messages: {
-				    name: {required: '*', maxlength: 'Ì«³¤'},
-					gmtPublish: {required: '*'},
-					source: {required: '*', maxlength: 'Ì«³¤'},
-					content: {required: '*'}
+				    name: {required: '*', maxlength:'å¤ªé•¿'},
+					webUrl: {required: '*', maxlength:'å¤ªé•¿'}
 				}
 			});
 		},
@@ -47,6 +44,11 @@
 		    $(".add-pic-btn").click(function() {
 			    _picUploadLayer.find(".confirm-btn").attr("container-class", 'bottom-pics');
 				_picUploadLayer.find(".confirm-btn").attr("field-name", 'picUrlList');
+			    _picUploadLayer.removeClass("dd-hide");
+			});
+			$(".add-stand-pic-btn").click(function() {
+			    _picUploadLayer.find(".confirm-btn").attr("container-class", 'stand-pics');
+				_picUploadLayer.find(".confirm-btn").attr("field-name", 'standPicUrlList');
 			    _picUploadLayer.removeClass("dd-hide");
 			});
 			$(".delete-pic-btn").click(function() {
@@ -68,7 +70,7 @@
 			    var _this = $(this);
 				var picUrl = $(".picture-url").val();
 				if (!self._isLegalPicUrl(picUrl)) {
-				    _picUploadLayer.find(".error").html("Í¼Æ¬Á´½ÓÓĞÎó£¬»òÍ¼Æ¬ÀàĞÍ²»ÊÇ[jpg,jpeg,png,gif,bmp]");
+				    _picUploadLayer.find(".error").html("å›¾ç‰‡é“¾æ¥æœ‰è¯¯ï¼Œæˆ–å›¾ç‰‡ç±»å‹ä¸æ˜¯[jpg,jpeg,png,gif,bmp]");
 					return ;
 				}
 				var containerClass = _this.attr('container-class');
@@ -92,15 +94,15 @@
 		},
 		
 		_initFormSubmit: function() {
-		    $("#newsForm").submit(function() {
+		    $("#subjectForm").submit(function() {
 			    var isHidden = true;
-			    $("#newsForm").find("label.error").each(function() {
+			    $("#subjectForm").find("label.error").each(function() {
 				    isHidden = isHidden && $(this).is(":hidden");
 				});
 				if (!isHidden) {
 				    return false;
 				}
-			    var submitBtn = $("#newsForm").find("input[type='submit']");
+			    var submitBtn = $("#subjectForm").find("input[type='submit']");
 				var isSubmiting = submitBtn.attr("data-sub");
 				if (isSubmiting == 'y') {
 				    return false;
@@ -136,5 +138,5 @@
 })(jQuery);
 
 jQuery(document).ready(function(){
-	DD.news.init();
+	DD.subject.init();
 });

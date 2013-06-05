@@ -1825,6 +1825,136 @@ i.yen {
 
 
 
+.pic-upload-layer {
+    position: absolute;
+    width: 380px;
+	background-color: #fff;
+	border: 3px solid #ddd;
+	border-radius: 4px;
+	z-index: 999;
+}
+
+.pic-upload-layer .header {
+    height: 30px;
+	width: 100%;
+	background-color: #eee;
+	line-height: 30px;
+	font-weight: bold;
+	position: relative;
+}
+
+.pic-upload-layer .header .close-btn {
+	right: 5px;
+	top: 5px;
+}
+
+.pic-upload-layer .content {
+    padding: 5px 10px;
+}
+
+.pic-upload-layer .content .tip {
+    margin-bottom: 10px;
+}
+.pic-upload-layer .content .error {
+    color: red;
+}
+
+.pic-upload-layer .content .url-pic {
+    padding-top: 10px;
+	padding-bottom: 20px;
+}
+
+.pic-upload-layer .content .local-pic {
+    border-top: 2px solid #999;
+    padding-top: 10px;
+	padding-bottom: 20px;
+}
+
+.pic-upload-layer .content input[type="text"],
+.pic-upload-layer .content input[type="file"] {
+    padding: 2px 4px;
+	width: 300px;
+}
+
+.pic-upload-layer .content .confirm-btn {
+    padding: 5px 7px;
+	letter-spacing: 4px;
+}
+
+form .pic-box {
+    position: absolute;
+	width: 380px;
+	height: 380px;
+	overflow: auto;
+}
+
+form .pic-box .top-box {
+    display: table;
+}
+
+form .pic-box .picture {
+	width: 298px;
+	height: 298px;
+	overflow: hidden;
+	border: 1px solid #999999;
+	text-align: center;
+}
+
+form .pic-box .picture img {
+    max-width: 300px;
+	max-height: 300px;
+	vertical-align: middle;
+}
+
+form .pic-box .pictures li {
+    float: left;
+    display: inline;
+}
+
+form .pic-box .pictures li a {
+	width: 40px;
+	height: 40px;
+	display: block;
+	overflow: hidden;
+}
+
+form .pic-box .pictures li a.btn {
+	background-color: yellow;
+	line-height: 35px;
+	letter-spacing: 3px;
+}
+
+form .pic-box .bottom-box .bottom-pics {
+    padding: 0 0;
+	margin-top: 10px;
+	height: 40px;
+}
+
+form .pic-box .bottom-box .bottom-pics li a {
+	margin-left: 10px;
+}
+
+form .pic-box .pictures li.active a {
+    border: 2px solid red;
+	width: 36px;
+	height: 36px;
+}
+
+form .pic-box .pictures li a img {
+    width: 40px;
+	height: 40px;
+}
+
+form .pic-box .top-box .right-pics {
+    width: 40px;
+	margin-left: 10px;
+	padding: 0 0;
+}
+
+form .pic-box .top-box .right-pics li a {
+	margin-bottom: 10px;
+}
+
 .text-ellipsis {
     overflow: hidden;
 	text-overflow: ellipsis;

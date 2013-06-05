@@ -24,3 +24,9 @@
 #activityTable .intro {
     width: 150px;
 }
+
+#activityTable .subject {
+    width: 74px;
+	white-space: normal;
+	height: 40px;
+}

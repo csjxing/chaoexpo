@@ -14,7 +14,7 @@ import com.doucome.chaoexpo.web.common.model.JsonModel;
 @SuppressWarnings("serial")
 public class CategoriesAction extends BopsBasicAction {
 	
-	private JsonModel<List<ChaoCategoryDTO>> result = new JsonModel<List<ChaoCategoryDTO>>();
+	private JsonModel<List<ChaoCategoryDTO>> json = new JsonModel<List<ChaoCategoryDTO>>();
 	
 	private String status;
 	
@@ -24,11 +24,15 @@ public class CategoriesAction extends BopsBasicAction {
 	@Override
 	public String execute() throws Exception {
 		QueryResult<ChaoCategoryDTO> temps = chaoCategoryService.getCategoryPage(status, new Pagination(1, 100));
-		result.setSuccess(temps.getItems());
+		json.setSuccess(temps.getItems());
 		return SUCCESS ;
 	}
 	
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public JsonModel<List<ChaoCategoryDTO>> getJson() {
+		return json;
 	}
 }

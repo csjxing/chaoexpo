@@ -22,49 +22,48 @@
 		_initFieldRequird: function() {
 		    $("#activityForm").validate({
 			    rules: {
-				    name: {required: true},
+				    name: {required: true, maxlength:60},
 					gmtActivity: {required: true},
-					contactName: {required: true},
+					contactName: {required: true, maxlength: 16},
 					contactPhone: {required: true, number: true, rangelength: [11,11]}
 				},
 				messages: {
-				    name: {required: '*'},
+				    name: {required: '*', maxlength: '太长'},
 					gmtActivity: {required: '*'},
-					contactName: {required: '*'},
+					contactName: {required: '*', maxlength: '太长'},
 					contactPhone: {required: '*', number: '无效号码', rangelength:'无效号码'}
 				}
 			});
 		},
+		
 		_initPictureDisplay: function() {
-		    $(document).delegate(".small-picture", "hover", function() {
-			    alert("test");
+		    $(".pictures .small-picture").hover(function() {
 			    var _this = $(this);
-				_this.closest(".pic-box").find('li').removeClass("active");
-				_this.closest("li").addClass("active");
-				var picUrl = _this.closest("li").find("input").val();
-				if (!picUrl.startsWith("http://")) {
-				    picUrl = pictureRoot + picUrl;
-				}
-				var _picture = _this.closest(".pic-box").find(".picture");
-				if (_picture.find("img").size() > 0) {
-				    _picture.find("img").attr("src", picUrl);
-				} else {
-				    _picture.append('<img src=' + picUrl + '/>')
-				}
-			});
+				self._showPicture(_this.closest("li"));
+			}, function() {});
 		},
 		
 		_initPictureUpload: function() {
 		    var _picUploadLayer = $("#pictureUploadLayer");
 		    $(".add-pic-btn").click(function() {
-			    _picUploadLayer.find(".confirm-btn").attr("container-class", 'pics');
+			    _picUploadLayer.find(".confirm-btn").attr("container-class", 'bottom-pics');
 				_picUploadLayer.find(".confirm-btn").attr("field-name", 'picUrlList');
 			    _picUploadLayer.removeClass("dd-hide");
 			});
 			$(".add-stand-pic-btn").click(function() {
-			    _picUploadLayer.find(".confirm-btn").attr("container-class", 'stand-pics');
+			    _picUploadLayer.find(".confirm-btn").attr("container-class", 'right-pics');
 				_picUploadLayer.find(".confirm-btn").attr("field-name", 'standPicUrlList');
 			    _picUploadLayer.removeClass("dd-hide");
+			});
+			$(".delete-pic-btn").click(function() {
+			    var _activeLi = $(".pictures").find("active");
+				if (_activeLi.size() == 0) {
+				    return;
+				}
+				var _preLi = _activeLi.prev();
+				if (_preLi.size() == 1) {
+				    _preLi.addClass("active");
+				}
 			});
 			_picUploadLayer.find(".close-btn").click(function(){
 			    _picUploadLayer.find(".error").html('');
@@ -88,10 +87,16 @@
 				}
 				$(".picture img").attr("src", picUrl);
 				$(".pictures li").removeClass("active");
-				_container.find("li:first").addClass("active");
+				var _newLi = _container.find("li:first");
+				_newLi.addClass("active");
+				_newLi.hover(function() {
+					self._showPicture(_newLi);
+				}, function() {});
+				self._showPicture(_newLi);
 				_picUploadLayer.find(".close-btn").trigger("click");
 			});
 		},
+		
 		_initFormSubmit: function() {
 		    $("#activityForm").submit(function() {
 			    var isHidden = true;
@@ -110,6 +115,23 @@
 				return true;
 			});
 		},
+		
+		_showPicture: function(_selectLi) {
+			var _this = $(this);
+			$(".pictures").find('li').removeClass("active");
+			_selectLi.addClass("active");
+			var picUrl = _selectLi.find("input").val();
+			if (!picUrl.startsWith("http://")) {
+				picUrl = pictureRoot + picUrl;
+			}
+			var _picture = $(".pic-box .picture");
+			if (_picture.find("img").size() > 0) {
+				_picture.find("img").attr("src", picUrl);
+			} else {
+				_picture.append('<img src=' + picUrl + '/>')
+			}
+		},
+		
 		_isLegalPicUrl: function(picUrl) {
 		    var temp = picUrl.toString();
 		    return temp.startsWith("http://") && (temp.endsWith("jpg") || temp.endsWith("jpeg")

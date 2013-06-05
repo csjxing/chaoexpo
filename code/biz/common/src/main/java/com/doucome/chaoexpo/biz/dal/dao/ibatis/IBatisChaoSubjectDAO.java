@@ -23,6 +23,7 @@ public class IBatisChaoSubjectDAO extends SqlMapClientDaoSupport implements Chao
 		return (ChaoSubjectDO)getSqlMapClientTemplate().queryForObject("ChaoSubject.querySubjectById" , id) ;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<ChaoSubjectDO> querySubjectsWithPagination(ChaoSubjectSearchCondition condition, int start, int size) {
 		Map<String,Object> map = condition.toMap() ;
@@ -34,7 +35,7 @@ public class IBatisChaoSubjectDAO extends SqlMapClientDaoSupport implements Chao
 	@Override
 	public int countSubjectsWithPagination(ChaoSubjectSearchCondition condition) {
 		Map<String,Object> map = condition.toMap() ;
-		return NumberUtils.parseInt((Integer)getSqlMapClientTemplate().queryForObject("ChaoActivity.countSubjectsWithPagination" , map)) ;
+		return NumberUtils.parseInt((Integer)getSqlMapClientTemplate().queryForObject("ChaoSubject.countSubjectsWithPagination" , map)) ;
 	}
 
 	@Override

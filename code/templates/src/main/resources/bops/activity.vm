@@ -34,30 +34,13 @@
 					    <div class="picture dd-l">
 					    	#if (!$!activity.picUrlList || $!activity.picUrlList.size() == 0)
 					    		#if ($!activity.standPicUrlList && $!activity.standPicUrlList.size() > 0)
-						            <img src="${env.pictureRoot}$activity.standPicUrlList[0]" max-width="300" max-height="300" />
+						            <img src="${env.pictureRoot}$activity.standPicUrlList[0]" />
 						        #end
 						    #else
 						        <img src="${env.pictureRoot}$!activity.picUrlList[0]" max-width="300" max-height="300" />
 						    #end
 						</div>
-						<ul class="pics pictures dd-l">
-							#if(!$!collectionUtils.isEmpty($!activity.picUrlList))
-								#set($idx=0)
-								#foreach($picUrl in $activity.picUrlList)
-							        <li class="#if(!$collectionUtils.isEmpty($activity.picUrlList) && $velocityCount == 1)active#end">
-							        	<a class="small-picture" href="javascript:;">
-							        	    <img src="${env.pictureRoot}$picUrl" width="40" height="40"/>
-							        	</a>
-							        	<input type="hidden" name="picUrlList" value="$picUrl"/>
-							        </li>
-							        #set($idx = $idx+1)
-							    #end
-							#end
-							<li class=""><a class="add-pic-btn btn" href="javascript:;" title="新增活动图片"></a></li>
-						</ul>
-					</div>
-					<div class="bottom-box dd-l">
-					    <ul class="stand-pics pictures dd-l" style="">
+					    <ul class="right-pics pictures dd-l" style="">
 							#if(!$!collectionUtils.isEmpty($!activity.standPicUrlList))
 								#set($idx=0)
 								#foreach($picUrl in $!activity.standPicUrlList)
@@ -73,14 +56,44 @@
 							<li class=""><a class="add-stand-pic-btn btn" href="javascript:;" title="新增展位图片"></a></li>
 						</ul>
 					</div>
+					<div class="bottom-box dd-l">
+						<ul class="bottom-pics pictures dd-l">
+							#if(!$!collectionUtils.isEmpty($!activity.picUrlList))
+								#set($idx=0)
+								#foreach($picUrl in $activity.picUrlList)
+							        <li class="#if($velocityCount == 1)active#end">
+							        	<a class="small-picture" href="javascript:;">
+							        	    <img src="${env.pictureRoot}$picUrl" width="40" height="40"/>
+							        	</a>
+							        	<input type="hidden" name="picUrlList" value="$picUrl"/>
+							        </li>
+							        #set($idx = $idx+1)
+							    #end
+							#end
+							<li class=""><a class="add-pic-btn btn" href="javascript:;" title="新增活动图片"></a></li>
+						</ul>
+					</div>
 				</div>
 				<div class="content-box" style="">
 				    <ul>
+				    	<li class="">
+							<span class="lbl" style="">名称：</span>
+							<div class="dd-l">
+								<input class="name width3" type="text" name="name" value="$!activity.name"/>
+							</div>
+						</li>
+						<li class="">
+							<span class="lbl" style="">地点：</span>
+							<div class="dd-l">
+								<input class="location width3" type="text" name="location" value="$!activity.location"/>
+							</div>
+						</li>
 						<li class="">
 							<div class="left-div dd-l">
-								<span class="lbl" style="">名称：</span>
+								<span class="lbl">主题：</span>
 								<div class="dd-l">
-									<input class="name width2" type="text" name="name" value="$!activity.name"/>
+									<select name="subjectId" data-subject-id="$!activity.subjectId" data-init="n">
+									</select>
 								</div>
 							</div>
 							<div>
@@ -88,12 +101,6 @@
 								<div class="dd-l">
 									<input class="gmt-activity width1" type="text" name="gmtActivity" value="$!dateUtils.format($!activity.gmtActivity,'yyyy-MM-dd')" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
 								</div>
-							</div>
-						</li>
-						<li class="">
-							<span class="lbl" style="">地点：</span>
-							<div class="dd-l">
-								<input class="location width3" type="text" name="location" value="$!activity.location"/>
 							</div>
 						</li>
 						<li class="">
@@ -128,10 +135,10 @@
 								<textarea class="countesy-reminder" name="countesyReminder"/>$!activity.countesyReminder</textarea>
 							</div>
 						</li>
-						<li class="dd-l">
-							<input type="submit" value="提交"/>
-						</li>
 					</ul>
+					<div class="btn-box">
+						<input type="submit" value="提交"/>
+					</div>
 				</div>
 			</div>
 		</form>

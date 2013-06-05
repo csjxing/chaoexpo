@@ -81,7 +81,7 @@
 		</action>
 	</package>
 	
-	<package name="bops-remote-rest" namespace="/bops/remote/rest" extends="struts-json">
+	<package name="bops-remote" namespace="/bops/remote" extends="struts-json">
 	
 		<interceptors>
 			 <!-- Basic stack -->
@@ -103,6 +103,11 @@
 		</action>
 		
 		<action name="query_categories" class="com.doucome.chaoexpo.web.bops.action.ajax.CategoriesAction">
+		    <interceptor-ref name="bopsDefaultStack" />
+		    <result name="success" type="json"></result>
+		</action>
+		
+		<action name="query_subjects" class="com.doucome.chaoexpo.web.bops.action.ajax.SubjectsAction">
 		    <interceptor-ref name="bopsDefaultStack" />
 		    <result name="success" type="json"></result>
 		</action>

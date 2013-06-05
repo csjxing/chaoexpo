@@ -1,9 +1,9 @@
-#set($bopsCss=["activity.css"])
+#set($bopsCss=["subject.css"])
 #set($layout="bops/default_bops.vm")
-#set($navigation = "activity")
+#set($navigation = "新增活动主题")
 
 <input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
-<input type="hidden"  id="bopsPage" value="activity"/>
+<input type="hidden"  id="bopsPage" value="subject"/>
 <input type="hidden"  id="pictureRoot" value="${env.pictureRoot}"/>
 
 <div class="bops">
@@ -12,126 +12,66 @@
 		    <div class="wrap">
 			    <div class="header" style="">
 				    <span>上传图片</span>
-					<a class="colse-btn" href="javascript:;"></a>
+					<a class="close-btn" href="javascript:;"></a>
 				</div>
 				<div class="content">
-					<form id="urlPicUploadForm" method="post" action="${env.bopsRoot}/bops/upload_local_picture.htm" enctype="multipart/form-data">
-						<div class="url-pic" style="">
-						    <div><span>网络图片上传</span></div>
-							<input type="text" name="pictureUrl"/>
-							<input type="submit" value="提交"/>
-						</div>
-					</form>
+					<div class="url-pic" style="">
+					    <div class="tip"><span>网络图片上传</span></div>
+					    <div class="tip"><span class="error"></span></div>
+						<input class="picture-url" type="text" name="pictureUrl"/>
+						<input class="confirm-btn" type="button" value="确定"/>
+					</div>
 				</div>
 			</div>
 		</div>
-    	<form id="activityForm" method="post" action="${env.bopsRoot}/bops/add_activity.htm">
-		    <div class="activity-box">
+    	<form id="subjectForm" method="post" action="${env.bopsRoot}/bops/add_subject.htm">
+    		<input type="hidden" name="id" value="$!subject.id" />
+		    <div class="subject-box">
 			    <div class="pic-box">
 				    <div class="top-box dd-l">
 					    <div class="picture dd-l">
-					    	#if ($collectionUtils.isEmpty($activity.picUrlList))
-					    		#if (!$collectionUtils.isEmpty($activity.standPicUrlList))
-						            <img src="${env.pictureRoot}$activity.standPicUrlList[0]" max-width="300" max-height="300"/>
-						        #end
-						    #else
-						        <img src="${env.pictureRoot}$!activity.picUrlList[0]" max-width="300" max-height="300"/>
+					    	#if ($!subject.picUrlList && $!subject.picUrlList.size() > 0)
+					    		<img src="${env.pictureRoot}$!subject.picUrlList[0]" />
 						    #end
 						</div>
-						<ul class="detail-pics pictures dd-l">
-							#if(!$collectionUtils.isEmpty($activity.picUrlList))
-								#foreach($picUrl in $activity.picUrlList)
-							        <li class="#if(!$collectionUtils.isEmpty($activity.picUrlList) && $velocityCount == 1)active#end">
+						<ul class="dd-l"><li style="width: 40px;"></li></ul>
+					</div>
+					<div class="bottom-box dd-l">
+					    <ul class="bottom-pics pictures dd-l">
+							#if(!$collectionUtils.isEmpty($subject.picUrlList))
+								#foreach($picUrl in $subject.picUrlList)
+							        <li class="#if($velocityCount == 1)active#end">
 							        	<a class="small-picture" href="javascript:;"></a>
 							        	<input type="hidden" name="picUrlList" value="$picUrl"/>
 							        </li>
 							    #end
 							#end
-							<li class=""><a class="add-picture-btn" href="javascript:;" title="新增详情图片"></a></li>
-						</ul>
-					</div>
-					<div class="bottom-box dd-l">
-					    <ul class="summary-pics pictures dd-l" style="">
-							#if(!$collectionUtils.isEmpty($activity.standPicUrlList))
-								#foreach($picUrl in $activity.standPicUrlList)
-							        <li class="#if($collectionUtils.isEmpty($activity.picUrlList) && $velocityCount == 1)active#end">
-							        	<a class="small-picture" href="javascript:;"></a>
-							        	<input type="hidden" name="standPicUrlList" value="$picUrl"/>
-							        </li>
-							    #end
-							#end
-							<li class=""><a class="add-picture-btn" href="java.javascript:;" title="新增 概要图片"></a></li>
+							<li class=""><a class="add-pic-btn btn" href="java.javascript:;" title="新增图片">新增图片</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="content-box" style="">
-				    <ul>
+				    <ul class="prop-list">
 						<li class="">
-							<div class="left-div dd-l">
-								<span class="lbl" style="">名称：</span>
-								<div class="dd-l">
-									<input type="text" name="title" value="$!activity.name"/>
-								</div>
-							</div>
-							<div>
-								<span class="lbl" style="">时间：</span>
-								<div class="dd-l">
-									<input class="gmt-activity" type="text" name="gmtActivity" value="$!activity.gmtActivity"/>
-								</div>
-							</div>
-						</li>
-						<li class="">
-							<span class="lbl" style="">地点：</span>
+							<span class="lbl" style="">名称：</span>
 							<div class="dd-l">
-								<input class="location" type="text" name="location" value="$!activity.location"/>
+								<input class="name width3" type="text" name="name" value="$!subject.name"/>
 							</div>
 						</li>
 						<li class="">
-							<div class="left-div dd-l">
-								<span class="lbl">联系人：</span>
-								<div class="dd-l">
-									<input class="contact-name" type="text" name="contactName" value="$!activity.contactName"/>
-								</div>
-							</div>
-							<div>
-								<span class="lbl" style="">联系电话：</span>
-								<div class="dd-l">
-									<input class="contact-phone" type="text" name="contactPhone" value="$!activity.contactPhone"/>
-								</div>
-							</div>
-						</li>
-						<li class="">
-							<span class="lbl">活动介绍：</span>
+							<span class="lbl" style="">网页地址：</span>
 							<div class="dd-l">
-								<textarea name="summary"/>$!activity.summary</textarea>
+								<input class="webUrl width3" type="text" name="webUrl" value="$!subject.webUrl"/>
 							</div>
-						</li>
-						<li class="">
-							<span class="lbl">活动介绍：</span>
-							<div class="dd-l">
-								<textarea class="intro" name="intro"/>$!activity.intro</textarea>
-							</div>
-						</li>
-						<li class="">
-							<span class="lbl">参展须知：</span>
-							<div class="dd-l">
-								<textarea class="notice" name="notice"/>$!activity.notice</textarea>
-							</div>
-						</li>
-						<li class="">
-							<span class="lbl">温馨提示：</span>
-							<div class="dd-l">
-								<textarea class="countesy-reminder" name="countesyReminder"/>$!activity.countesyReminder</textarea>
-							</div>
-						</li>
-						<li class="dd-l">
-							<input type="submit" value="提交"/>
 						</li>
 					</ul>
+					<div class="btn-box">
+						<input type="submit" value="提交"/>
+					</div>
 				</div>
 			</div>
 		</form>
 	</div>
 </div>
 
-#set($bopsJs=["../js/lib/jquery.form.js", "activity.js"])
+#set($bopsJs=["../../js/lib/jquery.validate.min.js", "subject.js"])

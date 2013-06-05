@@ -2,36 +2,36 @@ package com.doucome.chaoexpo.web.bops.action;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.doucome.chaoexpo.biz.core.model.ChaoActivityDTO;
+import com.doucome.chaoexpo.biz.core.model.ChaoSubjectDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
-import com.doucome.chaoexpo.biz.core.service.chao.ChaoActivityService;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoActivitySearchCondition;
+import com.doucome.chaoexpo.biz.core.service.chao.ChaoSubjectService;
+import com.doucome.chaoexpo.biz.dal.condition.ChaoSubjectSearchCondition;
 import com.opensymphony.xwork2.ModelDriven;
 
 @SuppressWarnings("serial")
-public class SubjectListAction extends BopsBasicAction implements ModelDriven<ChaoActivitySearchCondition> {
+public class SubjectListAction extends BopsBasicAction implements ModelDriven<ChaoSubjectSearchCondition> {
 	
-	private QueryResult<ChaoActivityDTO> activityResult;
+	private QueryResult<ChaoSubjectDTO> subjectResult;
 	
-	private ChaoActivitySearchCondition condition = new ChaoActivitySearchCondition();
+	private ChaoSubjectSearchCondition condition = new ChaoSubjectSearchCondition();
 	
 	@Autowired
-	private ChaoActivityService chaoActivityService;
+	private ChaoSubjectService chaoSubjectService;
 	
 	private int page;
 	
 	@Override
 	public String execute() throws Exception {
-		activityResult = chaoActivityService.getActivityWithPagination(condition, new Pagination(page));
+		subjectResult = chaoSubjectService.getSubjectsWithPagination(condition, new Pagination(page));
 		return SUCCESS ;
 	}
 	
-	public QueryResult<ChaoActivityDTO> getActivityResult() {
-		return activityResult;
+	public QueryResult<ChaoSubjectDTO> getSubjectResult() {
+		return subjectResult;
 	}
 	
-	public ChaoActivitySearchCondition getModel() {
+	public ChaoSubjectSearchCondition getModel() {
 		return condition;
 	}
 

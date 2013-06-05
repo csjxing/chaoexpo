@@ -13,7 +13,7 @@ public class ChaoAppRecommendDO extends AbstractModel {
 
 	private Long id ;
 	
-	private String name ;
+	private String appName ;
 	
 	private String logoUrl ;
 	
@@ -33,12 +33,13 @@ public class ChaoAppRecommendDO extends AbstractModel {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+
+	public String getAppName() {
+		return appName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setAppName(String appName) {
+		this.appName = appName;
 	}
 
 	public String getLogoUrl() {

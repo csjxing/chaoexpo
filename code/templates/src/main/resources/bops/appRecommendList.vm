@@ -18,30 +18,32 @@
 	<div class="MB20 MT20"><a href="${env.bopsRoot}/bops/activity.htm" target="_blank">新增推荐应用</a></div>
 	
 	<div class="app-recommend-list">
-    	<table width="1300" style="font-size:14px;">
+    	<table width="980" style="font-size:14px;">
     		<tr>
     			<th width="40">ID</th>
-        		<th width="60">LOGO</th>
+        		<th width="80">LOGO</th>
         		<th width="100">名称</th>
-    			<th width="80">介绍</th>
-    			<th width="120">应用商店</th>			
+    			<th width="200">介绍</th>
+    			<th width="120">应用商店</th>
+				<th width="100">创建时间</th>
     			<th width="80">操作</th>
         	</tr>
-    		#if($!activityResult.totalRecords > 0)
+    		#if($queryResult.totalRecords > 0)
         		#foreach($item in $!queryResult.items)
                 	<tr>
-    					<td>$!item.id</td>
-    					<td><img src="$item.logoUrlModel.url" alt="$!item.appName" class="logo"></td>
+    					<td align="center">$!item.id</td>
+    					<td align="center"><img src="$item.logoUrlModel.getSum('80x80')" alt="$!item.appName" class="logo" width="50" height="50"></td>
     					<td>$!item.appName</td>
                 		<td><div class="intro">$!item.intro</div></td>
-                        <td><div class="app-store-url"></div></td>
+                        <td><div class="app-store-url">$!item.appStoreUrl</div></td>
+						<td align="center">$!dateUtils.format($!item.gmtCreate, 'yyyy-MM-dd HH:mm')</td>
     					<td align="center">
     						<a class="delete-btn" href="javascript:;" title="删除">删除</a>
     					</td>
                 	</tr>
         		#end
     		#else
-                <tr><td colspan="15">没有查询到记录</td></tr>
+                <tr><td colspan="15" align="center">没有查询到记录</td></tr>
     		#end
          </table>
 	</div>

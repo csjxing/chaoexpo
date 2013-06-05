@@ -6,7 +6,7 @@
 
 	<resultMap id="RM-ChaoAppRecommend" class="TA-ChaoAppRecommend">
 		<result property="id" column="ID" />
-		<result property="name" column="NAME" />
+		<result property="appName" column="APP_NAME" />
 		<result property="logoUrl" column="LOGO_URL" />
 		<result property="intro" column="INTRO"/>
 		<result property="appStoreUrl" column="APP_STORE_URL"/>
@@ -16,9 +16,9 @@
 
 	<insert id="insertRecommend">
 		INSERT INTO
-			CHAO_APP_RECOMMEND(ID,NAME,LOGO_URL,INTRO,APP_STORE_URL,GMT_CREATE,GMT_MODIFIED)
+			CHAO_APP_RECOMMEND(ID,APP_NAME,LOGO_URL,INTRO,APP_STORE_URL,GMT_CREATE,GMT_MODIFIED)
 		VALUES
-			(#id#,#name#,#logoUrl#,#intro#,#appStoreUrl#,now(),now())
+			(#id#,#appName#,#logoUrl#,#intro#,#appStoreUrl#,now(),now())
 		<selectKey resultClass="java.lang.Long" keyProperty="id">
    			<![CDATA[
 			SELECT LAST_INSERT_ID() AS ID
@@ -26,9 +26,9 @@
 	    </selectKey>
 	</insert>
 	
-	<select id="queryRecommendWithPagination" resultMap="RM-ChaoAppRecommend">
+	<select id="queryRecommendsWithPagination" resultMap="RM-ChaoAppRecommend">
 		SELECT 
-			ID,NAME,LOGO_URL,INTRO,APP_STORE_URL,GMT_CREATE,GMT_MODIFIED
+			ID,APP_NAME,LOGO_URL,INTRO,APP_STORE_URL,GMT_CREATE,GMT_MODIFIED
 		FROM
 			CHAO_APP_RECOMMEND
 		ORDER BY 
@@ -37,7 +37,7 @@
 	    	#start#, #size#
 	</select>
 	
-	<select id="countActivityWithPagination" resultClass="java.lang.Integer">
+	<select id="countRecommendsWithPagination" resultClass="java.lang.Integer">
 		SELECT 
 			COUNT(ID)
 		FROM

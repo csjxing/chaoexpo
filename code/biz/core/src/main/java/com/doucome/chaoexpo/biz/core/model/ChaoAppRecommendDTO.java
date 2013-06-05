@@ -28,8 +28,8 @@ public class ChaoAppRecommendDTO extends AbstractModel {
 		return recommend.getId();
 	}
 
-	public String getName() {
-		return recommend.getName();
+	public String getAppName() {
+		return recommend.getAppName();
 	}
 
 	public String getLogoUrl() {

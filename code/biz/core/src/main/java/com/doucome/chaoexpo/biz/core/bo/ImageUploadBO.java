@@ -40,9 +40,9 @@ public class ImageUploadBO {
 	private static final Log logger = LogFactory.getLog(ImageUploadBO.class) ;
 
 	/**
-	 * 图片最大500KB
+	 * 图片最大5M
 	 */
-	private static final int IMAGE_MAX_SIZE = 500 * 1024;
+	private static final int IMAGE_MAX_SIZE = 5 * 1024 * 1024;
 	
 	private List<String> allowExtensions;
 	

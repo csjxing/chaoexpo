@@ -3,8 +3,8 @@
 
 #set($navigation = "分类列表")
 
-<input type="hidden"  id="ddzBopsRoot" value="${env.bopsRoot}"/>
-<input type="hidden"  id="ddzBopsPage" value="activityList"/>
+<input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
+<input type="hidden"  id="bopsPage" value="activityList"/>
 
 <style>
 	th a {
@@ -112,7 +112,7 @@
     	</tr>
 		#if($!activityResult.totalRecords > 0)
     		#foreach($activity in $!activityResult.items)
-            	<tr class="#if($velocityCount%2 == 0)even#end" data-index="$!activity.id">
+            	<tr class="#if($velocityCount%2 == 0)even#end" data-id="$!activity.id">
 					<td class="id">$!activity.id</td>
 					<td>
 						<div class="name text-ellipsis content-detail" data-content="$!activity.name"><a href="${env.bopsRoot}/bops/activity.htm?id=$!activity.id" target="_blank" style="text-decoration: underline; color:#444;">$!activity.name</a></div>
@@ -138,7 +138,7 @@
             		    <div class="gmt-activity">$!dateUtils.format($!activity.gmtActivity,'yyyy-MM-dd')</div>
             		</td>
             		<td class="more">
-            		    <div class="location text-ellipsis content-detail" data-content="$!activity.location">$!activity.location</div>
+            		    <div class="location text-ellipsis content-detail" detail-content="$!activity.location">$!activity.location</div>
             		</td>
             		<td class="">
             		    <div class="contact-name text-ellipsis">$!activity.contactName</div>
@@ -147,16 +147,16 @@
             		    <div class="contact-phone text-ellipsis">$!activity.contactPhone</div>
             		</td>
             		<td class="">
-            		    <div class="intro text-ellipsis content-detail" data-content="$!activity.intro">$!activity.intro</div>
+            		    <div class="intro text-ellipsis content-detail" detail-content="$!activity.intro">$!activity.intro</div>
             		</td>
             		<td class="">
-            		    <div class="notice text-ellipsis content-detail" data-content="$!activity.notice">$!activity.notice</div>
+            		    <div class="notice text-ellipsis content-detail" detail-content="$!activity.notice">$!activity.notice</div>
             		</td>
             		<td class="">
-            		    <div class="countesy-reminder text-ellipsis content-detail" data-content="$!activity.countesyReminder">$!activity.countesyReminder</div>
+            		    <div class="countesy-reminder text-ellipsis content-detail" detail-content="$!activity.countesyReminder">$!activity.countesyReminder</div>
             		</td>
             		<td class="">
-            		    <div class="subject text-ellipsis">$!activity.subjectId</div>
+            		    <div class="subject text-ellipsis" data-subject-id="$!activity.subjectId" data-init="n">$!activity.subjectId</div>
             		</td>
             		<td class="">
             		    <div class="follow-count text-ellipsis">$!activity.followCount</div>

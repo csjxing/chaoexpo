@@ -26,13 +26,9 @@ public class AddActivityAction extends BopsBasicAction implements ModelDriven<Ch
 	@Override
 	public String execute() throws Exception {
 		List<String> temps = uploadPictures(activity.getPicUrlList());
-		if (CollectionUtils.isNotEmpty(temps)) {
-			activity.setPicUrlList(temps);
-		}
+		activity.setPicUrlList(temps);
 		temps = uploadPictures(activity.getStandPicUrlList());
-		if (CollectionUtils.isNotEmpty(temps)) {
-			activity.setStandPicUrlList(temps);
-		}
+		activity.setStandPicUrlList(temps);
 		if (activity.getId() == null) {
 		    chaoActivityService.createActivity(activity.toDO());
 		} else {

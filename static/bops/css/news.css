@@ -50,7 +50,7 @@
 
 .main-box .pic-box {
     position: absolute;
-	width: 400px;
+	width: 380px;
 }
 
 .main-box .pic-box .picture {
@@ -111,7 +111,7 @@
 
 .main-box .content-box {
     float: left;
-    margin-left: 410px;
+    margin-left: 390px;
 	width: 500px;
 	min-height: 400px;
 }

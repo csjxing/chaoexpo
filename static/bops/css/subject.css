@@ -3,7 +3,7 @@
     font: 12px  'songti','Microsoft Yahei',Arial;
 }
 
-.main-box .activity-box {
+.main-box .subject-box {
 
 }
 
@@ -16,7 +16,7 @@
 
 .main-box .content-box ul {
     float: left;
-    min-height: 300px;
+    min-height: 200px;
 }
 
 .main-box .content-box .btn-box {
@@ -27,7 +27,7 @@
 .main-box .content-box ul li {
     float: left;
     width: 100%;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
     line-height: 20px;
 }
 
@@ -41,23 +41,23 @@
     width: 280px;
 }
 
-.main-box .content-box ul li input {
+.main-box .content-box ul li  input {
 	padding: 3px 4px;
 }
 
-.main-box .content-box ul li input.width1 {
+.main-box .content-box ul li  input.width1 {
     width: 150px;
 }
 
-.main-box .content-box ul li input.width2 {
-    width: 170px;
+.main-box .content-box ul li  input.width2 {
+    width: 190px;
 }
 
-.main-box .content-box ul li input.width3 {
+.main-box .content-box ul li  input.width3 {
     width: 430px;
 }
 
-.main-box .content-box ul li select[name='subjectId'] {
+.main-box .content-box ul li  select[name='subjectId'] {
     width: 170px;
 	line-height: 20px;
 	padding: 3px 4px;
@@ -86,7 +86,7 @@
     height: 60px;
 }
 
-.bops form  input[type='submit'] {
+.bops form input[type='submit'] {
     font-size: 14px;
 	font-weight: bold;
 	padding: 5px 15px;
@@ -94,7 +94,7 @@
 	letter-spacing: 4px;
 }
 
-#activityForm label.error {
+#subjectForm label.error {
     margin-left: 5px;
 	color: red;
 }

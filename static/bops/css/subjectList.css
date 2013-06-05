@@ -1,0 +1,17 @@
+#subjectTable {
+    margin-top: 20px;
+    font: 12px/1.5 Tahoma,Arial,"\5b8b\4f53",sans-serif
+}
+
+#subjectTable .name {
+	width: 194px;
+	border-bottom: 1px dashed #999;
+}
+
+#subjectTable .name a {
+	color: #333;
+}
+
+#subjectTable .web-url {
+    width: 144px;
+}

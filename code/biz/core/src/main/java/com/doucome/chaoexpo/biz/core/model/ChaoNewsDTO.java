@@ -68,6 +68,14 @@ public class ChaoNewsDTO {
 	public String getPicUrls() {
 		return news.getPicUrls();
 	}
+	
+	public List<String> getPicUrlList() {
+		return ArrayStringUtils.toList(getPicUrls());
+	}
+	
+	public void setPicUrlList(List<String> picUrls) {
+		news.setPicUrls(ArrayStringUtils.toString(picUrls));
+	}
 
 	public Long getDisplayOrder() {
 		return news.getDisplayOrder();

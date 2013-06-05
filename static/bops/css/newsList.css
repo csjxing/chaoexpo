@@ -1,0 +1,31 @@
+#newsTable {
+    margin-top: 20px;
+    font: 12px/1.5 Tahoma,Arial,"\5b8b\4f53",sans-serif
+}
+
+/**
+#newsTable .pic-box {
+    width: 60px;
+	height: 60px;
+	overflow: hidden;
+	padding: 1px 1px;
+	border: 1px solid #999999;
+}
+**/
+
+#newsTable .title {
+    width: 194px;
+	padding-bottom: 2px;
+	border-bottom: 1px dashed #999;
+}
+
+#newsTable .other {
+    margin-top: 3px;
+}
+
+#newsTable .content {
+    width: 234px;
+	line-height: 20px;
+	height: 40px;
+	white-space: normal;
+}

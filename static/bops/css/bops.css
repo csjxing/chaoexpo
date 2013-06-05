@@ -87,6 +87,14 @@
 	float: right;
 }
 
+.dd-l {
+	float: left;
+}
+
+.dd-r {
+	float: right;
+}
+
 .TAL {
 	text-align: left;
 }
@@ -1835,7 +1843,9 @@ i.yen {
 }
 
 
-
+.bops .other {
+	color: #999;
+}
 
 .pic-upload-layer {
     position: absolute;
@@ -2024,7 +2034,7 @@ i.yen {
 }
 
 .bops table tr.even {
-    background-color: #eaf9e6;
+    background-color: #f7fcf5;
 }
 
 .dbsort_asc,.dbsort_desc,.dbsort_none {
@@ -2080,8 +2090,4 @@ td .detail-layer {
 
 .app-recommend-list .intro {
 	
-}
-
-.app-recommend-list .logo {
-	width: 80px;
 }

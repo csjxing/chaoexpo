@@ -23,13 +23,13 @@ public class IBatisChaoAppRecommendDAO extends SqlMapClientDaoSupport implements
 		Map<String,Object> map = query.toMap() ;
 		map.put("start", start - 1) ;
 		map.put("size", size) ;
-		return getSqlMapClientTemplate().queryForList("ChaoAppRecommend.queryRecommendWithPagination" , map);
+		return getSqlMapClientTemplate().queryForList("ChaoAppRecommend.queryRecommendsWithPagination" , map);
 	}
 
 	@Override
 	public int countRecommendWithPagination(ChaoAppRecommendQuery query) {
 		Map<String,Object> map = query.toMap() ;
-		return NumberUtils.parseInt((Integer)getSqlMapClientTemplate().queryForObject("ChaoAppRecommend.countRecommendWithPagination",map)) ;
+		return NumberUtils.parseInt((Integer)getSqlMapClientTemplate().queryForObject("ChaoAppRecommend.countRecommendsWithPagination",map)) ;
 	}
 
 }

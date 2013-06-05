@@ -4,8 +4,8 @@
 }
 
 #subjectTable .name {
-	width: 194px;
-	border-bottom: 1px dashed #999;
+	width: 280px;
+	border-bottom: 1px dotted #aaa;
 }
 
 #subjectTable .name a {
@@ -13,5 +13,5 @@
 }
 
 #subjectTable .web-url {
-    width: 144px;
+    width: 280px;
 }

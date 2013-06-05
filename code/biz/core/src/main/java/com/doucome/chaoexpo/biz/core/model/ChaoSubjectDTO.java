@@ -30,6 +30,15 @@ public class ChaoSubjectDTO extends AbstractModel {
 		return PictureUtils.toModelList(picList) ;
 	}
 	
+	public List<PicModel> getPicModelList() {
+		List<String> picList = getPicUrlList() ;
+		return PictureUtils.toModelList(picList) ;
+	}
+	
+	/**
+	 * --------------------------------------------------------------------------------
+	 */
+	
 	public Long getId() {
 		return subject.getId();
 	}

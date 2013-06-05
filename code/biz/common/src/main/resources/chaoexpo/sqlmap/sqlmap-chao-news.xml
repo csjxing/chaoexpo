@@ -42,7 +42,7 @@
 			ID = #id#
 	</select>
 	
-	<select id="queryNewsSummarysWithPagination" resultMap="RM-ChaoNews-Summary">
+	<select id="queryNewsSummarysWithPagination" resultMap="RM-ChaoNews">
 		SELECT 
 			<include refid="chao_news_fields"/>
 		FROM

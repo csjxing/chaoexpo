@@ -1893,18 +1893,18 @@ i.yen {
 	letter-spacing: 4px;
 }
 
-form .pic-box {
+.pic-box {
     position: absolute;
 	width: 380px;
-	height: 380px;
-	overflow: auto;
+	height: 600px;
+	overflow: hidden;
 }
 
-form .pic-box .top-box {
+.pic-box .top-box {
     display: table;
 }
 
-form .pic-box .picture {
+.pic-box .picture {
 	width: 298px;
 	height: 298px;
 	overflow: hidden;
@@ -1912,59 +1912,63 @@ form .pic-box .picture {
 	text-align: center;
 }
 
-form .pic-box .picture img {
+.pic-box .picture img {
     max-width: 300px;
 	max-height: 300px;
 	vertical-align: middle;
 }
 
-form .pic-box .pictures li {
-    float: left;
-    display: inline;
+.pic-box .sum-pics .nav {
+	color: #666;
+	border-bottom: 1px dotted #f9f9f9;
+	clear: both;
+	margin-top: 10px;
 }
 
-form .pic-box .pictures li a {
-	width: 40px;
-	height: 40px;
-	display: block;
+.pic-box .sum-pics .split {
+	border-top: 1px dotted #ddd;
+	width: 100% ;
+	margin: 10px 0;
+	height: 1px;
+	overflow: hidden ;
+}
+
+.pic-box .sum-pics ul {
+	height: 70px;
+}
+
+.pic-box .sum-pics li {
+    float: left;
+    display: inline;
+	border: 1px solid #e9e9e9;
+	margin: 5px;
+	background-color: #f9f9f9;
+}
+
+.pic-box .sum-pics li a {
+	width: 60px;
+	height: 60px;
+	display: inline-block;
 	overflow: hidden;
 }
 
-form .pic-box .pictures li a.btn {
-	background-color: yellow;
-	line-height: 35px;
-	letter-spacing: 3px;
+.pic-box .sum-pics .active {
+    border: 1px solid red;
 }
 
-form .pic-box .bottom-box .bottom-pics {
-    padding: 0 0;
-	margin-top: 10px;
-	height: 40px;
+.pic-box .sum-pics li a img {
+    width: 60px;
+	height: 60px;
+	overflow: hidden;
 }
 
-form .pic-box .bottom-box .bottom-pics li a {
-	margin-left: 10px;
-}
-
-form .pic-box .pictures li.active a {
-    border: 2px solid red;
-	width: 36px;
-	height: 36px;
-}
-
-form .pic-box .pictures li a img {
-    width: 40px;
-	height: 40px;
-}
-
-form .pic-box .top-box .right-pics {
-    width: 40px;
-	margin-left: 10px;
-	padding: 0 0;
-}
-
-form .pic-box .top-box .right-pics li a {
-	margin-bottom: 10px;
+.pic-box .sum-pics .add-pic {
+	background-image: url(../../image/add.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: inline-block;
+	width: 60px;
+	height: 60px;
 }
 
 .text-ellipsis {

@@ -25,10 +25,8 @@ public class AddNewsAction extends BopsBasicAction implements ModelDriven<ChaoNe
 	
 	@Override
 	public String execute() throws Exception {
-		List<String> temps = uploadPictures(news.getSummaryPicList());
-		news.setSummaryPicList(temps);
-		temps = uploadPictures(news.getDetailPicUrlList());
-		news.setDetailPicUrlList(temps);
+		List<String> temps = uploadPictures(news.getPicUrlList());
+		news.setPicUrlList(temps);
 		if (news.getId() == null) {
 		    chaoNewsService.createNews(news.toDO());
 		} else {

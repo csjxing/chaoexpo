@@ -7,24 +7,8 @@
 	<resultMap id="RM-ChaoNews" class="TA-ChaoNews">
 		<result property="id" column="ID" />
 		<result property="title" column="TITLE" />
-		<result property="summary" column="SUMMARY" />
-		<result property="summaryPics" column="SUMMARY_PICS"/>
-		<result property="detailPics" column="DETAIL_PICS"/>
+		<result property="picUrls" column="PIC_URLS"/>
 		<result property="content" column="CONTENT"/>
-		<result property="detailUrl" column="DETAIL_URL"/>
-		<result property="categoryId" column="CATEGORY_ID"/>
-		<result property="displayOrder" column="DISPLAY_ORDER"/>
-		<result property="source" column="SOURCE"/>
-		<result property="gmtPublish" column="GMT_PUBLISH"/>		
-		<result property="gmtCreate" column="GMT_CREATE"/>
-		<result property="gmtModified" column="GMT_MODIFIED" />
-	</resultMap>
-	
-	<resultMap id="RM-ChaoNews-Summary" class="TA-ChaoNews">
-		<result property="id" column="ID" />
-		<result property="title" column="TITLE" />
-		<result property="summary" column="SUMMARY" />
-		<result property="summaryPics" column="SUMMARY_PICS"/>
 		<result property="categoryId" column="CATEGORY_ID"/>
 		<result property="displayOrder" column="DISPLAY_ORDER"/>
 		<result property="source" column="SOURCE"/>
@@ -34,18 +18,14 @@
 	</resultMap>
 	
 	<sql id="chao_news_fields">
-		ID,TITLE,SUMMARY,SUMMARY_PICS,DETAIL_PICS,CONTENT,DETAIL_URL,CATEGORY_ID,DISPLAY_ORDER,SOURCE,GMT_PUBLISH,GMT_CREATE,GMT_MODIFIED
-	</sql>
-	
-	<sql id="chao_news_summary_fields">
-		ID,TITLE,SUMMARY,SUMMARY_PICS,CATEGORY_ID,DISPLAY_ORDER,SOURCE,GMT_PUBLISH,GMT_CREATE,GMT_MODIFIED
+		ID,TITLE,PIC_URLS,CONTENT,CATEGORY_ID,DISPLAY_ORDER,SOURCE,GMT_PUBLISH,GMT_CREATE,GMT_MODIFIED
 	</sql>
 
 	<insert id="insertNews">
 		INSERT INTO
-			CHAO_NEWS(ID,TITLE,SUMMARY,SUMMARY_PICS,DETAIL_PICS,CONTENT,DETAIL_URL,CATEGORY_ID,DISPLAY_ORDER,SOURCE,GMT_PUBLISH,GMT_CREATE,GMT_MODIFIED)
+			CHAO_NEWS(ID,TITLE,PIC_URLS,CONTENT,CATEGORY_ID,DISPLAY_ORDER,SOURCE,GMT_PUBLISH,GMT_CREATE,GMT_MODIFIED)
 		VALUES
-			(#id#,#title#,#summary#,#summaryPics#,#detailPics#,#content#,#detailUrl#,#categoryId#,#displayOrder#,#source#,#gmtPublish#,now(),now())
+			(#id#,#title#,#picUrls#,#content#,#categoryId#,#displayOrder#,#source#,#gmtPublish#,now(),now())
 		<selectKey resultClass="java.lang.Long" keyProperty="id">
    			<![CDATA[
 			SELECT LAST_INSERT_ID() AS ID
@@ -64,7 +44,7 @@
 	
 	<select id="queryNewsSummarysWithPagination" resultMap="RM-ChaoNews-Summary">
 		SELECT 
-			<include refid="chao_news_summary_fields"/>
+			<include refid="chao_news_fields"/>
 		FROM
 			CHAO_NEWS
 		<isParameterPresent open="WHERE" removeFirstPrepend="true">
@@ -136,17 +116,8 @@
 			<isNotEmpty property="title">
 				TITLE = #title# ,
 			</isNotEmpty>
-			<isNotEmpty property="summary">
-				SUMMARY = #summary# ,
-			</isNotEmpty>
-			<isNotEmpty property="summaryPics">
-				SUMMARY_PICS = #summaryPics# ,
-			</isNotEmpty>
-			<isNotEmpty property="detailUrl">
-				DETAIL_URL = #detailUrl# ,
-			</isNotEmpty>
-			<isNotEmpty property="detailPics">
-				DETAIL_PICS = #detailPics# ,
+			<isNotEmpty property="picUrls">
+				PIC_URLS = #picUrls# ,
 			</isNotEmpty>
 			<isNotEmpty property="content">
 				CONTENT = #content# ,
@@ -176,17 +147,8 @@
 			<isNotEmpty property="title">
 				TITLE = #title# ,
 			</isNotEmpty>
-			<isNotEmpty property="summary">
-				SUMMARY = #summary# ,
-			</isNotEmpty>
-			<isNotEmpty property="summaryPics">
-				SUMMARY_PICS = #summaryPics# ,
-			</isNotEmpty>
-			<isNotEmpty property="detailUrl">
-				DETAIL_URL = #detailUrl# ,
-			</isNotEmpty>
-			<isNotEmpty property="detailPics">
-				DETAIL_PICS = #detailPics# ,
+			<isNotEmpty property="picUrls">
+				PIC_URLS = #picUrls# ,
 			</isNotEmpty>
 			<isNotEmpty property="content">
 				CONTENT = #content# ,

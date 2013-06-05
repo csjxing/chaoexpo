@@ -28,13 +28,8 @@ public class ChaoNewsDTO {
 		this.news = news ;
 	}
 	
-	public List<PicModel> getSummaryPicModelList() {
-		List<String> picList = ArrayStringUtils.toList(getSummaryPics()) ;
-		return PictureUtils.toModelList(picList) ;
-	}
-	
-	public List<PicModel> getDetailPicModelList() {
-		List<String> detailPicList = ArrayStringUtils.toList(getDetailPics()) ;
+	public List<PicModel> getPicModelList() {
+		List<String> detailPicList = ArrayStringUtils.toList(getPicUrls()) ;
 		return PictureUtils.toModelList(detailPicList) ;
 	}
 
@@ -44,18 +39,6 @@ public class ChaoNewsDTO {
 
 	public String getTitle() {
 		return news.getTitle();
-	}
-
-	public String getSummary() {
-		return news.getSummary();
-	}
-
-	public String getSummaryPics() {
-		return news.getSummaryPics();
-	}
-
-	public String getDetailPics() {
-		return news.getDetailPics();
 	}
 
 	public Long getCategoryId() {
@@ -82,8 +65,8 @@ public class ChaoNewsDTO {
 		return news.getGmtModified();
 	}
 
-	public String getDetailUrl() {
-		return news.getDetailUrl();
+	public String getPicUrls() {
+		return news.getPicUrls();
 	}
 
 	public Long getDisplayOrder() {

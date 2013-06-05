@@ -42,23 +42,47 @@
 		_initPictureUpload: function() {
 		    var _picUploadLayer = $("#pictureUploadLayer");
 		    $(".add-pic-btn").click(function() {
-			    _picUploadLayer.find(".confirm-btn").attr("container-class", 'bottom-pics');
-				_picUploadLayer.find(".confirm-btn").attr("field-name", 'picUrlList');
+			    var _this = $(this);
+				var conClassName = _this.attr("data-container-class");
+				var fieldName = _this.attr("data-field-name");
+				if (conClassName == undefined || conClassName == ''
+				    || fieldName == undefined || conClassName == '') {
+				    alert('请设置缩略图<ul>元素的class name');
+				}
+			    _picUploadLayer.find(".confirm-btn").attr("container-class", conClassName);
+				_picUploadLayer.find(".confirm-btn").attr("field-name", fieldName);
 			    _picUploadLayer.removeClass("dd-hide");
 			});
-			$(".add-stand-pic-btn").click(function() {
-			    _picUploadLayer.find(".confirm-btn").attr("container-class", 'stand-pics');
-				_picUploadLayer.find(".confirm-btn").attr("field-name", 'standPicUrlList');
-			    _picUploadLayer.removeClass("dd-hide");
-			});
-			$(".delete-pic-btn").click(function() {
-			    var _activeLi = $(".pictures").find("active");
-				if (_activeLi.size() == 0) {
+			$(".del-btn").click(function() {
+			    var _curLi = $(this).closest("li");
+				if (_curLi.size () == 0) {
 				    return;
 				}
-				var _preLi = _activeLi.prev();
-				if (_preLi.size() == 1) {
-				    _preLi.addClass("active");
+				var picUrl;
+				var _picBox = _curLi.closest(".pic-box");
+				var _nextLi = _curLi.next();
+				if (_nextLi.size() > 0 && _nextLi.find(":hidden").size() > 0) {
+				    picUrl = _nextLi.find(":hidden").val();
+				} else {
+				    _nextLi = _curLi.prev();
+					if (_nextLi.size() > 0 && _nextLi.find(":hidden").size() > 0) {
+					    picUrl = _nextLi.find(":hidden").val();
+					} else {
+				        _curLi.remove();
+						var _picInput = _picBox.find("input[type='hidden']:first");
+						if (_picInput.size() > 0) {
+						    _picInput.closest("li").addClass("active");
+						    picUrl = _picInput.val();
+						}
+					}
+				}
+				_curLi.remove();
+				var _bigImg = _picBox.find(".picture img");
+				if (picUrl == undefined) {
+					_bigImg.remove();
+				} else {
+				    picUrl = picUrl.startsWith("http://")? picUrl: pictureRoot + picUrl;
+				    _bigImg.attr("src", picUrl);
 				}
 			});
 			_picUploadLayer.find(".close-btn").click(function(){
@@ -76,19 +100,14 @@
 				var containerClass = _this.attr('container-class');
 				var fieldName = _this.attr("field-name")
 				var _container = $("." + containerClass);
-				_container.prepend('<li class=""><a class="small-picture" href="javascript:;"><img src="' + picUrl + '"/></a>'
+				_container.prepend('<li class="sum-pic"><a class="small-picture" href="javascript:;"><img src="' + picUrl + '"/></a>'
 							          + '<input type="hidden" name="' + fieldName + '" value="' + picUrl + '"/></li>');
 				if ($(".picture img").size() == 0) {
 				   $(".picture").append('<img src="' + picUrl + '"/>');
 				}
 				$(".picture img").attr("src", picUrl);
-				$(".pictures li").removeClass("active");
-				var _newLi = _container.find("li:first");
-				_newLi.addClass("active");
-				_newLi.hover(function() {
-					self._showPicture(_newLi);
-				}, function() {});
-				self._showPicture(_newLi);
+				_container.find("li.active").removeClass("active");
+				_container.find("li:first").addClass("active");
 				_picUploadLayer.find(".close-btn").trigger("click");
 			});
 		},

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.doucome.chaoexpo.biz.core.utils.ArrayStringUtils;
+import com.doucome.chaoexpo.biz.core.utils.PictureUtils;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoSubjectDO;
 import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
 
@@ -22,6 +23,11 @@ public class ChaoSubjectDTO extends AbstractModel {
 			subject = new ChaoSubjectDO() ;
 		}
 		this.subject = subject ;
+	}
+
+	public List<PicModel> getPicModelList() {
+		List<String> picList = getPicUrlList() ;
+		return PictureUtils.toModelList(picList) ;
 	}
 	
 	public Long getId() {

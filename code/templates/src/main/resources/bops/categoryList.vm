@@ -1,3 +1,4 @@
+#set($bopsCss=["categoryList.css"])
 #set($layout="bops/default_bops.vm")
 
 #set($navigation = "新闻分类列表")
@@ -32,10 +33,11 @@
 	##	</div>
 	##</form>
 	
-	<div class="MB20 MT20">
+	<div class="category-box">
+		<div class="title">新增新闻分类</div>
 		<form action="${env.bopsRoot}/bops/add_category.htm" method="post">
-			<input type="text" name="name" style="width: 120px; line-height: 20px; padding: 3px 5px;"/>
-			<input type="submit" name="提交" style="width: 30px; line-height: 20px; padding: 3px 5px;" />
+			<input type="text" name="name" style="width: 200px; line-height: 20px; padding: 3px 5px;"/>
+			<input type="submit" name="提交" style="width: 60px; line-height: 20px; padding: 3px 5px;" />
 		</form>
 	</div>
 	 
@@ -78,7 +80,7 @@
      </table>
 </div>
 <script>
-#set($bopsJs=["category.js"])
+#set($bopsJs=["categoryList.js"])
 !(function($){
 	
 })(jQuery);

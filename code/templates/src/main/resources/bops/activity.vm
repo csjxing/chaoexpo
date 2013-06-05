@@ -40,35 +40,41 @@
 						</div>
                         <div class="sum-pics">
 							<div class="nav"><span>活动图：</span></div>
-							<ul>
-        						#if(!$!collectionUtils.isEmpty($!activity.standPicUrlList))
-        							#foreach($picModel in $!activity.standPicModelList)
-        						        <li data-url="$!picModel.url">
-        						        	<a href="javascript:;"><img src="$!picModel.getSum('80x80')" width="40" height="40" /></a>
-        						        	<input type="hidden" name="standPicUrlList" value="$picUrl"/>
-        						        </li>
-        						    #end
-        						#end
-        						<li class="add-pic"><a class="add-stand-pic-btn btn" href="javascript:;" title="新增展位图片"></a></li>
-        					</ul>
-							<div class="split">&nbsp;</div>
-							<div class="nav"><span>展位图：</span></div>
-							<ul>
+							<ul class="pictures">
     							#if(!$!collectionUtils.isEmpty($!activity.picUrlList))
     								#foreach($picModel in $activity.picModelList)
-    							        <li data-url="$!picModel.url">
-    							        	<a href="javascript:;">
+    							        <li class="sum-pic">
+    							        	<a href="javascript:;" class="small-pic">
     							        	    <img src="$!picModel.getSum('80x80')" width="40" height="40"/>
     							        	</a>
-    							        	<input type="hidden" name="picUrlList" value="$picUrl"/>
+    							        	<a class="del-btn del-icon" href="javascript:;" title="删除"></a>
+    							        	<input type="hidden" name="picUrlList" value="$!picModel.path"/>
     							        </li>
     							    #end
     							#end
-    							<li class="add-pic"><a class="add-pic-btn btn" href="javascript:;" title="新增活动图片"></a></li>
+    							<li class="add-pic">
+    								<a class="add-pic-btn btn" href="javascript:;" title="新增活动图片" data-container-class="pictures" data-field-name="picUrlList"></a>
+    							</li>
     						</ul>
-                            
+							<div class="split">&nbsp;</div>
+							<div class="nav"><span>展位图：</span></div>
+							<ul class="stand-pictures">
+        						#if(!$!collectionUtils.isEmpty($!activity.standPicUrlList))
+        							#foreach($picModel in $!activity.standPicModelList)
+        						        <li class="sum-pic">
+        						        	<a href="javascript:;" class="small-pic">
+        						        		<img src="$!picModel.getSum('80x80')" width="40" height="40" />
+        						        	</a>
+        						        	<a class="del-btn del-icon" href="javascript:;" title="删除"></a>
+        						        	<input type="hidden" name="standPicUrlList" value="$!picModel.path"/>
+        						        </li>
+        						    #end
+        						#end
+        						<li class="add-pic">
+        							<a class="add-pic-btn btn" href="javascript:;" title="新增展位图片" data-container-class="stand-pictures" data-field-name="standPicUrlList"></a>
+        						</li>
+        					</ul>
 						</div>
-					    
 					</div>
 				</div>
 				<div class="content-box" style="">
@@ -87,7 +93,7 @@
 						</li>
 						<li class="">
 							<div class="left-div dd-l">
-								<span class="lbl">主题：</span>
+								<span class="lbl">专题：</span>
 								<div class="dd-l">
 									<select name="subjectId" data-subject-id="$!activity.subjectId" data-init="n">
 									</select>

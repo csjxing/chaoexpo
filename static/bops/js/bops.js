@@ -1,12 +1,19 @@
-!(function($){
+Ôªø!(function($){
 	$.namespace("DD.Bops");
 	
 	var self = DD.Bops;
 	
 	var bopsRoot = $("#bopsRoot").val() ;
+	var pictureRoot = $("#pictureRoot").val() ;
 	
 	$.extend(DD.Bops,{
 		init:function(){
+		    String.prototype.startsWith = function(str) {
+			    return this.indexOf(str) == 0;
+			};
+			String.prototype.endsWith = function(str) {
+			    return this.indexOf(str) == (this.length - str.length);
+			};
 		    self._initLeftMenu();
 		    self._initShowContentDetail();
 			self._initCategoryData();
@@ -15,18 +22,19 @@
 		},
 		
 		/**
-		 * Àı¬‘Õºhoverœ‘ æ¥ÛÕº
+		 * 
 		 */
 		_initSumPics:function(){
-			$(".pic-box li").hover(function(){
-				var _this = $(this) ;
-				$(".pic-box .big-pic").find('img').attr('src' , _this.attr('data-url')) ;
+			$(".sum-pics li.sum-pic").live("hover", function(event) {
+				var _this = $(this);
+				$(".pic-box .sum-pics").find("li.active").removeClass("active");
+				var picUrl = _this.find(":hidden").val();
+				if (!picUrl.startsWith("http://")) {
+				    picUrl = pictureRoot + picUrl;
+				}
+				$(".pic-box .big-pic").find('img').attr('src', picUrl) ;
 				_this.addClass('active') ;
-			} , function(){
-				var _this = $(this) ;
-				//$(".pic-box .big-pic").find('img').attr('src' , _this.attr('data-url')) ;
-				_this.removeClass('active') ;
-			}) ;
+			});
 		} ,
 		
 		_initLeftMenu:function() {

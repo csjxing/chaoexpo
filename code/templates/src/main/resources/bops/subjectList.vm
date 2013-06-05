@@ -44,7 +44,7 @@
             	<tr data-index="$!subject.id">
 					<td class="id">$!subject.id</td>
 					<td>
-						<div class="name text-ellipsis"><a href="${env.bopsRoot}/bops/subject.html?id=$!subject.id" target="_blank">$!subject.name</a></div>
+						<div class="name text-ellipsis"><a href="${env.bopsRoot}/bops/subject.htm?id=$!subject.id" target="_blank">$!subject.name</a></div>
 						<div class="other" style="margin-top: 3px">
 							<span>$!dateUtils.format($!subject.gmtCreate,'yyyy-MM-dd HH:mm')</span>
 						</div>

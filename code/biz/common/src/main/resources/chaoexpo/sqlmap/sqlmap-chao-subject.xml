@@ -61,7 +61,7 @@
 	
 	<update id="updateSubjectById">
 		UPDATE
-			CHAO_ACTIVITY
+			CHAO_SUBJECT
 		SET
 			<isNotEmpty property="name">
 				NAME = #name# ,
@@ -79,7 +79,7 @@
 	
 	<update id="updateSubject">
 		UPDATE
-			CHAO_ACTIVITY
+			CHAO_SUBJECT
 		SET
 			<isNotEmpty property="name">
 				NAME = #name# ,

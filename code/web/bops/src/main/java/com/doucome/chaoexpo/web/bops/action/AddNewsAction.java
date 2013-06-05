@@ -32,8 +32,7 @@ public class AddNewsAction extends BopsBasicAction implements ModelDriven<ChaoNe
 		} else {
 			chaoNewsService.updateNews(news);
 		}
-		
-		return SUCCESS ;
+		return SUCCESS;
 	}
 	
 	private List<String> uploadPictures(List<String> picList) {

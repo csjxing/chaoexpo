@@ -12,7 +12,7 @@
 		    <div class="wrap">
 			    <div class="header" style="">
 				    <span>上传图片</span>
-					<a class="colse-btn" href="javascript:;"></a>
+					<a class="close-btn" href="javascript:;"></a>
 				</div>
 				<div class="content">
 					<div class="url-pic" style="">
@@ -66,14 +66,14 @@
 						    <div class="left-div dd-l">
 								<span class="lbl">分类：</span>
 								<div class="dd-l">
-									<select name="categoryId" data-category-id="$!news.categoryId">
+									<select class="category-id width2" name="categoryId" data-category-id="$!news.categoryId">
 									</select>
 								</div>
 							</div>
-							<div>
+							<div class="dd-l">
 								<span class="lbl" style="">发布时间：</span>
 								<div class="dd-l">
-									<input class="dateIpt" type="text" name="gmtPublish" value="$!news.gmtPublish" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+									<input class="gmt-publish width1" type="text" name="gmtPublish" value="$!news.gmtPublish" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
 								</div>
 							</div>
 						</li>
@@ -81,13 +81,13 @@
 							<div class="left-div dd-l">
 								<span class="lbl">来源：</span>
 								<div class="dd-l">
-									<input type="text" name="source" value="$!news.source"/>
+									<input class="source width2" type="text" name="source" value="$!news.source"/>
 								</div>
 							</div>
-							<div>
+							<div class="dd-l">
 								<span class="lbl" style="">是否置顶：</span>
 								<div class="dd-l">
-									<select name="isTop">
+									<select name="isTop" class="">
 										<option value="N" selected>否</option>
 										<option value="Y" #if($!news.isTop == 'Y')selected#end>是</option>
 									</select>
@@ -100,10 +100,10 @@
 								<textarea name="content"/>$!news.content</textarea>
 							</div>
 						</li>
-						<li class="dd-l">
-							<input type="submit" value="提交"/>
-						</li>
 					</ul>
+					<div class="btn-box dd-l">
+						<input type="submit" value="提交"/>
+					</div>
 				</div>
 			</div>
 		</form>

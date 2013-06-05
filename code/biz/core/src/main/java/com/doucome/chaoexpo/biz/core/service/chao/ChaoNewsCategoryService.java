@@ -39,5 +39,11 @@ public interface ChaoNewsCategoryService {
 	 * @return
 	 */
 	QueryResult<ChaoNewsCategoryDTO> getCategoriesWithPagination(ChaoNewsCatSearchCondition condition , Pagination pagination) ;
+	/**
+	 * 
+	 * @param category
+	 * @return
+	 */
+	int updateCategory(ChaoNewsCategoryDTO category);
 	
 }

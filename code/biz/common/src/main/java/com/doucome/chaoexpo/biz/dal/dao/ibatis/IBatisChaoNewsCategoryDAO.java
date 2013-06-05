@@ -42,5 +42,9 @@ public class IBatisChaoNewsCategoryDAO extends SqlMapClientDaoSupport implements
 		Map<String,Object> map = condition.toMap() ;
 		return NumberUtils.parseInt((Integer)getSqlMapClientTemplate().queryForObject("ChaoNewsCategory.countCategoriesWithPagination" , map)) ;
 	}
-
+	
+	@Override
+	public int updateCategory(ChaoNewsCategoryDO category) {
+		return (Integer) getSqlMapClientTemplate().queryForObject("ChaoNewsCategory.updateCategory", category);
+	}
 }

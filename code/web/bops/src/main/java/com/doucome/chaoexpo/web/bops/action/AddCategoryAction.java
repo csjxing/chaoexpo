@@ -2,31 +2,29 @@ package com.doucome.chaoexpo.web.bops.action;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.doucome.chaoexpo.biz.core.enums.ChaoStatusEnum;
-import com.doucome.chaoexpo.biz.core.model.ChaoCategoryDTO;
-import com.doucome.chaoexpo.biz.core.service.chao.ChaoCategoryService;
+import com.doucome.chaoexpo.biz.core.model.ChaoNewsCategoryDTO;
+import com.doucome.chaoexpo.biz.core.service.chao.ChaoNewsCategoryService;
 import com.opensymphony.xwork2.ModelDriven;
 
 @SuppressWarnings("serial")
-public class AddCategoryAction extends BopsBasicAction implements ModelDriven<ChaoCategoryDTO> {
+public class AddCategoryAction extends BopsBasicAction implements ModelDriven<ChaoNewsCategoryDTO> {
 	
-	private ChaoCategoryDTO category = new ChaoCategoryDTO();
+	private ChaoNewsCategoryDTO category = new ChaoNewsCategoryDTO();
 	
 	@Autowired
-	private ChaoCategoryService chaoCategoryService;
+	private ChaoNewsCategoryService chaoNewsCategoryService;
 	
 	@Override
 	public String execute() throws Exception {
 		if (category.getId() == null) {
-			category.setStatus(ChaoStatusEnum.ENABLE.getValue());
-			chaoCategoryService.createCategory(category);
+			chaoNewsCategoryService.createCategory(category.toDO());
 		} else {
-			chaoCategoryService.updateCategory(category);
+			chaoNewsCategoryService.updateCategory(category);
 		}
 		return SUCCESS ;
 	}
 	
-	public ChaoCategoryDTO getModel() {
+	public ChaoNewsCategoryDTO getModel() {
 		return category;
 	}
 }

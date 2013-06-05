@@ -15,14 +15,12 @@
 					<a class="close-btn" href="javascript:;"></a>
 				</div>
 				<div class="content">
-					##<form id="urlPicUploadForm" method="post" action="${env.bopsRoot}/bops/upload_local_picture.htm" enctype="multipart/form-data">
-						<div class="url-pic" style="">
-						    <div class="tip"><span>网络图片上传</span></div>
-						    <div class="tip"><span class="error"></span></div>
-							<input class="picture-url" type="text" name="pictureUrl"/>
-							<input class="confirm-btn" type="button" value="确定"/>
-						</div>
-					##</form>
+					<div class="url-pic" style="">
+					    <div class="tip"><span>网络图片上传</span></div>
+					    <div class="tip"><span class="error"></span></div>
+						<input class="picture-url" type="text" name="pictureUrl"/>
+						<input class="confirm-btn" type="button" value="确定"/>
+					</div>
 				</div>
 			</div>
 		</div>

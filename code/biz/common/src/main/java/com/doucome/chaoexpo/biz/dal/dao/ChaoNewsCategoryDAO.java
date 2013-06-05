@@ -48,5 +48,10 @@ public interface ChaoNewsCategoryDAO {
 	 * @return
 	 */
 	int countCategoriesWithPagination(ChaoNewsCatSearchCondition condition) ;
-	
+	/**
+	 * 
+	 * @param category
+	 * @return
+	 */
+	int updateCategory(ChaoNewsCategoryDO category);
 }

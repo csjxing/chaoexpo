@@ -62,4 +62,18 @@
 			CHAO_NEWS_CATEGORY
 	</select>
 	
+	<update id="updateCategory">
+	    UPDATE CHAO_CATEGORY
+	      SET
+	        <isNotEmpty property="name" prepend=""> 
+	            NAME = #name#,
+	        </isNotEmpty>
+	        GMT_MODIFIED = NOW()
+	      WHERE ID = #ID#
+	</update>
+	
+	<delete id="deleteCategory">
+	    DELETE FROM CHAO_CATEGORY
+	      WHERE ID = #id#
+	</delete>
 </sqlMap>

@@ -3,112 +3,6 @@
 	margin-top: 30px;
 }
 
-.pic-upload-layer {
-    width: 400px;
-	background-color: #fff;
-	border: 3px solid #ddd;
-	border-radius: 4px;
-}
-
-.pic-upload-layer .header {
-    height: 30px;
-	width: 100%;
-	background-color: #eee;
-	line-height: 30px;
-	font-weight: bold;
-}
-
-.pic-upload-layer .content {
-    padding: 5px 10px;
-}
-
-.pic-upload-layer .content .url-pic {
-    padding-top: 10px;
-	padding-bottom: 20px;
-}
-
-.pic-upload-layer .content .local-pic {
-    border-top: 2px solid #999;
-    padding-top: 10px;
-	padding-bottom: 20px;
-}
-
-.pic-upload-layer .content input[type="text"],
-.pic-upload-layer .content input[type="file"] {
-    padding: 2px 4px;
-	width: 300px;
-}
-
-.pic-upload-layer .content input[type="submit"] {
-    padding: 5px 7px;
-	letter-spacing: 4px;
-}
-
-.main-box .news-box {
-
-}
-
-.main-box .pic-box {
-    position: absolute;
-	width: 380px;
-}
-
-.main-box .pic-box .picture {
-	width: 300px;
-	height: 300px;
-	overflow: hidden;
-	border: 1px solid #999999;
-}
-
-.main-box .pic-box .picture img {
-    width: 300px;
-	height: 300px;
-}
-
-.main-box .pic-box .top-box .detail-pics {
-    padding: 0 0;
-	margin-left: 10px;
-	width: 40px;
-}
-
-.main-box .pic-box .pictures li {
-    float: left;
-    display: inline;
-}
-
-.main-box .pic-box .pictures li a {
-	width: 40px;
-	height: 40px;
-	background-color: yellow;
-	display: inline-block;
-}
-
-.main-box .pic-box .top-box .detail-pics li a {
-	margin-top: 10px;
-}
-
-.main-box .pic-box .pictures li.active a {
-    border: 2px solid red;
-	width: 36px;
-	height: 36px;
-}
-
-.main-box .pic-box .bottom-box .summary-pics {
-    height: 40px;
-	margin-top: 10px;
-	padding: 0 0;
-}
-
-.main-box .pic-box .bottom-box .summary-pics li a {
-	margin-left: 10px;
-}
-
-.main-box .pic-box .bottom-box .summary-pics li.active a {
-    border: 2px solid red;
-	width: 36px;
-	height: 36px;
-}
-
 .main-box .content-box {
     float: left;
     margin-left: 390px;
@@ -134,43 +28,47 @@
 	font-weight: bold;
 }
 .main-box .content-box ul li  .left-div {
-    width: 230px;
+    width: 280px;
 }
 
-.main-box .content-box ul li  input[name='title'] {
-    width: 400px;
+.main-box .content-box ul li input {
 	padding: 3px 4px;
 }
 
+.main-box .content-box ul li input.width1, .main-box .content-box ul li select.width1 {
+    width: 150px;
+}
+
+.main-box .content-box ul li input.width2, .main-box .content-box ul li select.width2 {
+    width: 170px;
+}
+
+.main-box .content-box ul li input.width3, .main-box .content-box ul li select.width3,
+.main-box .content-box ul li  textarea {
+    width: 430px;
+}
+
 .main-box .content-box ul li  select[name='categoryId'] {
-    width: 120px;
 	line-height: 20px;
 	padding: 3px 4px;
 }
 
 .main-box .content-box ul li  input[name='gmtPublish'] {
-    width: 170px;
 	padding: 3px 4px;
 }
 
-.main-box .content-box ul li  input[name='sourceUrl'] {
-    width: 400px;
-	padding: 3px 4px;
-}
-
-.main-box .content-box ul li  textarea[name='summary'] {
-    width: 400px;
-	height: 120px;
+.main-box .content-box ul li  textarea[name='content'] {
+	height: 160px;
 	line-height: 25px;
 	letter-spacing: 1px;
 	padding: 3px 4px;
 }
 
-.main-box .content-box ul li  input[type='submit'] {
+.bops form  input[type='submit'] {
+    margin-top: 20px;
     font-size: 14px;
 	font-weight: bold;
 	padding: 5px 15px;
 	margin-left: 200px;
-	margin-top: 20px;
 	letter-spacing: 4px;
 }

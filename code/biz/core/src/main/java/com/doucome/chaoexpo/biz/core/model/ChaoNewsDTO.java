@@ -20,12 +20,12 @@ public class ChaoNewsDTO {
 	}
 	
 	public ChaoNewsDTO(ChaoNewsDO news) {
+		this.news = news ;
 		if(news == null) {
-			news = new ChaoNewsDO() ;
+			this.news = new ChaoNewsDO() ;
 			this.news.setStatus(ChaoStatusEnum.ENABLE.getValue());
 			this.news.setDisplayOrder(ChaoDisplayOrderUtils.getDisplayOrder());
 		}
-		this.news = news ;
 	}
 	
 	public List<PicModel> getPicModelList() {
@@ -36,15 +36,27 @@ public class ChaoNewsDTO {
 	public Long getId() {
 		return news.getId();
 	}
-
+	
+	public void setId(Long id) {
+		news.setId(id);
+	}
+	
 	public String getTitle() {
 		return news.getTitle();
+	}
+	
+	public void setTitle(String title) {
+		news.setTitle(title);
 	}
 
 	public Long getCategoryId() {
 		return news.getCategoryId();
 	}
-
+	
+	public void setCategoryId(Long categoryId) {
+		news.setCategoryId(categoryId);
+	}
+	
 	public String getStatus() {
 		return news.getStatus();
 	}
@@ -55,6 +67,10 @@ public class ChaoNewsDTO {
 	
 	public Date getGmtPublish() {
 		return news.getGmtPublish();
+	}
+	
+	public void setGtmPublish(Date gmtPublish) {
+		news.setGmtPublish(gmtPublish);
 	}
 
 	public Date getGmtCreate() {
@@ -80,17 +96,33 @@ public class ChaoNewsDTO {
 	public Long getDisplayOrder() {
 		return news.getDisplayOrder();
 	}
+	
+	public void setDisplayOrder(Long displayOrder) {
+		news.setDisplayOrder(displayOrder);
+	}
 
 	public String getSource() {
 		return news.getSource();
+	}
+	
+	public void setSource(String source) {
+		news.setSource(source);
 	}
 
 	public String getContent() {
 		return news.getContent();
 	}
-
+	
+	public void setContent(String content) {
+		news.setContent(content);
+	}
+	
 	public String getIsTop() {
-		return news.getIsTop() ;
+		return news.getIsTop();
+	}
+	
+	public void setIsTop(String isTop) {
+		news.setIsTop(isTop);
 	}
 
 	public ChaoNewsCategoryDTO getCat() {

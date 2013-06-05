@@ -49,5 +49,12 @@ public class ChaoNewsCategoryServiceImpl implements ChaoNewsCategoryService {
         List<ChaoNewsCategoryDTO> dtoList = ChaoModelConvertUtils.toNewsCatDTOList(doList) ;
         return new QueryResult<ChaoNewsCategoryDTO>(dtoList, pagination, totalRecords);
 	}
-
+	
+	@Override
+	public int updateCategory(ChaoNewsCategoryDTO category) {
+		if (category == null) {
+			return 0;
+		}
+		return chaoNewsCategoryDAO.updateCategory(category.toDO());
+	}
 }

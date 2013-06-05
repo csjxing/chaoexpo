@@ -1835,7 +1835,9 @@ i.yen {
 }
 
 
-
+.bops .other {
+	color: #999;
+}
 
 .pic-upload-layer {
     position: absolute;

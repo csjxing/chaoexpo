@@ -79,6 +79,11 @@
 			<interceptor-ref name="bopsDefaultStack" />
 			<result name="success" type="redirect">/bops/subject.htm</result>
 		</action>
+		
+		<action name="app_recommend_list" class="com.doucome.chaoexpo.web.bops.action.AppRecommendListAction" >
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/appRecommendList.vm</result>
+		</action>
 	</package>
 	
 	<package name="bops-remote" namespace="/bops/remote" extends="struts-json">

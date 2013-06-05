@@ -29,7 +29,7 @@
 		    <div class="activity-box">
 			    <div class="pic-box">
 				    <div class="top-box dd-l">
-					    <div class="picture dd-l">
+					    <div class="picture dd-l big-pic">
 					    	#if (!$!activity.picUrlList || $!activity.picUrlList.size() == 0)
 					    		#if ($!activity.standPicUrlList && $!activity.standPicUrlList.size() > 0)
 						            <img src="${env.pictureRoot}$activity.standPicUrlList[0]" />
@@ -38,38 +38,37 @@
 						        <img src="${env.pictureRoot}$!activity.picUrlList[0]" max-width="300" max-height="300" />
 						    #end
 						</div>
-					    <ul class="right-pics pictures dd-l" style="">
-							#if(!$!collectionUtils.isEmpty($!activity.standPicUrlList))
-								#set($idx=0)
-								#foreach($picUrl in $!activity.standPicUrlList)
-							        <li class="#if($collectionUtils.isEmpty($activity.picUrlList) && $velocityCount == 1)active#end">
-							        	<a class="small-picture" href="javascript:;">
-							        	    <img src="${env.pictureRoot}$picUrl" width="40" height="40" />
-							        	</a>
-							        	<input type="hidden" name="standPicUrlList" value="$picUrl"/>
-							        </li>
-							        #set($idx = $idx+1)
-							    #end
-							#end
-							<li class=""><a class="add-stand-pic-btn btn" href="javascript:;" title="新增展位图片"></a></li>
-						</ul>
-					</div>
-					<div class="bottom-box dd-l">
-						<ul class="bottom-pics pictures dd-l">
-							#if(!$!collectionUtils.isEmpty($!activity.picUrlList))
-								#set($idx=0)
-								#foreach($picUrl in $activity.picUrlList)
-							        <li class="#if($velocityCount == 1)active#end">
-							        	<a class="small-picture" href="javascript:;">
-							        	    <img src="${env.pictureRoot}$picUrl" width="40" height="40"/>
-							        	</a>
-							        	<input type="hidden" name="picUrlList" value="$picUrl"/>
-							        </li>
-							        #set($idx = $idx+1)
-							    #end
-							#end
-							<li class=""><a class="add-pic-btn btn" href="javascript:;" title="新增活动图片"></a></li>
-						</ul>
+                        <div class="sum-pics">
+							<div class="nav"><span>活动图：</span></div>
+							<ul>
+        						#if(!$!collectionUtils.isEmpty($!activity.standPicUrlList))
+        							#foreach($picModel in $!activity.standPicModelList)
+        						        <li data-url="$!picModel.url">
+        						        	<a href="javascript:;"><img src="$!picModel.getSum('80x80')" width="40" height="40" /></a>
+        						        	<input type="hidden" name="standPicUrlList" value="$picUrl"/>
+        						        </li>
+        						    #end
+        						#end
+        						<li class="add-pic"><a class="add-stand-pic-btn btn" href="javascript:;" title="新增展位图片"></a></li>
+        					</ul>
+							<div class="split">&nbsp;</div>
+							<div class="nav"><span>展位图：</span></div>
+							<ul>
+    							#if(!$!collectionUtils.isEmpty($!activity.picUrlList))
+    								#foreach($picModel in $activity.picModelList)
+    							        <li data-url="$!picModel.url">
+    							        	<a href="javascript:;">
+    							        	    <img src="$!picModel.getSum('80x80')" width="40" height="40"/>
+    							        	</a>
+    							        	<input type="hidden" name="picUrlList" value="$picUrl"/>
+    							        </li>
+    							    #end
+    							#end
+    							<li class="add-pic"><a class="add-pic-btn btn" href="javascript:;" title="新增活动图片"></a></li>
+    						</ul>
+                            
+						</div>
+					    
 					</div>
 				</div>
 				<div class="content-box" style="">

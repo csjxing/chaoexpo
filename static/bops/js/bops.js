@@ -11,7 +11,23 @@
 		    self._initShowContentDetail();
 			self._initCategoryData();
 			self._initSubjectData();
+			self._initSumPics() ;
 		},
+		
+		/**
+		 * Àı¬‘Õºhoverœ‘ æ¥ÛÕº
+		 */
+		_initSumPics:function(){
+			$(".pic-box li").hover(function(){
+				var _this = $(this) ;
+				$(".pic-box .big-pic").find('img').attr('src' , _this.attr('data-url')) ;
+				_this.addClass('active') ;
+			} , function(){
+				var _this = $(this) ;
+				//$(".pic-box .big-pic").find('img').attr('src' , _this.attr('data-url')) ;
+				_this.removeClass('active') ;
+			}) ;
+		} ,
 		
 		_initLeftMenu:function() {
 			var pathname = window.location.pathname ; 

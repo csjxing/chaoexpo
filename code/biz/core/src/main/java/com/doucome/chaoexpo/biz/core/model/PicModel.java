@@ -27,4 +27,8 @@ public class PicModel {
 		return PictureUtils.getPicAbsoluteUrl(path, PictureSizeEnums._100x000) ;
 	}
 	
+	public String getSum(String size) {
+		return PictureUtils.getPicAbsoluteUrl(path, PictureSizeEnums.toEnum(size)) ;
+	}
+	
 }

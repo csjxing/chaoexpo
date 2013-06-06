@@ -86,7 +86,7 @@
 		</action>
 	</package>
 	
-	<package name="bops-remote" namespace="/bops/remote" extends="struts-json">
+	<package name="bops-remote" namespace="/bops/remote" extends="default">
 	
 		<interceptors>
 			 <!-- Basic stack -->

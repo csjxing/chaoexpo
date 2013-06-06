@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.doucome.chaoexpo.biz.common.utils.ConditionUtils;
 import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
 
 public class ChaoActivityCondition extends AbstractModel  {
@@ -76,8 +77,8 @@ public class ChaoActivityCondition extends AbstractModel  {
 	}
 
 	public void setGmtActivityEnd(Date gmtActivityEnd) {
-		
-		this.gmtActivityEnd = gmtActivityEnd;
+		Date[] days = ConditionUtils.getDayStartEnd(gmtActivityEnd);
+		this.gmtActivityEnd = days[1];
 	}
 
 	public String getSortColumn() {

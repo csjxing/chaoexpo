@@ -15,27 +15,13 @@
 			    return this.indexOf(str) == (this.length - str.length);
 			};
 		    self._initLeftMenu();
+			//self._registCommonEvent();
 		    self._initShowContentDetail();
 			self._initCategoryData();
 			self._initSubjectData();
-			self._initSumPics() ;
+			//新增中，pic-detail-box.vm的事件.
+			self._initCreateObjPictureEvent();
 		},
-		
-		/**
-		 * 
-		 */
-		_initSumPics:function(){
-			$(".sum-pics li.sum-pic").live("hover", function(event) {
-				var _this = $(this);
-				$(".pic-box .sum-pics").find("li.active").removeClass("active");
-				var picUrl = _this.find(":hidden").val();
-				if (!picUrl.startsWith("http://")) {
-				    picUrl = pictureRoot + picUrl;
-				}
-				$(".pic-box .big-pic").find('img').attr('src', picUrl) ;
-				_this.addClass('active') ;
-			});
-		} ,
 		
 		_initLeftMenu:function() {
 			var pathname = window.location.pathname ; 
@@ -61,6 +47,13 @@
 				_this.addClass('dd-hide') ;
 			}) ;
 		} ,
+		
+		_registCommonEvent: function() {
+		    var _picUploadLayer = $("#pictureUploadLayer");
+		    $(document).bind("pictrueUpload", function() {
+			    
+			});
+		},
 		
 		_initShowContentDetail: function() {
 		    $("[detail-content]").hover(function() {
@@ -173,6 +166,156 @@
 					}
 				});
 			}
+		},
+		_initCreateObjPictureEvent: function() {
+		    //缩略图hover事件.
+			$(".sum-pics li.sum-pic").live("hover", function(event) {
+				var _this = $(this);
+				$(".pic-detail-box .sum-pics").find("li.active").removeClass("active");
+				var picUrl = _this.find(":hidden").val();
+				if (!picUrl.startsWith("http://")) {
+				    picUrl = pictureRoot + picUrl;
+				}
+				$(".pic-detail-box .big-pic").find('img').attr('src', picUrl) ;
+				_this.addClass('active') ;
+			});
+		    var _picUploadLayer = $("#pictureUploadLayer");
+			//添加图片事件.
+		    $(".add-pic-btn").click(function() {
+			    var _this = $(this);
+				var conClassName = _this.attr("data-container-class");
+				var fieldName = _this.attr("data-field-name");
+				if (conClassName == undefined || conClassName == ''
+				    || fieldName == undefined || conClassName == '') {
+				    alert('请设置添加按钮的"data-container-class"和"data-field-name"属性');
+					return;
+				}
+			    _picUploadLayer.find("form").attr("container-class", conClassName);
+				_picUploadLayer.find("form").attr("field-name", fieldName);
+			    _picUploadLayer.removeClass("dd-hide");
+			});
+			//删除图片事件.
+			$(".del-btn").click(function() {
+			    var _curLi = $(this).closest("li");
+				if (_curLi.size () == 0) {
+				    return;
+				}
+				var picUrl;
+				var _picBox = _curLi.closest(".pic-detail-box");
+				var _nextLi = _curLi.next();
+				if (_nextLi.size() > 0 && _nextLi.find(":hidden").size() > 0) {
+				    picUrl = _nextLi.find(":hidden").val();
+					_nextLi.addClass("active");
+				} else {
+				    _nextLi = _curLi.prev();
+					if (_nextLi.size() > 0 && _nextLi.find(":hidden").size() > 0) {
+					    picUrl = _nextLi.find(":hidden").val();
+						_nextLi.addClass("active");
+					} else {
+				        _curLi.remove();
+						var _picInput = _picBox.find("input[type='hidden']:first");
+						if (_picInput.size() > 0) {
+						    _nextLi = _picInput.closest("li").addClass("active");
+						    picUrl = _picInput.val();
+						}
+					}
+				}
+				_curLi.remove();
+				var _bigImg = _picBox.find(".picture img");
+				if (picUrl == undefined) {
+					_bigImg.remove();
+				} else {
+				    picUrl = picUrl.startsWith("http://")? picUrl: pictureRoot + picUrl;
+				    _bigImg.attr("src", picUrl);
+				}
+			});
+			_picUploadLayer.find(".close-btn").click(function(){
+			    _picUploadLayer.find(".error").html('');
+				_picUploadLayer.find(".picture-url").val('');
+			    _picUploadLayer.addClass("dd-hide");
+			});
+			_picUploadLayer.find("form").submit(function() {
+			    var _this = $(this);
+				var picPath;
+				if (_this.find(":file").size() > 0) {
+				    picPath = _this.find(":file").val();
+				} else {
+				    picPath = _this.find(":text").val();
+				}
+				var containerClass = _this.attr('container-class');
+				var fieldName = _this.attr('field-name');
+				if (containerClass == undefined || containerClass == '' ||
+				    fieldName == undefined || fieldName == '') {
+					_this.find(".error").html("请设置field-name和container-class");
+					return false;
+				}
+				if (picPath == undefined || !self._isValidPicture(picPath)) {
+				    _this.find(".error").html("请选择jpg/jpeg/gif/png/bmp类型的图片");
+					return false;
+				}
+				_this.ajaxSubmit(function(result) {
+				    var json = result.json;
+					_this.find(".error").html('');
+					if (json.success) {
+					    var data = json.data;
+						var _picBox = $(".pic-detail-box");
+						var _container = _picBox.find("." + containerClass);
+						_container.prepend('<li class="sum-pic"><a class="small-picture" href="javascript:;"><img src="' + data.sum100x000 + '"/></a>'
+											  + '<input type="hidden" name="' + fieldName + '" value="' + data.path + '"/>'
+											  + '<a class="del-btn del-icon" href="javascript:;" title="删除"></a></li>');
+						if (_picBox.find(".picture img").size() == 0) {
+						   _picBox.find(".picture").append('<img src="' + data.url + '"/>');
+						}
+						$(".picture img").attr("src", data.url);
+						_container.closest(".sum-pics").find("li.active").removeClass("active");
+						_container.find("li:first").addClass("active");
+						_picUploadLayer.find(".close-btn").trigger("click");
+					} else {
+					    if (json.detail == 'file.null') {
+						    _this.find(".error").html('上传失败：未选择有效文件');
+						} else if (json.detail == 'file.ext.reject') {
+						    _this.find(".error").html('上传失败：只能上传jpg/jpeg/gif/png/bmp类型的图片');
+						} else if (json.detail == 'file.ext.reject') {
+						    _this.find(".error").html('上传失败：只能上传jpg/jpeg/gif/png/bmp类型的图片');
+						}  else if (json.detail == 'file.size.over') {
+						    _this.find(".error").html('上传失败：只能上传5M以内的图片');
+						}  else if (json.detail == 'file.upload.exception') {
+						    _this.find(".error").html('上传失败：系统异常，请联系管理员');
+						}  else {
+						    _this.find(".error").html('上传失败：未知错误，请联系管理员');
+						}
+					}
+				});
+				return false;
+			});
+			/**
+			_picUploadLayer.find(".confirm-btn").click(function() {
+			    var _this = $(this);
+				var picUrl = $(".picture-url").val();
+				if (!self._isLegalPicUrl(picUrl)) {
+				    _picUploadLayer.find(".error").html("图片链接有误，或图片类型不是[jpg,jpeg,png,gif,bmp]");
+					return ;
+				}
+				var containerClass = _this.attr('container-class');
+				var fieldName = _this.attr("field-name")
+				var _container = $("." + containerClass);
+				_container.prepend('<li class="sum-pic"><a class="small-picture" href="javascript:;"><img src="' + picUrl + '"/></a>'
+							          + '<input type="hidden" name="' + fieldName + '" value="' + picUrl + '"/>'
+									  + '<a class="del-btn del-icon" href="javascript:;" title="删除"></a></li>');
+				if ($(".picture img").size() == 0) {
+				   $(".picture").append('<img src="' + picUrl + '"/>');
+				}
+				$(".picture img").attr("src", picUrl);
+				_container.closest(".sum-pics").find("li.active").removeClass("active");
+				_container.find("li:first").addClass("active");
+				_picUploadLayer.find(".close-btn").trigger("click");
+			});
+			**/
+		},
+		_isValidPicture: function(picUrl) {
+		    var temp = picUrl.toString().toLowerCase();
+		    return temp.endsWith("jpg") || temp.endsWith("jpeg") || temp.endsWith("gif")
+			          ||temp.endsWith("png") || temp.endsWith("bmp");
 		},
 		
 		end:0

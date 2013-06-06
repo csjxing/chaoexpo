@@ -62,7 +62,7 @@
 				</iterate>
 			</isNotNull>
 			<isNotEmpty property="keyword" prepend="AND">
-	    		NAME LIKE '%'||#keyword#||'%'
+	    		NAME LIKE CONCAT('%', #keyword#, '%')
 			</isNotEmpty>
 			<isNotNull property="subjectId" prepend="AND">
 	    		SUBJECT_ID = #subjectId# 
@@ -96,7 +96,7 @@
 				</iterate>
 			</isNotNull>
 			<isNotEmpty property="keyword" prepend="AND">
-	    		NAME LIKE '%'||#keyword#||'%'
+	    		NAME LIKE CONCAT('%', #keyword#, '%')
 			</isNotEmpty>
 			<isNotNull property="subjectId" prepend="AND">
 	    		SUBJECT_ID = #subjectId# 
@@ -125,7 +125,10 @@
 				</iterate>
 			</isNotNull>
 			<isNotEmpty property="keyword" prepend="AND">
-	    		NAME LIKE '%'||#keyword#||'%'
+	    		NAME LIKE CONCAT('%', #keyword#, '%')
+			</isNotEmpty>
+			<isNotEmpty property="isTop" prepend="AND">
+	    		IS_TOP = #isTop#
 			</isNotEmpty>
 			<isNotNull property="subjectId" prepend="AND">
 	    		SUBJECT_ID = #subjectId# 
@@ -170,7 +173,7 @@
 				</iterate>
 			</isNotNull>
 			<isNotEmpty property="keyword" prepend="AND">
-	    		NAME LIKE '%'||#keyword#||'%'
+	    		NAME LIKE CONCAT('%', #keyword#, '%')
 			</isNotEmpty>
 			<isNotNull property="subjectId" prepend="AND">
 	    		SUBJECT_ID = #subjectId# 

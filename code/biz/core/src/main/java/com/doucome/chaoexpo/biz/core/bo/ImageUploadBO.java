@@ -1,7 +1,6 @@
 package com.doucome.chaoexpo.biz.core.bo;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
@@ -18,17 +17,14 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.util.ImageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.doucome.chaoexpo.biz.core.exception.UpyunException;
-import com.doucome.chaoexpo.biz.core.model.param.PictureModel;
+import com.doucome.chaoexpo.biz.core.model.PicModel;
 import com.doucome.chaoexpo.biz.core.model.param.ResultModel;
 import com.doucome.chaoexpo.biz.core.service.upyun.UpYunService;
 import com.doucome.chaoexpo.biz.core.service.upyun.UpYunUtils;
 import com.doucome.chaoexpo.biz.core.service.upyun.model.UpyunDataEntity;
 import com.doucome.chaoexpo.biz.core.utils.CalendarUtils;
-import com.doucome.chaoexpo.biz.core.utils.DcHttpUtils;
 
 /**
  * 图片上传.
@@ -59,8 +55,8 @@ public class ImageUploadBO {
 	 * @param fileName
 	 * @return
 	 */
-	public ResultModel<PictureModel> uploadPicture(File file, String extName) {
-		ResultModel<PictureModel> result = new ResultModel<PictureModel>();
+	public ResultModel<PicModel> uploadPicture(File file, String extName) {
+		ResultModel<PicModel> result = new ResultModel<PicModel>();
 		if(file == null){
 			result.setFail("file.null");
 			return result;
@@ -91,9 +87,7 @@ public class ImageUploadBO {
 			upyunEntity.setData(data) ;
 			upyunEntity.setToPath(toPath) ;
 			upYunService.upload(upyunEntity) ;
-			PictureModel picModel = new PictureModel();
-			picModel.setPath(toPath) ;
-			picModel.setDimension(ImageUtils.getImageDimension(new FileInputStream(file), Workbook.PICTURE_TYPE_JPEG)) ;
+			PicModel picModel = new PicModel(toPath);
 			result.setSuccess(picModel);
 		}catch (UpyunException e) {
 			logger.error(e);
@@ -110,8 +104,8 @@ public class ImageUploadBO {
 	 * @param pictureUrl
 	 * @return
 	 */
-	public ResultModel<PictureModel> uploadPicture(String pictureUrl){
-		ResultModel<PictureModel> result = new ResultModel<PictureModel>();
+	public ResultModel<PicModel> uploadPicture(String pictureUrl){
+		ResultModel<PicModel> result = new ResultModel<PicModel>();
 		if(StringUtils.isBlank(pictureUrl)){
 			result.setFail("file.url.empty");
 			return result;
@@ -157,10 +151,8 @@ public class ImageUploadBO {
 			upyunEntity.setToPath(toPath) ;
 			upYunService.upload(upyunEntity) ;
 			
-			PictureModel picModel = new PictureModel();
+			PicModel picModel = new PicModel(toPath);
 			picModel.setPath(toPath) ;
-			InputStream picIs = DcHttpUtils.getInputStream(pictureUrl) ;
-			picModel.setDimension(ImageUtils.getImageDimension(picIs, Workbook.PICTURE_TYPE_JPEG)) ;
 			result.setSuccess(picModel);
 		}catch (UpyunException e) {
 			logger.error(e);

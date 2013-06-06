@@ -102,15 +102,15 @@
 					</td>
 					<td align="center">
             		    <div class="pic-url">
-            		    	#if(!$collectionUtils.isEmpty($!activity.picUrlList))
-            		    		<img src="${env.pictureRoot}$!activity.picUrlList[0]" width="50" height="50"/>
+            		    	#if(!$collectionUtils.isEmpty($!activity.picModelList))
+            		    		<img src="$!activity.picModelList[0].getSum('80x80')" width="50" height="50"/>
 	    		            #end
 	    		        </div>
             		</td>
             		<td align="center">
             		    <div class="pic-url">
             		    	#if(!$collectionUtils.isEmpty($!activity.standPicUrlList))
-            		    		<img src="${env.pictureRoot}$!activity.standPicUrlList[0]" width="50" height="50"/>
+            		    		<img src="$!activity.standPicModelList[0].getSum('80x80')" width="50" height="50"/>
 	    		            #end
 	    		        </div>
             		</td>

@@ -1,6 +1,6 @@
 #set($bopsCss=["subject.css"])
 #set($layout="bops/default_bops.vm")
-#set($navigation = "新增专题")
+#set($navigation = "#if($!subject.id)修改#else新增#end专题")
 
 <input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
 <input type="hidden"  id="bopsPage" value="subject"/>
@@ -8,52 +8,15 @@
 
 <div class="bops">
     <div class="main-box">
-    	<div id="pictureUploadLayer" class="pic-upload-layer dd-hide">
-		    <div class="wrap">
-			    <div class="header" style="">
-				    <span>上传图片</span>
-					<a class="close-btn" href="javascript:;"></a>
-				</div>
-				<div class="content">
-					<div class="url-pic" style="">
-					    <div class="tip"><span>网络图片上传</span></div>
-					    <div class="tip"><span class="error"></span></div>
-						<input class="picture-url" type="text" name="pictureUrl"/>
-						<input class="confirm-btn" type="button" value="确定"/>
-					</div>
-				</div>
-			</div>
-		</div>
+    	#parse("/common/bops/pic_upload_layer.vm")
     	<form id="subjectForm" method="post" action="${env.bopsRoot}/bops/add_subject.htm">
     		<input type="hidden" name="id" value="$!subject.id" />
 		    <div class="subject-box">
-			    <div class="pic-box">
-				    <div class="top-box dd-l">
-					    <div class="picture dd-l big-pic">
-					    	#if ($!subject.picUrlList && $!subject.picUrlList.size() > 0)
-					    		<img src="${env.pictureRoot}$subject.picUrlList[0]" />
-						    #end
-						</div>
-                        <div class="sum-pics">
-							<ul class="pictures">
-    							#if(!$!collectionUtils.isEmpty($!subject.picUrlList))
-    								#foreach($picModel in $subject.picModelList)
-    							        <li class="sum-pic #if($velocityCount == 1)active#end">
-    							        	<a href="javascript:;" class="small-pic">
-    							        	    <img src="$!picModel.getSum('80x80')" width="40" height="40"/>
-    							        	</a>
-    							        	<a class="del-btn del-icon" href="javascript:;" title="删除"></a>
-    							        	<input type="hidden" name="picUrlList" value="$!picModel.path"/>
-    							        </li>
-    							    #end
-    							#end
-    							<li class="add-pic">
-    								<a class="add-pic-btn btn" href="javascript:;" title="新增活动图片" data-container-class="pictures" data-field-name="picUrlList"></a>
-    							</li>
-    						</ul>
-						</div>
-					</div>
-				</div>
+		    	
+			    #set($picFieldName1='picUrlList')
+			    #set($picModelList1=$!subject.picModelList)
+			    #parse("/common/bops/pic_detail_box.vm")
+				
 				<div class="content-box" style="">
 				    <ul class="prop-list">
 						<li class="">
@@ -78,4 +41,4 @@
 	</div>
 </div>
 
-#set($bopsJs=["../../js/lib/jquery.validate.min.js", "subject.js"])
+#set($bopsJs=["../../js/lib/jquery.form.js", "../../js/lib/jquery.validate.min.js", "subject.js"])

@@ -5,7 +5,7 @@ import java.io.File;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.doucome.chaoexpo.biz.core.bo.ImageUploadBO;
-import com.doucome.chaoexpo.biz.core.model.param.PictureModel;
+import com.doucome.chaoexpo.biz.core.model.PicModel;
 import com.doucome.chaoexpo.biz.core.model.param.ResultModel;
 import com.doucome.chaoexpo.web.bops.action.BopsBasicAction;
 import com.doucome.chaoexpo.web.common.model.JsonModel;
@@ -13,7 +13,7 @@ import com.doucome.chaoexpo.web.common.model.JsonModel;
 @SuppressWarnings("serial")
 public class ImageUploadAction extends BopsBasicAction {
 	
-	private JsonModel<PictureModel> result = new JsonModel<PictureModel>();
+	private JsonModel<PicModel> json = new JsonModel<PicModel>();
 	
 	private String pictureUrl;
 	
@@ -26,23 +26,23 @@ public class ImageUploadAction extends BopsBasicAction {
 	@Autowired
 	private ImageUploadBO imageUploadBO;
 	
-	public String uploadLocalPicture() {
+	public String uploadLocalImage() {
 		String extName = pictureFileName.substring(pictureFileName.lastIndexOf(".") + 1);
-		ResultModel<PictureModel> model = imageUploadBO.uploadPicture(picture, extName);
+		ResultModel<PicModel> model = imageUploadBO.uploadPicture(picture, extName);
 		if (model.isSucc()) {
-			result.setSuccess(model.getData());
+			json.setSuccess(model.getData());
 		} else {
-			result.setFail(model.getDetail());
+			json.setFail(model.getDetail());
 		}
 		return SUCCESS ;
 	}
 	
-	public String uploadUrlPicture() {
-		ResultModel<PictureModel> model = imageUploadBO.uploadPicture(pictureUrl);
+	public String uploadUrlImage() {
+		ResultModel<PicModel> model = imageUploadBO.uploadPicture(pictureUrl);
 		if (model.isSucc()) {
-			result.setSuccess(model.getData());
+			json.setSuccess(model.getData());
 		} else {
-			result.setFail(model.getDetail());
+			json.setFail(model.getDetail());
 		}
 		return SUCCESS;
 	}
@@ -63,7 +63,7 @@ public class ImageUploadAction extends BopsBasicAction {
 		this.pictureContentType = pictureContentType;
 	}
 
-	public JsonModel<PictureModel> getResult() {
-		return result;
+	public JsonModel<PicModel> getJson() {
+		return json;
 	}
 }

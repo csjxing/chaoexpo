@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.doucome.chaoexpo.biz.core.bo.ImageUploadBO;
 import com.doucome.chaoexpo.biz.core.model.ChaoSubjectDTO;
-import com.doucome.chaoexpo.biz.core.model.param.PictureModel;
+import com.doucome.chaoexpo.biz.core.model.PicModel;
 import com.doucome.chaoexpo.biz.core.model.param.ResultModel;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoSubjectService;
 import com.opensymphony.xwork2.ModelDriven;
@@ -38,7 +38,7 @@ public class AddSubjectAction extends BopsBasicAction implements ModelDriven<Cha
 	private List<String> uploadPictures(List<String> picList) {
 		List<String> result = new ArrayList<String>();
 		if (CollectionUtils.isNotEmpty(picList)) {
-			ResultModel<PictureModel> model = null;
+			ResultModel<PicModel> model = null;
 			for (String temp: picList) {
 				if (temp.startsWith("http://")) {
 					model = imageUploadBO.uploadPicture(temp);

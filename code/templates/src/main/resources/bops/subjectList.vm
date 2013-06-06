@@ -30,6 +30,8 @@
 	</form>
 	
 	<div class="MB20 MT20"><a href="${env.bopsRoot}/bops/subject.htm" target="_blank">新增专题</a></div>
+	
+	#parse("/common/bops/page/subjectPagination.vm")
     <table width="980" style="font-size:14px;" id="subjectTable">
 		<tr>
 			<th width="60">ID</th>
@@ -50,8 +52,8 @@
 						</div>
 					</td>
             		<td align="center">
-            		    #if(!$collectionUtils.isEmpty($!subject.picUrlList))
-            		    	<img src="${env.pictureRoot}$!subject.picUrlList[0]" width="50" height="50"/>
+            		    #if(!$collectionUtils.isEmpty($!subject.picModelList))
+            		    	<img src="$!subject.picModelList[0].getSum('80x80')" width="50" height="50"/>
     		            #end
             		</td>
             		<td>
@@ -69,6 +71,7 @@
             <tr><td colspan="6">没有查询到记录</td></tr>
 		#end
      </table>
+     #parse("/common/bops/page/subjectPagination.vm")
 </div>
 <script>
 #set($bopsJs=["subjectList.js"])

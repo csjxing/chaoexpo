@@ -20,32 +20,43 @@
 #set($pagination = $newsResult.pagination)
 
 #set($searchUrl = ${env.bopsRoot}+"/bops/news_list.htm?")
-#set($searchQuery = ["newsId:$!newsId","categoryId:$!categoryId","keyword:$!keyword","status:$!status","gmtPublishStart:$!gmtPublishStart","gmtPublishEnd:$!gmtPublishEnd"])
+#set($searchQuery = ["id:$!id","categoryId:$!categoryId","keyword:$!keyword","isTop:$!isTop","gmtPublishStart:$!gmtPublishStartFmt","gmtPublishEnd:$!gmtPublishEndFmt","order:$!order","orderColumn:$!orderColumn"])
 
 <div class="bops">
     <div style="MT20 MB20">&nbsp;</div>
 		
-	<form action="${env.bopsRoot}/bops/news_list.htm" method="GET">
+	<form action="${env.bopsRoot}/bops/news_list.htm" method="GET" class="search-form">
 		<div class="settleipt MB10 MT10">
-			新闻ID： <input  type="text" class="item-id-search" name="newsId" value="$!newsId" />&nbsp;&nbsp;
-			关键字：<input  type="text" name="keyword" value="$!keyword" />&nbsp;&nbsp;
-			新闻状态：
-			<select name="status">
-	            <option value="">全部</option>
-				<option value="N" #if($!status == "N") selected #end>有效</option>
-				<option value="D" #if($!status == "D") selected #end>无效</option>
-	        </select>
-	        <br />
-			<div id="settleIptMore" class="settleIptMore">
-				<span>发布时间： 
+			<div class="search-line">
+				<span class="search-div">
+					<span class="lbl">新闻ID：</span>
+				    <input  type="text" class="item-id-search" name="id" value="$!id" />
+				</span>
+				<span class="search-div">
+				    <span class="lbl">关键字：</span>
+				    <input type="text" name="keyword" value="$!keyword" />
+				</span>
+				<span class="search-div">
+				    <span class="lbl">置顶：</span>
+					<select name="isTop">
+			            <option value="">全部</option>
+						<option value="Y" #if($!isTop == "Y") selected #end>置顶</option>
+						<option value="N" #if($!isTop == "N") selected #end>普通</option>
+			        </select>
+			    </span>
+		    </div>
+			<div id="settleIptMore" class="search-line">
+				<span class="search-div">
+				    <span class="lbl">发布时间：</span>
 					<input type="text" id="gmtPublishStart" name="gmtPublishStart" class="dateIpt" value="$!gmtPublishStart"/> - 
 					<input type="text" id="gmtPublishEnd" name="gmtPublishEnd"class="dateIpt" value="$!gmtPublishEnd"/>
                 </span>
-                <span>创建时间： 
-					<input type="text" id="gmtCreateStart" name="gmtCreateStart" class="dateIpt" value="$!gmtCreateStartFormat"/> - 
-					<input type="text" id="gmtCreateEnd" name="gmtCreateEnd"class="dateIpt" value="$!gmtCreateEndFormat"/>
-                </span>
-                <input type="submit" value="查询" />[<a href="javascript:;" id="settleIptMoreBtn" style="font-size:12px;">更多查询条件</a>]
+                ##<span class="search-div">
+				##    <span class="lbl">创建时间：</span>
+				##	<input type="text" id="gmtCreateStart" name="gmtCreateStart" class="dateIpt" value="$!gmtCreateStartFormat"/> - 
+				##	<input type="text" id="gmtCreateEnd" name="gmtCreateEnd"class="dateIpt" value="$!gmtCreateEndFormat"/>
+                ##</span>
+                <input type="submit" value="查询" />
 			</div>
 			
 		</div>
@@ -53,18 +64,42 @@
 	
 	<div class="MB20 MT20"><a href="${env.bopsRoot}/bops/news.htm" target="_blank">新增新闻</a></div>
 	
+	#if($!order == 'DESC')
+		#set($tempOrder = 'ASC')
+	#else
+	    #set($tempOrder = 'DESC')
+	#end
+	
 	#parse("/common/bops/page/newsPagination.vm")
-	 
 	 <table width="1100" id="newsTable">
 		<tr>
 			<th width="40">ID</th>
-			<th width="200" align="center">标题|备注</th>
+			<th width="200" align="center">
+				<a class="sort-btn" href="${env.bopsRoot}/bops/news_list.htm?orderColumn=GMT_CREATE&order=$tempOrder&id=$!id&keyword=$!keyword&categoryId=$!categoryId&gmtPublishStart=$!gmtPublishStartFmt&gmtPublishEnd=$!gmtPublishEndFmt">
+					<span>标题|备注</span>
+					<span class="dbsort_none"></span>
+				</a>
+			</th>
 			<th width="240">正文</th>
-    		<th width="70">详情图片</th>
+    		<th width="70">新闻图片</th>
 			<th width="80">分类</th>
-			<th width="40">状态</th>
-			<th width="110">发布时间</th>
-			<th width="110">修改时间</th>
+			<th width="40">
+				<a class="sort-btn" href="${env.bopsRoot}/bops/news_list.htm?orderColumn=IS_TOP&order=$tempOrder&id=$!id&keyword=$!keyword&categoryId=$!categoryId&gmtPublishStart=$!gmtPublishStartFmt&gmtPublishEnd=$!gmtPublishEndFmt">
+				    <span>置顶</span>
+				    <span class="dbsort_none"></span>
+				</a>
+			</th>
+			<th width="110">
+				<a class="sort-btn" href="${env.bopsRoot}/bops/news_list.htm?orderColumn=GMT_PUBLISH&order=$tempOrder&id=$!id&keyword=$!keyword&categoryId=$!categoryId&gmtPublishStart=$!gmtPublishStartFmt&gmtPublishEnd=$!gmtPublishEndFmt">
+				    <span>发布时间</span>
+				    <span class="dbsort_none"></span>
+				</a>
+			<th width="110">
+				<a class="sort-btn" href="${env.bopsRoot}/bops/news_list.htm?orderColumn=GMT_MODIFIED&order=$tempOrder&id=$!id&keyword=$!keyword&categoryId=$!categoryId&gmtPublishStart=$!gmtPublishStartFmt&gmtPublishEnd=$!gmtPublishEndFmt">
+				    <span>修改时间</span>
+				    <span class="dbsort_none"></span>
+				</a>
+		    </th>
 			<th width="100">操作</th>
     	</tr>
 		#if($!newsResult.totalRecords > 0)
@@ -81,9 +116,9 @@
 						<div class="content text-ellipsis" detail-content="$!news.content">$!news.content</div>
 					</td>
 					<td>
-					    <div class="pic pic-box">
-					    	#if ($!collectionUtils.isEmpty($!new.picUrlList))
-					        	<img src="${env.pictureRoot}$!new.picUrlList[0]" alt="详情图片" width="60" height="60" />
+					    <div class="pic">
+					    	#if (!$collectionUtils.isEmpty($!news.picModelList))
+					        	<img src="$!news.picModelList[0].sum100x000" alt="详情图片" width="60" height="60" />
         					#end
     					</div>
 					</td>
@@ -93,17 +128,16 @@
 						</div>
 					</td>
 					<td align="center">
-						#if($!news.status == 'D')
-							<span>无效<a class="enable-btn" href="javascript:;" title="有效"></a>
-						#else
-						    <span>有效<a class="disable-btn" href="javascript:;" title="无效"></a>
-						#end
+						<select name="isTop">
+							<option value="N" selected>普通</option>
+							<option value="Y" #if($!news.isTop == 'Y')selected#end>置顶</option>
+						</select>
 					</td>
 					<td align="center">
-						<div class="gmt-publish">$!dateUtils.format($!new.gmtPublish, 'yyyy-MM-dd')</div>
+						<div class="gmt-publish">$!dateUtils.format($!news.gmtPublish, 'yyyy-MM-dd')</div>
 					</td>
 					<td align="center">
-						<div class="gmt-modified">$!dateUtils.format($!new.gmtModified, 'yyyy-MM-dd HH:mm')</div>
+						<div class="gmt-modified">$!dateUtils.format($!news.gmtModified, 'yyyy-MM-dd HH:mm')</div>
 					</td>
 					<td>
 						<ul></ul>
@@ -111,7 +145,7 @@
             	</tr>
     		#end
 		#else
-            <tr><td colspan="6">没有查询到记录</td></tr>
+            <tr><td colspan="9">没有查询到记录</td></tr>
 		#end
      </table>
 	 #parse("/common/bops/page/newsPagination.vm")

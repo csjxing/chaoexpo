@@ -20,12 +20,12 @@ public class ChaoNewsDTO {
 	}
 	
 	public ChaoNewsDTO(ChaoNewsDO news) {
-		this.news = news ;
 		if(news == null) {
-			this.news = new ChaoNewsDO() ;
-			this.news.setStatus(ChaoStatusEnum.ENABLE.getValue());
-			this.news.setDisplayOrder(ChaoDisplayOrderUtils.getDisplayOrder());
+			news = new ChaoNewsDO() ;
+			news.setStatus(ChaoStatusEnum.ENABLE.getValue());
+			news.setDisplayOrder(ChaoDisplayOrderUtils.getDisplayOrder());
 		}
+		this.news = news;
 	}
 	
 	public List<PicModel> getPicModelList() {
@@ -69,7 +69,7 @@ public class ChaoNewsDTO {
 		return news.getGmtPublish();
 	}
 	
-	public void setGtmPublish(Date gmtPublish) {
+	public void setGmtPublish(Date gmtPublish) {
 		news.setGmtPublish(gmtPublish);
 	}
 

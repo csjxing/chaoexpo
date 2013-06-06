@@ -9,7 +9,7 @@ import com.doucome.chaoexpo.biz.core.service.chao.ChaoNewsCategoryService;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoNewsCatSearchCondition;
 
 @SuppressWarnings("serial")
-public class CategoryListAction extends BopsBasicAction {
+public class NewsCategoryListAction extends BopsBasicAction {
 	
 	private QueryResult<ChaoNewsCategoryDTO> categoryResult;
 	

@@ -1,6 +1,6 @@
 #set($bopsCss=["activity.css"])
 #set($layout="bops/default_bops.vm")
-#set($navigation = "新增活动")
+#set($navigation = "#if($!activity.id)修改#else新增#end活动")
 
 <input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
 <input type="hidden"  id="bopsPage" value="activity"/>
@@ -8,75 +8,17 @@
 
 <div class="bops">
     <div class="main-box">
-    	<div id="pictureUploadLayer" class="pic-upload-layer dd-hide">
-		    <div class="wrap">
-			    <div class="header" style="">
-				    <span>上传图片</span>
-					<a class="close-btn" href="javascript:;"></a>
-				</div>
-				<div class="content">
-					<div class="url-pic" style="">
-					    <div class="tip"><span>网络图片上传</span></div>
-					    <div class="tip"><span class="error"></span></div>
-						<input class="picture-url" type="text" name="pictureUrl"/>
-						<input class="confirm-btn" type="button" value="确定"/>
-					</div>
-				</div>
-			</div>
-		</div>
+    	#parse("/common/bops/pic_upload_layer.vm")
     	<form id="activityForm" method="post" action="${env.bopsRoot}/bops/add_activity.htm">
     		<input type="hidden" name="id" value="$!activity.id" />
 		    <div class="activity-box">
-			    <div class="pic-box">
-				    <div class="top-box dd-l">
-					    <div class="picture dd-l big-pic">
-					    	#if (!$!activity.picUrlList || $!activity.picUrlList.size() == 0)
-					    		#if ($!activity.standPicUrlList && $!activity.standPicUrlList.size() > 0)
-						            <img src="${env.pictureRoot}$activity.standPicUrlList[0]" />
-						        #end
-						    #else
-						        <img src="${env.pictureRoot}$!activity.picUrlList[0]" max-width="300" max-height="300" />
-						    #end
-						</div>
-                        <div class="sum-pics">
-							<div class="nav"><span>活动图：</span></div>
-							<ul class="pictures">
-    							#if(!$!collectionUtils.isEmpty($!activity.picUrlList))
-    								#foreach($picModel in $activity.picModelList)
-    							        <li class="sum-pic">
-    							        	<a href="javascript:;" class="small-pic">
-    							        	    <img src="$!picModel.getSum('80x80')" width="40" height="40"/>
-    							        	</a>
-    							        	<a class="del-btn del-icon" href="javascript:;" title="删除"></a>
-    							        	<input type="hidden" name="picUrlList" value="$!picModel.path"/>
-    							        </li>
-    							    #end
-    							#end
-    							<li class="add-pic">
-    								<a class="add-pic-btn btn" href="javascript:;" title="新增活动图片" data-container-class="pictures" data-field-name="picUrlList"></a>
-    							</li>
-    						</ul>
-							<div class="split">&nbsp;</div>
-							<div class="nav"><span>展位图：</span></div>
-							<ul class="stand-pictures">
-        						#if(!$!collectionUtils.isEmpty($!activity.standPicUrlList))
-        							#foreach($picModel in $!activity.standPicModelList)
-        						        <li class="sum-pic">
-        						        	<a href="javascript:;" class="small-pic">
-        						        		<img src="$!picModel.getSum('80x80')" width="40" height="40" />
-        						        	</a>
-        						        	<a class="del-btn del-icon" href="javascript:;" title="删除"></a>
-        						        	<input type="hidden" name="standPicUrlList" value="$!picModel.path"/>
-        						        </li>
-        						    #end
-        						#end
-        						<li class="add-pic">
-        							<a class="add-pic-btn btn" href="javascript:;" title="新增展位图片" data-container-class="stand-pictures" data-field-name="standPicUrlList"></a>
-        						</li>
-        					</ul>
-						</div>
-					</div>
-				</div>
+			    #set($picName1='活动图片')
+			    #set($picFieldName1='picUrlList')
+			    #set($picModelList1=$!activity.picModelList)
+			    #set($picName2='展位图片')
+			    #set($picFieldName2='standPicUrlList')
+			    #set($picModelList2=$!activity.standPicModelList)
+			    #parse("/common/bops/pic_detail_box.vm")
 				<div class="content-box" style="">
 				    <ul>
 				    	<li class="">
@@ -148,4 +90,4 @@
 	</div>
 </div>
 
-#set($bopsJs=["../../js/lib/jquery.validate.min.js", "activity.js"])
+#set($bopsJs=["../../js/lib/jquery.form.js", "../../js/lib/jquery.validate.min.js", "activity.js"])

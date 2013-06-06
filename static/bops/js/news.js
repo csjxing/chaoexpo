@@ -1,4 +1,4 @@
-!(function($){
+Ôªø!(function($){
 	$.namespace("DD.news");
 	var self = DD.news;
 	var bopsRoot = $("#bopsRoot").val() ;
@@ -13,15 +13,13 @@
 			String.prototype.endsWith = function(str) {
 			    return this.indexOf(str) == (this.length - str.length);
 			};
-			self._initFieldRequird();
-		    self._initPictureDisplay();
-		    self._initPictureUpload();
 			self._initFormSubmit();
 		},
-		_initFieldRequird: function() {
-		    $("#newsForm").validate({
+		_validateForm: function() {
+		    //Ê†°È™åÈ°µÈù¢ËæìÂÖ•
+		    return $("#newsForm").validate({
 			    rules: {
-				    name: {required: true, maxlength:60},
+				    name: {required: true, maxlength: 60},
 					gmtPublish: {required: true},
 					source: {required: true, maxlength: 60},
 					content: {required: true}
@@ -32,105 +30,24 @@
 					source: {required: '*', maxlength: 'Ã´≥§'},
 					content: {required: '*'}
 				}
-			});
-		},
-		
-		_initPictureDisplay: function() {
-		    $(".pictures .small-picture").hover(function() {
-			    var _this = $(this);
-				self._showPicture(_this.closest("li"));
-			}, function() {});
-		},
-		
-		_initPictureUpload: function() {
-		    var _picUploadLayer = $("#pictureUploadLayer");
-		    $(".add-pic-btn").click(function() {
-			    _picUploadLayer.find(".confirm-btn").attr("container-class", 'bottom-pics');
-				_picUploadLayer.find(".confirm-btn").attr("field-name", 'picUrlList');
-			    _picUploadLayer.removeClass("dd-hide");
-			});
-			$(".delete-pic-btn").click(function() {
-			    var _activeLi = $(".pictures").find("active");
-				if (_activeLi.size() == 0) {
-				    return;
-				}
-				var _preLi = _activeLi.prev();
-				if (_preLi.size() == 1) {
-				    _preLi.addClass("active");
-				}
-			});
-			_picUploadLayer.find(".close-btn").click(function(){
-			    _picUploadLayer.find(".error").html('');
-				_picUploadLayer.find(".picture-url").val('');
-			    _picUploadLayer.addClass("dd-hide");
-			});
-			_picUploadLayer.find(".confirm-btn").click(function() {
-			    var _this = $(this);
-				var picUrl = $(".picture-url").val();
-				if (!self._isLegalPicUrl(picUrl)) {
-				    _picUploadLayer.find(".error").html("Õº∆¨¡¥Ω””–ŒÛ£¨ªÚÕº∆¨¿‡–Õ≤ª «[jpg,jpeg,png,gif,bmp]");
-					return ;
-				}
-				var containerClass = _this.attr('container-class');
-				var fieldName = _this.attr("field-name")
-				var _container = $("." + containerClass);
-				_container.prepend('<li class=""><a class="small-picture" href="javascript:;"><img src="' + picUrl + '"/></a>'
-							          + '<input type="hidden" name="' + fieldName + '" value="' + picUrl + '"/></li>');
-				if ($(".picture img").size() == 0) {
-				   $(".picture").append('<img src="' + picUrl + '"/>');
-				}
-				$(".picture img").attr("src", picUrl);
-				$(".pictures li").removeClass("active");
-				var _newLi = _container.find("li:first");
-				_newLi.addClass("active");
-				_newLi.hover(function() {
-					self._showPicture(_newLi);
-				}, function() {});
-				self._showPicture(_newLi);
-				_picUploadLayer.find(".close-btn").trigger("click");
-			});
+			}).form();
 		},
 		
 		_initFormSubmit: function() {
 		    $("#newsForm").submit(function() {
-			    var isHidden = true;
-			    $("#newsForm").find("label.error").each(function() {
-				    isHidden = isHidden && $(this).is(":hidden");
-				});
-				if (!isHidden) {
+			    if (!self._validateForm()) {
 				    return false;
 				}
-			    var submitBtn = $("#newsForm").find("input[type='submit']");
-				var isSubmiting = submitBtn.attr("data-sub");
+			    var _submitBtn = $("#newsForm").find("input[type='submit']");
+				var isSubmiting = _submitBtn.attr("data-sub");
 				if (isSubmiting == 'y') {
 				    return false;
 				}
-				submitBtn.attr("data-sub", 'y');
+				_submitBtn.attr("data-sub", 'y');
 				return true;
 			});
 		},
 		
-		_showPicture: function(_selectLi) {
-			var _this = $(this);
-			$(".pictures").find('li').removeClass("active");
-			_selectLi.addClass("active");
-			var picUrl = _selectLi.find("input").val();
-			if (!picUrl.startsWith("http://")) {
-				picUrl = pictureRoot + picUrl;
-			}
-			var _picture = $(".pic-box .picture");
-			if (_picture.find("img").size() > 0) {
-				_picture.find("img").attr("src", picUrl);
-			} else {
-				_picture.append('<img src=' + picUrl + '/>')
-			}
-		},
-		
-		_isLegalPicUrl: function(picUrl) {
-		    var temp = picUrl.toString();
-		    return temp.startsWith("http://") && (temp.endsWith("jpg") || temp.endsWith("jpeg")
-			          ||temp.endsWith("png") || temp.endsWith("bmp"));
-		},
 		end:0
 	});
 })(jQuery);

@@ -7,7 +7,7 @@ import com.doucome.chaoexpo.biz.core.service.chao.ChaoNewsCategoryService;
 import com.opensymphony.xwork2.ModelDriven;
 
 @SuppressWarnings("serial")
-public class AddCategoryAction extends BopsBasicAction implements ModelDriven<ChaoNewsCategoryDTO> {
+public class AddNewsCategoryAction extends BopsBasicAction implements ModelDriven<ChaoNewsCategoryDTO> {
 	
 	private ChaoNewsCategoryDTO category = new ChaoNewsCategoryDTO();
 	

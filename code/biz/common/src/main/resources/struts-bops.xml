@@ -47,11 +47,11 @@
 			<interceptor-ref name="bopsDefaultStack" />
 			<result name="success" type="redirect">/bops/news.htm</result>
 		</action>
-		<action name="category_list" class="com.doucome.chaoexpo.web.bops.action.CategoryListAction" >
+		<action name="news_category_list" class="com.doucome.chaoexpo.web.bops.action.NewsCategoryListAction" >
 			<interceptor-ref name="bopsDefaultStack" />
 			<result name="success" type="velocity">/bops/categoryList.vm</result>
 		</action>
-		<action name="add_category" class="com.doucome.chaoexpo.web.bops.action.AddCategoryAction" >
+		<action name="add_news_category" class="com.doucome.chaoexpo.web.bops.action.AddNewsCategoryAction" >
 			<interceptor-ref name="bopsDefaultStack" />
 			<result name="success" type="redirect">/bops/category_list.htm</result>
 		</action>
@@ -97,12 +97,12 @@
 			 </interceptor-stack>
 		</interceptors>
 		
-		<action name="upload_local_picture" class="com.doucome.chaoexpo.web.bops.action.ajax.ImageUploadAction" method="uploadLocalPicture">
+		<action name="upload_local_image" class="com.doucome.chaoexpo.web.bops.action.ajax.ImageUploadAction" method="uploadLocalImage">
 		    <interceptor-ref name="bopsDefaultStack" />
 		    <result name="success" type="json"></result>
 		</action>
 		
-		<action name="upload_url_picture" class="com.doucome.chaoexpo.web.bops.action.ajax.ImageUploadAction" method="uploadUrlPicture">
+		<action name="upload_url_image" class="com.doucome.chaoexpo.web.bops.action.ajax.ImageUploadAction" method="uploadUrlImage">
 		    <interceptor-ref name="bopsDefaultStack" />
 		    <result name="success" type="json"></result>
 		</action>

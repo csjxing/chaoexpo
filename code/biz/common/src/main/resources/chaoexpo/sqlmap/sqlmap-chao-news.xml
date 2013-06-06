@@ -10,6 +10,7 @@
 		<result property="picUrls" column="PIC_URLS"/>
 		<result property="content" column="CONTENT"/>
 		<result property="categoryId" column="CATEGORY_ID"/>
+		<result property="isTop" column="IS_TOP"/>
 		<result property="displayOrder" column="DISPLAY_ORDER"/>
 		<result property="source" column="SOURCE"/>
 		<result property="gmtPublish" column="GMT_PUBLISH"/>		
@@ -18,14 +19,14 @@
 	</resultMap>
 	
 	<sql id="chao_news_fields">
-		ID,TITLE,PIC_URLS,CONTENT,CATEGORY_ID,DISPLAY_ORDER,SOURCE,GMT_PUBLISH,GMT_CREATE,GMT_MODIFIED
+		ID,TITLE,PIC_URLS,CONTENT,CATEGORY_ID,IS_TOP,DISPLAY_ORDER,SOURCE,GMT_PUBLISH,GMT_CREATE,GMT_MODIFIED
 	</sql>
 
 	<insert id="insertNews">
 		INSERT INTO
-			CHAO_NEWS(ID,TITLE,PIC_URLS,CONTENT,CATEGORY_ID,DISPLAY_ORDER,SOURCE,GMT_PUBLISH,GMT_CREATE,GMT_MODIFIED)
+			CHAO_NEWS(ID,TITLE,PIC_URLS,CONTENT,CATEGORY_ID,IS_TOP,DISPLAY_ORDER,SOURCE,GMT_PUBLISH,GMT_CREATE,GMT_MODIFIED)
 		VALUES
-			(#id#,#title#,#picUrls#,#content#,#categoryId#,#displayOrder#,#source#,#gmtPublish#,now(),now())
+			(#id#,#title#,#picUrls#,#content#,#categoryId#,#isTop#,#displayOrder#,#source#,#gmtPublish#,now(),now())
 		<selectKey resultClass="java.lang.Long" keyProperty="id">
    			<![CDATA[
 			SELECT LAST_INSERT_ID() AS ID
@@ -71,6 +72,15 @@
 		SELECT <include refid="chao_news_fields" />
 		  FROM CHAO_NEWS
 		  <isParameterPresent open="WHERE" removeFirstPrepend="true">
+		      <isNotNull property="id" prepend="AND">
+	    		  ID = #id# 
+			  </isNotNull>
+			  <isNotEmpty property="keyword" prepend="AND">
+	    		  TITLE LIKE CONCAT('%', #keyword#, '%') 
+			  </isNotEmpty>
+			  <isNotEmpty property="isTop" prepend="AND">
+	    		  IS_TOP = #isTop# 
+			  </isNotEmpty>
 	    	  <isNotNull property="categoryId" prepend="AND">
 	    		  CATEGORY_ID = #categoryId# 
 			  </isNotNull>
@@ -80,16 +90,26 @@
 			  <isNotNull property="gmtPublishEnd" prepend="AND">
 	    		  GMT_PUBLISH <![CDATA[<]]> #gmtPublishEnd# 
 			  </isNotNull>
+			  <isNotNull property="gmtCreateStart" prepend="AND">
+	    		  GMT_CREATE <![CDATA[>=]]> #gmtCreateStart# 
+			  </isNotNull>
+			  <isNotNull property="gmtCreateEnd" prepend="AND">
+	    		  GMT_CREATE <![CDATA[<]]> #gmtCreateEnd# 
+			  </isNotNull>
 		  </isParameterPresent>
-		  <isNotEmpty property="orderColumn" prepend="">
-		      ORDER BY #GMT_CREATE#
+		  <isNotEmpty property="sortColumn" prepend="">
+		      ORDER BY 
+		      <isEqual property="sortColumn" compareValue="GMT_MODIFIED">GMT_MODIFIED</isEqual>
+		      <isEqual property="sortColumn" compareValue="GMT_PUBLISH">GMT_PUBLISH</isEqual>
+		      <isEqual property="sortColumn" compareValue="GMT_CREATE">GMT_CREATE</isEqual>
+		      <isEqual property="sortColumn" compareValue="IS_TOP">IS_TOP</isEqual>
 		  </isNotEmpty>
-		  <isEmpty property="orderColumn" prepend="">
-		      ORDER BY GMT_CREATE
+		  <isEmpty property="sortColumn" prepend="">
+		      ORDER BY GMT_MODIFIED
 		  </isEmpty>
-		  <isEqual property="order" compareValue="desc" prepend=" ">
+		  <isNotEqual property="order" compareValue="ASC">
 		      DESC
-		  </isEqual>
+		  </isNotEqual>
 	      LIMIT #start#, #size#
 	</select>
 	
@@ -97,6 +117,15 @@
 		SELECT COUNT(ID)
 		  FROM CHAO_NEWS
 		  <isParameterPresent open="WHERE" removeFirstPrepend="true">
+		      <isNotNull property="id" prepend="AND">
+	    		  ID = #id# 
+			  </isNotNull>
+			  <isNotEmpty property="keyword" prepend="AND">
+	    		  TITLE LIKE CONCAT('%', #keyword#, '%')
+			  </isNotEmpty>
+			  <isNotEmpty property="isTop" prepend="AND">
+	    		  IS_TOP = #isTop# 
+			  </isNotEmpty>
 	    	  <isNotNull property="categoryId" prepend="AND">
 	    		  CATEGORY_ID = #categoryId# 
 			  </isNotNull>

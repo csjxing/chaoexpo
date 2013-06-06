@@ -5,8 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.codehaus.jackson.map.module.SimpleAbstractTypeResolver;
-
 /**
  * 
  * @author langben 2012-4-12

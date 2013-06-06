@@ -58,7 +58,7 @@ public class ChaoNewsServiceImpl implements ChaoNewsService {
 		if (count == 0) {
 			return new QueryResult<ChaoNewsDTO>(new ArrayList<ChaoNewsDTO>(), page, count);
 		}
-		List<ChaoNewsDO> temps = chaoNewsDAO.queryNewsPage(condition, page.getStart(), page.getSize());
+		List<ChaoNewsDO> temps = chaoNewsDAO.queryNewsPage(condition, page.getStart() - 1, page.getSize());
 		return new QueryResult<ChaoNewsDTO>(convert(temps), page, count);
 	}
 

@@ -4,15 +4,17 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.doucome.chaoexpo.biz.common.utils.ConditionUtils;
+
 public class ChaoNewsCondition {
 	
-	private Long newsId;
+	private Long id;
 	
 	private Long categoryId;
 	
 	private String keyword;
 	
-	private String status;
+	private String isTop;
 	
 	private Date gmtPublishStart;
 	
@@ -24,25 +26,31 @@ public class ChaoNewsCondition {
 	
 	private String orderColumn;
 	
-	private boolean isDesc;
+	private String order = "DESC";
 	
 	public Map<String,Object> toMap() {
 		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("newsId", newsId);
+		result.put("id", id);
 		result.put("categoryId", categoryId);
 		result.put("keyword", keyword);
-		result.put("status", status);
+		result.put("isTop", isTop);
 		result.put("gmtPublishStart", gmtPublishStart);
 		result.put("gmtPublishEnd", gmtPublishEnd);
 		result.put("gmtCreateStart", gmtCreateStart);
 		result.put("gmtCreateEnd", gmtCreateEnd);
 		result.put("orderColumn", orderColumn);
-		if (isDesc) {
-			result.put("order", "desc");
-		}
+		result.put("order", order);
 		return result ;
 	}
-
+	
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public Long getCategoryId() {
 		return categoryId;
 	}
@@ -64,7 +72,8 @@ public class ChaoNewsCondition {
 	}
 
 	public void setGmtPublishEnd(Date gmtPublishEnd) {
-		this.gmtPublishEnd = gmtPublishEnd;
+		Date[] days = ConditionUtils.getDayStartEnd(gmtPublishEnd);
+		this.gmtPublishEnd = days[1];
 	}
 
 	public String getOrderColumn() {
@@ -72,23 +81,15 @@ public class ChaoNewsCondition {
 	}
 
 	public void setOrderColumn(String orderColumn) {
-		this.orderColumn = orderColumn;
+		this.orderColumn = orderColumn == null? null: orderColumn.toUpperCase();
 	}
 
-	public boolean isDesc() {
-		return isDesc;
+	public String getOrder() {
+		return order;
 	}
 
-	public void setDesc(boolean isDesc) {
-		this.isDesc = isDesc;
-	}
-
-	public Long getNewsId() {
-		return newsId;
-	}
-
-	public void setNewsId(Long newsId) {
-		this.newsId = newsId;
+	public void setOrder(String order) {
+		this.order = order == null? null: order.toUpperCase();
 	}
 
 	public String getKeyword() {
@@ -98,13 +99,13 @@ public class ChaoNewsCondition {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
-
-	public String getStatus() {
-		return status;
+	
+	public String getIsTop() {
+		return isTop;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setIsTop(String isTop) {
+		this.isTop = isTop == null? null: isTop.toUpperCase();
 	}
 
 	public Date getGmtCreateStart() {

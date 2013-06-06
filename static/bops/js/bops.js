@@ -107,6 +107,7 @@
 								var tagName = _this.prop("tagName");
 								if (tagName == 'SELECT') {
 									for (var i = 0; i < data.length; i++) {
+								        _this.append('<option value="0">无</option>');
 									    if (data[i].id != categoryId) {
 											_this.append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
 										} else {
@@ -151,6 +152,7 @@
 								var subjectId = parseInt(_this.attr("data-subject-id"));
 								var tagName = _this.prop("tagName");
 								if (tagName == 'SELECT') {
+								    _this.append('<option value="0">无</option>');
 									for (var i = 0; i < data.length; i++) {
 									    if (data[i].id != subjectId) {
 											_this.append('<option value="' + data[i].id + '">' + data[i].name + '</option>');

@@ -49,11 +49,15 @@
 		</action>
 		<action name="news_category_list" class="com.doucome.chaoexpo.web.bops.action.NewsCategoryListAction" >
 			<interceptor-ref name="bopsDefaultStack" />
-			<result name="success" type="velocity">/bops/categoryList.vm</result>
+			<result name="success" type="velocity">/bops/newsCategoryList.vm</result>
+		</action>
+		<action name="news_category" class="com.doucome.chaoexpo.web.bops.action.NewsCategoryAction" >
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/newsCategory.vm</result>
 		</action>
 		<action name="add_news_category" class="com.doucome.chaoexpo.web.bops.action.AddNewsCategoryAction" >
 			<interceptor-ref name="bopsDefaultStack" />
-			<result name="success" type="redirect">/bops/category_list.htm</result>
+			<result name="success" type="redirect">/bops/news_category_list.htm</result>
 		</action>
 		<action name="activity_list" class="com.doucome.chaoexpo.web.bops.action.ActivityListAction" >
 			<interceptor-ref name="bopsDefaultStack" />
@@ -97,22 +101,37 @@
 			 </interceptor-stack>
 		</interceptors>
 		
-		<action name="upload_local_image" class="com.doucome.chaoexpo.web.bops.action.ajax.ImageUploadAction" method="uploadLocalImage">
+		<action name="upload_local_image" class="com.doucome.chaoexpo.web.bops.action.ajax.BImageUploadAction" method="uploadLocalImage">
 		    <interceptor-ref name="bopsDefaultStack" />
 		    <result name="success" type="json"></result>
 		</action>
 		
-		<action name="upload_url_image" class="com.doucome.chaoexpo.web.bops.action.ajax.ImageUploadAction" method="uploadUrlImage">
+		<action name="upload_url_image" class="com.doucome.chaoexpo.web.bops.action.ajax.BImageUploadAction" method="uploadUrlImage">
 		    <interceptor-ref name="bopsDefaultStack" />
 		    <result name="success" type="json"></result>
 		</action>
 		
-		<action name="query_categories" class="com.doucome.chaoexpo.web.bops.action.ajax.CategoriesAction">
+		<action name="query_categories" class="com.doucome.chaoexpo.web.bops.action.ajax.BCategoriesAction">
 		    <interceptor-ref name="bopsDefaultStack" />
 		    <result name="success" type="json"></result>
 		</action>
 		
-		<action name="query_subjects" class="com.doucome.chaoexpo.web.bops.action.ajax.SubjectsAction">
+		<action name="query_subjects" class="com.doucome.chaoexpo.web.bops.action.ajax.BSubjectsAction">
+		    <interceptor-ref name="bopsDefaultStack" />
+		    <result name="success" type="json"></result>
+		</action>
+		
+		<action name="reset_news_top" class="com.doucome.chaoexpo.web.bops.action.ajax.BNewsOrderAction" method="resetNewsTop">
+		    <interceptor-ref name="bopsDefaultStack" />
+		    <result name="success" type="json"></result>
+		</action>
+		
+		<action name="reset_news_display_order" class="com.doucome.chaoexpo.web.bops.action.ajax.BNewsOrderAction" method="resetNewsDisplayOrder">
+		    <interceptor-ref name="bopsDefaultStack" />
+		    <result name="success" type="json"></result>
+		</action>
+		
+		<action name="reset_news_category_status" class="com.doucome.chaoexpo.web.bops.action.ajax.BCategoryStatusAction">
 		    <interceptor-ref name="bopsDefaultStack" />
 		    <result name="success" type="json"></result>
 		</action>

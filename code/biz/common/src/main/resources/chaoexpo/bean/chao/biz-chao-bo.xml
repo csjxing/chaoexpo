@@ -24,4 +24,6 @@
 		        <value>bmp</value>
 		    </list>
 		</property>
-	</bean></beans>
+	</bean>
+	<bean id="chaoNewsBO" class="com.doucome.chaoexpo.biz.core.bo.ChaoNewsBO"/>
+</beans>

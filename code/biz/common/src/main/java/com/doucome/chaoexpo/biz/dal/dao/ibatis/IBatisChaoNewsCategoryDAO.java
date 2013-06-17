@@ -1,5 +1,6 @@
 package com.doucome.chaoexpo.biz.dal.dao.ibatis;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +26,9 @@ public class IBatisChaoNewsCategoryDAO extends SqlMapClientDaoSupport implements
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ChaoNewsCategoryDO> queryCategoriesByIds(List<Long> ids) {
-		return getSqlMapClientTemplate().queryForList("ChaoNewsCategory.queryCategoriesByIds" , ids) ;
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("ids", ids);
+		return getSqlMapClientTemplate().queryForList("ChaoNewsCategory.queryCategoriesByIds", params) ;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -45,6 +48,14 @@ public class IBatisChaoNewsCategoryDAO extends SqlMapClientDaoSupport implements
 	
 	@Override
 	public int updateCategory(ChaoNewsCategoryDO category) {
-		return (Integer) getSqlMapClientTemplate().queryForObject("ChaoNewsCategory.updateCategory", category);
+		return (Integer) getSqlMapClientTemplate().update("ChaoNewsCategory.updateCategory", category);
+	}
+	
+	@Override
+	public int updateStatus(Long id, String status) {
+		Map<String,Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+		params.put("status", status);
+		return getSqlMapClientTemplate().update("ChaoNewsCategory.updateStatus", params);
 	}
 }

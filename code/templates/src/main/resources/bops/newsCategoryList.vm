@@ -1,4 +1,4 @@
-#set($bopsCss=["categoryList.css"])
+#set($bopsCss=["newsCategoryList.css"])
 #set($layout="bops/default_bops.vm")
 
 #set($navigation = "新闻分类列表")
@@ -20,67 +20,52 @@
 
 <div class="bops">
     <div style="MT20 MB20">&nbsp;</div>
-    
-	##<form action="${env.bopsRoot}/bops/category_list.htm" method="GET">
+	##<form action="${env.bopsRoot}/bops/news_category_list.htm" method="get">
 	##	<div class="settleipt MB10 MT10">
-	##		<span>状态：</span>
-	##		<select name="status">
-	##            <option value="">全部</option>
-	##			<option value="N" #if($!status == "N") selected #end>有效</option>
-	##			<option value="D" #if($!status == "D") selected #end>无效</option>
-	##        </select>
-	##		<input type="submit" value="查询" />[<a href="javascript:;" id="settleIptMoreBtn" style="font-size:12px;">更多查询条件</a>]
+	##		<div class="search-line">
+	##			<span class="lbl">分类名称：</span>
+	##	    	<input type="text" name="name" style="width: 200px; line-height: 20px; padding: 3px 5px;"/>
+	##	    </div>
+	##	    <input type="submit" name="查询" style="width: 60px; line-height: 20px; padding: 3px 5px;" />
 	##	</div>
 	##</form>
 	
 	<div class="category-box">
-		<div class="title">新增新闻分类</div>
-		<form action="${env.bopsRoot}/bops/add_category.htm" method="post">
-			<input type="text" name="name" style="width: 200px; line-height: 20px; padding: 3px 5px;"/>
-			<input type="submit" name="提交" style="width: 60px; line-height: 20px; padding: 3px 5px;" />
-		</form>
+		<a class="add-category" href="${env.bopsRoot}/bops/news_category.htm" title="新增新闻分类">新增新闻分类</a>
 	</div>
 	 
-	 <table width="700" style="font-size:14px;" id="categoryTable">
+	 <table width="340" style="font-size:14px;" id="categoryTable">
 		<tr>
-			<th width="100">分类ID</th>
-    		<th width="200">名称</th>
-			<th width="100">创建时间</th>
-			<th width="100">操作</th>
+			<th width="40">ID</th>
+    		<th width="120">名称</th>
+    		<th width="60">状态</th>
+			<th width="140">创建时间</th>
     	</tr>
 		#if($!categoryResult.totalRecords > 0)
     		#foreach($category in $!categoryResult.items)
-            	<tr data-index="$!category.id">
+            	<tr data-id="$!category.id">
 					<td class="id">$!category.id</td>
 					<td>
-						<span>$!category.name</span>
-						<a class="modify-btn" href="javascript:;" title="修改">修改</a>
+						<div class="name"><a href="${env.bopsRoot}/bops/news_category.htm?id=$!category.id">$!category.catName</a></div>
 					</td>
             		<td class="">
-            		    #if($!category.status == 'E')
-            		    	<span>有效<span><a href="${env.bopsRoot}/bops/add_category.htm?id=$!category.id&status=D" title="置为无效">无效</a>
-    		            #else
-    		                <span>无效<span><a href="${env.bopsRoot}/bops/add_category.htm?id=$!category.id&status=E" title="置为有效">有效</a>
-    		            #end
+            		    <select name="status">
+            		    	<option value="E">有效</option>
+            		    	<option value="D" #if($!category.status == 'D')selected#end>无效</option>
+    		            </select>
             		</td>
 					<td align="center">
-						$dateUtils.format($!category.gmtModefied, 'yyyy-MM-dd HH:mm:ss')
-					</td>
-					<td align="center">
-						$dateUtils.format($!category.gmtCreate, 'yyyy-MM-dd HH:mm:ss')
-					</td>
-					<td align="center">
-						<a class="delete-btn" href="javascript:;" title="删除">删除</a>
+						$!dateUtils.format($!category.gmtCreate, 'yyyy-MM-dd HH:mm:ss')
 					</td>
             	</tr>
     		#end
 		#else
-            <tr><td colspan="6">没有查询到记录</td></tr>
+            <tr><td colspan="3">没有查询到记录</td></tr>
 		#end
      </table>
 </div>
+#BOPS_JS(["newsCategoryList.js"])
 <script>
-#set($bopsJs=["categoryList.js"])
 !(function($){
 	
 })(jQuery);

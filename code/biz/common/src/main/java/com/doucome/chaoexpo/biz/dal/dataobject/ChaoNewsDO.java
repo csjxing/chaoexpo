@@ -39,8 +39,7 @@ public class ChaoNewsDO extends AbstractModel {
 	private Long displayOrder ;
 
 	private String status;
-	/**
-	 * 时间	 */
+	
 	private String isTop ;
 	
 	/**

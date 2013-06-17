@@ -1,11 +1,4 @@
 
-.icon-pull-down,.icon-pull-up {
-	background-image: url(../images/updown.png);
-	background-repeat: no-repeat;
-	background-color: transparent;
-	display: inline-block;
-}
-
 
 .layer_tips .arrow_up,.layer_tips .arrow_down,.layer_tips .arrow_left,.layer_tips .arrow_right
 	{
@@ -739,16 +732,6 @@ i.yen {
 	color: #FFFFFF;
 }
 
-.icon-pull-down {
-	background-position: 3px -33px;
-	width: 14px;
-}
-
-.icon-pull-up {
-	background-position: 3px -13px;
-	width: 14px;
-}
-
 .updown-select-btn a,.updown-select-btn a:hover,.updown-select-btn a:active,.updown-select-btn a:visited
 	{
 	color: #0188CC;
@@ -948,6 +931,25 @@ i.yen {
 
 
 
+
+
+.icon-pull-down,.icon-pull-up {
+	background-image: url(../../image/updown.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: inline-block;
+}
+
+
+.icon-pull-down {
+	background-position: 3px -33px;
+	width: 14px;
+}
+
+.icon-pull-up {
+	background-position: 3px -13px;
+	width: 14px;
+}
 
 form label.error {
     margin-left: 5px;

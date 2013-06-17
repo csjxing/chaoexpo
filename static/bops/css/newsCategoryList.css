@@ -1,0 +1,15 @@
+.bops .category-box {
+     margin: 20px 0 10px 0;
+}
+
+.bops #categoryTable {
+    margin-top: 20px;
+    font: 12px/1.5 Tahoma,Arial,"\5b8b\4f53",sans-serif
+}
+
+.bops #categoryTable .title {
+    width: 194px;
+	padding-bottom: 2px;
+	border-bottom: 1px dashed #999;
+}
+

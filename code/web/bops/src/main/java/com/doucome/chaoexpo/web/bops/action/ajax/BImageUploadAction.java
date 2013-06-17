@@ -11,7 +11,7 @@ import com.doucome.chaoexpo.web.bops.action.BopsBasicAction;
 import com.doucome.chaoexpo.web.common.model.JsonModel;
 
 @SuppressWarnings("serial")
-public class ImageUploadAction extends BopsBasicAction {
+public class BImageUploadAction extends BopsBasicAction {
 	
 	private JsonModel<PicModel> json = new JsonModel<PicModel>();
 	

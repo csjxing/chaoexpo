@@ -6,10 +6,13 @@ import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.doucome.chaoexpo.biz.common.utils.IDUtils;
+import com.doucome.chaoexpo.biz.core.enums.TrueOrFalseEnums;
 import com.doucome.chaoexpo.biz.core.model.ChaoNewsDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoNewsService;
+import com.doucome.chaoexpo.biz.core.utils.ChaoDisplayOrderUtils;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoNewsCondition;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoNewsSearchCondition;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoNewsUpdateCondition;
@@ -37,19 +40,13 @@ public class ChaoNewsServiceImpl implements ChaoNewsService {
 	}
 
 	@Override
-	public QueryResult<ChaoNewsDTO> getNewsSummarysWithPagination(ChaoNewsSearchCondition condition, Pagination pagination) {
-		int totalRecords = chaoNewsDAO.countNewsSummarysWithPagination(condition);
-        if (totalRecords <= 0) {
-            return new QueryResult<ChaoNewsDTO>(new ArrayList<ChaoNewsDTO>(), pagination, totalRecords);
+	public QueryResult<ChaoNewsDTO> getNewsSummarysWithPagination(ChaoNewsSearchCondition condition, Pagination page) {
+		int count = chaoNewsDAO.countNewsSummarysWithPagination(condition);
+        if (count <= 0) {
+            return new QueryResult<ChaoNewsDTO>(new ArrayList<ChaoNewsDTO>(), page, count);
         }
-        List<ChaoNewsDO> doList = chaoNewsDAO.queryNewsSummarysWithPagination(condition, pagination.getStart(), pagination.getSize()) ;
-        List<ChaoNewsDTO> dtoList = new ArrayList<ChaoNewsDTO>() ;
-        if(CollectionUtils.isNotEmpty(doList)){
-        	for(ChaoNewsDO news : doList) {
-        		dtoList.add(new ChaoNewsDTO(news)) ;
-        	}
-        }
-        return new QueryResult<ChaoNewsDTO>(dtoList, pagination, totalRecords);
+        List<ChaoNewsDO> newsDOs = chaoNewsDAO.queryNewsSummarysWithPagination(condition, page.getStart() - 1, page.getSize());
+        return new QueryResult<ChaoNewsDTO>(convert(newsDOs), page, count);
 	}
 	
 	@Override

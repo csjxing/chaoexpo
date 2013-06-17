@@ -8,7 +8,8 @@ package com.doucome.chaoexpo.biz.core.enums;
 public enum ChaoStatusEnum {
 
 	ENABLE("E"),
-	DISABLE("D");
+	DISABLE("D"),
+	UNKNOW("");
 	
 	private String value;
 	
@@ -26,6 +27,6 @@ public enum ChaoStatusEnum {
 				return temp;
 			}
 		}
-		return ENABLE;
+		return UNKNOW;
 	}
 }

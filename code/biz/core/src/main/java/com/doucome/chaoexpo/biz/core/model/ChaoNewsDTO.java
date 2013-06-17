@@ -3,7 +3,11 @@ package com.doucome.chaoexpo.biz.core.model;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
+import com.doucome.chaoexpo.biz.core.constant.URIConstant;
 import com.doucome.chaoexpo.biz.core.enums.ChaoStatusEnum;
+import com.doucome.chaoexpo.biz.core.service.impl.DefaultUriService;
 import com.doucome.chaoexpo.biz.core.utils.ArrayStringUtils;
 import com.doucome.chaoexpo.biz.core.utils.ChaoDisplayOrderUtils;
 import com.doucome.chaoexpo.biz.core.utils.PictureUtils;
@@ -11,21 +15,32 @@ import com.doucome.chaoexpo.biz.dal.dataobject.ChaoNewsDO;
 
 public class ChaoNewsDTO {
 
-	private ChaoNewsDO news ;
+	private ChaoNewsDO news;
 	
-	private ChaoNewsCategoryDTO cat ;
+	private String summary;
+	
+	private String contentUrl;
+	
+	private String categoryName;
 
 	public ChaoNewsDTO() {
 		this(null);
 	}
 	
 	public ChaoNewsDTO(ChaoNewsDO news) {
-		if(news == null) {
-			news = new ChaoNewsDO() ;
-			news.setStatus(ChaoStatusEnum.ENABLE.getValue());
-			news.setDisplayOrder(ChaoDisplayOrderUtils.getDisplayOrder());
-		}
 		this.news = news;
+		if(news == null) {
+			this.news = new ChaoNewsDO() ;
+			this.news.setStatus(ChaoStatusEnum.ENABLE.getValue());
+			this.news.setDisplayOrder(ChaoDisplayOrderUtils.getDisplayOrder());
+		} else {
+			this.summary = news.getContent();
+			if (StringUtils.length(summary) > 100) {
+				this.summary = this.summary.substring(0, 100);
+			}
+			this.contentUrl = DefaultUriService.getFactoryURI(URIConstant.SERVER)
+			  + "/chao/remote/rest/query_news_detail.htm?id=" + news.getId();
+		}
 	}
 	
 	public List<PicModel> getPicModelList() {
@@ -117,6 +132,10 @@ public class ChaoNewsDTO {
 		news.setContent(content);
 	}
 	
+	public String getSummary() {
+		return summary;
+	}
+	
 	public String getIsTop() {
 		return news.getIsTop();
 	}
@@ -124,15 +143,19 @@ public class ChaoNewsDTO {
 	public void setIsTop(String isTop) {
 		news.setIsTop(isTop);
 	}
-
-	public ChaoNewsCategoryDTO getCat() {
-		return cat;
-	}
-
-	public void setCat(ChaoNewsCategoryDTO cat) {
-		this.cat = cat;
+	
+	public String getContentUrl() {
+		return contentUrl;
 	}
 	
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
 	public ChaoNewsDO toDO() {
 		return news;
 	}

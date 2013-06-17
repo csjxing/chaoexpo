@@ -15,6 +15,8 @@ public class ChaoNewsCategoryDO extends AbstractModel {
 	
 	private String catName ;
 	
+	private String status;
+	
 	private Date gmtCreate ;
 
 	public Long getId() {
@@ -31,6 +33,14 @@ public class ChaoNewsCategoryDO extends AbstractModel {
 
 	public void setCatName(String catName) {
 		this.catName = catName;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Date getGmtCreate() {

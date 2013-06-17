@@ -7,14 +7,15 @@
 	<resultMap id="RM-ChaoNewsCategory" class="TA-ChaoNewsCategory">
 		<result property="id" column="ID" />
 		<result property="catName" column="CAT_NAME" />
+		<result property="status" column="STATUS" />
 		<result property="gmtCreate" column="GMT_CREATE"/>
 	</resultMap>
 
 	<insert id="insertCategory">
 		INSERT INTO
-			CHAO_NEWS_CATEGORY(ID,CAT_NAME,GMT_CREATE)
+			CHAO_NEWS_CATEGORY(ID,CAT_NAME,STATUS,GMT_CREATE)
 		VALUES
-			(#id#,#catName#,now())
+			(#id#,#catName#,#status#,now())
 		<selectKey resultClass="java.lang.Long" keyProperty="id">
    			<![CDATA[
 			SELECT LAST_INSERT_ID() AS ID
@@ -22,9 +23,12 @@
 	    </selectKey>
 	</insert>
 	
+	<sql id="category_fields">
+	    ID,CAT_NAME,STATUS,GMT_CREATE
+	</sql>
+	
 	<select id="queryCategoryById" resultMap="RM-ChaoNewsCategory">
-		SELECT 
-			ID,CAT_NAME,GMT_CREATE
+		SELECT <include refid="category_fields" />
 		FROM
 			CHAO_NEWS_CATEGORY
 		WHERE
@@ -32,8 +36,7 @@
 	</select>
 	
 	<select id="queryCategoriesByIds" resultMap="RM-ChaoNewsCategory">
-		SELECT 
-			ID,CAT_NAME,GMT_CREATE
+		SELECT <include refid="category_fields" />
 		FROM
 			CHAO_NEWS_CATEGORY
 		WHERE
@@ -44,8 +47,7 @@
 	</select>
 	
 	<select id="queryCategoriesWithPagination" resultMap="RM-ChaoNewsCategory">
-		SELECT 
-			ID,CAT_NAME,GMT_CREATE
+		SELECT <include refid="category_fields" />
 		FROM
 			CHAO_NEWS_CATEGORY
 		ORDER BY 
@@ -63,17 +65,17 @@
 	</select>
 	
 	<update id="updateCategory">
-	    UPDATE CHAO_CATEGORY
+	    UPDATE CHAO_NEWS_CATEGORY
 	      SET
-	        <isNotEmpty property="name" prepend=""> 
-	            NAME = #name#,
+	        <isNotEmpty property="catName" prepend=""> 
+	            CAT_NAME = #catName#
 	        </isNotEmpty>
-	        GMT_MODIFIED = NOW()
-	      WHERE ID = #ID#
+	      WHERE ID = #id#
 	</update>
 	
-	<delete id="deleteCategory">
-	    DELETE FROM CHAO_CATEGORY
+	<delete id="updateStatus">
+	    UPDATE CHAO_NEWS_CATEGORY
+	      SET STATUS = #status#
 	      WHERE ID = #id#
 	</delete>
 </sqlMap>

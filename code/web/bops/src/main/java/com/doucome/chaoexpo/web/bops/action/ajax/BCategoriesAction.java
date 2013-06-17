@@ -13,7 +13,7 @@ import com.doucome.chaoexpo.web.bops.action.BopsBasicAction;
 import com.doucome.chaoexpo.web.common.model.JsonModel;
 
 @SuppressWarnings("serial")
-public class CategoriesAction extends BopsBasicAction {
+public class BCategoriesAction extends BopsBasicAction {
 	
 	private JsonModel<List<ChaoNewsCategoryDTO>> json = new JsonModel<List<ChaoNewsCategoryDTO>>();
 	

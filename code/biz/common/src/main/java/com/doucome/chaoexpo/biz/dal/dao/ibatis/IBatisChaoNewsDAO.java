@@ -67,4 +67,9 @@ public class IBatisChaoNewsDAO extends SqlMapClientDaoSupport implements ChaoNew
 		params.put("id", id);
 		return (Integer) getSqlMapClientTemplate().update("ChaoNews.updateNewsById", params);
 	}
+	
+	@Override
+	public int deleteNews(long id) {
+		return (Integer) getSqlMapClientTemplate().update("ChaoNews.deleteNewsd", id);
+	}
 }

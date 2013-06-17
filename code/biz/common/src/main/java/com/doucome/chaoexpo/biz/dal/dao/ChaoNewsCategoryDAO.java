@@ -54,4 +54,11 @@ public interface ChaoNewsCategoryDAO {
 	 * @return
 	 */
 	int updateCategory(ChaoNewsCategoryDO category);
+	/**
+	 * 
+	 * @param id
+	 * @param status
+	 * @return
+	 */
+	int updateStatus(Long id, String status);
 }

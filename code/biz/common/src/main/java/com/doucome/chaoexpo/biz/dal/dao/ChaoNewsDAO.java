@@ -70,5 +70,10 @@ public interface ChaoNewsDAO {
 	 * @return
 	 */
 	int updateNewsById(long id , ChaoNewsUpdateCondition condition) ;
-
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	int deleteNews(long id);
 }

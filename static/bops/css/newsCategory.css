@@ -1,0 +1,19 @@
+#categoryTable {
+    margin: 20px 10px;
+}
+
+#categoryTable td {
+    padding: 3px 5px;
+}
+
+#categoryTable td input {
+    line-height: 20px;
+	padding: 2px 3px;
+}
+
+#categoryTable td input[type='submit'] {
+    padding: 4px 8px;
+	letter-spacing: 3px;
+	font-size: 14px;
+	font-weight: bold;
+}

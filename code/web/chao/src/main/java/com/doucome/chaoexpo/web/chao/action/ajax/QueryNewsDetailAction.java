@@ -3,8 +3,10 @@ package com.doucome.chaoexpo.web.chao.action.ajax;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.doucome.chaoexpo.biz.common.utils.IDUtils;
+import com.doucome.chaoexpo.biz.core.bo.ChaoNewsBO;
 import com.doucome.chaoexpo.biz.core.model.ChaoNewsCategoryDTO;
 import com.doucome.chaoexpo.biz.core.model.ChaoNewsDTO;
+import com.doucome.chaoexpo.biz.core.model.param.ResultModel;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoNewsCategoryService;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoNewsService;
 import com.doucome.chaoexpo.web.chao.ChaoBasicAction;
@@ -16,49 +18,27 @@ import com.doucome.chaoexpo.web.common.model.JsonModel;
  *
  */
 public class QueryNewsDetailAction extends ChaoBasicAction {
+	
+	private static final long serialVersionUID = 1L;
 
 	private JsonModel<ChaoNewsDTO> json = new JsonModel<ChaoNewsDTO>() ;
 	
-	private Long id ;
-	
+	private Long id;
 	@Autowired
-	private ChaoNewsService chaoNewsService ;
-	
-	@Autowired
-	private ChaoNewsCategoryService chaoNewsCategoryService ;
+	private ChaoNewsBO chaoNewsBO;
 	
 	@Override
 	public String execute() throws Exception {
-		
 		if(IDUtils.isNotCorrect(id)) {
-			json.setCode(JsonModel.CODE_ILL_ARGS) ;
-			json.setDetail("chao.news.query.id.required") ;
+			json.setFail("id.invalid");
 			return SUCCESS ;
 		}
-		
-		try {
-			ChaoNewsDTO news = chaoNewsService.getNewsById(id) ;
-			
-			if(news == null) {
-				json.setCode(JsonModel.CODE_ILL_ARGS) ;
-				json.setDetail("chao.news.query.news.notExists") ;
-				return SUCCESS ;
-			}
-			
-			if(IDUtils.isCorrect(news.getCategoryId())){
-				Long catId = news.getCategoryId() ;
-				ChaoNewsCategoryDTO cat = chaoNewsCategoryService.getCategoryById(catId) ;
-				news.setCat(cat) ;
-			}
-						
-			json.setCode(JsonModel.CODE_SUCCESS) ;
-			json.setData(news) ;
-			
-		} catch (Exception e) {
-			json.setCode(JsonModel.CODE_FAIL) ;
-			json.setDetail(e.getMessage()) ;
+		ResultModel<ChaoNewsDTO> result = chaoNewsBO.getNewsDetail(id);
+		if (result.isSucc()) {
+			json.setSuccess(result.getData());
+		} else {
+			json.setFail(result.getDetail());
 		}
-		
 		return SUCCESS ;
 	}
 

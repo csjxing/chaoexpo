@@ -24,8 +24,75 @@
 }
 
 #newsTable .content {
-    width: 234px;
+    width: 294px;
 	line-height: 20px;
 	height: 40px;
 	white-space: normal;
+}
+
+#newsTable td .btn-box {
+    margin-left: 10px;
+	width: 72px;
+	padding: 2px 3px;
+	position:relative;
+	cursor: pointer;
+}
+
+#newsTable td .btn-box a.lbl-btn {
+	color: #0188CC;
+	font-size: 12px;
+	line-height: 17px;
+	text-decoration: none;
+	width: 70px;
+	display: inline-block;
+}
+
+#newsTable td .btn-box .btn-list {
+    position: absolute;
+	background-color: #FFFFFF;
+	border-radius: 2px 2px 2px 2px;
+	color: #0188CC;
+	z-index: 111;
+	font-size: 12px;
+	padding: 0;
+	margin: 0;
+	overflow-x: hidden;
+    overflow-y: auto;
+	top: 0px;
+}
+
+#newsTable td .btn-box .btn-list li {
+	border-left: 1px solid #C4C4C4;
+	border-right: 1px solid #C4C4C4;
+	cursor: pointer;
+	height: 20px;
+	line-height: 21px;
+	overflow: hidden;
+	padding: 2px 3px;
+	position: relative;
+	text-align: center;
+	width: 70px;
+}
+
+#newsTable td .btn-box .btn-list li:hover {
+    background-color: #F99236;
+}
+
+#newsTable td .btn-box .btn-list li:hover a {
+    color: #fff;
+}
+
+#newsTable td .btn-box .btn-list li.first {
+	border-radius: 3px 3px 0 0;
+	border-top: 1px solid #C4C4C4;
+	border-bottom: 1px solid #E9E9E9;
+	background-color: #eeeeee;
+	line-height: 18px;
+	height: 18px;
+	cursor: auto;
+}
+
+#newsTable td .btn-box .btn-list li.last {
+	border-radius: 0 0 3px 3px;
+	border-bottom: 1px solid #C4C4C4;
 }

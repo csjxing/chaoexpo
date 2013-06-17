@@ -3,8 +3,8 @@
 
 #set($navigation = "新闻列表")
 
-<input type="hidden"  id="ddzBopsRoot" value="${env.bopsRoot}"/>
-<input type="hidden"  id="ddzBopsPage" value="newsList"/>
+<input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
+<input type="hidden"  id="bopsPage" value="newsList"/>
 
 <style>
 	th a {
@@ -45,7 +45,7 @@
 			        </select>
 			    </span>
 		    </div>
-			<div id="settleIptMore" class="search-line">
+			<div class="search-line">
 				<span class="search-div">
 				    <span class="lbl">发布时间：</span>
 					<input type="text" id="gmtPublishStart" name="gmtPublishStart" class="dateIpt" value="$!gmtPublishStart"/> - 
@@ -80,7 +80,7 @@
 					<span class="dbsort_none"></span>
 				</a>
 			</th>
-			<th width="240">正文</th>
+			<th width="300">正文</th>
     		<th width="70">新闻图片</th>
 			<th width="80">分类</th>
 			<th width="40">
@@ -140,7 +140,17 @@
 						<div class="gmt-modified">$!dateUtils.format($!news.gmtModified, 'yyyy-MM-dd HH:mm')</div>
 					</td>
 					<td>
-						<ul></ul>
+						<div class="btn-box">
+							<a class="lbl-btn" href="javascript:;">
+							    <span>操作</span>
+							    <span class="icon-pull-down">&nbsp;</span>
+							</a>
+							<ul class="btn-list dd-hide">
+								<li class="first"><span>操作</span></li>
+							    <li><a href="${env.bopsRoot}/bops/news.htm?id=$!news.id" target="_blank">修改</a></li>
+							    <li class="last"><a class="move-first-btn" href="javascript:;" >排序靠前</a></li>
+							</ul>
+						</div>
 					</td>
             	</tr>
     		#end

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="ChaoNews">
-	<typeAlias alias="TA-ChaoNews"
-		type="com.doucome.chaoexpo.biz.dal.dataobject.ChaoNewsDO" />
+	<typeAlias alias="TA-ChaoNews" type="com.doucome.chaoexpo.biz.dal.dataobject.ChaoNewsDO" />
 
 	<resultMap id="RM-ChaoNews" class="TA-ChaoNews">
 		<result property="id" column="ID" />
@@ -18,8 +17,23 @@
 		<result property="gmtModified" column="GMT_MODIFIED" />
 	</resultMap>
 	
+	<resultMap id="RM-ChaoNews-Summary" class="TA-ChaoNews">
+		<result property="id" column="ID" />
+		<result property="title" column="TITLE" />
+		<result property="content" column="CONTENT"/>
+		<result property="source" column="SOURCE"/>
+		<result property="gmtPublish" column="GMT_PUBLISH"/>	
+		<result property="picUrls" column="PIC_URLS"/>
+		<result property="categoryId" column="CATEGORY_ID"/>
+		<result property="isTop" column="IS_TOP"/>
+	</resultMap>
+	
 	<sql id="chao_news_fields">
 		ID,TITLE,PIC_URLS,CONTENT,CATEGORY_ID,IS_TOP,DISPLAY_ORDER,SOURCE,GMT_PUBLISH,GMT_CREATE,GMT_MODIFIED
+	</sql>
+	
+	<sql id="chao_news_fields_summary">
+		ID,TITLE,PIC_URLS,CONTENT,CATEGORY_ID,IS_TOP,SOURCE,GMT_PUBLISH
 	</sql>
 
 	<insert id="insertNews">
@@ -35,37 +49,84 @@
 	</insert>
 	
 	<select id="queryNewsById" resultMap="RM-ChaoNews">
-		SELECT 
-			<include refid="chao_news_fields"/>
-		FROM
-			CHAO_NEWS
-		WHERE
-			ID = #id#
+		SELECT <include refid="chao_news_fields"/>
+		  FROM CHAO_NEWS
+		  WHERE ID = #id#
 	</select>
 	
-	<select id="queryNewsSummarysWithPagination" resultMap="RM-ChaoNews">
-		SELECT 
-			<include refid="chao_news_fields"/>
-		FROM
-			CHAO_NEWS
-		<isParameterPresent open="WHERE" removeFirstPrepend="true">
-	    	
-		</isParameterPresent>
-		ORDER BY 
-	    	IS_TOP DESC , 
-	    	DISPLAY_ORDER DESC
-	    LIMIT 
-	    	#start#, #size#
+	<select id="queryNewsSummarysWithPagination" resultMap="RM-ChaoNews-Summary">
+		SELECT <include refid="chao_news_fields_summary"/>
+		  FROM CHAO_NEWS
+		  <isParameterPresent open="WHERE" removeFirstPrepend="true">
+		      <isNotNull property="id" prepend="AND">
+	    		  ID = #id#
+			  </isNotNull>
+			  <isNotEmpty property="keyword" prepend="AND">
+	    		  TITLE LIKE CONCAT('%', #keyword#, '%') 
+			  </isNotEmpty>
+			  <isNotEmpty property="isTop" prepend="AND">
+	    		  IS_TOP = #isTop# 
+			  </isNotEmpty>
+			  <isNotEmpty property="status" prepend="AND">
+	    		  STATUS = #"status"# 
+			  </isNotEmpty>
+	    	  <isNotNull property="categoryId" prepend="AND">
+	    		  CATEGORY_ID = #categoryId# 
+			  </isNotNull>
+			  <isNotEmpty property="source" prepend="AND">
+	    		  SOURCE = #source# 
+			  </isNotEmpty>
+			  <isNotNull property="gmtPublishStart" prepend="AND">
+	    		  GMT_PUBLISH <![CDATA[>=]]> #gmtPublishStart# 
+			  </isNotNull>
+			  <isNotNull property="gmtPublishEnd" prepend="AND">
+	    		  GMT_PUBLISH <![CDATA[<]]> #gmtPublishEnd# 
+			  </isNotNull>
+		  </isParameterPresent>
+		  <isEmpty property="orderColumn" prepend="">
+		      ORDER BY IS_TOP DESC, DISPLAY_ORDER DESC
+		  </isEmpty>
+		  <isNotEmpty property="orderColumn" prepend="">
+		      ORDER BY 
+		      <isEqual property="orderColumn" compareValue="GMT_PUBLISH">
+		          GMT_PUBLISH DESC, DISPLAY_ORDER DESC
+		      </isEqual>
+		      <isNotEqual property="orderColumn" compareValue="GMT_PUBLISH">
+		          ORDER BY IS_TOP DESC, DISPLAY_ORDER DESC
+		      </isNotEqual>
+		  </isNotEmpty>
+	      LIMIT #start#, #size#
 	</select>
 	
 	<select id="countNewsSummarysWithPagination" resultClass="java.lang.Integer">
-		SELECT 
-			COUNT(ID)
-		FROM
-			CHAO_NEWS
-		<isParameterPresent open="WHERE" removeFirstPrepend="true">
-	    	
-		</isParameterPresent>
+		SELECT COUNT(ID)
+		  FROM CHAO_NEWS
+		  <isParameterPresent open="WHERE" removeFirstPrepend="true">
+	    	  <isNotNull property="id" prepend="AND">
+	    		  ID = #id#
+			  </isNotNull>
+			  <isNotEmpty property="keyword" prepend="AND">
+	    		  TITLE LIKE CONCAT('%', #keyword#, '%') 
+			  </isNotEmpty>
+			  <isNotEmpty property="isTop" prepend="AND">
+	    		  IS_TOP = #isTop# 
+			  </isNotEmpty>
+			  <isNotEmpty property="status" prepend="AND">
+	    		  STATUS = #"status"# 
+			  </isNotEmpty>
+	    	  <isNotNull property="categoryId" prepend="AND">
+	    		  CATEGORY_ID = #categoryId# 
+			  </isNotNull>
+			  <isNotEmpty property="source" prepend="AND">
+	    		  SOURCE = #"source"# 
+			  </isNotEmpty>
+			  <isNotNull property="gmtPublishStart" prepend="AND">
+	    		  GMT_PUBLISH <![CDATA[>=]]> #gmtPublishStart# 
+			  </isNotNull>
+			  <isNotNull property="gmtPublishEnd" prepend="AND">
+	    		  GMT_PUBLISH <![CDATA[<]]> #gmtPublishEnd# 
+			  </isNotNull>
+		  </isParameterPresent>
 	</select>
 	
 	<select id="queryNewsPage" resultMap="RM-ChaoNews">
@@ -80,6 +141,9 @@
 			  </isNotEmpty>
 			  <isNotEmpty property="isTop" prepend="AND">
 	    		  IS_TOP = #isTop# 
+			  </isNotEmpty>
+			  <isNotEmpty property="status" prepend="AND">
+	    		  STATUS = #"status"# 
 			  </isNotEmpty>
 	    	  <isNotNull property="categoryId" prepend="AND">
 	    		  CATEGORY_ID = #categoryId# 
@@ -97,19 +161,23 @@
 	    		  GMT_CREATE <![CDATA[<]]> #gmtCreateEnd# 
 			  </isNotNull>
 		  </isParameterPresent>
-		  <isNotEmpty property="sortColumn" prepend="">
+		  <isNotEmpty property="orderColumn" prepend="">
 		      ORDER BY 
-		      <isEqual property="sortColumn" compareValue="GMT_MODIFIED">GMT_MODIFIED</isEqual>
-		      <isEqual property="sortColumn" compareValue="GMT_PUBLISH">GMT_PUBLISH</isEqual>
-		      <isEqual property="sortColumn" compareValue="GMT_CREATE">GMT_CREATE</isEqual>
-		      <isEqual property="sortColumn" compareValue="IS_TOP">IS_TOP</isEqual>
+		      <isEqual property="orderColumn" compareValue="GMT_MODIFIED">GMT_MODIFIED</isEqual>
+		      <isEqual property="orderColumn" compareValue="GMT_PUBLISH">GMT_PUBLISH</isEqual>
+		      <isEqual property="orderColumn" compareValue="GMT_CREATE">GMT_CREATE</isEqual>
+		      <isEqual property="orderColumn" compareValue="IS_TOP">IS_TOP</isEqual>
 		  </isNotEmpty>
-		  <isEmpty property="sortColumn" prepend="">
-		      ORDER BY GMT_MODIFIED
+		  <isEmpty property="orderColumn" prepend="">
+		      ORDER BY IS_TOP
 		  </isEmpty>
 		  <isNotEqual property="order" compareValue="ASC">
-		      DESC
+		      DESC,
 		  </isNotEqual>
+		  <isEqual property="order" compareValue="ASC">
+		      ASC,
+		  </isEqual>
+		  DISPLAY_ORDER DESC
 	      LIMIT #start#, #size#
 	</select>
 	
@@ -125,6 +193,9 @@
 			  </isNotEmpty>
 			  <isNotEmpty property="isTop" prepend="AND">
 	    		  IS_TOP = #isTop# 
+			  </isNotEmpty>
+			  <isNotEmpty property="status" prepend="AND">
+	    		  STATUS = #"status"# 
 			  </isNotEmpty>
 	    	  <isNotNull property="categoryId" prepend="AND">
 	    		  CATEGORY_ID = #categoryId# 
@@ -168,7 +239,6 @@
 			ID = #id#
 	</update>	
 	
-	
 	<update id="updateNewsById">
 		UPDATE
 			CHAO_NEWS
@@ -198,5 +268,10 @@
 		WHERE
 			ID = #id#
 	</update>	
-
+	
+	<update id="deleteNews">
+	    UPDATE CHAO_NEWS
+		  SET STATUS = 'D'
+		  WHERE ID = #id#
+	</update>
 </sqlMap>

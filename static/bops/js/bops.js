@@ -99,19 +99,19 @@
 								var categoryId = parseInt(_this.attr("data-category-id"));
 								var tagName = _this.prop("tagName");
 								if (tagName == 'SELECT') {
+								    _this.append('<option value="0">无</option>');
 									for (var i = 0; i < data.length; i++) {
-								        _this.append('<option value="0">无</option>');
 									    if (data[i].id != categoryId) {
-											_this.append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
+											_this.append('<option value="' + data[i].id + '">' + data[i].catName + '</option>');
 										} else {
-										    _this.append('<option value="' + data[i].id + '" selected>' + data[i].name + '</option>');
+										    _this.append('<option value="' + data[i].id + '" selected>' + data[i].catName + '</option>');
 										}
 									}
 									_this.attr('data-init', 'y');
 								} else if(tagName == 'SPAN' || tagName == 'DIV') {
 								    for (var i = 0; i < data.length; i++) {
 									    if (categoryId == data[i].id) {
-										    _this.html(data[i].name);
+										    _this.html(data[i].catName);
 										}
 									}
 								}

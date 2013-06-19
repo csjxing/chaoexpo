@@ -8,7 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>$!title</title>
 
-	#BOPS_CSS(["common.css","bops.css"])
+	#BOPS_CSS(["bops.css"])
 	#CHAO_CSS(["../jquery-ui-1.8.21/bundle/themes/base/jquery.ui.all.css"])
 	#CHAO_JS(["lib/jquery-min.js","lib/common.js","../date-picker/WdatePicker.js"])
 	#CHAO_JS(["../jquery-ui-1.8.21/bundle/ui/jquery.ui.core.js","../jquery-ui-1.8.21/bundle/ui/jquery.ui.widget.js","../jquery-ui-1.8.21/bundle/ui/jquery.ui.datepicker.js","../jquery-ui-1.8.21/bundle/ui/i18n/jquery-ui-i18n.js"])
@@ -35,7 +35,7 @@
 	</table>
 	#parse("/common/bops/bottom.vm")
 	
-	#BOPS_JS(["bops.js"])
+	#BOPS_JS(["bops.js","validator.js"])
 	#if($!bopsJs)
     #BOPS_JS($!bopsJs)
     #end

@@ -11,6 +11,11 @@ import com.doucome.chaoexpo.biz.dal.condition.ChaoAppRecommendQuery;
 import com.doucome.chaoexpo.web.chao.ChaoBasicAction;
 import com.doucome.chaoexpo.web.common.model.JsonModel;
 
+/**
+ * 关于
+ * @author langben 2013-6-19
+ *
+ */
 public class AboutAction extends ChaoBasicAction {
 
 	private JsonModel<ChaoAboutDTO> json = new JsonModel<ChaoAboutDTO>() ;

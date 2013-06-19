@@ -4,6 +4,7 @@
 	var self = DD.Bops;
 	
 	var bopsRoot = $("#bopsRoot").val() ;
+	var bopsPage = $("#bopsPage").val() ;
 	var pictureRoot = $("#pictureRoot").val() ;
 	
 	$.extend(DD.Bops,{
@@ -21,7 +22,48 @@
 			self._initSubjectData();
 			//新增中，pic-detail-box.vm的事件.
 			self._initCreateObjPictureEvent();
+			
+			//应用推荐
+			self._initAppRecommend() ;
 		},
+		
+		/**
+		 * 
+		 */
+		_initAppRecommend:function(){
+			if(bopsPage == 'appRecommendList'){
+				$('.delete-recommend-btn').click(function(){
+					var _this = $(this) ;
+					var id = _this.attr('data-recommend-id') ;
+					if(id == '') {
+						alert('还没有选择要删除的记录！');
+						return ;
+					}
+					if(!confirm('是否删除记录？')){
+						return ;
+					}
+					
+					$.ajax({
+						url : bopsRoot + '/bops/remote/rest/delete_app_recommend_ajax.htm' ,
+						type : 'post' ,
+						data: {id : id},
+						success:function(result){
+							var code = result.code ;
+							var data = result.data ;
+							var detail = result.detail ;
+							if(code == 'success') {
+								window.location.reload() ;
+							} else {
+								alert('删除失败！ Msg :' + detail) ;
+							}
+						} , 
+						error :function (err){
+							alert('删除失败！ Msg :' + err) ;
+						}
+					});
+				}) ;
+			}
+		} ,
 		
 		_initLeftMenu:function() {
 			var pathname = window.location.pathname ; 

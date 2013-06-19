@@ -1,7 +1,12 @@
 package com.doucome.chaoexpo.biz.core.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import org.springframework.util.CollectionUtils;
+
+import com.doucome.chaoexpo.biz.core.utils.ArrayStringUtils;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoAppRecommendDO;
 import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
 
@@ -17,8 +22,13 @@ public class ChaoAppRecommendDTO extends AbstractModel {
 	}
 	
 	public PicModel getLogoUrlModel() {
-		return new PicModel(getLogoUrl()) ;
+		List<String> picList = ArrayStringUtils.toList(getLogoUrl()) ;
+		if(CollectionUtils.isEmpty(picList)) {
+			return null ;
+		}
+		return new PicModel(picList.get(0)) ;
 	}
+	
 	
 	/**
 	 * ---------------------------------------------------------------------------

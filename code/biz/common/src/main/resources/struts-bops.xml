@@ -88,6 +88,16 @@
 			<interceptor-ref name="bopsDefaultStack" />
 			<result name="success" type="velocity">/bops/appRecommendList.vm</result>
 		</action>
+		
+		<action name="add_app_recommend" class="com.doucome.chaoexpo.web.bops.action.QueryAppRecommendAction">
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/appRecommend.vm</result>
+		</action>
+		
+		<action name="do_add_app_recommend" class="com.doucome.chaoexpo.web.bops.action.AddAppRecommendAction">
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/success.vm</result>
+		</action>
 	</package>
 	
 	<package name="bops-remote" namespace="/bops/remote" extends="default">
@@ -134,6 +144,11 @@
 		<action name="reset_news_category_status" class="com.doucome.chaoexpo.web.bops.action.ajax.BCategoryStatusAction">
 		    <interceptor-ref name="bopsDefaultStack" />
 		    <result name="success" type="json"></result>
+		</action>
+		
+		<action name="delete_app_recommend_ajax" class="com.doucome.chaoexpo.web.bops.action.ajax.AppRecommendOperateAction" method="delete">
+			<interceptor-ref name="bopsDefaultStack" />
+		    <result name="success" type="json2"></result>
 		</action>
 	</package>
 </struts>

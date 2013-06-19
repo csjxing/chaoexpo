@@ -59,8 +59,6 @@
 
 .main-box .content-box ul li  textarea[name='content'] {
 	height: 160px;
-	line-height: 25px;
-	letter-spacing: 1px;
 	padding: 3px 4px;
 }
 

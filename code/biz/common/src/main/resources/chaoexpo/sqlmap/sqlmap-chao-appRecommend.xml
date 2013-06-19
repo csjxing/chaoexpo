@@ -26,6 +26,15 @@
 	    </selectKey>
 	</insert>
 	
+	<select id="queryRecommendById" resultMap="RM-ChaoAppRecommend">
+		SELECT 
+			ID,APP_NAME,LOGO_URL,INTRO,APP_STORE_URL,GMT_CREATE,GMT_MODIFIED
+		FROM
+			CHAO_APP_RECOMMEND
+		WHERE
+			ID = #id#
+	</select>
+	
 	<select id="queryRecommendsWithPagination" resultMap="RM-ChaoAppRecommend">
 		SELECT 
 			ID,APP_NAME,LOGO_URL,INTRO,APP_STORE_URL,GMT_CREATE,GMT_MODIFIED
@@ -44,4 +53,31 @@
 			CHAO_APP_RECOMMEND
 	</select>
 	
+	<update id="updateRecommendById">
+		UPDATE
+			CHAO_APP_RECOMMEND
+		SET
+			<isNotEmpty property="appName">
+				APP_NAME = #appName# ,
+			</isNotEmpty>
+			<isNotEmpty property="logoUrl">
+				LOGO_URL = #logoUrl# ,
+			</isNotEmpty>
+			<isNotEmpty property="intro">
+				INTRO = #intro# ,
+			</isNotEmpty>
+			<isNotEmpty property="appStoreUrl">
+				APP_STORE_URL = #appStoreUrl# ,
+			</isNotEmpty>
+			GMT_MODIFIED = now()
+		WHERE
+			ID = #id#
+	</update>
+	
+	<delete id="deleteRecommendById">
+		DELETE FROM 
+			CHAO_APP_RECOMMEND
+		WHERE
+			ID = #id#
+	</delete>
 </sqlMap>

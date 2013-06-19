@@ -1,10 +1,13 @@
 package com.doucome.chaoexpo.web.common.toolbox;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.springframework.util.CollectionUtils;
+
+import com.doucome.chaoexpo.biz.core.model.PicModel;
 
 public class CollectionUtilsToolbox extends CollectionUtils {
 
@@ -29,5 +32,11 @@ public class CollectionUtilsToolbox extends CollectionUtils {
 	
 	public static boolean isEmpty(Collection collection) {
 		return (collection == null || collection.isEmpty());
+	}
+	
+	public static List<Object> wrapperToList(Object o) {
+		List<Object> list = new ArrayList<Object>() ;
+		list.add(o) ;
+		return list ;
 	}
 }

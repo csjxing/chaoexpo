@@ -1,4 +1,4 @@
-锘�*
+﻿/*
 	1:	// Element
 	2:  // ATTRIBUTE
 	3:	// Text
@@ -169,7 +169,7 @@ Validator = {
 	Require : /.+/,
 	Email : /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
 	Phone : /^((\(\d{2,3}\))|(\d{3}\-))?(\(0\d{2,3}\)|0\d{2,3}-)?[1-9]\d{6,7}(\-\d{1,4})?$/,
-	Mobile : /^((\(\d{2,3}\))|(\d{3}\-))?13\d{9}$/,
+	Mobile : /^1\d{10}$/,
 	Url : /^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*$/,
 	IP : /^(0|[1-9]\d?|[0-1]\d{2}|2[0-4]\d|25[0-5]).(0|[1-9]\d?|[0-1]\d{2}|2[0-4]\d|25[0-5]).(0|[1-9]\d?|[0-1]\d{2}|2[0-4]\d|25[0-5]).(0|[1-9]\d?|[0-1]\d{2}|2[0-4]\d|25[0-5])$/,
 	IdCard : "Validator.IsIdCard(value)",
@@ -195,134 +195,209 @@ Validator = {
 	Custom : "Validator.Exec(value, getAttribute('regexp'))",
 	Group : "Validator.MustChecked(getAttribute('name'), getAttribute('min'), getAttribute('max'))",
 	ErrorItem : [document.forms[0]],
-	ErrorMessage : ["浠ヤ笅鍘熷洜瀵艰嚧鎻愪氦澶辫触锛歕t\t\t\t"],
+	ErrorMessage : ["以下原因导致提交失败：\t\t\t\t"],
+	/**
+	 * 
+	 */
+	__validate : function(_xmlItem,nameArray,_dataType,object,name,msg,index){
+		with(_xmlItem){
+			var value = object.value.trim() ;
+			
+			if(typeof(_dataType) == "object" || typeof(Validator[_dataType]) == "undefined")  {
+				return ;
+			}
+			Validator.ClearState(object);
+			if(_xmlItem.getAttribute("require")=="false" && value == ""){
+				return ;
+			}
+			var nameKey = name ;
+			if(typeof(index) != 'undefined'){
+				msg = msg.replace("$",index+1) ;
+				nameKey += index ;
+			}
+			switch(_dataType){
+				
+				case "IdCard" :
+				case "Date" :
+				case "Repeat" :
+				case "Range" :
+				case "Compare" :
+				case "Custom" :
+				case "Group" : 
+				case "Limit" :
+				case "LimitB" :
+				case "SafeString" :
+				case "Filter" :
+					if(!eval(Validator[_dataType]))	{			
+						// start edit -- 2006-04-06
+						if(!nameArray.contains(nameKey)){
+							Validator.AddError(name, msg);
+							nameArray[nameArray.length] = nameKey;								
+						}
+						// end edit -- 2006-04-06
+					}
+					break;
+				default :
+					if(!Validator[_dataType].test(value)){
+						// start edit -- 2006-04-06
+						if(!nameArray.contains(nameKey)){
+							Validator.AddError(name, msg);
+							nameArray[nameArray.length] = nameKey;						
+						}
+						// end edit -- 2006-04-06
+					}
+					break;
+			}
+		}
+	} ,
 	/**
 	 * theForm : form
 	 * xmlFile : the xmlfile to load , if xmlFile='member' will load validation-member.xml , if null use default validation.xml
 	 */
 	validate : function(theForm,xmlFile,mode){
-		this.obj = theForm || event.srcElement;
-		this.ErrorMessage.length = 1;
-		this.ErrorItem.length = 1;
-		this.ErrorItem[0] = this.obj;
-		var nameArray = new Array();
-		// read xml by ajax
-		var xmlHttp = new XmlHttp();
-		xmlFile = (typeof(xmlFile)=='undefined') ? "validation.xml" : "./validation_"+xmlFile+".xml";
-		xmlHttp.loadXML(xmlFile,false);
-		// var xPath = "//page[@name='" + location.pathname.toLowerCase().substring(location.pathname.toLowerCase().lastIndexOf("/")+1) + "']/form[@id='" + obj.id + "']/item";
-		var formId = (document.all) ? this.obj.getAttributeNode("id").value : this.obj.getAttribute("id");
-		var xPath = "//form[@id='"+formId+"']/item";
-		var items = xmlHttp.selectNodes(xPath);
-		// alert("xPath = " + xPath );
-		var iLen = items.length;
-		for(var i=0;i<iLen;i++){
-			with(items[i]){
-				var _dataType = getAttribute("dataType");
-				var value ;
-				//alert(" dataType: " +_dataType + " -- name: " + getAttribute("name"));
-				// validate fckeditor value
-				if(_dataType=="Fckeditor"){
-					Validator.getObject(getAttribute("name"));
-					value = FCKeditorAPI.GetInstance(getAttribute("name")).GetXHTML(true);
-					if(value==null || ""==value || ("<P>&nbsp;</P>"==value)){
-						Validator.AddError(getAttribute("name"), getAttribute("msg"));
+		try{
+			this.obj = theForm || event.srcElement;
+			this.ErrorMessage.length = 1;
+			this.ErrorItem.length = 1;
+			this.ErrorItem[0] = this.obj;
+			var nameArray = new Array();
+			// read xml by ajax
+			var xmlHttp = new XmlHttp();
+			var t = new Date().getTime() ;
+			xmlFile = (typeof(xmlFile)=='undefined') ? "../validator/validation.xml?t=" + t : "../validator/validation_"+xmlFile+".xml?t=" + t;
+			xmlHttp.loadXML(xmlFile,false);
+			// var xPath = "//page[@name='" + location.pathname.toLowerCase().substring(location.pathname.toLowerCase().lastIndexOf("/")+1) + "']/form[@id='" + obj.id + "']/item";
+			var formId = (document.all) ? this.obj.getAttributeNode("id").value : this.obj.getAttribute("id");
+			var xPath = "//form[@id='"+formId+"']/item";
+			var items = xmlHttp.selectNodes(xPath);
+			// alert("xPath = " + xPath );
+			var iLen = items.length;
+			//loop for all items 
+			for(var i=0;i<iLen;i++){
+				with(items[i]){
+					var _dataType = getAttribute("dataType");
+					var isBatch = getAttribute("batch") ;//batch data
+					var value ;
+					//alert(" dataType: " +_dataType + " -- name: " + getAttribute("name"));
+					// validate fckeditor value
+					if(isBatch == "true"){ //批量数据
+						var attrName = getAttribute("name") ;
+						var hasIndex = (attrName.indexOf("$") != -1) ; 
+						if(hasIndex){
+							for(var j=0;;j++){
+								var name = attrName.replace("$",j) ;
+								var object = Validator.getObject(name) ;
+								var msg = getAttribute("msg") ;
+								if(object == null){
+									break ;
+								}
+								Validator.__validate(items[i],nameArray,_dataType,object,name,msg,j) ;
+							}
+						}else{
+							var name = attrName ;
+							var objects = Validator.getObjects(name) ;
+							if(objects == null){
+								alert("不存在名为["+name+"]的表单项");
+								continue ;
+							}
+							var msg = getAttribute("msg") ; 
+							for(var j=0;j<objects.length;j++){
+								var object = objects[j] ;
+								Validator.__validate(items[i],nameArray,_dataType,object,name,msg,j) ;
+							}
+						}
+					}else{
+						var name = getAttribute("name") ;
+						var object = Validator.getObject(name) ;
+						if(object == null){
+							alert("不存在名为["+name+"]的表单项");
+							continue ;
+						}
+						value = Validator.getValue(name);
+						var msg = getAttribute("msg") ;
+						Validator.__validate(items[i],nameArray,_dataType,object,name,msg) ;
 					}
 				}
-				else{
-					value = Validator.getValue(getAttribute("name"));
+			} //end for i
+			if(Validator.ErrorMessage.length > 1){
+				// start edit 2006-4-10
+				if(mode == null){
+					mode = 2;
 				}
-				if(typeof(_dataType) == "object" || typeof(Validator[_dataType]) == "undefined")  continue;
-				Validator.ClearState(Validator.getObject(getAttribute("name")));
-				if(getAttribute("require") == "false" && value == "") continue;
-				var isChecked = false;
-				switch(_dataType){
-				
-					case "IdCard" :
-					case "Date" :
-					case "Repeat" :
-					case "Range" :
-					case "Compare" :
-					case "Custom" :
-					case "Group" : 
-					case "Limit" :
-					case "LimitB" :
-					case "SafeString" :
-					case "Filter" :
-						if(!eval(Validator[_dataType]))	{			
-							// start edit -- 2006-04-06
-							if(!nameArray.contains(getAttribute("name"))){
-								Validator.AddError(getAttribute("name"), getAttribute("msg"));
-								nameArray = nameArray.concat(getAttribute("name"));								
-							}
-							// end edit -- 2006-04-06
+				// end edit 2006-4-10
+				mode = mode || 1;
+				var errCount = Validator.ErrorItem.length;
+				switch(mode){
+				case 2 :
+					for(var i=1;i<errCount;i++)
+						Validator.ErrorItem[i].style.color = "red";
+				case 1 :
+					alert(Validator.ErrorMessage.join("\n"));
+					// when error item is fckeditor,this code is error.
+					//Validator.ErrorItem[1].focus();
+					break;
+				case 3 :
+					for(var i=1;i<errCount;i++){
+						try{
+							var span = document.createElement("SPAN");
+							span.id = "__ErrorMessagePanel";
+							span.style.color = "red";
+							Validator.ErrorItem[i].parentNode.appendChild(span);
+							span.innerHTML = Validator.ErrorMessage[i].replace(/\d+:/,"*");
 						}
-						break;
-					default :
-						if(!Validator[_dataType].test(value)){
-							// start edit -- 2006-04-06
-							if(!nameArray.contains(getAttribute("name"))){
-								Validator.AddError(getAttribute("name"), getAttribute("msg"));
-								nameArray = nameArray.concat(getAttribute("name"));								
-							}
-							// end edit -- 2006-04-06
-						}
-						break;
-				}
-			}
-		}
-		if(Validator.ErrorMessage.length > 1){
-			// start edit 2006-4-10
-			if(mode == null){
-				mode = 2;
-			}
-			// end edit 2006-4-10
-			mode = mode || 1;
-			var errCount = Validator.ErrorItem.length;
-			switch(mode){
-			case 2 :
-				for(var i=1;i<errCount;i++)
-					Validator.ErrorItem[i].style.color = "red";
-			case 1 :
-				alert(Validator.ErrorMessage.join("\n"));
-				// when error item is fckeditor,this code is error.
-				//Validator.ErrorItem[1].focus();
-				break;
-			case 3 :
-				for(var i=1;i<errCount;i++){
-					try{
-						var span = document.createElement("SPAN");
-						span.id = "__ErrorMessagePanel";
-						span.style.color = "red";
-						Validator.ErrorItem[i].parentNode.appendChild(span);
-						span.innerHTML = Validator.ErrorMessage[i].replace(/\d+:/,"*");
+						catch(e){alert(e.description);}
 					}
-					catch(e){alert(e.description);}
+					//Validator.ErrorItem[1].focus();
+					break;
+				default :
+					alert(Validator.ErrorMessage.join("\n"));
+					break;
 				}
-				//Validator.ErrorItem[1].focus();
-				break;
-			default :
-				alert(Validator.ErrorMessage.join("\n"));
-				break;
+				return false;
 			}
-			return false;
+			return true;
+		}catch(e){
+			alert("系统繁忙，请稍后再试![" + e.message + "]") ;
+			return false ;
 		}
-		return true;
 	},
 	getValue : function(fieldname){
-		return this.getObject(fieldname).value.trim();
+		var obj = this.getObject(fieldname) ;
+		if(obj != null)
+			return obj.value.trim();
+		return null ;
 	},
-	getObject : function(fieldname){
+	getValues : function(fieldname){
+		var objs = this.getObjects(fieldname) ;
+		if(objs==null || objs.length<=0){
+			return null ;
+		}
+		var values = [] ;
+		for(var i=0;i<obj.length;i++){
+			values[i] = obj.value.trim() ;
+		}
+	} ,
+	getObject : function(fieldname,alerts){
 		var tmpObj = this.obj[fieldname];
 		if(typeof(tmpObj) == "undefined"){
-			alert("涓嶅瓨鍦ㄥ悕绉颁负" + fieldname + "鐨勮〃鍗曢」");
-			return false;
+			return null ;
 		}
 		try{
 			return (tmpObj.length && !tmpObj.tagName)?tmpObj[tmpObj.length-1] : tmpObj;
 		}catch(ie){
-			alert("涓嶅瓨鍦ㄥ悕绉颁负" + fieldname + "鐨勮〃鍗曢」\nerror:" + ie.description);
+			
 		}
+		return null ;
+	},
+	getObjects : function(fieldname){
+		var tmpObj = this.obj[fieldname];
+		if(typeof(tmpObj) == "undefined"){
+			return null ;
+		}
+		if(typeof(tmpObj.length) == 'undefined'){
+			return [tmpObj] ;
+		}
+		return tmpObj ;
 	},
 	limit : function(len,min, max){
 		min = min || 0;
@@ -380,7 +455,7 @@ return new RegExp("^.+\.(?=EXT)(EXT)$".replace(/EXT/g, filter.split(/\s*,\s*/).j
 		var date, Ai;
 		var verify = "10x98765432";
 		var Wi = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
-		var area = ['','','','','','','','','','','','鍖椾含','澶╂触','娌冲寳','灞辫タ','鍐呰挋鍙�,'','','','','','杈藉畞','鍚夋灄','榛戦緳姹�,'','','','','','','','涓婃捣','姹熻嫃','娴欐睙','瀹夊井','绂忓缓','姹熻タ','灞变笢','','','','娌冲崡','婀栧寳','婀栧崡','骞夸笢','骞胯タ','娴峰崡','','','','閲嶅簡','鍥涘窛','璐靛窞','浜戝崡','瑗胯棌','','','','','','','闄曡タ','鐢樿們','闈掓捣','瀹佸','鏂扮枂','','','','','','鍙版咕','','','','','','','','','','棣欐腐','婢抽棬','','','','','','','','','鍥藉'];
+		var area = ['','','','','','','','','','','','北京','天津','河北','山西','内蒙古','','','','','','辽宁','吉林','黑龙江','','','','','','','','上海','江苏','浙江','安微','福建','江西','山东','','','','河南','湖北','湖南','广东','广西','海南','','','','重庆','四川','贵州','云南','西藏','','','','','','','陕西','甘肃','青海','宁夏','新疆','','','','','','台湾','','','','','','','','','','香港','澳门','','','','','','','','','国外'];
 		var re = number.match(/^(\d{2})\d{4}(((\d{2})(\d{2})(\d{2})(\d{3}))|((\d{4})(\d{2})(\d{2})(\d{3}[x\d])))$/i);
 		if(re == null) return false;
 		if(re[1] >= area.length || area[re[1]] == "") return false;

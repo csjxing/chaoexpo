@@ -18,4 +18,7 @@
 	<bean id="chaoNewsDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoNewsDAO"/>
 	<bean id="chaoNewsCategoryDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoNewsCategoryDAO"/>
 	<bean id="chaoAppRecommendDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoAppRecommendDAO"/>
+	<bean id="chaoCultureDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoCultureDAO"/>
+	<bean id="chaoIntroDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoIntroDAO"/>
+	
 </beans>

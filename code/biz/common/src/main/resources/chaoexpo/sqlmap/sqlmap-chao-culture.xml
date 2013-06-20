@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ChaoCulture">
+	<typeAlias alias="TA-ChaoCulture"
+		type="com.doucome.chaoexpo.biz.dal.dataobject.ChaoCultureDO" />
+
+	<resultMap id="RM-ChaoCulture" class="TA-ChaoCulture">
+		<result property="id" column="ID" />
+		<result property="name" column="NAME" />
+		<result property="intro" column="INTRO"/>
+		<result property="picUrls" column="PIC_URLS"/>
+		<result property="gmtCreate" column="GMT_CREATE"/>
+		<result property="gmtModified" column="GMT_MODIFIED" />
+	</resultMap>
+
+	<insert id="insertCulture">
+		INSERT INTO
+			CHAO_CULTURE(ID,NAME,INTRO,PIC_URLS,GMT_CREATE,GMT_MODIFIED)
+		VALUES
+			(#id#,#name#,#intro#,#picUrls#,now(),now())
+		<selectKey resultClass="java.lang.Long" keyProperty="id">
+   			<![CDATA[
+			SELECT LAST_INSERT_ID() AS ID
+			]]>
+	    </selectKey>
+	</insert>
+	
+	<select id="queryCultureById" resultMap="RM-ChaoCulture">
+		SELECT 
+			ID,NAME,INTRO,PIC_URLS,GMT_CREATE,GMT_MODIFIED
+		FROM
+			CHAO_CULTURE
+		WHERE
+			ID = #id#
+	</select>
+	
+	<select id="queryCulturesWithPagination" resultMap="RM-ChaoCulture">
+		SELECT 
+			ID,NAME,INTRO,PIC_URLS,GMT_CREATE,GMT_MODIFIED
+		FROM
+			CHAO_CULTURE
+		ORDER BY 
+	    	GMT_CREATE DESC
+	    LIMIT 
+	    	#start#, #size#
+	</select>
+	
+	<select id="countCulturesWithPagination" resultClass="java.lang.Integer">
+		SELECT 
+			COUNT(ID)
+		FROM
+			CHAO_CULTURE
+	</select>
+	
+	<update id="updateCultureById">
+		UPDATE
+			CHAO_CULTURE
+		SET
+			<isNotEmpty property="name">
+				NAME = #name# ,
+			</isNotEmpty>
+			<isNotEmpty property="intro">
+				INTRO = #intro# ,
+			</isNotEmpty>
+			<isNotEmpty property="picUrls">
+				PIC_URLS = #picUrls# ,
+			</isNotEmpty>
+			GMT_MODIFIED = now()
+		WHERE
+			ID = #id#
+	</update>
+	
+	<delete id="deleteCultureById">
+		DELETE FROM
+			CHAO_CULTURE
+		WHERE
+			ID = #id#
+	</delete>
+</sqlMap>

@@ -21,5 +21,6 @@
   	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-userFollow.xml" />
   	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-newsCategory.xml" />
   	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-appRecommend.xml" />
-  	
+  	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-culture.xml" />
+  	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-intro.xml"/>
 </sqlMapConfig>

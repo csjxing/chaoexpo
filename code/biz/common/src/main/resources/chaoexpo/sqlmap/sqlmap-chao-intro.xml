@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ChaoIntro">
+	<typeAlias alias="TA-ChaoIntro"
+		type="com.doucome.chaoexpo.biz.dal.dataobject.ChaoIntroDO" />
+
+	<resultMap id="RM-ChaoIntro" class="TA-ChaoIntro">
+		<result property="id" column="ID" />
+		<result property="hnMapPicUrls" column="HN_MAP_PIC_URLS"/>
+		<result property="hnIntro" column="HN_INTRO"/>
+		<result property="chaoExpoIntro" column="CHAO_EXPO_INTRO" />
+		<result property="gmtCreate" column="GMT_CREATE"/>
+		<result property="gmtModified" column="GMT_MODIFIED" />
+	</resultMap>
+
+	<insert id="insertIntro">
+		INSERT INTO
+			CHAO_INTRO(ID,HN_MAP_PIC_URLS,HN_INTRO,CHAO_EXPO_INTRO,GMT_CREATE,GMT_MODIFIED)
+		VALUES
+			(#id#,#hnMapPicUrls#,#hnIntro#,#chaoExpoIntro#,now(),now())
+		<selectKey resultClass="java.lang.Long" keyProperty="id">
+   			<![CDATA[
+			SELECT LAST_INSERT_ID() AS ID
+			]]>
+	    </selectKey>
+	</insert>
+	
+	<select id="queryIntro" resultMap="RM-ChaoIntro">
+		SELECT 
+			ID,HN_MAP_PIC_URLS,HN_INTRO,CHAO_EXPO_INTRO,GMT_CREATE,GMT_MODIFIED
+		FROM
+			CHAO_INTRO
+		LIMIT 1
+	</select>
+	
+	<update id="updateIntro">
+		UPDATE
+			CHAO_INTRO
+		SET
+			<isNotEmpty property="hnMapPicUrls">
+				HN_MAP_PIC_URLS = #hnMapPicUrls# ,
+			</isNotEmpty>
+			<isNotEmpty property="hnIntro">
+				HN_INTRO = #hnIntro# ,
+			</isNotEmpty>
+			<isNotEmpty property="chaoExpoIntro">
+				CHAO_EXPO_INTRO = #chaoExpoIntro# ,
+			</isNotEmpty>
+			GMT_MODIFIED = now()
+	</update>
+	
+</sqlMap>

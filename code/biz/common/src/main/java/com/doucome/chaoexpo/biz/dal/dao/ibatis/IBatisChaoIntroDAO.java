@@ -24,7 +24,7 @@ public class IBatisChaoIntroDAO extends SqlMapClientDaoSupport implements ChaoIn
 
 	@Override
 	public int updateIntro(ChaoIntroUpdateCondition update) {
-		Map<String,Object> map = new HashMap<String,Object>() ;
+		Map<String,Object> map = update.toMap() ;
 		return getSqlMapClientTemplate().update("ChaoIntro.updateIntro" , map) ;
 	}
 

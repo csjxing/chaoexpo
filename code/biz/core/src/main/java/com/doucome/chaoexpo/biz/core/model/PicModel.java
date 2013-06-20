@@ -1,12 +1,14 @@
 package com.doucome.chaoexpo.biz.core.model;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.doucome.chaoexpo.biz.core.enums.PictureSizeEnums;
 import com.doucome.chaoexpo.biz.core.utils.PictureUtils;
 
 public class PicModel {
 	
 	public PicModel(String path) {
-		this.path = path ;
+		this.path = StringUtils.trim(path) ;
 	}
 
 	private String path ;

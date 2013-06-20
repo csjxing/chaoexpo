@@ -1,0 +1,42 @@
+#set($bopsCss=["subject.css"])
+#set($layout="bops/default_bops.vm")
+#set($navigation = "修改潮博会介绍")
+
+<input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
+<input type="hidden"  id="bopsPage" value="intro"/>
+<input type="hidden"  id="pictureRoot" value="${env.pictureRoot}"/>
+
+<div class="bops">
+    <div class="main-box">
+    	#parse("/common/bops/pic_upload_layer.vm")
+    	<form id="introForm" method="post" action="${env.bopsRoot}/bops/do_add_intro.htm" onSubmit="return Validator.validate(this,'bops');">
+    		<input type="hidden" name="id" value="$!intro.id" />
+		    <div class="subject-box">
+		    	
+			    #set($picFieldName1='hnMapPicUrls')
+			    #set($picModelList1=$!intro.hnMapPicModelList)
+			    #parse("/common/bops/pic_detail_box.vm")
+				
+				<div class="content-box">
+					<ul class="prop-list">
+						<li>
+							<span class="lbl" style="">海宁介绍：</span>
+							<div class="dd-l"><textarea name="hnIntro"/>$!intro.hnIntro</textarea></div>
+						</li>
+					</ul>
+				    <ul class="prop-list">
+						<li>
+							<span class="lbl" style="">潮博会介绍：</span>
+							<div class="dd-l"><textarea name="chaoExpoIntro"/>$!intro.chaoExpoIntro</textarea></div>
+						</li>
+					</ul>
+					<div class="btn-box">
+						<input type="submit" value="提交"/>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+#set($bopsJs=["../../js/lib/jquery.form.js", "../../js/lib/jquery.validate.min.js"])

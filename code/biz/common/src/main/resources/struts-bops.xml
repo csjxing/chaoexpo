@@ -98,6 +98,32 @@
 			<interceptor-ref name="bopsDefaultStack" />
 			<result name="success" type="velocity">/bops/success.vm</result>
 		</action>
+		
+		<action name="add_intro" class="com.doucome.chaoexpo.web.bops.action.QueryIntroAction">
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/intro.vm</result>
+		</action>
+		
+		<action name="do_add_intro" class="com.doucome.chaoexpo.web.bops.action.AddIntroAction">
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/success.vm</result>
+		</action>
+		
+		<action name="culture_list" class="com.doucome.chaoexpo.web.bops.action.CultureListAction">
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/cultureList.vm</result>
+		</action>
+		
+		<action name="add_culture" class="com.doucome.chaoexpo.web.bops.action.QueryCultureAction">
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/culture.vm</result>
+		</action>
+		
+		<action name="do_add_culture" class="com.doucome.chaoexpo.web.bops.action.AddCultureAction">
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/success.vm</result>
+		</action>
+		
 	</package>
 	
 	<package name="bops-remote" namespace="/bops/remote" extends="default">

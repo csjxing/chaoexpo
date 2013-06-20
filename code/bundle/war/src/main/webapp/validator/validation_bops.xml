@@ -9,4 +9,18 @@
 		<item name="intro" dataType="Require" msg="应用介绍不为空" />
 	</form>
 	
+	<form id="introForm">
+		<item name="hnIntro" dataType="Require" msg="海宁介绍不为空" /> 
+		<item name="hnIntro" dataType="Limit" max="2048" msg="海宁介绍输入过长" />
+		<item name="chaoExpoIntro" dataType="Require" msg="潮博会介绍不为空" />
+		<item name="chaoExpoIntro" dataType="Limit" max="2048" msg="潮博会介绍输入过长" />
+	</form>
+	
+	<form id="cultureForm">
+		<item name="name" dataType="Require" msg="名称不为空" /> 
+		<item name="name" dataType="Limit" max="2048" msg="名称输入过长" />
+		<item name="intro" dataType="Require" msg="介绍不为空" />
+		<item name="intro" dataType="Limit" max="2048" msg="介绍输入过长" />
+	</form>
+	
 </forms>

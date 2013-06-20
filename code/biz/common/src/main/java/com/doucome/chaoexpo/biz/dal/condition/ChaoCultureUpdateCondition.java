@@ -3,6 +3,8 @@ package com.doucome.chaoexpo.biz.dal.condition;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.doucome.chaoexpo.biz.common.utils.ReflectUtils;
+import com.doucome.chaoexpo.biz.dal.dataobject.ChaoCultureDO;
 import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
 
 public class ChaoCultureUpdateCondition extends AbstractModel  {
@@ -21,6 +23,12 @@ public class ChaoCultureUpdateCondition extends AbstractModel  {
 	 * 
 	 */
 	private String picUrls ;
+	
+	public static ChaoCultureUpdateCondition fromCulture(ChaoCultureDO culture) {
+		ChaoCultureUpdateCondition condition = new ChaoCultureUpdateCondition() ;
+		ReflectUtils.reflectTo(culture, condition) ;
+		return condition;
+	} 
 	
 	public Map<String,Object> toMap(){
 		Map<String,Object> map = new HashMap<String,Object>() ;
@@ -52,7 +60,9 @@ public class ChaoCultureUpdateCondition extends AbstractModel  {
 
 	public void setPicUrls(String picUrls) {
 		this.picUrls = picUrls;
-	} 
+	}
+
+	
 	
 	
 }

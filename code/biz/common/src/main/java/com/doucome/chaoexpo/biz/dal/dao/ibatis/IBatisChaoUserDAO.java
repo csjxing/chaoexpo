@@ -1,11 +1,13 @@
 package com.doucome.chaoexpo.biz.dal.dao.ibatis;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.doucome.chaoexpo.biz.common.utils.NumberUtils;
+import com.doucome.chaoexpo.biz.dal.condition.ChaoUserQuery;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoUserUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dao.ChaoUserDAO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoUserDO;
@@ -42,6 +44,19 @@ public class IBatisChaoUserDAO extends SqlMapClientDaoSupport implements ChaoUse
 		return NumberUtils.parseLong((Long)getSqlMapClientTemplate().queryForObject("ChaoUser.queryMaxId")) ;
 	}
 
-	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ChaoUserDO> queryUsersWithPagination(ChaoUserQuery query,int start, int size) {
+		Map<String,Object> map = query.toMap() ;
+		map.put("start", start - 1) ;
+		map.put("size", size) ;
+		return getSqlMapClientTemplate().queryForList("ChaoUser.queryUsersWithPagination" , map) ;
+	}
+
+	@Override
+	public int countUsersWithPagination(ChaoUserQuery query) {
+		Map<String,Object> map = query.toMap() ;
+		return NumberUtils.parseInt((Integer)getSqlMapClientTemplate().queryForObject("ChaoUser.countUsersWithPagination" , map)) ;
+	}	
 
 }

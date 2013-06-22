@@ -1,9 +1,16 @@
 package com.doucome.chaoexpo.biz.core.service.chao.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.doucome.chaoexpo.biz.core.model.ChaoUserDTO;
+import com.doucome.chaoexpo.biz.core.model.page.Pagination;
+import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoUserService;
+import com.doucome.chaoexpo.biz.dal.condition.ChaoUserQuery;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoUserUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dao.ChaoUserDAO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoUserDO;
@@ -44,6 +51,22 @@ public class ChaoUserServiceImpl implements ChaoUserService {
 	@Override
 	public long getMaxId() {
 		return chaoUserDAO.queryMaxId() ;
+	}
+
+	@Override
+	public QueryResult<ChaoUserDTO> getUsersWithPagination(ChaoUserQuery query,Pagination pagination) {
+		int totalRecords = chaoUserDAO.countUsersWithPagination(query) ;
+        if (totalRecords <= 0) {
+            return new QueryResult<ChaoUserDTO>(new ArrayList<ChaoUserDTO>(), pagination, totalRecords);
+        }
+        List<ChaoUserDO> doList = chaoUserDAO.queryUsersWithPagination(query,pagination.getStart(),pagination.getSize()) ;
+        List<ChaoUserDTO> dtoList = new ArrayList<ChaoUserDTO>() ;
+        if(CollectionUtils.isNotEmpty(doList)){
+        	for(ChaoUserDO user : doList) {
+        		dtoList.add(new ChaoUserDTO(user)) ;
+        	}
+        }
+        return new QueryResult<ChaoUserDTO>(dtoList, pagination, totalRecords);
 	}
 
 }

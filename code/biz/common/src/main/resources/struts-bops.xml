@@ -124,6 +124,10 @@
 			<result name="success" type="velocity">/bops/success.vm</result>
 		</action>
 		
+		<action name="user_list" class="com.doucome.chaoexpo.web.bops.action.UserListAction">
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/userList.vm</result>
+		</action>
 	</package>
 	
 	<package name="bops-remote" namespace="/bops/remote" extends="default">

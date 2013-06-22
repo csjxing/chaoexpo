@@ -1,6 +1,9 @@
 package com.doucome.chaoexpo.biz.core.service.chao;
 
 import com.doucome.chaoexpo.biz.core.model.ChaoUserDTO;
+import com.doucome.chaoexpo.biz.core.model.page.Pagination;
+import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
+import com.doucome.chaoexpo.biz.dal.condition.ChaoUserQuery;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoUserUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoUserDO;
 
@@ -34,6 +37,14 @@ public interface ChaoUserService {
 	 * @return
 	 */
 	int updateUserByUserName(String userName , ChaoUserUpdateCondition condition) ;
+	
+	/**
+	 * 
+	 * @param query
+	 * @param pagination
+	 * @return
+	 */
+	QueryResult<ChaoUserDTO> getUsersWithPagination(ChaoUserQuery query , Pagination pagination) ;
 	
 	/**
 	 * 

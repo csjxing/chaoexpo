@@ -5,7 +5,7 @@
 		type="com.doucome.chaoexpo.biz.dal.dataobject.ChaoUserDO" />
 
 	<resultMap id="RM-ChaoUser" class="TA-ChaoUser">
-		<result property="id" column="ID" />
+		<result property="userId" column="USER_ID" />
 		<result property="userName" column="USER_NAME" />
 		<result property="md5Password" column="MD5_PASSWORD" />
 		<result property="followActivityCount" column="FOLLOW_ACTIVITY_COUNT"/>
@@ -19,14 +19,14 @@
 	</resultMap>
 	
 	<sql id="chao_user_fields">
-		ID,USER_NAME,MD5_PASSWORD,FOLLOW_ACTIVITY_COUNT,FAVORITE_SUBJECT_COUNT,CHECKIN_ACTIVITY_COUNT,AUTH_KEY,REGISTER_IMEI,GMT_AUTH,GMT_CREATE,GMT_MODIFIED
+		USER_ID,USER_NAME,MD5_PASSWORD,FOLLOW_ACTIVITY_COUNT,FAVORITE_SUBJECT_COUNT,CHECKIN_ACTIVITY_COUNT,AUTH_KEY,REGISTER_IMEI,GMT_AUTH,GMT_CREATE,GMT_MODIFIED
 	</sql>
 
 	<insert id="insertUser">
 		INSERT INTO
-			CHAO_USER(ID,USER_NAME,MD5_PASSWORD,AUTH_KEY,REGISTER_IMEI,GMT_AUTH,GMT_CREATE,GMT_MODIFIED)
+			CHAO_USER(USER_ID,USER_NAME,MD5_PASSWORD,AUTH_KEY,REGISTER_IMEI,GMT_AUTH,GMT_CREATE,GMT_MODIFIED)
 		VALUES
-			(#id#,#userName#,#md5Password#,#authKey#,#registerIMEI#,#gmtAuth#,now(),now())
+			(#userId#,#userName#,#md5Password#,#authKey#,#registerIMEI#,#gmtAuth#,now(),now())
 		<selectKey resultClass="java.lang.Long" keyProperty="id">
    			<![CDATA[
 			SELECT LAST_INSERT_ID() AS ID
@@ -52,6 +52,38 @@
 			USER_NAME = #userName#
 		AND
 			AUTH_KEY = #authKey#
+	</select>
+	
+	<select id="queryUsersWithPagination" resultMap="RM-ChaoUser">
+		SELECT 
+			<include refid="chao_user_fields"/>
+		FROM
+			CHAO_USER
+		<isParameterPresent open="WHERE" removeFirstPrepend="true">
+		    <isNotEmpty property="userId" prepend="AND">
+	    		USER_ID = #userId#
+			</isNotEmpty>
+			<isNotEmpty property="userName" prepend="AND">
+	    		USER_NAME = #userName#
+			</isNotEmpty>
+		</isParameterPresent>
+		LIMIT 
+			#start# , #size#
+	</select>
+	
+	<select id="countUsersWithPagination" resultClass="java.lang.Integer">
+		SELECT 
+			COUNT(USER_ID)
+		FROM
+			CHAO_USER
+		<isParameterPresent open="WHERE" removeFirstPrepend="true">
+			<isNotEmpty property="userId" prepend="AND">
+	    		USER_ID = #userId#
+			</isNotEmpty>
+			<isNotEmpty property="userName" prepend="AND">
+	    		USER_NAME = #userName#
+			</isNotEmpty>
+		</isParameterPresent>
 	</select>
 	
 	<update id="updateUserByUserName">

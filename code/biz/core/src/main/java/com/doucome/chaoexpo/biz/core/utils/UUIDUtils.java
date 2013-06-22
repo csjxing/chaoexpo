@@ -10,7 +10,7 @@ public class UUIDUtils {
     /* 随机种子 */
     private static char      X36S[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
     private static char      X10S[] = "0123456789".toCharArray();
-
+ 
     /**
      * 根据李战园专利算法生成20位大写UUID
      * 

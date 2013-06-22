@@ -1,5 +1,8 @@
 package com.doucome.chaoexpo.biz.dal.dao;
 
+import java.util.List;
+
+import com.doucome.chaoexpo.biz.dal.condition.ChaoUserQuery;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoUserUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoUserDO;
 
@@ -16,6 +19,18 @@ public interface ChaoUserDAO {
 	 * @return
 	 */
 	Long insertUser(ChaoUserDO user) ;
+	 
+	/**
+	 * 
+	 * @return
+	 */
+	List<ChaoUserDO> queryUsersWithPagination(ChaoUserQuery query , int start , int size) ;
+	
+	/**
+	 * 
+	 * @return
+	 */
+	int countUsersWithPagination(ChaoUserQuery query) ;
 	
 	/**
 	 * 

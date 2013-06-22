@@ -6,7 +6,7 @@ import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
 
 public class ChaoUserDO extends AbstractModel {
 
-	private Long id ;
+	private Long userId ;
 	
 	/**
 	 * 用户名（英文数字），唯一
@@ -43,12 +43,12 @@ public class ChaoUserDO extends AbstractModel {
 	
 	private Date gmtCreate ;
 
-	public Long getId() {
-		return id;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String getUserName() {

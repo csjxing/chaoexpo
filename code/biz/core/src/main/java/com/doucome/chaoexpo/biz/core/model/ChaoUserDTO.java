@@ -15,8 +15,8 @@ public class ChaoUserDTO {
 		this.user = user ;
 	}
 	
-	public Long getId() {
-		return user.getId();
+	public Long getUserId() {
+		return user.getUserId();
 	}
 
 	public String getUserName() {

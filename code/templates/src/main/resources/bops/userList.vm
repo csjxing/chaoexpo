@@ -1,0 +1,68 @@
+#set($layout="bops/default_bops.vm")
+
+#set($navigation = "用户列表")
+
+<input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
+<input type="hidden"  id="bopsPage" value="userList"/>
+
+#set($pagination = $queryResult.pagination)
+
+#set($searchUrl = ${env.bopsRoot}+"/bops/user_list.htm?")
+#set($searchQuery = ["userId:$!userId","userName:$!userName"])
+
+<div class="bops">
+    <div style="MT20 MB20">&nbsp;</div>
+	<form action="${env.bopsRoot}/bops/user_list.htm" method="get">
+		<div class="settleipt MB10 MT10">
+			<span class="search-div">
+				<span class="lbl">用户名： </span>
+				<input  type="text" name="userName" value="$!userName" />
+			</span>
+			<input type="submit" value="查询" style="padding: 3px 4px;"/>
+		</div>
+	</form>
+		
+	#parse("/common/bops/page/userPagination.vm")
+	
+	<div class="culture-list">
+    	<table width="980">
+    		<tr>
+    			<th width="40">序号</th>
+        		<th width="80">userId</th>
+        		<th width="80">userName</th>
+    			<th width="100">authKey</th>
+				<th width="80">关注活动</th>
+				<th width="80">签到活动</th>
+				<th width="80">收藏专题</th>
+				<th width="100">注册时间</th>
+    			<th width="80">操作</th>
+        	</tr>
+    		#if($queryResult.totalRecords > 0)
+        		#foreach($item in $!queryResult.items)
+					#set($idx = (($page - 1)*$size) + $velocityCount ) 
+                	<tr>
+    					<td align="center">$!idx</td>
+						<td align="center">$!item.userId</td>
+    					<td>$!item.userName</td>
+						<td align="center">$!item.authKey</td>
+						<td align="center">$!item.followActivityCount</td>
+						<td align="center">$!item.checkinActivityCount</td>
+						<td align="center">$!item.favoriteSubjectCount</td>
+						<td align="center">$dateUtils.format($!item.gmtCreate,'yyyy-MM-dd HH:mm:ss')</td>
+    					<td align="center"></td>
+                	</tr>
+        		#end
+    		#else
+                <tr><td colspan="15" align="center">没有查询到记录</td></tr>
+    		#end
+         </table>
+	</div>
+	
+	#parse("/common/bops/page/userPagination.vm")
+	
+</div>
+<script>
+!(function($){
+	
+})(jQuery);
+</script>

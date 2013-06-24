@@ -68,7 +68,7 @@
 	    		  IS_TOP = #isTop# 
 			  </isNotEmpty>
 			  <isNotEmpty property="status" prepend="AND">
-	    		  STATUS = #"status"# 
+	    		  STATUS = #status# 
 			  </isNotEmpty>
 	    	  <isNotNull property="categoryId" prepend="AND">
 	    		  CATEGORY_ID = #categoryId# 
@@ -112,7 +112,7 @@
 	    		  IS_TOP = #isTop# 
 			  </isNotEmpty>
 			  <isNotEmpty property="status" prepend="AND">
-	    		  STATUS = #"status"# 
+	    		  STATUS = #status# 
 			  </isNotEmpty>
 	    	  <isNotNull property="categoryId" prepend="AND">
 	    		  CATEGORY_ID = #categoryId# 

@@ -16,11 +16,11 @@ public class ChaoNewsSearchCondition {
 	
 	private String isTop;
 	
-	private String status = "N";
+	private String status;
 	
 	private Date gmtPublishStart;
 	
-	private Date gmtPublishEnd = new Date();
+	private Date gmtPublishEnd ;
 	
 	private String orderColumn;
 	
@@ -100,5 +100,13 @@ public class ChaoNewsSearchCondition {
 
 	public void setOrderColumn(String orderColumn) {
 		this.orderColumn = orderColumn != null? orderColumn.trim().toUpperCase(): null;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

@@ -3,8 +3,10 @@ package com.doucome.chaoexpo.biz.core.bo;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import com.doucome.chaoexpo.biz.core.model.param.ResultModel;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoNewsCategoryService;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoNewsService;
 import com.doucome.chaoexpo.biz.core.utils.ChaoDisplayOrderUtils;
+import com.doucome.chaoexpo.biz.core.utils.ChaoNewsUtils;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoNewsSearchCondition;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoNewsUpdateCondition;
 
@@ -77,20 +80,24 @@ public class ChaoNewsBO {
 			List<ChaoNewsDTO> news = newsResult.getItems();
 			Set<Long> categoryIds = new HashSet<Long>();
 			for (ChaoNewsDTO temp: news) {
-				if (temp.getCategoryId() != null) {
+				if (IDUtils.isCorrect(temp.getCategoryId())) {
 				    categoryIds.add(temp.getCategoryId());
 				}
 				temp.setContent("");
 			}
-			List<ChaoNewsCategoryDTO> categories = chaoNewsCategoryService.getCategoriesByIds(new ArrayList<Long>(categoryIds));
-			for (ChaoNewsDTO temp: news) {
-				for (ChaoNewsCategoryDTO cate: categories) {
-					if (cate.getId().equals(temp.getCategoryId())) {
-						temp.setCategoryName(cate.getCatName());
-						break;
+			//
+			if(CollectionUtils.isNotEmpty(categoryIds)) {
+				List<ChaoNewsCategoryDTO> categories = chaoNewsCategoryService.getCategoriesByIds(new ArrayList<Long>(categoryIds));
+				Map<Long,ChaoNewsCategoryDTO> catMap = ChaoNewsUtils.toCatMap(categories) ;
+				
+				for (ChaoNewsDTO temp: news) {
+					ChaoNewsCategoryDTO cat = catMap.get(temp.getCategoryId()) ;
+					if(cat != null) {
+						temp.setCategoryName(cat.getCatName()) ;
 					}
 				}
 			}
+			
 			result.setSuccess(newsResult);
 		} catch (Exception e) {
 			logger.error(e);

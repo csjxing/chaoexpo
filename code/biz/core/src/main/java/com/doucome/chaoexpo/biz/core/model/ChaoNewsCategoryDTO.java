@@ -2,7 +2,7 @@ package com.doucome.chaoexpo.biz.core.model;
 
 import java.util.Date;
 
-import com.doucome.chaoexpo.biz.core.enums.ChaoStatusEnum;
+import com.doucome.chaoexpo.biz.core.enums.ChaoNewsStatusEnum;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoNewsCategoryDO;
 
 public class ChaoNewsCategoryDTO {
@@ -16,7 +16,7 @@ public class ChaoNewsCategoryDTO {
 	public ChaoNewsCategoryDTO(ChaoNewsCategoryDO category) {
 		if(category == null) {
 			category = new ChaoNewsCategoryDO();
-			category.setStatus(ChaoStatusEnum.ENABLE.getValue());
+			category.setStatus(ChaoNewsStatusEnum.NORMAL.getValue()) ;
 		}
 		this.category = category ;
 	}
@@ -41,15 +41,15 @@ public class ChaoNewsCategoryDTO {
 		return category.getStatus();
 	}
 	
-	public ChaoStatusEnum getStatusEnum() {
-		return ChaoStatusEnum.toEnum(getStatus());
+	public ChaoNewsStatusEnum getStatusEnum() {
+		return ChaoNewsStatusEnum.toEnum(getStatus());
 	}
 	
 	public void setStatus(String status) {
 		category.setStatus(status);
 	}
 	
-	public void setStatusEnum(ChaoStatusEnum statusEnum) {
+	public void setStatusEnum(ChaoNewsStatusEnum statusEnum) {
 		if (statusEnum != null) {
 			setStatus(statusEnum.getValue());
 		}

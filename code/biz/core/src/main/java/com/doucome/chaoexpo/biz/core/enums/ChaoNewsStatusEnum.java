@@ -5,15 +5,15 @@ package com.doucome.chaoexpo.biz.core.enums;
  * @author ZE2200
  *
  */
-public enum ChaoStatusEnum {
+public enum ChaoNewsStatusEnum {
 
-	ENABLE("E"),
+	NORMAL("N"),
 	DISABLE("D"),
 	UNKNOW("");
 	
 	private String value;
 	
-	private ChaoStatusEnum(String value) {
+	private ChaoNewsStatusEnum(String value) {
 		this.value = value;
 	}
 	
@@ -21,8 +21,8 @@ public enum ChaoStatusEnum {
 		return this.value;
 	}
 	
-	public static ChaoStatusEnum toEnum(String value) {
-		for (ChaoStatusEnum temp: values()) {
+	public static ChaoNewsStatusEnum toEnum(String value) {
+		for (ChaoNewsStatusEnum temp: values()) {
 			if (temp.getValue().equals(value)) {
 				return temp;
 			}

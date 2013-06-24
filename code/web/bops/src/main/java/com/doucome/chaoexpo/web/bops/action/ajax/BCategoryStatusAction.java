@@ -3,7 +3,7 @@ package com.doucome.chaoexpo.web.bops.action.ajax;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.doucome.chaoexpo.biz.common.utils.IDUtils;
-import com.doucome.chaoexpo.biz.core.enums.ChaoStatusEnum;
+import com.doucome.chaoexpo.biz.core.enums.ChaoNewsStatusEnum;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoNewsCategoryService;
 import com.doucome.chaoexpo.web.bops.action.BopsBasicAction;
 import com.doucome.chaoexpo.web.common.model.JsonModel;
@@ -22,8 +22,8 @@ public class BCategoryStatusAction extends BopsBasicAction {
 	
 	@Override
 	public String execute() throws Exception {
-		ChaoStatusEnum statusEnum = ChaoStatusEnum.toEnum(status);
-		if (IDUtils.isNotCorrect(id) || statusEnum == ChaoStatusEnum.UNKNOW) {
+		ChaoNewsStatusEnum statusEnum = ChaoNewsStatusEnum.toEnum(status);
+		if (IDUtils.isNotCorrect(id) || statusEnum == ChaoNewsStatusEnum.UNKNOW) {
 			json.setFail("param.error");
 		}
 		int count = chaoNewsCategoryService.updateStstus(id, statusEnum);

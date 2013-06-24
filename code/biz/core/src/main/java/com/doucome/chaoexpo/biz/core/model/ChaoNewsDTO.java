@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 
 import com.doucome.chaoexpo.biz.core.constant.URIConstant;
-import com.doucome.chaoexpo.biz.core.enums.ChaoStatusEnum;
+import com.doucome.chaoexpo.biz.core.enums.ChaoNewsStatusEnum;
 import com.doucome.chaoexpo.biz.core.service.impl.DefaultUriService;
 import com.doucome.chaoexpo.biz.core.utils.ArrayStringUtils;
 import com.doucome.chaoexpo.biz.core.utils.ChaoDisplayOrderUtils;
@@ -31,7 +31,7 @@ public class ChaoNewsDTO {
 		this.news = news;
 		if(news == null) {
 			this.news = new ChaoNewsDO() ;
-			this.news.setStatus(ChaoStatusEnum.ENABLE.getValue());
+			this.news.setStatus(ChaoNewsStatusEnum.NORMAL.getValue());
 			this.news.setDisplayOrder(ChaoDisplayOrderUtils.getDisplayOrder());
 		} else {
 			this.summary = news.getContent();

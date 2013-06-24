@@ -27,15 +27,14 @@ public class QueryNewsListAction extends ChaoBasicAction implements ModelDriven<
 	
 	private int page = 1;
 	
-	private int size;
+	private int size = 20;
 	
 	@Autowired
 	private ChaoNewsBO chaoNewsBO;
 	
 	@Override
 	public String execute() throws Exception {
-		page = page  < 1? 1: page;
-		size = size < 1? 10: size;
+		condition.setStatus("N") ;
 		ResultModel<QueryResult<ChaoNewsDTO>> result = chaoNewsBO.getNewsSummaryPage(condition, new Pagination(page, size));
 		if (result.isSucc()) {
 			json.setSuccess(result.getData());

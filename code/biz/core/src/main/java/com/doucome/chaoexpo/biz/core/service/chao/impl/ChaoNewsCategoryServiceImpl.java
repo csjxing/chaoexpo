@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.doucome.chaoexpo.biz.common.utils.IDUtils;
-import com.doucome.chaoexpo.biz.core.enums.ChaoStatusEnum;
+import com.doucome.chaoexpo.biz.core.enums.ChaoNewsStatusEnum;
 import com.doucome.chaoexpo.biz.core.model.ChaoNewsCategoryDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
@@ -61,7 +61,7 @@ public class ChaoNewsCategoryServiceImpl implements ChaoNewsCategoryService {
 	}
 	
 	@Override
-	public int updateStstus(Long id, ChaoStatusEnum status) {
+	public int updateStstus(Long id, ChaoNewsStatusEnum status) {
 		if (IDUtils.isNotCorrect(id) || status == null) {
 			return 0;
 		}

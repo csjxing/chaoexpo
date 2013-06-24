@@ -2,7 +2,7 @@ package com.doucome.chaoexpo.biz.core.service.chao;
 
 import java.util.List;
 
-import com.doucome.chaoexpo.biz.core.enums.ChaoStatusEnum;
+import com.doucome.chaoexpo.biz.core.enums.ChaoNewsStatusEnum;
 import com.doucome.chaoexpo.biz.core.model.ChaoNewsCategoryDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
@@ -52,5 +52,5 @@ public interface ChaoNewsCategoryService {
 	 * @param status
 	 * @return
 	 */
-	int updateStstus(Long id, ChaoStatusEnum status);
+	int updateStstus(Long id, ChaoNewsStatusEnum status);
 }

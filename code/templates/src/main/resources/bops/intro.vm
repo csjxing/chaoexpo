@@ -12,7 +12,7 @@
     	<form id="introForm" method="post" action="${env.bopsRoot}/bops/do_add_intro.htm" onSubmit="return Validator.validate(this,'bops');">
     		<input type="hidden" name="id" value="$!intro.id" />
 		    <div class="subject-box">
-		    	
+		    	#set($picName1='城市地图')
 			    #set($picFieldName1='hnMapPicUrls')
 			    #set($picModelList1=$!intro.hnMapPicModelList)
 			    #parse("/common/bops/pic_detail_box.vm")

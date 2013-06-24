@@ -7,13 +7,6 @@
 
 }
 
-.main-box .content-box {
-    float: left;
-    margin-left: 350px;
-	width: 560px;
-	min-height: 400px;
-}
-
 .main-box .content-box ul {
     float: left;
     min-height: 200px;

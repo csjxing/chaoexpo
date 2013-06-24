@@ -54,7 +54,7 @@ public class ChaoNewsDO extends AbstractModel {
 	
 	private Date gmtCreate ;
 	
-	private Date gmtModified ;
+	private Date gmtModified ; 
 
 	public Long getId() {
 		return id;

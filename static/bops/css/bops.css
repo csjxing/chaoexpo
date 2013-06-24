@@ -407,6 +407,7 @@ i.yen {
 
 .left_menu ul li {
 	padding-left: 15px;
+	height: 22px;
 }
 
 
@@ -1015,7 +1016,7 @@ form label.error {
 }
 
 .pic-detail-box {
-    position: absolute;
+    float:left ;
 	width: 340px;
 	min-height: 400px;
 	overflow: hidden;
@@ -1209,4 +1210,10 @@ td .detail-layer {
 
 .app-recommend-list .intro {
 	
+}
+
+.main-box .content-box {
+	float: left;
+	width: 560px;
+	min-height: 400px;
 }

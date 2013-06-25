@@ -67,6 +67,10 @@ XmlHttp.prototype.loadXML = function(xml,bAsync) {
 	var xmlHttp = this.newInstance();
 
 	xmlHttp.open("GET", xml, bAsync);
+	try {
+		xmlHttp.responseType = 'msxml-document';
+	} catch (e) {
+	}
 	if (bAsync) {
 		xmlHttp.onreadystatechange = function () {
 			if (xmlHttp.readyState == 4)

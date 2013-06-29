@@ -19,7 +19,11 @@ public class ChaoAppRecommendDO extends AbstractModel {
 	
 	private String intro ;
 	
-	private String appStoreUrl ;
+	private String androidStoreUrl ;
+	
+	private String iosStoreUrl ;
+	
+	private String wpStoreUrl ;
 	
 	private Date gmtCreate ;
 	
@@ -32,7 +36,6 @@ public class ChaoAppRecommendDO extends AbstractModel {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public String getAppName() {
 		return appName;
@@ -58,12 +61,28 @@ public class ChaoAppRecommendDO extends AbstractModel {
 		this.intro = intro;
 	}
 
-	public String getAppStoreUrl() {
-		return appStoreUrl;
+	public String getAndroidStoreUrl() {
+		return androidStoreUrl;
 	}
 
-	public void setAppStoreUrl(String appStoreUrl) {
-		this.appStoreUrl = appStoreUrl;
+	public void setAndroidStoreUrl(String androidStoreUrl) {
+		this.androidStoreUrl = androidStoreUrl;
+	}
+
+	public String getIosStoreUrl() {
+		return iosStoreUrl;
+	}
+
+	public void setIosStoreUrl(String iosStoreUrl) {
+		this.iosStoreUrl = iosStoreUrl;
+	}
+
+	public String getWpStoreUrl() {
+		return wpStoreUrl;
+	}
+
+	public void setWpStoreUrl(String wpStoreUrl) {
+		this.wpStoreUrl = wpStoreUrl;
 	}
 
 	public Date getGmtCreate() {
@@ -81,5 +100,5 @@ public class ChaoAppRecommendDO extends AbstractModel {
 	public void setGmtModified(Date gmtModified) {
 		this.gmtModified = gmtModified;
 	}
-	
+
 }

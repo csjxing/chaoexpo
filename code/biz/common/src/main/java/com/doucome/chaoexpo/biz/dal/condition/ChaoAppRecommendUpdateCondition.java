@@ -9,14 +9,17 @@ import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
 
 public class ChaoAppRecommendUpdateCondition extends AbstractModel {
 	
-	
 	private String appName ;
 	
 	private String logoUrl ;
 	
 	private String intro ;
 	
-	private String appStoreUrl ;
+	private String androidStoreUrl ;
+	
+	private String iosStoreUrl ;
+	
+	private String wpStoreUrl ;
 	
 	public Map<String,Object> toMap() {
 		
@@ -25,8 +28,10 @@ public class ChaoAppRecommendUpdateCondition extends AbstractModel {
 		map.put("appName", appName) ;
 		map.put("logoUrl", logoUrl) ;
 		map.put("intro", intro) ;
-		map.put("appStoreUrl", appStoreUrl) ;
-		
+		map.put("androidStoreUrl", androidStoreUrl) ;
+		map.put("iosStoreUrl", iosStoreUrl) ;
+		map.put("wpStoreUrl", wpStoreUrl) ;
+
 		return map ;
 	}
 	
@@ -35,7 +40,6 @@ public class ChaoAppRecommendUpdateCondition extends AbstractModel {
 		ReflectUtils.reflectTo(recommend, condition) ;
 		return condition ;
 	}
-
 
 	public String getAppName() {
 		return appName;
@@ -61,13 +65,28 @@ public class ChaoAppRecommendUpdateCondition extends AbstractModel {
 		this.intro = intro;
 	}
 
-	public String getAppStoreUrl() {
-		return appStoreUrl;
+	public String getAndroidStoreUrl() {
+		return androidStoreUrl;
 	}
 
-	public void setAppStoreUrl(String appStoreUrl) {
-		this.appStoreUrl = appStoreUrl;
+	public void setAndroidStoreUrl(String androidStoreUrl) {
+		this.androidStoreUrl = androidStoreUrl;
 	}
-	
+
+	public String getIosStoreUrl() {
+		return iosStoreUrl;
+	}
+
+	public void setIosStoreUrl(String iosStoreUrl) {
+		this.iosStoreUrl = iosStoreUrl;
+	}
+
+	public String getWpStoreUrl() {
+		return wpStoreUrl;
+	}
+
+	public void setWpStoreUrl(String wpStoreUrl) {
+		this.wpStoreUrl = wpStoreUrl;
+	}
 	
 }

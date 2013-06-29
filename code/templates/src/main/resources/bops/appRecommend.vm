@@ -26,8 +26,16 @@
 							</div>
 						</li>
 						<li>
-							<span class="lbl" style="">应用商店：</span>
-							<div class="dd-l"><input class="webUrl width3" type="text" name="appStoreUrl" value="$!recommend.appStoreUrl"/></div>
+							<span class="lbl" style="">安卓市场：</span>
+							<div class="dd-l"><input class="webUrl width3" type="text" name="androidStoreUrl" value="$!recommend.androidStoreUrl"/></div>
+						</li>
+						<li>
+							<span class="lbl" style="">ios商店：</span>
+							<div class="dd-l"><input class="webUrl width3" type="text" name="iosStoreUrl" value="$!recommend.iosStoreUrl"/></div>
+						</li>
+						<li>
+							<span class="lbl" style="">WP商店：</span>
+							<div class="dd-l"><input class="webUrl width3" type="text" name="wpStoreUrl" value="$!recommend.wpStoreUrl"/></div>
 						</li>
 						<li>
 							<span class="lbl" style="">介绍：</span>

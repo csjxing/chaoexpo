@@ -9,16 +9,18 @@
 		<result property="appName" column="APP_NAME" />
 		<result property="logoUrl" column="LOGO_URL" />
 		<result property="intro" column="INTRO"/>
-		<result property="appStoreUrl" column="APP_STORE_URL"/>
+		<result property="androidStoreUrl" column="ANDROID_STORE_URL"/>
+		<result property="iosStoreUrl" column="IOS_STORE_URL"/>
+		<result property="wpStoreUrl" column="WP_STORE_URL"/>
 		<result property="gmtCreate" column="GMT_CREATE"/>
 		<result property="gmtModified" column="GMT_MODIFIED" />
 	</resultMap>
 
 	<insert id="insertRecommend">
 		INSERT INTO
-			CHAO_APP_RECOMMEND(ID,APP_NAME,LOGO_URL,INTRO,APP_STORE_URL,GMT_CREATE,GMT_MODIFIED)
+			CHAO_APP_RECOMMEND(ID,APP_NAME,LOGO_URL,INTRO,ANDROID_STORE_URL,IOS_STORE_URL,WP_STORE_URL,GMT_CREATE,GMT_MODIFIED)
 		VALUES
-			(#id#,#appName#,#logoUrl#,#intro#,#appStoreUrl#,now(),now())
+			(#id#,#appName#,#logoUrl#,#intro#,#androidStoreUrl#,#iosStoreUrl#,#wpStoreUrl#,now(),now())
 		<selectKey resultClass="java.lang.Long" keyProperty="id">
    			<![CDATA[
 			SELECT LAST_INSERT_ID() AS ID
@@ -28,7 +30,7 @@
 	
 	<select id="queryRecommendById" resultMap="RM-ChaoAppRecommend">
 		SELECT 
-			ID,APP_NAME,LOGO_URL,INTRO,APP_STORE_URL,GMT_CREATE,GMT_MODIFIED
+			ID,APP_NAME,LOGO_URL,INTRO,ANDROID_STORE_URL,IOS_STORE_URL,WP_STORE_URL,GMT_CREATE,GMT_MODIFIED
 		FROM
 			CHAO_APP_RECOMMEND
 		WHERE
@@ -37,7 +39,7 @@
 	
 	<select id="queryRecommendsWithPagination" resultMap="RM-ChaoAppRecommend">
 		SELECT 
-			ID,APP_NAME,LOGO_URL,INTRO,APP_STORE_URL,GMT_CREATE,GMT_MODIFIED
+			ID,APP_NAME,LOGO_URL,INTRO,ANDROID_STORE_URL,IOS_STORE_URL,WP_STORE_URL,GMT_CREATE,GMT_MODIFIED
 		FROM
 			CHAO_APP_RECOMMEND
 		ORDER BY 
@@ -66,8 +68,14 @@
 			<isNotEmpty property="intro">
 				INTRO = #intro# ,
 			</isNotEmpty>
-			<isNotEmpty property="appStoreUrl">
-				APP_STORE_URL = #appStoreUrl# ,
+			<isNotEmpty property="androidStoreUrl">
+				ANDROID_STORE_URL = #androidStoreUrl# ,
+			</isNotEmpty>
+			<isNotEmpty property="iosStoreUrl">
+				IOS_STORE_URL = #iosStoreUrl# ,
+			</isNotEmpty>
+			<isNotEmpty property="wpStoreUrl">
+				WP_STORE_URL = #wpStoreUrl# ,
 			</isNotEmpty>
 			GMT_MODIFIED = now()
 		WHERE

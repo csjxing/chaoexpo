@@ -16,7 +16,7 @@ public class ChaoAppRecommendServiceTest extends AbstractBaseJUnit4Test {
 	@Test
 	public void testCreate() {
 		ChaoAppRecommendDO recommend = new ChaoAppRecommendDO() ;
-		recommend.setAppStoreUrl("http://baidu.com") ;
+		//recommend.setAppStoreUrl("http://baidu.com") ;
 		recommend.setAppName("找你妹") ;
 		recommend.setIntro("找你妹找你妹妹") ;
 		recommend.setLogoUrl("/upload/product/201305/05/154602700642787.jpg") ;

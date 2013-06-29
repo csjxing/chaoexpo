@@ -24,7 +24,6 @@
         		<th width="80">LOGO</th>
         		<th width="100">名称</th>
     			<th width="200">介绍</th>
-    			<th width="120">应用商店</th>
 				<th width="100">创建时间</th>
     			<th width="80">操作</th>
         	</tr>
@@ -36,7 +35,6 @@
     					<td align="center"><img src="$item.logoUrlModel.getSum('80x80')" alt="$!item.appName" class="logo" width="50" height="50"></td>
     					<td>$!item.appName</td>
                 		<td><div class="intro">$!item.intro</div></td>
-                        <td><div class="app-store-url">$!item.appStoreUrl</div></td>
 						<td align="center">$!dateUtils.format($!item.gmtCreate, 'yyyy-MM-dd HH:mm')</td>
     					<td align="center">
     						

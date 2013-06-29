@@ -1,6 +1,5 @@
 package com.doucome.chaoexpo.biz.core.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,7 +28,6 @@ public class ChaoAppRecommendDTO extends AbstractModel {
 		return new PicModel(picList.get(0)) ;
 	}
 	
-	
 	/**
 	 * ---------------------------------------------------------------------------
 	 */
@@ -50,12 +48,6 @@ public class ChaoAppRecommendDTO extends AbstractModel {
 		return recommend.getIntro();
 	}
 
-
-	public String getAppStoreUrl() {
-		return recommend.getAppStoreUrl();
-	}
-
-
 	public Date getGmtCreate() {
 		return recommend.getGmtCreate();
 	}
@@ -63,5 +55,17 @@ public class ChaoAppRecommendDTO extends AbstractModel {
 	public Date getGmtModified() {
 		return recommend.getGmtModified();
 	}
-	
+
+	public String getAndroidStoreUrl() {
+		return recommend.getAndroidStoreUrl();
+	}
+
+	public String getIosStoreUrl() {
+		return recommend.getIosStoreUrl();
+	}
+
+	public String getWpStoreUrl() {
+		return recommend.getWpStoreUrl();
+	}
+
 }

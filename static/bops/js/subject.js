@@ -25,7 +25,7 @@
 				},
 				messages: {
 				    name: {required: '*', maxlength:'太长'},
-					webUrl: {required: '*', maxlength:'太长'}
+					webUrl: {maxlength:'太长'}
 				}
 			}).form();
 		},

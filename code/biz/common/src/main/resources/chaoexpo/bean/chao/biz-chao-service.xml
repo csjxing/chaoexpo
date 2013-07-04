@@ -20,5 +20,6 @@
 	<bean id="chaoAppRecommendService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoAppRecommendServiceImpl"/>
 	<bean id="chaoCultureService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoCultureServiceImpl"/>
 	<bean id="chaoIntroService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoIntroServiceImpl"/>
+	<bean id="chaoTushuoService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoTushuoServiceImpl"/>
 	
 </beans>

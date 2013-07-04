@@ -1,0 +1,44 @@
+#set($bopsCss=["subject.css"])
+#set($layout="bops/default_bops.vm")
+#set($navigation = "#if($!tushuo.id)修改#else新增#end文化周边")
+
+<input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
+<input type="hidden"  id="bopsPage" value="tushuo"/>
+<input type="hidden"  id="pictureRoot" value="${env.pictureRoot}"/>
+
+<div class="bops">
+    <div class="main-box">
+    	#parse("/common/bops/pic_upload_layer.vm")
+    	<form id="tushuoForm" method="post" action="${env.bopsRoot}/bops/do_add_tushuo.htm" onSubmit="return Validator.validate(this,'bops');">
+    		<input type="hidden" name="id" value="$!tushuo.id" />
+		    <div class="subject-box">
+		    	
+			    #set($picFieldName1='picUrls')
+			    #set($picModelList1=$!tushuo.picModelList)
+			    #parse("/common/bops/pic_detail_box.vm")
+				
+				<div class="content-box">
+				    <ul class="prop-list">
+						<li>
+    						<span class="lbl" style="">名称：</span>
+    						<div class="dd-l"><input class="name width3" type="text" name="name" value="$!tushuo.name"/></div>
+    					</li>
+						<li>
+    						<span class="lbl" style="">分类：</span>
+    						<div class="dd-l"><input class="name width3" type="text" name="category" value="$!tushuo.category"/></div>
+    					</li>
+						<li>
+							<span class="lbl" style="">内容：</span>
+							<div class="dd-l"><textarea name="content"/>$!tushuo.content</textarea></div>
+						</li>
+					</ul>
+					<div class="btn-box">
+						<input type="submit" value="提交"/>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+#set($bopsJs=["../../js/lib/jquery.form.js", "../../js/lib/jquery.validate.min.js"])

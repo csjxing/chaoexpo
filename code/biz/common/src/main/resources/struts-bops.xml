@@ -128,6 +128,22 @@
 			<interceptor-ref name="bopsDefaultStack" />
 			<result name="success" type="velocity">/bops/userList.vm</result>
 		</action>
+		
+		<action name="tushuo_list" class="com.doucome.chaoexpo.web.bops.action.TushuoListAction">
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/tushuoList.vm</result>
+		</action>
+		
+		<action name="add_tushuo" class="com.doucome.chaoexpo.web.bops.action.QueryTushuoAction">
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/tushuo.vm</result>
+		</action>
+		
+		<action name="do_add_tushuo" class="com.doucome.chaoexpo.web.bops.action.AddTushuoAction">
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/success.vm</result>
+		</action>
+		
 	</package>
 	
 	<package name="bops-remote" namespace="/bops/remote" extends="default">

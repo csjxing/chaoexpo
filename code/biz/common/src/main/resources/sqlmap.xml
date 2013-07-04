@@ -23,4 +23,6 @@
   	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-appRecommend.xml" />
   	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-culture.xml" />
   	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-intro.xml"/>
+  	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-tushuo.xml"/>
+  	
 </sqlMapConfig>

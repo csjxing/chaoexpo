@@ -113,3 +113,4 @@ Caused by: java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
 	... 97 more
 2013-06-20 20:44:31,915 - ResourceManager : unable to find resource '/zhe/zhe.error/404.vm' in any resource loader.
 2013-06-24 23:33:20,504 - ResourceManager : unable to find resource '/zhe/zhe.error/404.vm' in any resource loader.
+2013-07-04 19:42:34,832 - ResourceManager : unable to find resource '/zhe/zhe.error/404.vm' in any resource loader.

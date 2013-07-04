@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ChaoTushuo">
+	<typeAlias alias="TA-ChaoTushuo" type="com.doucome.chaoexpo.biz.dal.dataobject.ChaoTushuoDO" />
+
+	<resultMap id="RM-ChaoTushuo" class="TA-ChaoTushuo">
+		<result property="id" column="ID" />
+		<result property="name" column="NAME" />
+		<result property="picUrls" column="PIC_URLS"/>
+		<result property="content" column="CONTENT"/>
+		<result property="category" column="CATEGORY"/>
+		<result property="gmtCreate" column="GMT_CREATE"/>
+		<result property="gmtModified" column="GMT_MODIFIED" />
+	</resultMap>
+	
+	<insert id="insertTushuo">
+		INSERT INTO
+			CHAO_TUSHUO(ID,NAME,PIC_URLS,CONTENT,CATEGORY,GMT_CREATE,GMT_MODIFIED)
+		VALUES
+			(#id#,#name#,#picUrls#,#content#,#category#,now(),now())
+		<selectKey resultClass="java.lang.Long" keyProperty="id">
+   			<![CDATA[
+			SELECT LAST_INSERT_ID() AS ID
+			]]>
+	    </selectKey>
+	</insert>
+	
+	<select id="queryTushuoById" resultMap="RM-ChaoTushuo">
+		SELECT 
+			ID,NAME,PIC_URLS,CONTENT,CATEGORY,GMT_CREATE,GMT_MODIFIED
+		FROM 
+			CHAO_TUSHUO
+		WHERE 
+			ID = #id#
+	</select>
+	
+	<select id="queryTushuosWithPagination" resultMap="RM-ChaoTushuo">
+		SELECT 
+			ID,NAME,PIC_URLS,CONTENT,CATEGORY,GMT_CREATE,GMT_MODIFIED
+		FROM 
+			CHAO_TUSHUO
+		ORDER BY 
+			GMT_CREATE DESC
+	    LIMIT 
+	      	#start#, #size#
+	</select>
+	
+	<select id="countTushuosWithPagination" resultClass="java.lang.Integer">
+		SELECT 
+			COUNT(ID)
+		FROM 
+			CHAO_TUSHUO
+	</select>
+	
+	<update id="updateTushuoById">
+		UPDATE
+			CHAO_TUSHUO
+		SET
+			<isNotEmpty property="picUrls">
+				PIC_URLS = #picUrls# ,
+			</isNotEmpty>
+			<isNotEmpty property="content">
+				CONTENT = #content# ,
+			</isNotEmpty>
+			<isNotEmpty property="category">
+				CATEGORY = #category# ,
+			</isNotEmpty>
+			GMT_MODIFIED = now()
+		WHERE
+			ID = #id#
+	</update>	
+	
+	<update id="deleteTushuoById">
+	    DELETE FROM
+	    	CHAO_TUSHUO 
+		WHERE 
+			ID = #id#
+	</update>
+</sqlMap>

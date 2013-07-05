@@ -1,6 +1,6 @@
 #set($bopsCss=["subject.css"])
 #set($layout="bops/default_bops.vm")
-#set($navigation = "#if($!tushuo.id)修改#else新增#end文化周边")
+#set($navigation = "#if($!tushuo.id)修改#else新增#end图说")
 
 <input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
 <input type="hidden"  id="bopsPage" value="tushuo"/>

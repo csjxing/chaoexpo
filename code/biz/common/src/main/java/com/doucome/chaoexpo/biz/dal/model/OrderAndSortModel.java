@@ -16,7 +16,7 @@ public class OrderAndSortModel {
 	 * 
 	 * @param orderStr 如 name_asc , settle_desc 
 	 * @param orderOptions  允许排序的子段， 如 {"name","settle"}
-	 */
+	 */ 
 	public OrderAndSortModel(String orderStr , String[] orderOptions){
 		
 		if(StringUtils.isBlank(orderStr)){

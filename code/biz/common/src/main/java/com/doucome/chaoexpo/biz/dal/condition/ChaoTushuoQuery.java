@@ -9,9 +9,12 @@ public class ChaoTushuoQuery extends AbstractModel {
 
 	private String status ;
 	
+	private String category ;
+	
 	public Map<String,Object> toMap(){
 		Map<String,Object> map = new HashMap<String,Object>() ;
 		map.put("status", status) ;
+		map.put("category", category) ;
 		return map ;
 	}
 
@@ -21,6 +24,14 @@ public class ChaoTushuoQuery extends AbstractModel {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	
 }

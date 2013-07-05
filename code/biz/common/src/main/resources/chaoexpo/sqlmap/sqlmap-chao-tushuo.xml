@@ -44,6 +44,9 @@
 			<isNotEmpty property="status" prepend="AND">
 				STATUS = #status#
 			</isNotEmpty>
+			<isNotEmpty property="category" prepend="AND">
+				CATEGORY = #category#
+			</isNotEmpty>
 		</isParameterPresent>
 		ORDER BY 
 			GMT_CREATE DESC
@@ -59,6 +62,9 @@
 		<isParameterPresent open="WHERE" removeFirstPrepend="true">
 			<isNotEmpty property="status" prepend="AND">
 				STATUS = #status#
+			</isNotEmpty>
+			<isNotEmpty property="category" prepend="AND">
+				CATEGORY = #category#
 			</isNotEmpty>
 		</isParameterPresent>
 	</select>

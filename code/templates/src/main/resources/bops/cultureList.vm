@@ -18,23 +18,23 @@
 	#parse("/common/bops/page/culturePagination.vm")
 	
 	<div class="culture-list">
-    	<table width="980">
+    	<table width="90">
     		<tr>
     			<th width="40">序号</th>
-        		<th width="80">名称</th>
-        		<th width="100">图片</th>
-    			<th width="200">介绍</th>
-				<th width="100">创建时间</th>
-    			<th width="80">操作</th>
+        		<th width="160">名称</th>
+        		<th width="60">图片</th>
+    			<th width="400">介绍</th>
+				<th width="120">创建时间</th>
+    			<th width="100">操作</th>
         	</tr>
     		#if($queryResult.totalRecords > 0)
         		#foreach($item in $!queryResult.items)
 					#set($idx = (($page - 1)*$size) + $velocityCount ) 
                 	<tr>
     					<td align="center">$!idx</td>
-						<td>$!item.name</td>
     					<td>#if($item.status == 'D')<span class="dc-red">[已删除]</span>#end<span #if($item.status == 'D')class='dc-light-gray'#end>$!item.name</span></td>
-                		<td><div class="intro">$!item.getIntro(40)</div></td>
+                		<td align="center"><img src="$!item.picModel.getSum('80x80')" alt="$!item.name" width="50" height="50"></td>
+						<td><div class="intro">$!item.getIntro(40)</div></td>
 						<td align="center">$!dateUtils.format($!item.gmtCreate, 'yyyy-MM-dd HH:mm')</td>
     					<td align="center">
 							<a class="" href="${env.bopsRoot}/bops/add_culture.htm?id=$!item.id" title="编辑" target="_blank">编辑</a>

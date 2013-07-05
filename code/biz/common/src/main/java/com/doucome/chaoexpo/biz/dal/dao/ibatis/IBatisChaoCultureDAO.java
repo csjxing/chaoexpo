@@ -1,12 +1,12 @@
 package com.doucome.chaoexpo.biz.dal.dao.ibatis;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.doucome.chaoexpo.biz.common.utils.NumberUtils;
+import com.doucome.chaoexpo.biz.dal.condition.ChaoCultureQuery;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoCultureUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dao.ChaoCultureDAO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoCultureDO;
@@ -29,16 +29,16 @@ public class IBatisChaoCultureDAO extends SqlMapClientDaoSupport implements Chao
 	}
 
 	@Override
-	public List<ChaoCultureDO> queryCulturesWithPagination(int start, int size) {
-		Map<String,Object> map = new HashMap<String,Object>() ;
+	public List<ChaoCultureDO> queryCulturesWithPagination(ChaoCultureQuery query,int start, int size) {
+		Map<String,Object> map = query.toMap() ;
 		map.put("start", start - 1) ;
 		map.put("size", size) ;
 		return getSqlMapClientTemplate().queryForList("ChaoCulture.queryCulturesWithPagination" , map) ;
 	}
 
 	@Override
-	public int countCulturesWithPagination() {
-		Map<String,Object> map = new HashMap<String,Object>() ;
+	public int countCulturesWithPagination(ChaoCultureQuery query) {
+		Map<String,Object> map = query.toMap() ;
 		return NumberUtils.parseInt((Integer)getSqlMapClientTemplate().queryForObject("ChaoCulture.countCulturesWithPagination" , map)) ;
 	}
 

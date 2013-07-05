@@ -24,6 +24,11 @@ public class ChaoCultureUpdateCondition extends AbstractModel  {
 	 */
 	private String picUrls ;
 	
+	/**
+	 * 
+	 */
+	private String status ;
+	
 	public static ChaoCultureUpdateCondition fromCulture(ChaoCultureDO culture) {
 		ChaoCultureUpdateCondition condition = new ChaoCultureUpdateCondition() ;
 		ReflectUtils.reflectTo(culture, condition) ;
@@ -35,6 +40,7 @@ public class ChaoCultureUpdateCondition extends AbstractModel  {
 		map.put("name", name) ;
 		map.put("intro", intro) ;
 		map.put("picUrls", picUrls) ;
+		map.put("status", status) ;
 		return map ;
 	}
 
@@ -62,7 +68,12 @@ public class ChaoCultureUpdateCondition extends AbstractModel  {
 		this.picUrls = picUrls;
 	}
 
-	
-	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	
 }

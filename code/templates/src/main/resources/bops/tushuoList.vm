@@ -43,7 +43,7 @@
 					#set($idx = (($page - 1)*$size) + $velocityCount ) 
                 	<tr>
     					<td align="center">$!idx</td>
-						<td>#if($item.status == 'D')<span class="dc-red">[已删除]</span>#end<span #if($item.status == 'D')class='dc-gray'#end>$!item.name</span></td>
+						<td>#if($item.status == 'D')<span class="dc-red">[已删除]</span>#end<span #if($item.status == 'D')class='dc-light-gray'#end>$!item.name</span></td>
     					<td align="center"><img src="$!item.picModel.getSum('80x80')" alt="$!item.name" class="logo" width="50" height="50"></td>
                 		<td align="center"><div class="category">$!item.category</div></td>
 						<td><div class="content">$!item.getContent(60)</div></td>

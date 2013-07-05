@@ -9,6 +9,7 @@
 		<result property="name" column="NAME" />
 		<result property="intro" column="INTRO"/>
 		<result property="picUrls" column="PIC_URLS"/>
+		<result property="status" column="STATUS"/>
 		<result property="gmtCreate" column="GMT_CREATE"/>
 		<result property="gmtModified" column="GMT_MODIFIED" />
 	</resultMap>
@@ -27,7 +28,7 @@
 	
 	<select id="queryCultureById" resultMap="RM-ChaoCulture">
 		SELECT 
-			ID,NAME,INTRO,PIC_URLS,GMT_CREATE,GMT_MODIFIED
+			ID,NAME,INTRO,PIC_URLS,STATUS,GMT_CREATE,GMT_MODIFIED
 		FROM
 			CHAO_CULTURE
 		WHERE
@@ -36,9 +37,14 @@
 	
 	<select id="queryCulturesWithPagination" resultMap="RM-ChaoCulture">
 		SELECT 
-			ID,NAME,INTRO,PIC_URLS,GMT_CREATE,GMT_MODIFIED
+			ID,NAME,INTRO,PIC_URLS,STATUS,GMT_CREATE,GMT_MODIFIED
 		FROM
 			CHAO_CULTURE
+		<isParameterPresent open="WHERE" removeFirstPrepend="true">
+			<isNotEmpty property="status" prepend="AND">
+				STATUS = #status#
+			</isNotEmpty>
+		</isParameterPresent>
 		ORDER BY 
 	    	GMT_CREATE DESC
 	    LIMIT 
@@ -50,6 +56,11 @@
 			COUNT(ID)
 		FROM
 			CHAO_CULTURE
+		<isParameterPresent open="WHERE" removeFirstPrepend="true">
+			<isNotEmpty property="status" prepend="AND">
+				STATUS = #status#
+			</isNotEmpty>
+		</isParameterPresent>
 	</select>
 	
 	<update id="updateCultureById">
@@ -64,6 +75,9 @@
 			</isNotEmpty>
 			<isNotEmpty property="picUrls">
 				PIC_URLS = #picUrls# ,
+			</isNotEmpty>
+			<isNotEmpty property="status">
+				STATUS = #status# ,
 			</isNotEmpty>
 			GMT_MODIFIED = now()
 		WHERE

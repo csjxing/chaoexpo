@@ -25,6 +25,8 @@
 			
 			//应用推荐
 			self._initAppRecommend() ;
+			//文化
+			self._initCulture() ;
 			//图说
 			self._initTushuo() ;
 			//图说分类
@@ -48,6 +50,43 @@
 					
 					$.ajax({
 						url : bopsRoot + '/bops/remote/rest/update_tushuo_status_ajax.htm' ,
+						type : 'post' ,
+						data: {id : id , status:toStatus},
+						success:function(result){
+							var code = result.code ;
+							var data = result.data ;
+							var detail = result.detail ;
+							if(code == 'success') {
+								window.location.reload() ;
+							} else {
+								alert('操作失败！ Msg :' + detail) ;
+							}
+						} , 
+						error :function (err){
+							alert('操作失败！ Msg :' + err) ;
+						}
+					});
+				}) ;
+			}
+		} ,
+		
+		_initCulture:function(){
+			if(bopsPage == 'cultureList'){
+				$('.update-culture-status-btn').click(function(){
+					var _this = $(this) ;
+					var id = _this.attr('data-culture-id') ;
+					if(id == '') {
+						alert('还没有选择要操作的记录！');
+						return ;
+					}
+					if(!confirm('是否操作记录？')){
+						return ;
+					}
+					
+					var toStatus = _this.attr('data-to-status') ;
+					
+					$.ajax({
+						url : bopsRoot + '/bops/remote/rest/update_culture_status_ajax.htm' ,
 						type : 'post' ,
 						data: {id : id , status:toStatus},
 						success:function(result){

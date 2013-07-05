@@ -39,7 +39,7 @@
     					<td align="center">
     						
 							<a class="" href="${env.bopsRoot}/bops/add_app_recommend.htm?id=$!item.id" title="编辑" target="_blank">编辑</a>
-							<a class="delete-recommend-btn" href="javascript:;" title="删除" data-recommend-id="$!item.id">删除</a>
+							<a class="delete-recommend-btn" href="javascript:;" title="删除" data-recommend-id="$!item.id">彻底删除</a>
     					</td>
                 	</tr>
         		#end

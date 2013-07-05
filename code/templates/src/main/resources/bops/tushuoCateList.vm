@@ -40,7 +40,7 @@
 						<td align="center">$!dateUtils.format($!item.gmtCreate, 'yyyy-MM-dd HH:mm')</td>
     					<td align="center">
 							<a class="" href="${env.bopsRoot}/bops/add_tushuo_cate.htm?id=$!item.id" title="编辑" target="_blank">编辑</a>
-							<a class="delete-tushuo-cate-btn" href="javascript:;" title="删除" data-cate-id="$!item.id">删除</a>
+							<a class="delete-tushuo-cate-btn" href="javascript:;" title="删除" data-cate-id="$!item.id">彻底删除</a>
     					</td>
                 	</tr>
 					

@@ -22,6 +22,8 @@ public class ChaoCultureDO extends AbstractModel {
 	
 	private String picUrls ;
 	
+	private String status ;
+	
 	private Date gmtModified ;
 	
 	private Date gmtCreate ;
@@ -44,6 +46,14 @@ public class ChaoCultureDO extends AbstractModel {
 
 	public String getIntro() {
 		return intro;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public void setIntro(String intro) {

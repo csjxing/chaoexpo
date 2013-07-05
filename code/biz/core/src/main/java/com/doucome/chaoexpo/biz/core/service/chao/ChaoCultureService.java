@@ -3,6 +3,7 @@ package com.doucome.chaoexpo.biz.core.service.chao;
 import com.doucome.chaoexpo.biz.core.model.ChaoCultureDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
+import com.doucome.chaoexpo.biz.dal.condition.ChaoCultureQuery;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoCultureUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoCultureDO;
 
@@ -28,7 +29,7 @@ public interface ChaoCultureService {
 	 * @param size
 	 * @return
 	 */
-	QueryResult<ChaoCultureDTO> getCulturesWithPagination(Pagination pagination) ;
+	QueryResult<ChaoCultureDTO> getCulturesWithPagination(ChaoCultureQuery query , Pagination pagination) ;
 	
 	/**
 	 * 

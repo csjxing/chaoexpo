@@ -60,6 +60,10 @@ public class ChaoCultureDTO extends AbstractModel {
 		return culture.getPicUrls();
 	}
 
+	public String getStatus() {
+		return culture.getStatus() ;
+	}
+	
 	public Date getGmtModified() {
 		return culture.getGmtModified();
 	}

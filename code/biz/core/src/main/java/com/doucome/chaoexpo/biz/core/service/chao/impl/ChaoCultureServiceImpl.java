@@ -10,6 +10,7 @@ import com.doucome.chaoexpo.biz.core.model.ChaoCultureDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoCultureService;
+import com.doucome.chaoexpo.biz.dal.condition.ChaoCultureQuery;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoCultureUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dao.ChaoCultureDAO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoCultureDO;
@@ -31,12 +32,12 @@ public class ChaoCultureServiceImpl implements ChaoCultureService {
 	}
 
 	@Override
-	public QueryResult<ChaoCultureDTO> getCulturesWithPagination(Pagination pagination) {
-		int totalRecords = chaoCultureDAO.countCulturesWithPagination() ;
+	public QueryResult<ChaoCultureDTO> getCulturesWithPagination(ChaoCultureQuery query,Pagination pagination) {
+		int totalRecords = chaoCultureDAO.countCulturesWithPagination(query) ;
         if (totalRecords <= 0) {
             return new QueryResult<ChaoCultureDTO>(new ArrayList<ChaoCultureDTO>(), pagination, totalRecords);
         }
-        List<ChaoCultureDO> doList = chaoCultureDAO.queryCulturesWithPagination(pagination.getStart(), pagination.getSize()) ;
+        List<ChaoCultureDO> doList = chaoCultureDAO.queryCulturesWithPagination(query ,pagination.getStart(), pagination.getSize()) ;
         List<ChaoCultureDTO> dtoList = new ArrayList<ChaoCultureDTO>() ;
         if(CollectionUtils.isNotEmpty(doList)){
         	for(ChaoCultureDO act : doList) {

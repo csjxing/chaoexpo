@@ -6,6 +6,7 @@ import com.doucome.chaoexpo.biz.core.model.ChaoCultureDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoCultureService;
+import com.doucome.chaoexpo.biz.dal.condition.ChaoCultureQuery;
 
 /**
  * 周边文化
@@ -24,7 +25,7 @@ public class CultureListAction extends BopsBasicAction {
 	@Override
 	public String execute() throws Exception {
 		
-		queryResult = chaoCultureService.getCulturesWithPagination(new Pagination(page)) ;
+		queryResult = chaoCultureService.getCulturesWithPagination(new ChaoCultureQuery(),new Pagination(page)) ;
 		
 		return SUCCESS ;
 	}

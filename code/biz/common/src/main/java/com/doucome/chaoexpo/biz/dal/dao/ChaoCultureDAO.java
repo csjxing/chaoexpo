@@ -2,6 +2,7 @@ package com.doucome.chaoexpo.biz.dal.dao;
 
 import java.util.List;
 
+import com.doucome.chaoexpo.biz.dal.condition.ChaoCultureQuery;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoCultureUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoCultureDO;
 
@@ -27,13 +28,13 @@ public interface ChaoCultureDAO {
 	 * @param size
 	 * @return
 	 */
-	List<ChaoCultureDO> queryCulturesWithPagination(int start , int size) ;
+	List<ChaoCultureDO> queryCulturesWithPagination(ChaoCultureQuery query ,int start , int size) ;
 	
 	/**
 	 * 
 	 * @return
 	 */
-	int countCulturesWithPagination() ;
+	int countCulturesWithPagination(ChaoCultureQuery query) ;
 	
 	/**
 	 * 

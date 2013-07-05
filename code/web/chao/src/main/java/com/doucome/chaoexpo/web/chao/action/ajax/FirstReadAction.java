@@ -2,6 +2,7 @@ package com.doucome.chaoexpo.web.chao.action.ajax;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.doucome.chaoexpo.biz.core.enums.CultureStatusEnums;
 import com.doucome.chaoexpo.biz.core.model.ChaoCultureDTO;
 import com.doucome.chaoexpo.biz.core.model.ChaoFirstReadDTO;
 import com.doucome.chaoexpo.biz.core.model.ChaoIntroDTO;
@@ -9,6 +10,7 @@ import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoCultureService;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoIntroService;
+import com.doucome.chaoexpo.biz.dal.condition.ChaoCultureQuery;
 import com.doucome.chaoexpo.web.chao.ChaoBasicAction;
 import com.doucome.chaoexpo.web.common.model.JsonModel;
 
@@ -35,7 +37,9 @@ public class FirstReadAction extends ChaoBasicAction {
 		ChaoFirstReadDTO firstRead = new ChaoFirstReadDTO() ;
 		
 		ChaoIntroDTO intro = chaoIntroService.getIntro() ;
-		QueryResult<ChaoCultureDTO> cultureResult = chaoCultureService.getCulturesWithPagination(new Pagination(page)) ;
+		ChaoCultureQuery query = new ChaoCultureQuery() ;
+		query.setStatus(CultureStatusEnums.NORMAL.getValue()) ;
+		QueryResult<ChaoCultureDTO> cultureResult = chaoCultureService.getCulturesWithPagination(query,new Pagination(page)) ;
 		
 		firstRead.setIntro(intro) ;
 		firstRead.setCultureList(cultureResult.getItems()) ;

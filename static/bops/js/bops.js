@@ -25,7 +25,48 @@
 			
 			//应用推荐
 			self._initAppRecommend() ;
+			//图说
+			self._initTushuo() ;
+			//图说分类
+			self._initTushuoCate() ;
 		},
+		
+		_initTushuo:function(){
+			if(bopsPage == 'tushuoList'){
+				$('.update-tushuo-status-btn').click(function(){
+					var _this = $(this) ;
+					var id = _this.attr('data-tushuo-id') ;
+					if(id == '') {
+						alert('还没有选择要操作的记录！');
+						return ;
+					}
+					if(!confirm('是否操作记录？')){
+						return ;
+					}
+					
+					var toStatus = _this.attr('data-to-status') ;
+					
+					$.ajax({
+						url : bopsRoot + '/bops/remote/rest/update_tushuo_status_ajax.htm' ,
+						type : 'post' ,
+						data: {id : id , status:toStatus},
+						success:function(result){
+							var code = result.code ;
+							var data = result.data ;
+							var detail = result.detail ;
+							if(code == 'success') {
+								window.location.reload() ;
+							} else {
+								alert('操作失败！ Msg :' + detail) ;
+							}
+						} , 
+						error :function (err){
+							alert('操作失败！ Msg :' + err) ;
+						}
+					});
+				}) ;
+			}
+		} ,
 		
 		/**
 		 * 
@@ -45,6 +86,41 @@
 					
 					$.ajax({
 						url : bopsRoot + '/bops/remote/rest/delete_app_recommend_ajax.htm' ,
+						type : 'post' ,
+						data: {id : id},
+						success:function(result){
+							var code = result.code ;
+							var data = result.data ;
+							var detail = result.detail ;
+							if(code == 'success') {
+								window.location.reload() ;
+							} else {
+								alert('删除失败！ Msg :' + detail) ;
+							}
+						} , 
+						error :function (err){
+							alert('删除失败！ Msg :' + err) ;
+						}
+					});
+				}) ;
+			}
+		} ,
+		
+		_initTushuoCate:function(){
+			if(bopsPage == 'tushuoCateList'){
+				$('.delete-tushuo-cate-btn').click(function(){
+					var _this = $(this) ;
+					var id = _this.attr('data-cate-id') ;
+					if(id == '') {
+						alert('还没有选择要删除的记录！');
+						return ;
+					}
+					if(!confirm('是否删除记录？')){
+						return ;
+					}
+					
+					$.ajax({
+						url : bopsRoot + '/bops/remote/rest/delete_tushuo_cate_ajax.htm' ,
 						type : 'post' ,
 						data: {id : id},
 						success:function(result){

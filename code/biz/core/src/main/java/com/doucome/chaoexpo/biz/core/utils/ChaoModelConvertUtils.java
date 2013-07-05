@@ -7,9 +7,11 @@ import org.apache.commons.collections.CollectionUtils;
 
 import com.doucome.chaoexpo.biz.core.model.ChaoAppRecommendDTO;
 import com.doucome.chaoexpo.biz.core.model.ChaoNewsCategoryDTO;
+import com.doucome.chaoexpo.biz.core.model.ChaoTushuoCategoryDTO;
 import com.doucome.chaoexpo.biz.core.model.ChaoTushuoDTO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoAppRecommendDO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoNewsCategoryDO;
+import com.doucome.chaoexpo.biz.dal.dataobject.ChaoTushuoCategoryDO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoTushuoDO;
 
 public class ChaoModelConvertUtils {
@@ -39,6 +41,16 @@ public class ChaoModelConvertUtils {
 		if(CollectionUtils.isNotEmpty(doList)) {
 			for(ChaoTushuoDO ts : doList) {
 				dtoList.add(new ChaoTushuoDTO(ts)) ;
+			}
+		}
+		return dtoList ;
+	}
+	
+	public static List<ChaoTushuoCategoryDTO> toTushuoCateDTOList(List<ChaoTushuoCategoryDO> doList) {
+		List<ChaoTushuoCategoryDTO> dtoList = new ArrayList<ChaoTushuoCategoryDTO>() ;
+		if(CollectionUtils.isNotEmpty(doList)) {
+			for(ChaoTushuoCategoryDO ts : doList) {
+				dtoList.add(new ChaoTushuoCategoryDTO(ts)) ;
 			}
 		}
 		return dtoList ;

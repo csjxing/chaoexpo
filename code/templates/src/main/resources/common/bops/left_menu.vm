@@ -9,6 +9,8 @@
 			<li id="app_recommend_list"><a href="${env.bopsRoot}/bops/app_recommend_list.htm" >应用推荐</a></li>
 			<li id="add_intro"><a href="${env.bopsRoot}/bops/add_intro.htm" >潮博会介绍</a></li>
 			<li id="culture_list"><a href="${env.bopsRoot}/bops/culture_list.htm" >文化周边</a></li>
+			<li id="tushuo_list"><a href="${env.bopsRoot}/bops/tushuo_list.htm" >图说</a></li>
+			<li id="tushuo_cate_list"><a href="${env.bopsRoot}/bops/tushuo_cate_list.htm" >图说分类</a></li>
     	</ul>
     </li>
 </ul>

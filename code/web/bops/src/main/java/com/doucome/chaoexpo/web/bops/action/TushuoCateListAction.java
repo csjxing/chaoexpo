@@ -4,44 +4,37 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.doucome.chaoexpo.biz.common.utils.IDUtils;
 import com.doucome.chaoexpo.biz.core.model.ChaoTushuoCategoryDTO;
-import com.doucome.chaoexpo.biz.core.model.ChaoTushuoDTO;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoTushuoCategoryService;
-import com.doucome.chaoexpo.biz.core.service.chao.ChaoTushuoService;
 
+/**
+ * 图说分类
+ * @author langben 2013-6-20
+ *
+ */
+public class TushuoCateListAction extends BopsBasicAction {
 
-public class QueryTushuoAction extends BopsBasicAction {
-
-	private ChaoTushuoDTO tushuo ;
-	
 	private List<ChaoTushuoCategoryDTO> cateList ;
-	
-	private Long id ;
-	
-	@Autowired
-	private ChaoTushuoService chaoTushuoService ;
 	
 	@Autowired
 	private ChaoTushuoCategoryService chaoTushuoCategoryService ;
 	
+	private int page ;
+	
 	@Override
 	public String execute() throws Exception {
-		if(IDUtils.isCorrect(id)) {
-			tushuo = chaoTushuoService.getTushuoById(id) ;
-		}
 		
 		cateList = chaoTushuoCategoryService.getCategories() ;
 		
 		return SUCCESS ;
 	}
 
-	public ChaoTushuoDTO getTushuo() {
-		return tushuo ;
+	public int getPage() {
+		return page;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setPage(int page) {
+		this.page = page;
 	}
 
 	public List<ChaoTushuoCategoryDTO> getCateList() {

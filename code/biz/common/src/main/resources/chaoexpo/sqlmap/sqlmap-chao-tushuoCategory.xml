@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ChaoTushuoCategory">
+	<typeAlias alias="TA-ChaoTushuoCategory" type="com.doucome.chaoexpo.biz.dal.dataobject.ChaoTushuoCategoryDO" />
+
+	<resultMap id="RM-ChaoTushuoCategory" class="TA-ChaoTushuoCategory">
+		<result property="id" column="ID" />
+		<result property="name" column="NAME" />
+		<result property="intro" column="INTRO" />
+		<result property="picUrls" column="PIC_URLS" />
+		<result property="gmtCreate" column="GMT_CREATE"/>
+		<result property="gmtModified" column="GMT_MODIFIED"/>
+	</resultMap>
+	
+	<insert id="insertCategory">
+		INSERT INTO
+			CHAO_TUSHUO_CATEGORY(ID,NAME,INTRO,PIC_URLS,GMT_MODIFIED,GMT_CREATE)
+		VALUES
+			(#id#,#name#,#intro#,#picUrls#,now(),now())
+		<selectKey resultClass="java.lang.Long" keyProperty="id">
+   			<![CDATA[
+			SELECT LAST_INSERT_ID() AS ID
+			]]>
+	    </selectKey>
+	</insert>
+	
+	<select id="queryCategoryById" resultMap="RM-ChaoTushuoCategory">
+		SELECT 
+			ID,NAME,INTRO,PIC_URLS,GMT_MODIFIED,GMT_CREATE
+		FROM 
+			CHAO_TUSHUO_CATEGORY
+		WHERE
+			ID = #id#
+	</select>
+	
+	<select id="queryCategories" resultMap="RM-ChaoTushuoCategory">
+		SELECT 
+			ID,NAME,INTRO,PIC_URLS,GMT_MODIFIED,GMT_CREATE
+		FROM 
+			CHAO_TUSHUO_CATEGORY
+	</select>
+	
+	<update id="updateCategoryById">
+		UPDATE
+			CHAO_TUSHUO_CATEGORY
+		SET
+			<isNotEmpty property="picUrls">
+				PIC_URLS = #picUrls# ,
+			</isNotEmpty>
+			<isNotEmpty property="intro">
+				INTRO = #intro# ,
+			</isNotEmpty>
+			GMT_MODIFIED = now()
+		WHERE
+			ID = #id#
+	</update>
+	
+	<update id="deleteCategoryById">
+		DELETE FROM
+			CHAO_TUSHUO_CATEGORY
+		WHERE
+			ID = #id#
+	</update>	
+	
+</sqlMap>

@@ -9,6 +9,7 @@
 		<result property="picUrls" column="PIC_URLS"/>
 		<result property="content" column="CONTENT"/>
 		<result property="category" column="CATEGORY"/>
+		<result property="status" column="STATUS"/>
 		<result property="gmtCreate" column="GMT_CREATE"/>
 		<result property="gmtModified" column="GMT_MODIFIED" />
 	</resultMap>
@@ -27,7 +28,7 @@
 	
 	<select id="queryTushuoById" resultMap="RM-ChaoTushuo">
 		SELECT 
-			ID,NAME,PIC_URLS,CONTENT,CATEGORY,GMT_CREATE,GMT_MODIFIED
+			ID,NAME,PIC_URLS,CONTENT,CATEGORY,STATUS,GMT_CREATE,GMT_MODIFIED
 		FROM 
 			CHAO_TUSHUO
 		WHERE 
@@ -36,9 +37,14 @@
 	
 	<select id="queryTushuosWithPagination" resultMap="RM-ChaoTushuo">
 		SELECT 
-			ID,NAME,PIC_URLS,CONTENT,CATEGORY,GMT_CREATE,GMT_MODIFIED
+			ID,NAME,PIC_URLS,CONTENT,CATEGORY,STATUS,GMT_CREATE,GMT_MODIFIED
 		FROM 
 			CHAO_TUSHUO
+		<isParameterPresent open="WHERE" removeFirstPrepend="true">
+			<isNotEmpty property="status" prepend="AND">
+				STATUS = #status#
+			</isNotEmpty>
+		</isParameterPresent>
 		ORDER BY 
 			GMT_CREATE DESC
 	    LIMIT 
@@ -50,6 +56,11 @@
 			COUNT(ID)
 		FROM 
 			CHAO_TUSHUO
+		<isParameterPresent open="WHERE" removeFirstPrepend="true">
+			<isNotEmpty property="status" prepend="AND">
+				STATUS = #status#
+			</isNotEmpty>
+		</isParameterPresent>
 	</select>
 	
 	<update id="updateTushuoById">
@@ -64,6 +75,9 @@
 			</isNotEmpty>
 			<isNotEmpty property="category">
 				CATEGORY = #category# ,
+			</isNotEmpty>
+			<isNotEmpty property="status">
+				STATUS = #status# ,
 			</isNotEmpty>
 			GMT_MODIFIED = now()
 		WHERE

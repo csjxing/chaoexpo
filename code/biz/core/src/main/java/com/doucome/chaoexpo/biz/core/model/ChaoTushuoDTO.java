@@ -62,6 +62,10 @@ public class ChaoTushuoDTO extends AbstractModel {
 	public String getCategory() {
 		return tushuo.getCategory();
 	}
+	
+	public String getStatus(){
+		return tushuo.getStatus() ;
+	}
 
 	public Date getGmtCreate() {
 		return tushuo.getGmtCreate();

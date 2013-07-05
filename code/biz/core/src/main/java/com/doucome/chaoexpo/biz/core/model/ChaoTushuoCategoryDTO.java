@@ -8,18 +8,19 @@ import org.springframework.util.CollectionUtils;
 
 import com.doucome.chaoexpo.biz.core.utils.ArrayStringUtils;
 import com.doucome.chaoexpo.biz.core.utils.PictureUtils;
-import com.doucome.chaoexpo.biz.dal.dataobject.ChaoCultureDO;
+import com.doucome.chaoexpo.biz.dal.dataobject.ChaoTushuoCategoryDO;
 import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
 
-public class ChaoCultureDTO extends AbstractModel {
+@SuppressWarnings("serial")
+public class ChaoTushuoCategoryDTO extends AbstractModel {
 
-	private ChaoCultureDO culture ;
-	
-	public ChaoCultureDTO(ChaoCultureDO culture) {
-		if(culture == null) {
-			culture = new ChaoCultureDO() ;
+	private ChaoTushuoCategoryDO category;
+
+	public ChaoTushuoCategoryDTO(ChaoTushuoCategoryDO category) {
+		if (category == null) {
+			category = new ChaoTushuoCategoryDO();
 		}
-		this.culture = culture ;
+		this.category = category;
 	}
 	
 	public List<PicModel> getPicModelList() {
@@ -40,32 +41,30 @@ public class ChaoCultureDTO extends AbstractModel {
 	}
 	
 	/**
-	 * ----------------------------
-	 * @return
+	 * -----------------------------------------------
 	 */
-	
+
 	public Long getId() {
-		return culture.getId();
+		return category.getId();
 	}
 
 	public String getName() {
-		return culture.getName();
-	}
-
-	public String getIntro() {
-		return culture.getIntro();
-	}
-
-	public String getPicUrls() {
-		return culture.getPicUrls();
-	}
-
-	public Date getGmtModified() {
-		return culture.getGmtModified();
+		return category.getName();
 	}
 
 	public Date getGmtCreate() {
-		return culture.getGmtCreate();
+		return category.getGmtCreate();
 	}
-	
+
+	public String getIntro() {
+		return category.getIntro();
+	}
+
+	public Date getGmtModified() {
+		return category.getGmtModified();
+	}
+
+	public String getPicUrls() {
+		return category.getPicUrls();
+	}
 }

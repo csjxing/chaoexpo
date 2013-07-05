@@ -16,6 +16,8 @@ public class ChaoTushuoUpdateCondition {
 	
 	private String category ;
 	
+	private String status ;
+	
 	public static ChaoTushuoUpdateCondition fromTushuo(ChaoTushuoDO tushuo){
 		ChaoTushuoUpdateCondition condition = new ChaoTushuoUpdateCondition() ;
 		ReflectUtils.reflectTo(tushuo, condition) ;
@@ -28,6 +30,7 @@ public class ChaoTushuoUpdateCondition {
 		map.put("picUrls", picUrls) ;
 		map.put("content", content) ;
 		map.put("category", category) ;
+		map.put("status", status) ;
 		return map ;
 	}
 
@@ -62,6 +65,13 @@ public class ChaoTushuoUpdateCondition {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	
 }

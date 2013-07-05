@@ -25,7 +25,13 @@
     					</li>
 						<li>
     						<span class="lbl" style="">分类：</span>
-    						<div class="dd-l"><input class="name width3" type="text" name="category" value="$!tushuo.category"/></div>
+    						<div class="dd-l">
+								<select name="category">
+									#foreach($cate in $cateList)
+                                    <option value="$!cate.name" #if($!tushuo.category == $cate.name) selected #end>$!cate.name</option>
+									#end
+								</select>
+							</div>
     					</li>
 						<li>
 							<span class="lbl" style="">内容：</span>

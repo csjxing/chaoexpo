@@ -1,0 +1,59 @@
+#set($layout="bops/default_bops.vm")
+
+#set($navigation = "图说分类")
+
+<style>
+	.content {
+		text-overflow: ellipsis;
+        white-space: nowrap;
+        word-wrap: normal;
+        width: 300px;
+        overflow: hidden;
+	}
+</style>
+
+<input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
+<input type="hidden"  id="bopsPage" value="tushuoCateList"/>
+
+<div class="bops">
+    <div style="MT20 MB20">&nbsp;</div>
+	
+	<div class="MB20 MT20"><a href="${env.bopsRoot}/bops/add_tushuo_cate.htm" target="_blank">新增图说分类</a></div>
+		
+	<div class="tushuo-list">
+    	<table width="980">
+    		<tr>
+    			<th width="40">序号</th>
+        		<th width="100">名称</th>
+        		<th width="100">图片</th>
+				<th width="300">简介</th>
+				<th width="100">创建时间</th>
+    			<th width="80">操作</th>
+        	</tr>
+    		#if(!$CollectionUtils.isEmpty($cateList))
+        		#foreach($item in $cateList)
+                	<tr>
+    					<td align="center">$!velocityCount</td>
+						<td align="center">$!item.name</td>
+						<td align="center"><img src="$!item.picModel.getSum('80x80')" alt="$!item.name" class="logo" width="60" height="60"></td>
+						<td><div class="content">$!item.getIntro(60)</div></td>
+						<td align="center">$!dateUtils.format($!item.gmtCreate, 'yyyy-MM-dd HH:mm')</td>
+    					<td align="center">
+							<a class="" href="${env.bopsRoot}/bops/add_tushuo_cate.htm?id=$!item.id" title="编辑" target="_blank">编辑</a>
+							<a class="delete-tushuo-cate-btn" href="javascript:;" title="删除" data-cate-id="$!item.id">删除</a>
+    					</td>
+                	</tr>
+					
+        		#end
+    		#else
+                <tr><td colspan="15" align="center">没有查询到记录</td></tr>
+    		#end
+         </table>
+	</div>
+		
+</div>
+<script>
+!(function($){
+	
+})(jQuery);
+</script>

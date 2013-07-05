@@ -4,26 +4,17 @@ import java.util.Date;
 
 import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
 
-/**
- * 图说
- * @author langben 2013-6-29
- *
- */
 @SuppressWarnings("serial")
-public class ChaoTushuoDO extends AbstractModel {
-
+public class ChaoTushuoCategoryDO extends AbstractModel {
+	
 	private Long id ;
 	
 	private String name ;
 	
+	private String intro ;
+	
 	private String picUrls ;
-	
-	private String content ;
-	
-	private String category ;
-	
-	private String status ;
-	
+		
 	private Date gmtCreate ;
 	
 	private Date gmtModified ;
@@ -44,36 +35,20 @@ public class ChaoTushuoDO extends AbstractModel {
 		this.name = name;
 	}
 
-	public String getPicUrls() {
-		return picUrls;
-	}
-
-	public void setPicUrls(String picUrls) {
-		this.picUrls = picUrls;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
 	public Date getGmtCreate() {
 		return gmtCreate;
 	}
 
 	public void setGmtCreate(Date gmtCreate) {
 		this.gmtCreate = gmtCreate;
+	}
+
+	public String getIntro() {
+		return intro;
+	}
+
+	public void setIntro(String intro) {
+		this.intro = intro;
 	}
 
 	public Date getGmtModified() {
@@ -84,12 +59,12 @@ public class ChaoTushuoDO extends AbstractModel {
 		this.gmtModified = gmtModified;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getPicUrls() {
+		return picUrls;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setPicUrls(String picUrls) {
+		this.picUrls = picUrls;
 	}
 	
 }

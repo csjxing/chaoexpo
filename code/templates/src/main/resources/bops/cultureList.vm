@@ -34,7 +34,7 @@
     					<td align="center">$!idx</td>
 						<td>$!item.name</td>
     					<td align="center"><img src="$!item.picModel.getSum('80x80')" alt="$!item.name" class="logo" width="50" height="50"></td>
-                		<td><div class="intro">$!item.intro</div></td>
+                		<td><div class="intro">$!item.getIntro(40)</div></td>
 						<td align="center">$!dateUtils.format($!item.gmtCreate, 'yyyy-MM-dd HH:mm')</td>
     					<td align="center">
 							<a class="" href="${env.bopsRoot}/bops/add_culture.htm?id=$!item.id" title="编辑" target="_blank">编辑</a>

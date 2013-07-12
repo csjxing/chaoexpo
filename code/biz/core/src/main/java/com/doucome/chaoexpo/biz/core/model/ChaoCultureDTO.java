@@ -35,7 +35,7 @@ public class ChaoCultureDTO extends AbstractModel {
 		return new PicModel(picList.iterator().next()) ;
 	}
 	
-	public String getIntro(int length) {
+	public String getSubIntro(int length) {
 		return StringUtils.substring(getIntro(), 0 , length) ;
 	}
 	

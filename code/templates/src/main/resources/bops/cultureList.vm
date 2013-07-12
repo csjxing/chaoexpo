@@ -18,7 +18,7 @@
 	#parse("/common/bops/page/culturePagination.vm")
 	
 	<div class="culture-list">
-    	<table width="90">
+    	<table width="980">
     		<tr>
     			<th width="40">序号</th>
         		<th width="160">名称</th>
@@ -34,7 +34,7 @@
     					<td align="center">$!idx</td>
     					<td>#if($item.status == 'D')<span class="dc-red">[已删除]</span>#end<span #if($item.status == 'D')class='dc-light-gray'#end>$!item.name</span></td>
                 		<td align="center"><img src="$!item.picModel.getSum('80x80')" alt="$!item.name" width="50" height="50"></td>
-						<td><div class="intro">$!item.getIntro(40)</div></td>
+						<td><div class="intro">$!item.getSubIntro(40)</div></td>
 						<td align="center">$!dateUtils.format($!item.gmtCreate, 'yyyy-MM-dd HH:mm')</td>
     					<td align="center">
 							<a class="" href="${env.bopsRoot}/bops/add_culture.htm?id=$!item.id" title="编辑" target="_blank">编辑</a>

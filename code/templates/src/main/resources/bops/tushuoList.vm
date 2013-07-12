@@ -46,7 +46,7 @@
 						<td>#if($item.status == 'D')<span class="dc-red">[已删除]</span>#end<span #if($item.status == 'D')class='dc-light-gray'#end>$!item.name</span></td>
     					<td align="center"><img src="$!item.picModel.getSum('80x80')" alt="$!item.name" class="logo" width="50" height="50"></td>
                 		<td align="center"><div class="category">$!item.category</div></td>
-						<td><div class="content">$!item.getContent(60)</div></td>
+						<td><div class="content">$!item.getSubContent(60)</div></td>
 						<td align="center">$!dateUtils.format($!item.gmtCreate, 'yyyy-MM-dd HH:mm')</td>
     					<td align="center">
 							<a class="" href="${env.bopsRoot}/bops/add_tushuo.htm?id=$!item.id" title="编辑" target="_blank">编辑</a>

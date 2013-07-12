@@ -36,7 +36,7 @@ public class ChaoTushuoDTO extends AbstractModel {
 		return new PicModel(picList.iterator().next()) ;
 	}
 	
-	public String getContent(int length) {
+	public String getSubContent(int length) {
 		return StringUtils.substring(getContent(), 0, length) ;
 	}
 	/**

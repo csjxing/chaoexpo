@@ -13,6 +13,8 @@ public class ChaoIntroUpdateCondition extends AbstractModel {
 	
 	private String hnIntro ;
 	
+	private String hnIndustrial ;
+	
 	private String chaoExpoIntro ;
 	
 	public static ChaoIntroUpdateCondition fromIntro(ChaoIntroDO intro){
@@ -25,6 +27,7 @@ public class ChaoIntroUpdateCondition extends AbstractModel {
 		Map<String,Object> map = new HashMap<String,Object>() ;
 		map.put("hnMapPicUrls", hnMapPicUrls) ;
 		map.put("hnIntro", hnIntro) ;
+		map.put("hnIndustrial", hnIndustrial) ;
 		map.put("chaoExpoIntro", chaoExpoIntro) ;
 		return map ;
 	}
@@ -57,6 +60,14 @@ public class ChaoIntroUpdateCondition extends AbstractModel {
 
 	public void setChaoExpoIntro(String chaoExpoIntro) {
 		this.chaoExpoIntro = chaoExpoIntro;
+	}
+
+	public String getHnIndustrial() {
+		return hnIndustrial;
+	}
+
+	public void setHnIndustrial(String hnIndustrial) {
+		this.hnIndustrial = hnIndustrial;
 	}
 	
 }

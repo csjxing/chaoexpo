@@ -24,6 +24,11 @@ public class ChaoIntroDO extends AbstractModel {
 	private String hnIntro ;
 	
 	/**
+	 * 四大产业
+	 */
+	private String hnIndustrial ;
+	
+	/**
 	 * 潮博会简介
 	 */
 	private String chaoExpoIntro ;
@@ -78,6 +83,14 @@ public class ChaoIntroDO extends AbstractModel {
 
 	public void setGmtModified(Date gmtModified) {
 		this.gmtModified = gmtModified;
+	}
+
+	public String getHnIndustrial() {
+		return hnIndustrial;
+	}
+
+	public void setHnIndustrial(String hnIndustrial) {
+		this.hnIndustrial = hnIndustrial;
 	}
 	
 }

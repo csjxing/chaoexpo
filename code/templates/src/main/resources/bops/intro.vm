@@ -24,6 +24,12 @@
 							<div class="dd-l"><textarea name="hnIntro"/>$!intro.hnIntro</textarea></div>
 						</li>
 					</ul>
+					<ul class="prop-list">
+						<li>
+							<span class="lbl" style="">四大产业：</span>
+							<div class="dd-l"><textarea name="hnIndustrial"/>$!intro.hnIndustrial</textarea></div>
+						</li>
+					</ul>
 				    <ul class="prop-list">
 						<li>
 							<span class="lbl" style="">潮博会介绍：</span>

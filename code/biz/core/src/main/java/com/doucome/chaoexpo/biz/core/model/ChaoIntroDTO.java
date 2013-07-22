@@ -40,6 +40,10 @@ public class ChaoIntroDTO extends AbstractModel {
 		return intro.getHnIntro();
 	}
 	
+	public String getHnIndustrial() {
+		return intro.getHnIndustrial() ;
+	}
+	
 	public String getChaoExpoIntro() {
 		return intro.getChaoExpoIntro();
 	}

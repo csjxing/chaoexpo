@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
-<sqlMap namespace="ChaoIntro">
-	<typeAlias alias="TA-ChaoIntro"
-		type="com.doucome.chaoexpo.biz.dal.dataobject.ChaoIntroDO" />
+<sqlMap namespace="ChaoBanner">
+	<typeAlias alias="TA-ChaoBanner"
+		type="com.doucome.chaoexpo.biz.dal.dataobject.ChaoBannerDO" />
 
-	<resultMap id="RM-ChaoIntro" class="TA-ChaoIntro">
+	<resultMap id="RM-ChaoBanner" class="TA-ChaoBanner">
 		<result property="id" column="ID" />
-		<result property="hnMapPicUrls" column="HN_MAP_PIC_URLS"/>
-		<result property="hnIntro" column="HN_INTRO"/>
-		<result property="hnIndustrial" column="HN_INDUSTRIAL"/>
-		<result property="chaoExpoIntro" column="CHAO_EXPO_INTRO" />
+		<result property="bannerId" column="BANNER_ID"/>
+		<result property="status" column="STATUS"/>
 		<result property="gmtCreate" column="GMT_CREATE"/>
 		<result property="gmtModified" column="GMT_MODIFIED" />
 	</resultMap>
 
-	<insert id="insertIntro">
+	<insert id="insertBanner">
 		INSERT INTO
-			CHAO_INTRO(ID,HN_MAP_PIC_URLS,HN_INTRO,HN_INDUSTRIAL,CHAO_EXPO_INTRO,GMT_CREATE,GMT_MODIFIED)
+			CHAO_BANNER(ID,BANNER_ID,STATUS,GMT_CREATE,GMT_MODIFIED)
 		VALUES
-			(#id#,#hnMapPicUrls#,#hnIntro#,#hnIndustrial#,#chaoExpoIntro#,now(),now())
+			(#id#,#bannerId#,#status#,now(),now())
 		<selectKey resultClass="java.lang.Long" keyProperty="id">
    			<![CDATA[
 			SELECT LAST_INSERT_ID() AS ID

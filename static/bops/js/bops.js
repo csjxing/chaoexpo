@@ -31,7 +31,47 @@
 			self._initTushuo() ;
 			//图说分类
 			self._initTushuoCate() ;
+			
+			//用户
+			self._initUser() ;
 		},
+		
+		_initUser:function(){
+			if(bopsPage == 'userList'){
+				$('.update-user-status-btn').click(function(){
+					var _this = $(this) ;
+					var userName = _this.attr('data-user-name') ;
+					if(userName == '') {
+						alert('还没有选择要操作的记录！');
+						return ;
+					}
+					if(!confirm('是否操作记录？')){
+						return ;
+					}
+					
+					var toStatus = _this.attr('data-to-status') ;
+					
+					$.ajax({
+						url : bopsRoot + '/bops/remote/rest/update_user_status_ajax.htm' ,
+						type : 'post' ,
+						data: {userName : userName , status:toStatus},
+						success:function(result){
+							var code = result.code ;
+							var data = result.data ;
+							var detail = result.detail ;
+							if(code == 'success') {
+								window.location.reload() ;
+							} else {
+								alert('操作失败！ Msg :' + detail) ;
+							}
+						} , 
+						error :function (err){
+							alert('操作失败！ Msg :' + err) ;
+						}
+					});
+				}) ;
+			}
+		} ,
 		
 		_initTushuo:function(){
 			if(bopsPage == 'tushuoList'){

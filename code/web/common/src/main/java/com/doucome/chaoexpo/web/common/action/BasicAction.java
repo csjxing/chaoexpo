@@ -24,6 +24,8 @@ import com.opensymphony.xwork2.util.ValueStack;
 public class BasicAction extends ActionSupport {
     
     public static final String CHAO_LOGIN = "chaoLogin" ;
+    
+    public static final String CHAO_LOGIN_JSON = "chaoLoginJson" ;
 
     protected HttpServletRequest getRequest() {
         return ServletActionContext.getRequest();

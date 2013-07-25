@@ -6,7 +6,7 @@ import com.doucome.chaoexpo.biz.core.model.ChaoUserDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoUserService;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoUserQuery;
+import com.doucome.chaoexpo.biz.dal.query.ChaoUserQuery;
 import com.opensymphony.xwork2.ModelDriven;
 
 public class UserListAction extends BopsBasicAction implements ModelDriven<ChaoUserQuery>{

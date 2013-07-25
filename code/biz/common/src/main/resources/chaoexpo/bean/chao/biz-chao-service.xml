@@ -15,6 +15,7 @@
 	<bean id="chaoUserService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoUserServiceImpl"/>
 	<bean id="chaoSubjectService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoSubjectServiceImpl"/>
 	<bean id="chaoUserFollowService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoUserFollowServiceImpl"/>
+	<bean id="chaoUserCommentService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoUserCommentServiceImpl"/>
 	<bean id="chaoNewsService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoNewsServiceImpl"/>
 	<bean id="chaoNewsCategoryService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoNewsCategoryServiceImpl"/>
 	<bean id="chaoAppRecommendService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoAppRecommendServiceImpl"/>

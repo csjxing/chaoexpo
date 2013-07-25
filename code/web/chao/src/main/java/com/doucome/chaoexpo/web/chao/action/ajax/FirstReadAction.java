@@ -10,7 +10,7 @@ import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoCultureService;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoIntroService;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoCultureQuery;
+import com.doucome.chaoexpo.biz.dal.query.ChaoCultureQuery;
 import com.doucome.chaoexpo.web.chao.ChaoBasicAction;
 import com.doucome.chaoexpo.web.common.model.JsonModel;
 

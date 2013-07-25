@@ -59,4 +59,7 @@ public class ChaoUserDTO {
 		return user.getGmtCreate();
 	}
 
+	public String getStatus() {
+		return user.getStatus() ;
+	}
 }

@@ -7,10 +7,10 @@ import java.util.Map;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.doucome.chaoexpo.biz.common.utils.NumberUtils;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoUserQuery;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoUserUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dao.ChaoUserDAO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoUserDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoUserQuery;
 
 public class IBatisChaoUserDAO extends SqlMapClientDaoSupport implements ChaoUserDAO{
 

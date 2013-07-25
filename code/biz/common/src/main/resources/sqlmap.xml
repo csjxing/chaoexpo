@@ -25,5 +25,6 @@
   	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-intro.xml"/>
   	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-tushuo.xml"/>
   	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-tushuoCategory.xml"/>
+  	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-userComment.xml"/>
   	
 </sqlMapConfig>

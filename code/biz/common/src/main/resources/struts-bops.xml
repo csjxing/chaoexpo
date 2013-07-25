@@ -124,7 +124,7 @@
 			<result name="success" type="velocity">/bops/success.vm</result>
 		</action>
 		
-		<action name="user_list" class="com.doucome.chaoexpo.web.bops.action.UserListAction">
+		<action name="query_user_list" class="com.doucome.chaoexpo.web.bops.action.UserListAction">
 			<interceptor-ref name="bopsDefaultStack" />
 			<result name="success" type="velocity">/bops/userList.vm</result>
 		</action>
@@ -157,6 +157,16 @@
 		<action name="do_add_tushuo_cate" class="com.doucome.chaoexpo.web.bops.action.AddTushuoCateAction">
 			<interceptor-ref name="bopsDefaultStack" />
 			<result name="success" type="velocity">/bops/success.vm</result>
+		</action>
+		
+		<action name="query_user_comment_list" class="com.doucome.chaoexpo.web.bops.action.UserCommentListAction">
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/userCommentList.vm</result>
+		</action>
+		
+		<action name="query_user_follow_list" class="com.doucome.chaoexpo.web.bops.action.UserFollowListAction">
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/userFollowList.vm</result>
 		</action>
 	</package>
 	
@@ -222,6 +232,11 @@
 		</action>
 		
 		<action name="delete_tushuo_cate_ajax" class="com.doucome.chaoexpo.web.bops.action.ajax.TushuoCateOperateAction" method="delete">
+			<interceptor-ref name="bopsDefaultStack" />
+		    <result name="success" type="json2"></result>
+		</action>
+		
+		<action name="update_user_status_ajax" class="com.doucome.chaoexpo.web.bops.action.ajax.UserOperateAction" method="updateStatus">
 			<interceptor-ref name="bopsDefaultStack" />
 		    <result name="success" type="json2"></result>
 		</action>

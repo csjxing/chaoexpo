@@ -2,9 +2,9 @@ package com.doucome.chaoexpo.biz.dal.dao;
 
 import java.util.List;
 
-import com.doucome.chaoexpo.biz.dal.condition.ChaoCultureQuery;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoCultureUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoCultureDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoCultureQuery;
 
 public interface ChaoCultureDAO {
 

@@ -7,12 +7,12 @@
 
 #set($pagination = $queryResult.pagination)
 
-#set($searchUrl = ${env.bopsRoot}+"/bops/user_list.htm?")
+#set($searchUrl = ${env.bopsRoot}+"/bops/query_user_list.htm?")
 #set($searchQuery = ["userId:$!userId","userName:$!userName"])
 
 <div class="bops">
     <div style="MT20 MB20">&nbsp;</div>
-	<form action="${env.bopsRoot}/bops/user_list.htm" method="get">
+	<form action="${env.bopsRoot}/bops/query_user_list.htm" method="get">
 		<div class="settleipt MB10 MT10">
 			<span class="search-div">
 				<span class="lbl">用户名： </span>
@@ -24,7 +24,7 @@
 		
 	#parse("/common/bops/page/userPagination.vm")
 	
-	<div class="culture-list">
+	<div class="user-list">
     	<table width="980">
     		<tr>
     			<th width="40">序号</th>
@@ -40,16 +40,26 @@
     		#if($queryResult.totalRecords > 0)
         		#foreach($item in $!queryResult.items)
 					#set($idx = (($page - 1)*$size) + $velocityCount ) 
-                	<tr>
+                	<tr #if($item.status == 'D') class="delete" #end>
     					<td align="center">$!idx</td>
 						<td align="center">$!item.userId</td>
-    					<td>$!item.userName</td>
+                        <td>#if($item.status == 'D')<span class="delete-tip">[已删除]</span> #end$!item.userName</td>
 						<td align="center">$!item.authKey</td>
-						<td align="center">$!item.followActivityCount</td>
-						<td align="center">$!item.checkinActivityCount</td>
-						<td align="center">$!item.favoriteSubjectCount</td>
+						<td align="center"><a href="${env.bopsRoot}/bops/query_user_follow_list.htm?userName=$!item.userName&type=FOL_ACT" target="_blank">$!item.followActivityCount</a></td>
+						<td align="center"><a href="${env.bopsRoot}/bops/query_user_follow_list.htm?userName=$!item.userName&type=ACT_CHK" target="_blank">$!item.checkinActivityCount</a></td>
+						<td align="center"><a href="${env.bopsRoot}/bops/query_user_follow_list.htm?userName=$!item.userName&type=FOL_SUBJ" target="_blank">$!item.favoriteSubjectCount</a></td>
 						<td align="center">$dateUtils.format($!item.gmtCreate,'yyyy-MM-dd HH:mm:ss')</td>
-    					<td align="center"></td>
+    					<td align="center">
+							
+							<a href="${env.bopsRoot}/bops/query_user_comment_list.htm?userName=$!item.userName" target="_blank">查看评论</a>
+							
+							#if($item.status == 'N')
+							<a class="update-user-status-btn" href="javascript:;" title="删除" data-user-name="$!item.userName" data-to-status='D'>删除</a>
+							#else
+							<a class="update-user-status-btn" href="javascript:;" title="恢复" data-user-name="$!item.userName" data-to-status='N'>恢复</a>
+							#end
+                            
+						</td>
                 	</tr>
         		#end
     		#else

@@ -11,15 +11,17 @@
 		<result property="subjectId" column="SUBJECT_ID" />
 		<result property="tenantId" column="TENANT_ID" />
 		<result property="type" column="TYPE" />
+		<result property="location" column="LOCATION" />
+		<result property="locationCode" column="LOCATION_CODE" />
 		<result property="gmtCreate" column="GMT_CREATE"/>
 		<result property="gmtModified" column="GMT_MODIFIED" />
 	</resultMap>
 
 	<insert id="insertFollow">
 		INSERT INTO
-			CHAO_USER_FOLLOW(ID,USER_NAME,ACTIVITY_ID,SUBJECT_ID,TENANT_ID,TYPE,GMT_CREATE,GMT_MODIFIED)
+			CHAO_USER_FOLLOW(ID,USER_NAME,ACTIVITY_ID,SUBJECT_ID,TENANT_ID,TYPE,LOCATION,LOCATION_CODE,GMT_CREATE,GMT_MODIFIED)
 		VALUES
-			(#id#,#userName#,#activityId#,#subjectId#,#tenantId#,#type#,now(),now())
+			(#id#,#userName#,#activityId#,#subjectId#,#tenantId#,#type#,#location#,#locationCode#,now(),now())
 		<selectKey resultClass="java.lang.Long" keyProperty="id">
    			<![CDATA[
 			SELECT LAST_INSERT_ID() AS ID
@@ -29,7 +31,7 @@
 	
 	<select id="queryFollowsWithPagination" resultMap="RM-ChaoUserFollow">
 		SELECT 
-			ID,USER_NAME,ACTIVITY_ID,SUBJECT_ID,TENANT_ID,TYPE,GMT_CREATE,GMT_MODIFIED
+			ID,USER_NAME,ACTIVITY_ID,SUBJECT_ID,TENANT_ID,TYPE,LOCATION,LOCATION_CODE,GMT_CREATE,GMT_MODIFIED
 		FROM
 			CHAO_USER_FOLLOW
 		<isParameterPresent open="WHERE" removeFirstPrepend="true">
@@ -80,4 +82,25 @@
 		</isParameterPresent>
 	</select>
 	
+	<delete id="deleteFollowByCondition">
+		DELETE FROM
+			CHAO_USER_FOLLOW
+		<isParameterPresent open="WHERE" removeFirstPrepend="true">
+			<isNotEmpty property="activityId" prepend="AND">
+	    		ACTIVITY_ID = #activityId# 
+			</isNotEmpty>
+			<isNotEmpty property="subjectId" prepend="AND">
+	    		SUBJECT_ID = #subjectId# 
+			</isNotEmpty>
+			<isNotEmpty property="tenantId" prepend="AND">
+	    		TENANT_ID = #tenantId# 
+			</isNotEmpty>
+			<isNotEmpty property="type" prepend="AND">
+	    		TYPE = #type# 
+			</isNotEmpty>
+			<isNotEmpty property="userName" prepend="AND">
+	    		USER_NAME = #userName#
+			</isNotEmpty>
+		</isParameterPresent>
+	</delete>
 </sqlMap>

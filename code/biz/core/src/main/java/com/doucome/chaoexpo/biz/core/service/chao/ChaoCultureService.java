@@ -3,9 +3,9 @@ package com.doucome.chaoexpo.biz.core.service.chao;
 import com.doucome.chaoexpo.biz.core.model.ChaoCultureDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoCultureQuery;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoCultureUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoCultureDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoCultureQuery;
 
 public interface ChaoCultureService {
 

@@ -1,4 +1,4 @@
-package com.doucome.chaoexpo.biz.dal.condition;
+package com.doucome.chaoexpo.biz.dal.query;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -15,6 +15,8 @@ public class ChaoUserQuery extends AbstractModel {
 	private Date gmtCreateStart ;
 	
 	private Date gmtCreateEnd ;
+	
+	private String status ;
 
 	public Map<String,Object> toMap() {
 		Map<String,Object> map = new HashMap<String,Object>() ;
@@ -22,6 +24,7 @@ public class ChaoUserQuery extends AbstractModel {
 		map.put("userName", userName) ;
 		map.put("gmtCreateStart", gmtCreateStart) ;
 		map.put("gmtCreateEnd", gmtCreateEnd) ;
+		map.put("status", status) ;
 		return map ;
 	}
 
@@ -51,6 +54,14 @@ public class ChaoUserQuery extends AbstractModel {
 
 	public Date getGmtCreateEnd() {
 		return gmtCreateEnd;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public void setGmtCreateEnd(Date gmtCreateEnd) {

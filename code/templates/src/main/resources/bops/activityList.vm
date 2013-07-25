@@ -82,12 +82,14 @@
 	    			<span class="dbsort_none"></span>
 	    		</a>
 			</th>
+			<th width="60">签到</th>
 			<th width="60">
 				<a class="sort-btn" href="${env.bopsRoot}/bops/activity_list.htm?sortColumn=COMMENT_COUNT&order=$tempOrder&id=$!id&keyword=$!keyword&subjectId=$!subjectId&gmtActivityStart=$!gmtActivityStartFmt&gmtActivityEnd=$!gmtActivityEndFmt">
 					<span>评论</span>
 	    			<span class="dbsort_none"></span>
 	    		</a>
             </th>
+            
 			<th width="40">操作</th>
     	</tr>
 		#if($!activityResult.totalRecords > 0)
@@ -125,8 +127,9 @@
             		<td class="">
             		    <div class="subject text-ellipsis" data-subject-id="$!activity.subjectId" data-init="n">$!activity.subjectId</div>
             		</td>
-            		<td align="center">$!activity.followCount</td>
-            		<td align="center">$!activity.commentCount</td>
+            		<td align="center"><a href="${env.bopsRoot}/bops/query_user_follow_list.htm?activityId=$!activity.id&type=FOL_ACT" target="_blank">$!activity.followCount</a></td>
+					<td align="center"><a href="${env.bopsRoot}/bops/query_user_follow_list.htm?activityId=$!activity.id&type=ACT_CHK" target="_blank">$!activity.checkinCount</a></td>
+                    <td align="center"><a href="${env.bopsRoot}/bops/query_user_comment_list.htm?activityId=$!activity.id" target="_blank">$!activity.commentCount</a></td>
 					<td align="center">
 						<a class="delete-btn" href="javascript:;" title="删除">删除</a>
 					</td>

@@ -72,6 +72,11 @@
 	display: inline-block;
 }
 
+.location-icon {
+	background: url(../images/icon.png);
+	display: inline-block;
+}
+
 .L {
 	float: left;
 }
@@ -926,6 +931,12 @@ i.yen {
 	background-position: -200px -200px;
 }
 
+.location-icon {
+	width: 16px;
+	height: 16px;
+	background-position: -225px 0;
+}
+
 .bops .other {
 	color: #999;
 }
@@ -1121,6 +1132,19 @@ form label.error {
 	background: url(../../image/close20x20.png) no-repeat scroll 0 0;
 }
 
+.bops .settleipt {
+	border-top:1px solid #aaa;
+	border-bottom:1px solid #aaa; 
+	padding: 10px 0 10px 0 ;
+}
+
+.bops .settleipt .other-option {
+	font-size: 12px ;
+	border-top: 1px dotted #999 ;
+	margin: 10px 20px 0 20px ;
+	padding: 10px 0 0 0 ;
+}
+
 .bops .search-form .search-line {
     padding: 5px 10px;
 }
@@ -1149,9 +1173,11 @@ form label.error {
     width: 150px;
 }
 
+/**
 .bops select, .bops option {
     padding: 3px 6px;
 }
+**/
 
 .bops table tr.even {
     background-color: #f7fcf5;
@@ -1216,4 +1242,16 @@ td .detail-layer {
 	float: left;
 	width: 560px;
 	min-height: 400px;
+}
+
+.bops .user-list .delete {
+	color: #999 ;
+}
+
+.bops .user-list .delete-tip {
+	color: #FF4444 ;
+}
+
+.bops .user-follow-list .location-icon {
+	margin-bottom: -3px;
 }

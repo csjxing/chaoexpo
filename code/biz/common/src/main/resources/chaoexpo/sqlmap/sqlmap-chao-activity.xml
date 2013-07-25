@@ -18,6 +18,7 @@
 		<result property="subjectId" column="SUBJECT_ID"/>
 		<result property="gmtActivity" column="GMT_ACTIVITY"/>
 		<result property="followCount" column="FOLLOW_COUNT"/>
+		<result property="checkinCount" column="CHECKIN_COUNT"/>
 		<result property="commentCount" column="COMMENT_COUNT"/>
 		<result property="gmtCreate" column="GMT_CREATE"/>
 		<result property="gmtModified" column="GMT_MODIFIED" />
@@ -36,7 +37,7 @@
 	</insert>
 	
 	<sql id="activity-fields">
-	    ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,INTRO,PIC_URLS,NOTICE,COUNTESY_REMINDER,STAND_PIC_URLS,SUBJECT_ID,GMT_ACTIVITY,FOLLOW_COUNT,COMMENT_COUNT,GMT_CREATE,GMT_MODIFIED
+	    ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,INTRO,PIC_URLS,NOTICE,COUNTESY_REMINDER,STAND_PIC_URLS,SUBJECT_ID,GMT_ACTIVITY,FOLLOW_COUNT,CHECKIN_COUNT,COMMENT_COUNT,GMT_CREATE,GMT_MODIFIED
 	</sql>
 	
 	<select id="queryActivityById" resultMap="RM-ChaoActivity">
@@ -266,8 +267,17 @@
 			<isNotEmpty property="incrFollowCount">
 				FOLLOW_COUNT = FOLLOW_COUNT + #incrFollowCount# ,
 			</isNotEmpty>
+			<isNotEmpty property="incrCheckinCount">
+				CHECKIN_COUNT = CHECKIN_COUNT + #incrCheckinCount# ,
+			</isNotEmpty>
 			<isNotEmpty property="incrCommentCount">
 				COMMENT_COUNT = COMMENT_COUNT + #incrCommentCount# ,
+			</isNotEmpty>
+			<isNotEmpty property="decrFollowCount">
+				FOLLOW_COUNT = FOLLOW_COUNT - #decrFollowCount# ,
+			</isNotEmpty>
+			<isNotEmpty property="decrCommentCount">
+				COMMENT_COUNT = COMMENT_COUNT - #decrCommentCount# ,
 			</isNotEmpty>
 			GMT_MODIFIED = now()
 		WHERE

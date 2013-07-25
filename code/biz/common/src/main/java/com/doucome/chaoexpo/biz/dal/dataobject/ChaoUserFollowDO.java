@@ -35,6 +35,10 @@ public class ChaoUserFollowDO extends AbstractModel {
 	 */
 	private String type ;
 	
+	private String locationCode ;
+	
+	private String location ;
+	
 	private Date gmtModified ;
 	
 	private Date gmtCreate ;
@@ -81,6 +85,22 @@ public class ChaoUserFollowDO extends AbstractModel {
 
 	public String getType() {
 		return type;
+	}
+
+	public String getLocationCode() {
+		return locationCode;
+	}
+
+	public void setLocationCode(String locationCode) {
+		this.locationCode = locationCode;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	public void setType(String type) {

@@ -37,7 +37,15 @@ public class ChaoNewsDO extends AbstractModel {
 	 * 排序，一般是当前时间戳
 	 */
 	private Long displayOrder ;
+	
+	/**
+	 * 评论数
+	 */
+	private Integer commentCount ;
 
+	/**
+	 * 
+	 */
 	private String status;
 	
 	private String isTop ;
@@ -150,6 +158,14 @@ public class ChaoNewsDO extends AbstractModel {
 
 	public void setGmtModified(Date gmtModified) {
 		this.gmtModified = gmtModified;
+	}
+
+	public Integer getCommentCount() {
+		return commentCount;
+	}
+
+	public void setCommentCount(Integer commentCount) {
+		this.commentCount = commentCount;
 	}
 
 }

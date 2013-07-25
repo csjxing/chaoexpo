@@ -25,5 +25,11 @@
 		    </list>
 		</property>
 	</bean>
+	
 	<bean id="chaoNewsBO" class="com.doucome.chaoexpo.biz.core.bo.ChaoNewsBO"/>
+	
+	<bean id="chaoUserCommentBO" class="com.doucome.chaoexpo.biz.core.bo.ChaoUserCommentBO"/>
+	
+	<bean id="chaoUserFollowBO" class="com.doucome.chaoexpo.biz.core.bo.ChaoUserFollowBO"/>
+	
 </beans>

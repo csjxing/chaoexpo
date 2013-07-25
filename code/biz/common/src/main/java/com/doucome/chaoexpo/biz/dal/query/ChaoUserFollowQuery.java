@@ -1,11 +1,11 @@
-package com.doucome.chaoexpo.biz.dal.condition;
+package com.doucome.chaoexpo.biz.dal.query;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
 
-public class ChaoUserFollowSearchCondition extends AbstractModel {
+public class ChaoUserFollowQuery extends AbstractModel {
 
 	/**
 	 * user

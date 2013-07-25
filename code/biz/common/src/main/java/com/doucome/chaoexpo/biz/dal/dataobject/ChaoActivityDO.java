@@ -76,6 +76,11 @@ public class ChaoActivityDO  extends AbstractModel{
 	 */
 	private Integer commentCount ;
 	
+	/**
+	 * 签到数
+	 */
+	private Integer checkinCount ;
+	
 	private Date gmtCreate ;
 	
 	private Date gmtModified ;
@@ -207,6 +212,13 @@ public class ChaoActivityDO  extends AbstractModel{
 	public void setCommentCount(Integer commentCount) {
 		this.commentCount = commentCount;
 	}
-	
+
+	public Integer getCheckinCount() {
+		return checkinCount;
+	}
+
+	public void setCheckinCount(Integer checkinCount) {
+		this.checkinCount = checkinCount;
+	}
 	
 }

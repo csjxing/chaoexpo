@@ -1,0 +1,101 @@
+#set($layout="bops/default_bops.vm")
+
+#set($navigation = "用户评论")
+
+<style>
+	.content {
+		text-overflow: ellipsis;
+        white-space: nowrap;
+        word-wrap: normal;
+        width: 300px;
+        overflow: hidden;
+	}
+</style>
+
+<input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
+<input type="hidden"  id="bopsPage" value="userCommentList"/>
+
+#set($pagination = $queryResult.pagination)
+
+#set($searchUrl = ${env.bopsRoot}+"/bops/query_user_comment_list.htm?")
+#set($searchQuery = ["id:$!id","toCommentId:$!toCommentId","toUserName:$!toUserName","userName:$!userName","activityId:$!activityId","newsId:$!newsId","type:$!type","status:$!status"])
+
+<div class="bops">
+    <div style="MT20 MB20">&nbsp;</div>
+	
+	<form action="${env.bopsRoot}/bops/query_user_comment_list.htm" method="get">
+		<div class="settleipt MB10 MT10">
+			活动ID： <input  type="text" name="activityId" value="$!activityId" />
+			新闻ID： <input  type="text" name="newsId" value="$!newsId" />
+			用户名： <input  type="text" name="userName" value="$!userName" />
+			<input type="submit" value="查询"/>
+			<div class="other-option">
+    			类型：
+    			<select name="type">
+                    <option value="">全部</option>
+    				<option value="ACT" #if($type == "ACT") selected #end>活动评论</option>
+    				<option value="NEWS" #if($type == "NEWS") selected #end>新闻评论</option>
+    			</select>
+				&nbsp;&nbsp;
+    			状态： 
+                <select name="status">
+                    <option value="">全部</option>
+    				<option value="N" #if($status == "N") selected #end>正常</option>
+    				<option value="D" #if($status == "D") selected #end>删除</option>
+    			</select>
+			</div>
+			
+		</div>
+	</form>
+	
+	#parse("/common/bops/page/userCommentPagination.vm")
+	
+	<div class="user-comment-list">
+    	<table width="1080">
+    		<tr>
+    			<th width="40">序号</th>
+        		<th width="140">评论人</th>
+        		<th width="40">类型</th>
+    			<th width="80">[活/新]编号</th>
+				<th width="350">内容</th>
+				<th width="140">回复</th>
+				<th width="120">创建时间</th>
+    			<th width="80">操作</th>
+        	</tr>
+    		#if($queryResult.totalRecords > 0)
+        		#foreach($item in $!queryResult.items)
+					#set($idx = (($page - 1)*$size) + $velocityCount ) 
+                	<tr>
+    					<td align="center">$!idx</td>
+    					<td align="center">$!item.userName</td>
+                		<td align="center">#if($!item.type == 'NEWS')新闻#elseif($!item.type == "ACT")活动#end</td>
+						<td align="center">
+							#if($item.activityId)<span class="dc-gray">[活]</span> $!item.activityId #end 
+							#if($item.newsId)<span class="dc-gray">[新]</span> $!item.newsId #end
+						</td>
+						<td><span class="">$!item.content</span></td>
+                        <td>#if($item.toCommentId)<span class="dc-gray">[回复]</span> $!item.toCommentId - $!item.userName   #end</td>
+						<td align="center">$!dateUtils.format($!item.gmtCreate, 'yyyy-MM-dd HH:mm')</td>
+    					<td align="center">
+							#if($item.status == 'N')
+							<a class="update-user-comment-status-btn" href="javascript:;" title="删除" data-user-comment-id="$!item.id" data-to-status='D'>删除</a>
+							#else
+							<a class="update-user-comment-status-btn" href="javascript:;" title="恢复" data-user-comment-id="$!item.id" data-to-status='N'>恢复</a>
+							#end
+    					</td>
+                	</tr>
+        		#end
+    		#else
+                <tr><td colspan="15" align="center">没有查询到记录</td></tr>
+    		#end
+         </table>
+	</div>
+	
+	#parse("/common/bops/page/userCommentPagination.vm")
+	
+</div>
+<script>
+!(function($){
+	
+})(jQuery);
+</script>

@@ -2,9 +2,9 @@ package com.doucome.chaoexpo.biz.dal.dao;
 
 import java.util.List;
 
-import com.doucome.chaoexpo.biz.dal.condition.ChaoTushuoQuery;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoTushuoUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoTushuoDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoTushuoQuery;
 
 public interface ChaoTushuoDAO {
 

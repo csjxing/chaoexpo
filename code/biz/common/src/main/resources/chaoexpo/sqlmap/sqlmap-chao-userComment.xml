@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ChaoUserComment">
+	<typeAlias alias="TA-ChaoUserComment"
+		type="com.doucome.chaoexpo.biz.dal.dataobject.ChaoUserCommentDO" />
+
+	<resultMap id="RM-ChaoUserComment" class="TA-ChaoUserComment">
+		<result property="id" column="ID" />
+		<result property="toCommentId" column="TO_COMMENT_ID" />
+		<result property="toUserName" column="TO_USER_NAME" />
+		<result property="userName" column="USER_NAME" />
+		<result property="activityId" column="ACTIVITY_ID" />
+		<result property="newsId" column="NEWS_ID" />
+		<result property="type" column="TYPE" />
+		<result property="content" column="CONTENT" />
+		<result property="status" column="STATUS" />
+		<result property="gmtCreate" column="GMT_CREATE"/>
+		<result property="gmtModified" column="GMT_MODIFIED" />
+	</resultMap>
+
+	<insert id="insertComment">
+		INSERT INTO
+			CHAO_USER_COMMENT(ID,TO_COMMENT_ID,TO_USER_NAME,USER_NAME,ACTIVITY_ID,NEWS_ID,TYPE,CONTENT,STATUS,GMT_CREATE,GMT_MODIFIED)
+		VALUES
+			(#id#,#toCommentId#,#toUserName#,#userName#,#activityId#,#newsId#,#type#,#content#,#status#,now(),now())
+		<selectKey resultClass="java.lang.Long" keyProperty="id">
+   			<![CDATA[
+			SELECT LAST_INSERT_ID() AS ID
+			]]>
+	    </selectKey>
+	</insert>
+	
+	<select id="queryCommentById" resultMap="RM-ChaoUserComment">
+		SELECT 
+			ID,TO_COMMENT_ID,TO_USER_NAME,USER_NAME,ACTIVITY_ID,NEWS_ID,TYPE,CONTENT,STATUS,GMT_CREATE,GMT_MODIFIED
+		FROM
+			CHAO_USER_COMMENT
+		WHERE
+			ID = #id#
+	</select>
+	
+	<select id="queryCommentsWithPagination" resultMap="RM-ChaoUserComment">
+		SELECT 
+			ID,TO_COMMENT_ID,TO_USER_NAME,USER_NAME,ACTIVITY_ID,NEWS_ID,TYPE,CONTENT,STATUS,GMT_CREATE,GMT_MODIFIED
+		FROM
+			CHAO_USER_COMMENT
+		<isParameterPresent open="WHERE" removeFirstPrepend="true">
+			<isNotEmpty property="toCommentId" prepend="AND">
+	    		TO_COMMENT_ID = #toCommentId# 
+			</isNotEmpty>
+			<isNotEmpty property="toUserName" prepend="AND">
+	    		TO_USER_NAME = #toUserName# 
+			</isNotEmpty>
+	    	<isNotEmpty property="userName" prepend="AND">
+	    		USER_NAME = #userName# 
+			</isNotEmpty>
+			<isNotEmpty property="activityId" prepend="AND">
+	    		ACTIVITY_ID = #activityId# 
+			</isNotEmpty>
+			<isNotEmpty property="newsId" prepend="AND">
+	    		NEWS_ID = #newsId# 
+			</isNotEmpty>
+			<isNotEmpty property="type" prepend="AND">
+	    		TYPE = #type# 
+			</isNotEmpty>
+			<isNotEmpty property="status" prepend="AND">
+	    		STATUS = #status# 
+			</isNotEmpty>
+		</isParameterPresent>
+		ORDER BY 
+	    	GMT_CREATE DESC
+	    LIMIT 
+	    	#start#, #size#
+	</select>
+	
+	
+	<select id="countCommentsWithPagination" resultClass="java.lang.Integer">
+		SELECT 
+			COUNT(ID)
+		FROM
+			CHAO_USER_COMMENT
+		<isParameterPresent open="WHERE" removeFirstPrepend="true">
+			<isNotEmpty property="toCommentId" prepend="AND">
+	    		TO_COMMENT_ID = #toCommentId# 
+			</isNotEmpty>
+			<isNotEmpty property="toUserName" prepend="AND">
+	    		TO_USER_NAME = #toUserName# 
+			</isNotEmpty>
+	    	<isNotEmpty property="userName" prepend="AND">
+	    		USER_NAME = #userName# 
+			</isNotEmpty>
+			<isNotEmpty property="activityId" prepend="AND">
+	    		ACTIVITY_ID = #activityId# 
+			</isNotEmpty>
+			<isNotEmpty property="newsId" prepend="AND">
+	    		NEWS_ID = #newsId# 
+			</isNotEmpty>
+			<isNotEmpty property="type" prepend="AND">
+	    		TYPE = #type# 
+			</isNotEmpty>
+			<isNotEmpty property="status" prepend="AND">
+	    		STATUS = #status# 
+			</isNotEmpty>
+		</isParameterPresent>
+	</select>
+	
+	<update id="updateCommentById">
+		UPDATE
+			CHAO_USER_COMMENT
+		SET
+		<isNotEmpty property="status" prepend="AND">
+    		STATUS = #status# 
+		</isNotEmpty>
+			GMT_MODIFIED = now()
+		WHERE
+			ID = #id#
+	</update>
+</sqlMap>

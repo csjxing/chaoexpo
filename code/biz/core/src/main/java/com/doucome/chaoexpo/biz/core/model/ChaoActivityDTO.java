@@ -207,6 +207,10 @@ public class ChaoActivityDTO extends AbstractModel {
 		return activity.getCommentCount();
 	}
 	
+	public Integer getCheckinCount() {
+		return activity.getCheckinCount() ;
+	}
+	
 	public void setCommentCount(Integer commentCount) {
 		activity.setCommentCount(commentCount);
 	}

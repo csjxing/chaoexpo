@@ -6,10 +6,10 @@ import java.util.Map;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.doucome.chaoexpo.biz.common.utils.NumberUtils;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoAppRecommendQuery;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoAppRecommendUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dao.ChaoAppRecommendDAO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoAppRecommendDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoAppRecommendQuery;
 
 public class IBatisChaoAppRecommendDAO extends SqlMapClientDaoSupport implements ChaoAppRecommendDAO {
 

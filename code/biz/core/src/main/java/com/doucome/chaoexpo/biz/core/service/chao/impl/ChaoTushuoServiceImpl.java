@@ -10,10 +10,10 @@ import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoTushuoService;
 import com.doucome.chaoexpo.biz.core.utils.ChaoModelConvertUtils;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoTushuoQuery;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoTushuoUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dao.ChaoTushuoDAO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoTushuoDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoTushuoQuery;
 
 public class ChaoTushuoServiceImpl implements ChaoTushuoService {
 

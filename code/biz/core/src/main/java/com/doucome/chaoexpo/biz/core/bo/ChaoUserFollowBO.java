@@ -1,5 +1,6 @@
 package com.doucome.chaoexpo.biz.core.bo;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -18,6 +19,7 @@ import com.doucome.chaoexpo.biz.core.service.chao.ChaoActivityService;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoSubjectService;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoUserFollowService;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoUserService;
+import com.doucome.chaoexpo.biz.core.utils.DateUtils;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoActivityUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoUserFollowDelCondition;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoUserUpdateCondition;
@@ -141,7 +143,7 @@ public class ChaoUserFollowBO {
 			if(StringUtils.isBlank(location) || StringUtils.isBlank(locationCode)) {
 				throw new ChaoUserFollowException("chao.user.activity.checkin.location.required") ;
 			}
-			
+						
 			//经纬度格式
 			String[] codes = StringUtils.split(locationCode , ",") ;
 			if(codes == null || codes.length != 2) {
@@ -155,6 +157,13 @@ public class ChaoUserFollowBO {
 			ChaoActivityDTO activity = chaoActivityService.getActivityById(actId) ;
 			if(activity == null) {
 				throw new ChaoUserFollowException("chao.user.activity.checkin.activity.notExists") ;
+			}
+			
+			Date actStartTime = activity.getGmtActivityStart() ;
+			Date actEndTime = activity.getGmtActivityEnd() ;
+			
+			if(!DateUtils.isBetween(new Date() , actStartTime, actEndTime)) {
+				throw new ChaoUserFollowException("chao.user.activity.checkin.activity.time.ended") ;
 			}
 			
 			ChaoUserFollowQuery query = new ChaoUserFollowQuery() ;

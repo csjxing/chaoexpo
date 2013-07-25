@@ -85,7 +85,7 @@ public class DateUtils {
 	 * @param date
 	 * @return
 	 */
-	public static boolean isBetween(Date start, Date end, Date date) {
+	public static boolean isBetween(Date date , Date start, Date end) {
 		if (start == null || end == null || date == null) {
 			return false;
 		}

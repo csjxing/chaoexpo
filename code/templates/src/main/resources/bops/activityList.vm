@@ -35,15 +35,9 @@
 				<span class="lbl">关键字：</span>
 				<input  type="text" name="keyword" value="$!keyword" />&nbsp;&nbsp;
 			</span>
-	        <br />
-			<div id="settleIptMore" class="settleIptMore">
-				<span class="search-div">
-					<span class="lbl">时间：</span>
-					<input type="text" class="dateIpt" name="gmtActivityStart" value="$!gmtActivityStartFmt" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"/> - 
-					<input type="text" class="dateIpt" name="gmtActivityEnd" value="$!gmtActivityEndFmt" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
-                </span>
-			    <input type="submit" value="查询" style="padding: 3px 4px;"/>
-			</div>
+			
+			<input type="submit" value="查询"/>
+	       
 		</div>
 	</form>
 	
@@ -55,7 +49,7 @@
 	    #set($tempOrder = 'DESC')
 	#end
 	 #parse("/common/bops/page/activityPagination.vm")
-	 <table width="1080" style="font-size:14px;" id="activityTable">
+	 <table width="1080" id="activityTable">
 		<tr>
 			<th width="40">ID</th>
     		<th width="220">
@@ -66,15 +60,9 @@
     		</th>
     		<th width="60">活动图片</th>
     		<th width="60">展位图片</th>
-			<th width="80">
-				<a class="sort-btn" href="${env.bopsRoot}/bops/activity_list.htm?sortColumn=GMT_ACTIVITY&order=$tempOrder&id=$!id&keyword=$!keyword&subjectId=$!subjectId&gmtActivityStart=$!gmtActivityStartFmt&gmtActivityEnd=$!gmtActivityEndFmt">
-				    <span>活动时间</span>
-    			    <span class="dbsort_none"></span>
-				</a>
-			</th>
+			<th width="200"><span>活动时间</span></th>
             <th width="80">地点</th>
 			<th width="80">联系人</th>
-			<th width="80">联系电话</th>
 			<th width="80">专题</th>
 			<th width="60">
 				<a class="sort-btn" href="${env.bopsRoot}/bops/activity_list.htm?sortColumn=FOLLOW_COUNT&order=$tempOrder&id=$!id&keyword=$!keyword&subjectId=$!subjectId&gmtActivityStart=$!gmtActivityStartFmt&gmtActivityEnd=$!gmtActivityEndFmt">
@@ -117,15 +105,14 @@
 	    		        </div>
             		</td>
             		<td align="center">
-            		    <div class="gmt-activity">$!dateUtils.format($!activity.gmtActivity,'yyyy-MM-dd')</div>
+            		    <div class="gmt-activity">$!dateUtils.format($!activity.gmtActivityStart,'yyyy-MM-dd') ~ $!dateUtils.format($!activity.gmtActivityEnd,'yyyy-MM-dd')</div>
             		</td>
             		<td class="more">
             		    <div class="location text-ellipsis content-detail" detail-content="$!activity.location">$!activity.location</div>
             		</td>
             		<td align="center">$!activity.contactName</td>
-            		<td align="center">$!activity.contactPhone</td>
-            		<td class="">
-            		    <div class="subject text-ellipsis" data-subject-id="$!activity.subjectId" data-init="n">$!activity.subjectId</div>
+            		<td>
+            		    #if($activity.subjectId != 0) <div class="subject text-ellipsis" data-subject-id="$!activity.subjectId" data-init="n">$!activity.subjectId</div> #end
             		</td>
             		<td align="center"><a href="${env.bopsRoot}/bops/query_user_follow_list.htm?activityId=$!activity.id&type=FOL_ACT" target="_blank">$!activity.followCount</a></td>
 					<td align="center"><a href="${env.bopsRoot}/bops/query_user_follow_list.htm?activityId=$!activity.id&type=ACT_CHK" target="_blank">$!activity.checkinCount</a></td>

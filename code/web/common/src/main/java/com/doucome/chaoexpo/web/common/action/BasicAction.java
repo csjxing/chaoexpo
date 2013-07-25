@@ -2,6 +2,7 @@ package com.doucome.chaoexpo.web.common.action;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
+import org.springframework.util.CollectionUtils;
 
 import com.doucome.chaoexpo.biz.core.service.impl.DefaultUriService;
 import com.opensymphony.xwork2.ActionContext;
@@ -86,5 +88,14 @@ public class BasicAction extends ActionSupport {
             return null;
         }
         return messages.iterator().next();
+    }
+    
+    public String getFieldError(String field) {
+    	Map<String,List<String>> errMap = getFieldErrors() ;
+    	List<String> errList = errMap.get(field) ;
+    	if(CollectionUtils.isEmpty(errList)) {
+    		return null ;
+    	}
+    	return errList.iterator().next() ;
     }
 }

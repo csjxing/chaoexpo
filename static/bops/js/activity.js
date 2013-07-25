@@ -20,13 +20,15 @@
 		    return $("#activityForm").validate({
 			    rules: {
 				    name: {required: true, maxlength:60},
-					gmtActivity: {required: true},
+					gmtActivityStart: {required: true},
+					gmtActivityEnd: {required: true},
 					contactName: {required: true, maxlength: 16},
 					contactPhone: {maxlength: 32}
 				},
 				messages: {
 				    name: {required: '*', maxlength: '太长'},
-					gmtActivity: {required: '*'},
+					gmtActivityStart: {required: '*'},
+					gmtActivityEnd: {required: '*'},
 					contactName: {required: '*', maxlength: '太长'},
 					contactPhone: {maxlength: '太长'}
 				}

@@ -70,6 +70,7 @@
 		<action name="add_activity" class="com.doucome.chaoexpo.web.bops.action.AddActivityAction" >
 			<interceptor-ref name="bopsDefaultStack" />
 			<result name="success" type="redirect">/bops/activity.htm</result>
+			<result name="input" type="velocity">/bops/activity.vm</result>
 		</action>
 		<action name="subject_list" class="com.doucome.chaoexpo.web.bops.action.SubjectListAction" >
 			<interceptor-ref name="bopsDefaultStack" />

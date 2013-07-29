@@ -96,10 +96,10 @@
 		  <isNotEmpty property="orderColumn" prepend="">
 		      ORDER BY 
 		      <isEqual property="orderColumn" compareValue="GMT_PUBLISH">
-		          GMT_PUBLISH DESC, DISPLAY_ORDER DESC
+		          GMT_PUBLISH DESC, GMT_CREATE DESC
 		      </isEqual>
 		      <isNotEqual property="orderColumn" compareValue="GMT_PUBLISH">
-		          ORDER BY IS_TOP DESC, DISPLAY_ORDER DESC
+		          ORDER BY IS_TOP DESC, GMT_CREATE DESC
 		      </isNotEqual>
 		  </isNotEmpty>
 	      LIMIT #start#, #size#

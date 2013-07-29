@@ -22,14 +22,14 @@
 				    name: {required: true, maxlength:60},
 					gmtActivityStart: {required: true},
 					gmtActivityEnd: {required: true},
-					contactName: {required: true, maxlength: 16},
+					contactName: {maxlength: 16},
 					contactPhone: {maxlength: 32}
 				},
 				messages: {
 				    name: {required: '*', maxlength: '太长'},
 					gmtActivityStart: {required: '*'},
 					gmtActivityEnd: {required: '*'},
-					contactName: {required: '*', maxlength: '太长'},
+					contactName: {maxlength: '太长'},
 					contactPhone: {maxlength: '太长'}
 				}
 			}).form();

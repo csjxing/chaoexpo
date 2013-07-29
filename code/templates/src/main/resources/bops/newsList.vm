@@ -105,8 +105,8 @@
 		#if($!newsResult.totalRecords > 0)
     		#foreach($news in $newsResult.items)
             	<tr data-id="$!news.id" class="#if($velocityCount % 2 == 0)even#end">
-					<td class="id">$!news.id</td>
-            		<td class="">
+					<td class="id" align="center">$!news.id</td>
+            		<td>
             		    <div class="title text-ellipsis">
             		    	<a href="${env.bopsRoot}/bops/news.htm?id=$!news.id" target="_blank">$!news.title</a>
             		    </div>

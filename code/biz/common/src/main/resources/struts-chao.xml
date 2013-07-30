@@ -78,6 +78,11 @@
 			<result name="success" type="json2"></result>
 		</action>
 		
+		<action name="my" class="com.doucome.chaoexpo.web.chao.action.user.ajax.MyAction">
+			<interceptor-ref name="chaoUserAuthStack" />
+			<result name="success" type="json2"></result>
+		</action>
+		
 		<action name="follow_activity" class="com.doucome.chaoexpo.web.chao.action.user.ajax.UserFollowAction">
 			<interceptor-ref name="chaoUserAuthStack" />
 			<result name="success" type="json2"></result>

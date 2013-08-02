@@ -28,7 +28,7 @@
 			CHAO_USER(USER_ID,USER_NAME,MD5_PASSWORD,AUTH_KEY,REGISTER_IMEI,STATUS,GMT_AUTH,GMT_CREATE,GMT_MODIFIED)
 		VALUES
 			(#userId#,#userName#,#md5Password#,#authKey#,#registerIMEI#,'N',#gmtAuth#,now(),now())
-		<selectKey resultClass="java.lang.Long" keyProperty="id">
+		<selectKey resultClass="java.lang.Long" keyProperty="userId">
    			<![CDATA[
 			SELECT LAST_INSERT_ID() AS ID
 			]]>
@@ -125,7 +125,7 @@
 	
 	<select id="queryMaxId" resultClass="java.lang.Long">
 		SELECT 
-			MAX(ID)
+			MAX(USER_ID)
 		FROM
 			CHAO_USER
 	</select>

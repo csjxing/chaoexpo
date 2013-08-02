@@ -6,15 +6,15 @@ import com.doucome.chaoexpo.biz.core.model.ChaoSubjectDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoSubjectService;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoSubjectSearchCondition;
+import com.doucome.chaoexpo.biz.dal.query.ChaoSubjectQuery;
 import com.opensymphony.xwork2.ModelDriven;
 
 @SuppressWarnings("serial")
-public class SubjectListAction extends BopsBasicAction implements ModelDriven<ChaoSubjectSearchCondition> {
+public class SubjectListAction extends BopsBasicAction implements ModelDriven<ChaoSubjectQuery> {
 	
 	private QueryResult<ChaoSubjectDTO> subjectResult;
 	
-	private ChaoSubjectSearchCondition condition = new ChaoSubjectSearchCondition();
+	private ChaoSubjectQuery condition = new ChaoSubjectQuery();
 	
 	@Autowired
 	private ChaoSubjectService chaoSubjectService;
@@ -31,7 +31,7 @@ public class SubjectListAction extends BopsBasicAction implements ModelDriven<Ch
 		return subjectResult;
 	}
 	
-	public ChaoSubjectSearchCondition getModel() {
+	public ChaoSubjectQuery getModel() {
 		return condition;
 	}
 

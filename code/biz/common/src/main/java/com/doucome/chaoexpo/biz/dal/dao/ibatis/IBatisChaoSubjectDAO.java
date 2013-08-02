@@ -6,10 +6,10 @@ import java.util.Map;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.doucome.chaoexpo.biz.common.utils.NumberUtils;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoSubjectSearchCondition;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoSubjectUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dao.ChaoSubjectDAO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoSubjectDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoSubjectQuery;
 
 public class IBatisChaoSubjectDAO extends SqlMapClientDaoSupport implements ChaoSubjectDAO {
 
@@ -25,7 +25,7 @@ public class IBatisChaoSubjectDAO extends SqlMapClientDaoSupport implements Chao
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ChaoSubjectDO> querySubjectsWithPagination(ChaoSubjectSearchCondition condition, int start, int size) {
+	public List<ChaoSubjectDO> querySubjectsWithPagination(ChaoSubjectQuery condition, int start, int size) {
 		Map<String,Object> map = condition.toMap() ;
 		map.put("start", start - 1) ;
 		map.put("size", size) ;
@@ -33,7 +33,7 @@ public class IBatisChaoSubjectDAO extends SqlMapClientDaoSupport implements Chao
 	}
 
 	@Override
-	public int countSubjectsWithPagination(ChaoSubjectSearchCondition condition) {
+	public int countSubjectsWithPagination(ChaoSubjectQuery condition) {
 		Map<String,Object> map = condition.toMap() ;
 		return NumberUtils.parseInt((Integer)getSqlMapClientTemplate().queryForObject("ChaoSubject.countSubjectsWithPagination" , map)) ;
 	}

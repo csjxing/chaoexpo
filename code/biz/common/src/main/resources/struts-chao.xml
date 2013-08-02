@@ -33,6 +33,11 @@
 			<result name="success" type="json2"></result>
 		</action>
 		
+		<action name="query_subject_list" class="com.doucome.chaoexpo.web.chao.action.ajax.QuerySubjectListAction">
+			<interceptor-ref name="chaoDefaultStack" />
+			<result name="success" type="json2"></result>
+		</action>
+		
 		<action name="query_news_list" class="com.doucome.chaoexpo.web.chao.action.ajax.QueryNewsListAction">
 			<interceptor-ref name="chaoDefaultStack" />
 			<result name="success" type="json2"></result>

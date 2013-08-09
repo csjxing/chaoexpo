@@ -13,6 +13,9 @@
 		
 		_initEvent: function() {
 			$("#activityTable .delete-btn").click(function() {
+			    if(!confirm('是否删除记录？')){
+					return ;
+				}
 			    var _this = $(this);
 				var id = _this.data('id');
 				var status = _this.data('status');

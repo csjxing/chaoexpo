@@ -22,4 +22,5 @@
 	<bean id="chaoIntroDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoIntroDAO"/>
 	<bean id="chaoTushuoDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoTushuoDAO"/>
 	<bean id="chaoTushuoCategoryDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoTushuoCategoryDAO"/>
+	<bean id="chaoBannerDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoBannerDAO"/>
 </beans>

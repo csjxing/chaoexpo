@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
-<sqlMap namespace="ChaoBanner">
-	<typeAlias alias="TA-ChaoBanner"
-		type="com.doucome.chaoexpo.biz.dal.dataobject.ChaoBannerDO" />
+<sqlMap namespace="chaoBanner">
+	<typeAlias alias="TA-ChaoBanner" type="com.doucome.chaoexpo.biz.dal.dataobject.ChaoBannerDO" />
 
 	<resultMap id="RM-ChaoBanner" class="TA-ChaoBanner">
 		<result property="id" column="ID" />
 		<result property="bannerId" column="BANNER_ID"/>
+		<result property="picConfigs" column="PIC_CONFIGS"/>
 		<result property="status" column="STATUS"/>
+		<result property="memo" column="MEMO"/>
 		<result property="gmtCreate" column="GMT_CREATE"/>
 		<result property="gmtModified" column="GMT_MODIFIED" />
 	</resultMap>
 
 	<insert id="insertBanner">
 		INSERT INTO
-			CHAO_BANNER(ID,BANNER_ID,STATUS,GMT_CREATE,GMT_MODIFIED)
+			CHAO_BANNER(ID, BANNER_ID, PIC_CONFIGS, STATUS, MEMO, GMT_CREATE,GMT_MODIFIED)
 		VALUES
-			(#id#,#bannerId#,#status#,now(),now())
+			(#id#, #bannerId#, #picConfigs#, #status#, #memo#, now(), now())
 		<selectKey resultClass="java.lang.Long" keyProperty="id">
    			<![CDATA[
 			SELECT LAST_INSERT_ID() AS ID
@@ -24,31 +25,39 @@
 	    </selectKey>
 	</insert>
 	
-	<select id="queryIntro" resultMap="RM-ChaoIntro">
-		SELECT 
-			ID,HN_MAP_PIC_URLS,HN_INTRO,HN_INDUSTRIAL,CHAO_EXPO_INTRO,GMT_CREATE,GMT_MODIFIED
-		FROM
-			CHAO_INTRO
+	<sql id="banner_fields">
+	    ID, BANNER_ID, PIC_CONFIGS, STATUS, MEMO, GMT_CREATE, GMT_MODIFIED
+	</sql>
+	
+	<select id="queryBanner" resultMap="RM-ChaoBanner">
+		SELECT <include refid="banner_fields" />
+		  FROM CHAO_BANNER
+		  WHERE ID = #id#
 		LIMIT 1
 	</select>
 	
-	<update id="updateIntro">
+	<select id="queryBannerByBannerId" resultMap="RM-ChaoBanner">
+		SELECT <include refid="banner_fields" />
+		  FROM CHAO_BANNER
+		  WHERE BANNER_ID = #bannerId#
+		LIMIT 1
+	</select>
+	
+	<update id="updateBanner">
 		UPDATE
-			CHAO_INTRO
+			CHAO_BANNER
 		SET
-			<isNotEmpty property="hnMapPicUrls">
-				HN_MAP_PIC_URLS = #hnMapPicUrls# ,
+			<isNotEmpty property="picConfigs">
+				PIC_CONFIGS = #picConfigs# ,
 			</isNotEmpty>
-			<isNotEmpty property="hnIntro">
-				HN_INTRO = #hnIntro# ,
+			<isNotEmpty property="status">
+				STATUS = #status# ,
 			</isNotEmpty>
-			<isNotEmpty property="chaoExpoIntro">
-				CHAO_EXPO_INTRO = #chaoExpoIntro# ,
-			</isNotEmpty>
-			<isNotEmpty property="hnIndustrial">
-				HN_INDUSTRIAL = #hnIndustrial# ,
+			<isNotEmpty property="memo">
+				MEMO = #memo# ,
 			</isNotEmpty>
 			GMT_MODIFIED = now()
+		WHERE ID = #id#
 	</update>
 	
 </sqlMap>

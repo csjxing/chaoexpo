@@ -10,7 +10,7 @@
 
 	#BOPS_CSS(["bops.css"])
 	#CHAO_CSS(["../jquery-ui-1.8.21/bundle/themes/base/jquery.ui.all.css"])
-	#CHAO_JS(["lib/jquery-min.js","lib/common.js","../date-picker/WdatePicker.js"])
+	#CHAO_JS(["lib/jquery-min.js","lib/common.js","../date-picker/WdatePicker.js","lib/json2.js"])
 	#CHAO_JS(["../jquery-ui-1.8.21/bundle/ui/jquery.ui.core.js","../jquery-ui-1.8.21/bundle/ui/jquery.ui.widget.js","../jquery-ui-1.8.21/bundle/ui/jquery.ui.datepicker.js","../jquery-ui-1.8.21/bundle/ui/i18n/jquery-ui-i18n.js"])
 	#if($!bopsCss)
     #BOPS_CSS($!bopsCss)

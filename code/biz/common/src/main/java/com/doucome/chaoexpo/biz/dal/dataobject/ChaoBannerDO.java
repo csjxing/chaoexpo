@@ -11,15 +11,17 @@ import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
  */
 public class ChaoBannerDO extends AbstractModel {
 
+	private static final long serialVersionUID = 1L;
+
 	private Long id ;
 	
 	private String bannerId ;
 	
 	private String status ;
 	
-	private String picUrls ;
+	private String picConfigs;
 	
-	private String clickUrls ;
+	private String memo;
 	
 	private Date gmtCreate ;
 	
@@ -65,20 +67,19 @@ public class ChaoBannerDO extends AbstractModel {
 		this.gmtModified = gmtModified;
 	}
 
-	public String getPicUrls() {
-		return picUrls;
+	public String getPicConfigs() {
+		return picConfigs;
 	}
 
-	public void setPicUrls(String picUrls) {
-		this.picUrls = picUrls;
+	public void setPicConfigs(String picConfigs) {
+		this.picConfigs = picConfigs;
 	}
 
-	public String getClickUrls() {
-		return clickUrls;
+	public String getMemo() {
+		return memo;
 	}
 
-	public void setClickUrls(String clickUrls) {
-		this.clickUrls = clickUrls;
+	public void setMemo(String memo) {
+		this.memo = memo;
 	}
-	
 }

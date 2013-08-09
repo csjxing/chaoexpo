@@ -1,0 +1,106 @@
+#set($bopsCss=["banner.css"])
+#set($layout="bops/default_bops.vm")
+#set($navigation = "#if($!banner.id)修改#else新增#end Banner")
+
+<input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
+<input type="hidden"  id="bopsPage" value="banner"/>
+<input type="hidden"  id="pictureRoot" value="${env.pictureRoot}"/>
+
+<div class="bops">
+	
+    <div class="main-box">
+    	<div id="maskLayer"></div>
+		<div id="picConfigLayer" class="pic-upload-layer banner-pic-layer dd-hide">
+		    <div class="wrap">
+			    <div class="header" style="">
+				    <span>上传图片</span>
+					<a class="close-btn" href="javascript:;"></a>
+				</div>
+				<div class="content">
+					<div class="url-pic">
+						<form id="urlPicUploadForm" method="post" action="${env.bopsRoot}/bops/remote/upload_url_image.htm">
+						    <div class="tip"><span>上传网络图片</span></div>
+						    <div class="tip"><span class="error"></span></div>
+							<input class="picture-url" type="text" name="pictureUrl"/>
+							<div class="tip"><span>Banner跳转链接</span></div>
+							<input type="text" class="click-url" name="clickUrl" />
+							<input class="confirm-btn" type="submit" value="上传"/>
+						</form>
+					</div>
+					<div class="local-pic">
+						<form id="localPicUploadForm" method="post" action="${env.bopsRoot}/bops/remote/upload_local_image.htm" enctype="multipart/form-data">
+						    <div class="tip"><span>上传本地图片</span></div>
+						    <div class="tip"><span class="error"></span></div>
+							<input class="picture" type="file" name="picture"/>
+							<div class="tip"><span>Banner跳转链接</span></div>
+							<input type="text" class="click-url" name="clickUrl" />
+							<input class="confirm-btn" type="submit" value="上传"/>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+    	<form id="bannerForm" method="post" action="${env.bopsRoot}/bops/add_banner.htm">
+    		<input type="hidden" name="id" value="$!banner.id" />
+		    <div class="banner-box">
+			    <div class="pic-detail-box">
+				    <div class="top-box dd-l">
+					    <div class="picture dd-l big-pic">
+					    	#if ($!banner.picModels && $!banner.picModels.size() > 0)
+					    		#set($clickUrl0=$!banner.picModels[0].clickUrl)
+					    		<a href="#if($!clickUrl0 && $!clickUrl0 != '')$!banner.picModels[0].clickUrl #else javascript:;#end" target="_blank">
+					    			<img src="$!banner.picModels[0].picUrl" />
+					    		</a>
+					    		<div class="url-box">
+					    		    <span>跳转链接：</span>
+					    		    <input type="text" class="click-url" value="$!banner.picModels[0].clickUrl">
+					    		    <a class="mod-click-url-bnt" href="javascript:;" >修改</a>
+					    		</div>
+					    	#end
+						</div>
+				        <div class="sum-pics">
+							<ul class="pictures1">
+								#if($!banner.picModels && $!banner.picModels.size() > 0)
+									#foreach($picModel in $!banner.picModels)
+								        <li class="sum-banner-pic #if($velocityCount == 1)active#end" data-pic-url="$!picModel.picUrl" data-click-url="$!picModel.clickUrl">
+								        	<a href="javascript:;" class="small-pic">
+								        	    <img src="$!picModel.getSumPicUrl('80x80')" width="40" height="40"/>
+								        	</a>
+								        	<a class="del-pic-config-btn del-icon" href="javascript:;" title="删除"></a>
+								        	<input type="hidden" name="picConfigs" value='$!picModel.picConfig'/>
+								        </li>
+								    #end
+								#end
+								<li class="add-pic">
+									<a class="add-banner-pic-btn btn" href="javascript:;" title="新增图片"></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<div class="content-box" style="">
+				    <ul>
+						<li class="">
+							<span class="lbl" style="">BannerId：</span>
+							<div class="dd-l">
+								<input type="text" class="name width3" name="bannerId" value="$!banner.bannerId"/>
+							</div>
+						</li>
+						<li class="">
+							<span class="lbl">备注：</span>
+							<div class="dd-l">
+								<textarea name="content"/>$!banner.memo</textarea>
+							</div>
+						</li>
+					</ul>
+					<div class="btn-box dd-l">
+						<input type="submit" value="提交"/>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+#set($bopsJs=["../../js/lib/jquery.form.js", "../../js/lib/jquery.validate.min.js", "banner.js"])

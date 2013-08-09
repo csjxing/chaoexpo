@@ -93,17 +93,19 @@ public class ArrayStringUtils {
 	
 	
 	public static String toString(@SuppressWarnings("rawtypes") List list){
-		
+		return toString(list, ",");
+	}
+	
+	public static String toString(List<?> list, String sep) {
 		if(CollectionUtils.isEmpty(list)){
 			return "" ;
 		}
-		
 		StringBuilder strConcat = new StringBuilder() ; 
 		for(int i=0 ;i<list.size();i++){
 			Object obj = list.get(i) ;
 			strConcat.append(obj) ;
 			if(i != list.size()-1){
-				strConcat.append(",") ;
+				strConcat.append(sep) ;
 			}
 		}
 		return strConcat.toString() ;

@@ -1,0 +1,97 @@
+.main-box {
+    margin-top: 20px;
+    font: 12px  'songti','Microsoft Yahei',Arial;
+}
+
+.main-box .banner-box {
+
+}
+
+.main-box .content-box ul {
+    float: left;
+    min-height: 200px;
+}
+
+.main-box .content-box .btn-box {
+    float: left;
+    margin-top: 20px;
+}
+
+.main-box .content-box ul li {
+    float: left;
+    width: 100%;
+	margin-bottom: 20px;
+    line-height: 20px;
+}
+
+.main-box .content-box ul li  .lbl {
+    float: left;
+	width: 70px;
+	line-height: 30px;
+	font-weight: bold;
+}
+.main-box .content-box ul li  .left-div {
+    width: 280px;
+}
+
+.main-box .content-box ul li  input {
+	padding: 3px 4px;
+}
+
+.main-box .content-box ul li  input.width3 {
+    width: 430px;
+}
+
+.main-box .content-box ul li  textarea {
+    width: 430px;
+	height: 100px;
+	padding: 3px 4px;
+	height: 80px;
+}
+
+.bops form input[type='submit'] {
+    font-size: 14px;
+	font-weight: bold;
+	padding: 5px 15px;
+	margin-left: 200px;
+	letter-spacing: 4px;
+}
+
+#subjectForm label.error {
+    margin-left: 5px;
+	color: red;
+}
+
+.banner-box .pic-detail-box {
+    width: 440px;
+}
+
+.banner-box .pic-detail-box .picture {
+    width: 400px;
+	height: 200px;
+}
+
+.banner-box .pic-detail-box .picture img {
+    max-width: 400px;
+	max-height: 150px;
+}
+
+.banner-box .pic-detail-box .picture .url-box {
+    text-align: left;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.banner-box .pic-detail-box .picture .url-box input {
+    padding: 2px 3px;
+	width: 250px;
+}
+
+.banner-box .pic-detail-box .picture .url-box .mod-click-url-btn {
+    margin-left: 5px;
+}
+
+.banner-pic-layer .content .tip {
+    margin-top: 5px;
+	margin-bottom: 0px;
+}

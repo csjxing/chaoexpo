@@ -42,6 +42,8 @@ public class ChaoActivityUpdateCondition extends AbstractModel  {
 	 * 活动须知
 	 */
 	private String notice ;
+	
+	private String status;
 
 	/**
 	 * 温馨提示
@@ -82,6 +84,7 @@ public class ChaoActivityUpdateCondition extends AbstractModel  {
 		map.put("contactName", contactName) ;
 		map.put("contactPhone", contactPhone) ;
 		map.put("intro", intro) ;
+		map.put("status", status) ;
 		map.put("picUrls", picUrls) ;
 		map.put("notice", notice) ;
 		map.put("countesyReminder", countesyReminder) ;
@@ -233,6 +236,14 @@ public class ChaoActivityUpdateCondition extends AbstractModel  {
 
 	public void setIncrCommentCount(Integer incrCommentCount) {
 		this.incrCommentCount = incrCommentCount;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }

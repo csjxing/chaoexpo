@@ -226,6 +226,11 @@
 		    <result name="success" type="json"></result>
 		</action>
 		
+		<action name="reset_news_status" class="com.doucome.chaoexpo.web.bops.action.ajax.BNewsStatusAction">
+		    <interceptor-ref name="bopsDefaultStack" />
+		    <result name="success" type="json"></result>
+		</action>
+		
 		<action name="reset_news_category_status" class="com.doucome.chaoexpo.web.bops.action.ajax.BCategoryStatusAction">
 		    <interceptor-ref name="bopsDefaultStack" />
 		    <result name="success" type="json"></result>
@@ -254,6 +259,11 @@
 		<action name="update_user_status_ajax" class="com.doucome.chaoexpo.web.bops.action.ajax.UserOperateAction" method="updateStatus">
 			<interceptor-ref name="bopsDefaultStack" />
 		    <result name="success" type="json2"></result>
+		</action>
+		
+		<action name="reset_activity_status" class="com.doucome.chaoexpo.web.bops.action.ajax.BActivityStatusAction">
+		    <interceptor-ref name="bopsDefaultStack" />
+		    <result name="success" type="json"></result>
 		</action>
 	</package>
 </struts>

@@ -26,6 +26,8 @@ public class ChaoActivityCondition extends AbstractModel  {
 	
 	private String sortColumn;
 	
+	private String status = "N";
+	
 	private String order = "desc";
 	
 	public Map<String, Object> toMap() {
@@ -34,6 +36,7 @@ public class ChaoActivityCondition extends AbstractModel  {
 		result.put("keyword", keyword);
 		result.put("subjectId", subjectId);
 		result.put("order", order);
+		result.put("status", status);
 		result.put("sortColumn", sortColumn);
 		result.put("gmtActivityStart", gmtActivityStart);
 		result.put("gmtActivityEnd", gmtActivityEnd);
@@ -95,5 +98,13 @@ public class ChaoActivityCondition extends AbstractModel  {
 
 	public void setOrder(String order) {
 		this.order = order == null? null: order.toUpperCase().trim();
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

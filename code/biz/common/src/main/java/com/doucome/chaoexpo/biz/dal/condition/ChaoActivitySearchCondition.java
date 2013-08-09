@@ -17,6 +17,8 @@ public class ChaoActivitySearchCondition extends AbstractModel  {
 	
 	private Long subjectId;
 	
+	private String status;
+	
 	private Date gmtActivityStart;
 	
 	private Date gmtActivityEnd;
@@ -27,6 +29,7 @@ public class ChaoActivitySearchCondition extends AbstractModel  {
 		result.put("ids", ids) ;
 		result.put("keyword", keyword);
 		result.put("subjectId", subjectId);
+		result.put("status", status);
 		result.put("gmtActivityStart", gmtActivityStart);
 		result.put("gmtActivityEnd", gmtActivityEnd);
 		return result;
@@ -62,6 +65,14 @@ public class ChaoActivitySearchCondition extends AbstractModel  {
 
 	public void setSubjectId(Long subjectId) {
 		this.subjectId = subjectId;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Date getGmtActivityStart() {

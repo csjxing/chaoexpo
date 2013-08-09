@@ -23,7 +23,6 @@ public class NewsListAction extends BopsBasicAction implements ModelDriven<ChaoN
 	
 	@Override
 	public String execute() throws Exception {
-		
 		newsResult = chaoNewsService.getNewsPage(condition, new Pagination(page, 20));
 		
 		return SUCCESS ;

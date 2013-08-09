@@ -77,6 +77,10 @@ public class ChaoActivityDO  extends AbstractModel{
 	 * 评论数
 	 */
 	private Integer commentCount ;
+	/**
+	 * 
+	 */
+	private String status;
 	
 	/**
 	 * 签到数
@@ -189,6 +193,14 @@ public class ChaoActivityDO  extends AbstractModel{
 
 	public void setSubjectId(Long subjectId) {
 		this.subjectId = subjectId;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Date getGmtCreate() {

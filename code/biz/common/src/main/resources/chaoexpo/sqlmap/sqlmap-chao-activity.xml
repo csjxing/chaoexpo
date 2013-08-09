@@ -13,6 +13,7 @@
 		<result property="intro" column="INTRO"/>
 		<result property="picUrls" column="PIC_URLS"/>
 		<result property="notice" column="NOTICE"/>
+		<result property="status" column="STATUS"/>
 		<result property="countesyReminder" column="COUNTESY_REMINDER"/>
 		<result property="standPicUrls" column="STAND_PIC_URLS"/>
 		<result property="subjectId" column="SUBJECT_ID"/>
@@ -38,7 +39,7 @@
 	</insert>
 	
 	<sql id="activity-fields">
-	    ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,INTRO,PIC_URLS,NOTICE,COUNTESY_REMINDER,STAND_PIC_URLS,SUBJECT_ID,GMT_ACTIVITY_START,GMT_ACTIVITY_END,FOLLOW_COUNT,CHECKIN_COUNT,COMMENT_COUNT,GMT_CREATE,GMT_MODIFIED
+	    ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,INTRO,STATUS,PIC_URLS,NOTICE,COUNTESY_REMINDER,STAND_PIC_URLS,SUBJECT_ID,GMT_ACTIVITY_START,GMT_ACTIVITY_END,FOLLOW_COUNT,CHECKIN_COUNT,COMMENT_COUNT,GMT_CREATE,GMT_MODIFIED
 	</sql>
 	
 	<select id="queryActivityById" resultMap="RM-ChaoActivity">
@@ -69,6 +70,9 @@
 			<isNotNull property="subjectId" prepend="AND">
 	    		SUBJECT_ID = #subjectId# 
 			</isNotNull>
+			<isNotEmpty property="status" prepend="AND">
+	    		STATUS = #status# 
+			</isNotEmpty>
 			<isNotNull property="gmtActivityStart" prepend="AND">
 	    		GMT_ACTIVITY <![CDATA[>=]]> #gmtActivityStart# 
 			</isNotNull>
@@ -103,6 +107,9 @@
 			<isNotNull property="subjectId" prepend="AND">
 	    		SUBJECT_ID = #subjectId# 
 			</isNotNull>
+			<isNotEmpty property="status" prepend="AND">
+	    		STATUS = #status# 
+			</isNotEmpty>
 			<isNotNull property="gmtActivityStart" prepend="AND">
 	    		GMT_ACTIVITY <![CDATA[>=]]> #gmtActivityStart# 
 			</isNotNull>
@@ -135,6 +142,9 @@
 			<isNotNull property="subjectId" prepend="AND">
 	    		SUBJECT_ID = #subjectId# 
 			</isNotNull>
+			<isNotEmpty property="status" prepend="AND">
+	    		STATUS = #status# 
+			</isNotEmpty>
 			<isNotNull property="gmtActivityStart" prepend="AND">
 	    		GMT_ACTIVITY <![CDATA[>=]]> #gmtActivityStart# 
 			</isNotNull>
@@ -177,8 +187,20 @@
 			<isNotEmpty property="keyword" prepend="AND">
 	    		NAME LIKE CONCAT('%', #keyword#, '%')
 			</isNotEmpty>
+			<isNotEmpty property="isTop" prepend="AND">
+	    		IS_TOP = #isTop#
+			</isNotEmpty>
 			<isNotNull property="subjectId" prepend="AND">
 	    		SUBJECT_ID = #subjectId# 
+			</isNotNull>
+			<isNotEmpty property="status" prepend="AND">
+	    		STATUS = #status# 
+			</isNotEmpty>
+			<isNotNull property="gmtActivityStart" prepend="AND">
+	    		GMT_ACTIVITY <![CDATA[>=]]> #gmtActivityStart# 
+			</isNotNull>
+			<isNotNull property="gmtActivityEnd" prepend="AND">
+	    		GMT_ACTIVITY <![CDATA[<]]> #gmtActivityEnd# 
 			</isNotNull>
 		</isParameterPresent>
 	</select>
@@ -213,6 +235,9 @@
 			</isNotEmpty>
 			<isNotEmpty property="notice">
 				NOTICE = #notice# ,
+			</isNotEmpty>
+			<isNotEmpty property="status" prepend="AND">
+	    		STATUS = #status# 
 			</isNotEmpty>
 			<isNotEmpty property="countesyReminder">
 				COUNTESY_REMINDER = #countesyReminder# ,
@@ -252,6 +277,9 @@
 			</isNotEmpty>
 			<isNotEmpty property="notice">
 				NOTICE = #notice# ,
+			</isNotEmpty>
+			<isNotEmpty property="status">
+				STATUS = #status# ,
 			</isNotEmpty>
 			<isNotEmpty property="countesyReminder">
 				COUNTESY_REMINDER = #countesyReminder# ,

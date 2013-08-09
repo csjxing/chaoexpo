@@ -257,5 +257,12 @@ public class ChaoActivityDTO extends AbstractModel {
 	public void setIsUserFollowed(Boolean isUserFollowed) {
 		this.isUserFollowed = isUserFollowed;
 	}
-
+	
+	public String getStatus() {
+		return activity.getStatus();
+	}
+	
+	public void setStatus(String status) {
+		activity.setStatus(status);
+	}
 }

@@ -26,6 +26,8 @@ public class ChaoNewsCondition {
 	
 	private String orderColumn;
 	
+	private String status = "N";
+	
 	private String order = "DESC";
 	
 	public Map<String,Object> toMap() {
@@ -40,6 +42,7 @@ public class ChaoNewsCondition {
 		result.put("gmtCreateEnd", gmtCreateEnd);
 		result.put("orderColumn", orderColumn);
 		result.put("order", order);
+		result.put("status", status);
 		return result ;
 	}
 	
@@ -122,5 +125,13 @@ public class ChaoNewsCondition {
 
 	public void setGmtCreateEnd(Date gmtCreateEnd) {
 		this.gmtCreateEnd = gmtCreateEnd;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

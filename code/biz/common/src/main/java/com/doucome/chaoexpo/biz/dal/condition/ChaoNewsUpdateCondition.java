@@ -19,6 +19,8 @@ private String title ;
 	
 	private Long categoryId ;
 	
+	private String status;
+	
 	private Long displayOrder ;
 	
 	private String isTop ;
@@ -41,6 +43,7 @@ private String title ;
 		map.put("isTop", isTop) ;
 		map.put("source", source) ;
 		map.put("incrCommentCount", incrCommentCount) ;
+		map.put("status", status) ;
 
 		return map ;
 	}
@@ -132,5 +135,12 @@ private String title ;
 	public void setIsTop(String isTop) {
 		this.isTop = isTop;
 	}
-	
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 }

@@ -1,5 +1,6 @@
 package com.doucome.chaoexpo.biz.dal.condition;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,7 +60,20 @@ public class ChaoActivityUpdateCondition extends AbstractModel  {
 	
 	private Integer incrFollowCount ;
 	
+	/**
+	 * 签到+1
+	 */
+	private Integer incrCheckinCount ;
+	
 	private Integer incrCommentCount ;
+	
+	private Integer decrFollowCount ;
+	
+	private Integer decrCommentCount ;
+	
+	private Date gmtActivityStart ;
+	
+	private Date gmtActivityEnd ;
 	
 	public Map<String,Object> toMap() {
 		Map<String,Object> map = new HashMap<String,Object>() ;
@@ -75,12 +89,34 @@ public class ChaoActivityUpdateCondition extends AbstractModel  {
 		map.put("subjectIds", subjectIds) ;
 		
 		map.put("incrFollowCount", incrFollowCount) ;
+		map.put("incrCheckinCount", incrCheckinCount) ;
 		map.put("incrCommentCount", incrCommentCount) ;
+		map.put("decrFollowCount", decrFollowCount) ;
+		map.put("decrCommentCount", decrCommentCount) ;
+		
+		map.put("gmtActivityStart", gmtActivityStart) ;
+		map.put("gmtActivityEnd", gmtActivityEnd) ;
 		return map ;
 	}
 
 	public String getName() {
 		return name;
+	}
+
+	public Date getGmtActivityStart() {
+		return gmtActivityStart;
+	}
+
+	public void setGmtActivityStart(Date gmtActivityStart) {
+		this.gmtActivityStart = gmtActivityStart;
+	}
+
+	public Date getGmtActivityEnd() {
+		return gmtActivityEnd;
+	}
+
+	public void setGmtActivityEnd(Date gmtActivityEnd) {
+		this.gmtActivityEnd = gmtActivityEnd;
 	}
 
 	public void setName(String name) {
@@ -89,6 +125,30 @@ public class ChaoActivityUpdateCondition extends AbstractModel  {
 
 	public String getLocation() {
 		return location;
+	}
+
+	public Integer getIncrCheckinCount() {
+		return incrCheckinCount;
+	}
+
+	public void setIncrCheckinCount(Integer incrCheckinCount) {
+		this.incrCheckinCount = incrCheckinCount;
+	}
+
+	public Integer getDecrFollowCount() {
+		return decrFollowCount;
+	}
+
+	public void setDecrFollowCount(Integer decrFollowCount) {
+		this.decrFollowCount = decrFollowCount;
+	}
+
+	public Integer getDecrCommentCount() {
+		return decrCommentCount;
+	}
+
+	public void setDecrCommentCount(Integer decrCommentCount) {
+		this.decrCommentCount = decrCommentCount;
 	}
 
 	public void setLocation(String location) {

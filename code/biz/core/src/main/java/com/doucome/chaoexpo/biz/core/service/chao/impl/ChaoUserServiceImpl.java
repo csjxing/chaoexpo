@@ -10,10 +10,10 @@ import com.doucome.chaoexpo.biz.core.model.ChaoUserDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoUserService;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoUserQuery;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoUserUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dao.ChaoUserDAO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoUserDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoUserQuery;
 
 public class ChaoUserServiceImpl implements ChaoUserService {
 

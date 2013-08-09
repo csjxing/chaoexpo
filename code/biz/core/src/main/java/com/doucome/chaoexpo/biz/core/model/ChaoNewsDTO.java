@@ -136,6 +136,10 @@ public class ChaoNewsDTO {
 		return summary;
 	}
 	
+	public Integer getCommentCount() {
+		return news.getCommentCount() ;
+	}
+	
 	public String getIsTop() {
 		return news.getIsTop();
 	}

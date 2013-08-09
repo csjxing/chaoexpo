@@ -12,7 +12,7 @@ import com.doucome.chaoexpo.biz.core.model.ChaoSubjectDTO;
 import com.doucome.chaoexpo.biz.core.model.ChaoUserFollowDTO;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoSubjectService;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoUserFollowService;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoUserFollowSearchCondition;
+import com.doucome.chaoexpo.biz.dal.query.ChaoUserFollowQuery;
 import com.doucome.chaoexpo.web.chao.ChaoBasicAction;
 import com.doucome.chaoexpo.web.common.model.JsonModel;
 
@@ -49,10 +49,10 @@ public class QuerySubjectDetailAction extends ChaoBasicAction {
 			String userName = chaoAuthz.getUserName() ;
 			if(StringUtils.isNotBlank(userName)) {
 				//查询是否关注活动
-				ChaoUserFollowSearchCondition condition = new ChaoUserFollowSearchCondition() ;
+				ChaoUserFollowQuery condition = new ChaoUserFollowQuery() ;
 				condition.setSubjectId(id) ;
 				condition.setUserName(userName) ;
-				condition.setType(ChaoUserFollowTypeEnums.SUBJECT.getValue()) ;
+				condition.setType(ChaoUserFollowTypeEnums.FOLLOW_SUBJECT.getValue()) ;
 				List<ChaoUserFollowDTO> followList = chaoUserFollowService.getFollowsNoPagination(condition) ;
 				if(CollectionUtils.isEmpty(followList)) {
 					subject.setIsUserFollowed(false) ;

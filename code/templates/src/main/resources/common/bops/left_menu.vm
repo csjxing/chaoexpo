@@ -6,6 +6,7 @@
 			<li id="subject_list"><a href="${env.bopsRoot}/bops/subject_list.htm" >专题管理</a></li>
     		<li id="news_list"><a href="${env.bopsRoot}/bops/news_list.htm" >新闻管理</a></li>
 			<li id="news_category_list"><a href="${env.bopsRoot}/bops/news_category_list.htm" >新闻分类管理</a></li>
+			<li id="query_user_list"><a href="${env.bopsRoot}/bops/query_user_list.htm" >用户管理</a></li>
     	</ul>
     </li>
 	<li><a href="javascript:">图说</a>

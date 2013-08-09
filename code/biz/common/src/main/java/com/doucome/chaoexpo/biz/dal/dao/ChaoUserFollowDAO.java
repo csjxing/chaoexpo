@@ -2,8 +2,9 @@ package com.doucome.chaoexpo.biz.dal.dao;
 
 import java.util.List;
 
-import com.doucome.chaoexpo.biz.dal.condition.ChaoUserFollowSearchCondition;
+import com.doucome.chaoexpo.biz.dal.condition.ChaoUserFollowDelCondition;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoUserFollowDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoUserFollowQuery;
 
 /**
  * 用户关注
@@ -26,13 +27,21 @@ public interface ChaoUserFollowDAO {
 	 * @param size
 	 * @return
 	 */
-	List<ChaoUserFollowDO> queryFollowsWithPagination(ChaoUserFollowSearchCondition condition , int start , int size) ;
+	List<ChaoUserFollowDO> queryFollowsWithPagination(ChaoUserFollowQuery condition , int start , int size) ;
 	
 	/**
 	 * 
 	 * @param condition
 	 * @return
 	 */
-	int countFollowsWithPagination(ChaoUserFollowSearchCondition condition) ;
+	int countFollowsWithPagination(ChaoUserFollowQuery condition) ;
+	
+	/**
+	 * 
+	 * @param userName
+	 * @param delCondition
+	 * @return
+	 */
+	int deleteFollowByCondition(String userName,ChaoUserFollowDelCondition delCondition) ;
 	
 }

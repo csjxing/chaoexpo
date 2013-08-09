@@ -37,6 +37,11 @@ public class ChaoUserDO extends AbstractModel {
 	
 	private String registerIMEI ;
 	
+	/**
+	 * 
+	 */
+	private String status ;
+	
 	private Date gmtAuth ;
 	
 	private Date gmtModified ;
@@ -81,6 +86,14 @@ public class ChaoUserDO extends AbstractModel {
 
 	public void setFavoriteSubjectCount(Integer favoriteSubjectCount) {
 		this.favoriteSubjectCount = favoriteSubjectCount;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Integer getCheckinActivityCount() {

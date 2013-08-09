@@ -14,20 +14,21 @@
 		<result property="authKey" column="AUTH_KEY"/>
 		<result property="registerIMEI" column="REGISTER_IMEI"/>
 		<result property="gmtAuth" column="GMT_AUTH"/>		
+		<result property="status" column="STATUS"/>
 		<result property="gmtCreate" column="GMT_CREATE"/>
 		<result property="gmtModified" column="GMT_MODIFIED" />
 	</resultMap>
 	
 	<sql id="chao_user_fields">
-		USER_ID,USER_NAME,MD5_PASSWORD,FOLLOW_ACTIVITY_COUNT,FAVORITE_SUBJECT_COUNT,CHECKIN_ACTIVITY_COUNT,AUTH_KEY,REGISTER_IMEI,GMT_AUTH,GMT_CREATE,GMT_MODIFIED
+		USER_ID,USER_NAME,MD5_PASSWORD,FOLLOW_ACTIVITY_COUNT,FAVORITE_SUBJECT_COUNT,CHECKIN_ACTIVITY_COUNT,AUTH_KEY,REGISTER_IMEI,STATUS,GMT_AUTH,GMT_CREATE,GMT_MODIFIED
 	</sql>
 
 	<insert id="insertUser">
 		INSERT INTO
-			CHAO_USER(USER_ID,USER_NAME,MD5_PASSWORD,AUTH_KEY,REGISTER_IMEI,GMT_AUTH,GMT_CREATE,GMT_MODIFIED)
+			CHAO_USER(USER_ID,USER_NAME,MD5_PASSWORD,AUTH_KEY,REGISTER_IMEI,STATUS,GMT_AUTH,GMT_CREATE,GMT_MODIFIED)
 		VALUES
-			(#userId#,#userName#,#md5Password#,#authKey#,#registerIMEI#,#gmtAuth#,now(),now())
-		<selectKey resultClass="java.lang.Long" keyProperty="id">
+			(#userId#,#userName#,#md5Password#,#authKey#,#registerIMEI#,'N',#gmtAuth#,now(),now())
+		<selectKey resultClass="java.lang.Long" keyProperty="userId">
    			<![CDATA[
 			SELECT LAST_INSERT_ID() AS ID
 			]]>
@@ -66,6 +67,9 @@
 			<isNotEmpty property="userName" prepend="AND">
 	    		USER_NAME = #userName#
 			</isNotEmpty>
+			<isNotEmpty property="status">
+				STATUS = #status#,
+			</isNotEmpty>
 		</isParameterPresent>
 		LIMIT 
 			#start# , #size#
@@ -83,6 +87,9 @@
 			<isNotEmpty property="userName" prepend="AND">
 	    		USER_NAME = #userName#
 			</isNotEmpty>
+			<isNotEmpty property="status">
+				STATUS = #status#,
+			</isNotEmpty>
 		</isParameterPresent>
 	</select>
 	
@@ -99,6 +106,18 @@
 			<isNotEmpty property="incrCheckinActivityCount">
 				CHECKIN_ACTIVITY_COUNT = CHECKIN_ACTIVITY_COUNT + #incrCheckinActivityCount# ,
 			</isNotEmpty>
+			<isNotEmpty property="decrFollowActivityCount">
+				FOLLOW_ACTIVITY_COUNT = FOLLOW_ACTIVITY_COUNT - #decrFollowActivityCount# ,
+			</isNotEmpty>
+			<isNotEmpty property="decrFavoriteSubjectCount">
+				FAVORITE_SUBJECT_COUNT = FAVORITE_SUBJECT_COUNT - #decrFavoriteSubjectCount# ,
+			</isNotEmpty>
+			<isNotEmpty property="decrCheckinActivityCount">
+				CHECKIN_ACTIVITY_COUNT = CHECKIN_ACTIVITY_COUNT - #decrCheckinActivityCount# ,
+			</isNotEmpty>
+			<isNotEmpty property="status">
+				STATUS = #status#,
+			</isNotEmpty>
 			GMT_MODIFIED = now()
 		WHERE
 			USER_NAME = #userName#
@@ -106,7 +125,7 @@
 	
 	<select id="queryMaxId" resultClass="java.lang.Long">
 		SELECT 
-			MAX(ID)
+			MAX(USER_ID)
 		FROM
 			CHAO_USER
 	</select>

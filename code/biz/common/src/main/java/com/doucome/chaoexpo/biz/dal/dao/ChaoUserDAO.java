@@ -2,9 +2,9 @@ package com.doucome.chaoexpo.biz.dal.dao;
 
 import java.util.List;
 
-import com.doucome.chaoexpo.biz.dal.condition.ChaoUserQuery;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoUserUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoUserDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoUserQuery;
 
 /**
  * user

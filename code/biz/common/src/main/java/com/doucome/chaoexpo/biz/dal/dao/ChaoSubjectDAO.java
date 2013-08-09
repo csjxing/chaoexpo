@@ -2,9 +2,9 @@ package com.doucome.chaoexpo.biz.dal.dao;
 
 import java.util.List;
 
-import com.doucome.chaoexpo.biz.dal.condition.ChaoSubjectSearchCondition;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoSubjectUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoSubjectDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoSubjectQuery;
 
 public interface ChaoSubjectDAO {
 
@@ -27,14 +27,14 @@ public interface ChaoSubjectDAO {
 	 * @param condtion
 	 * @return
 	 */
-	List<ChaoSubjectDO> querySubjectsWithPagination(ChaoSubjectSearchCondition condtion , int start , int size) ;
+	List<ChaoSubjectDO> querySubjectsWithPagination(ChaoSubjectQuery condtion , int start , int size) ;
 	
 	/**
 	 * 
 	 * @param condtion
 	 * @return
 	 */
-	int countSubjectsWithPagination(ChaoSubjectSearchCondition condtion) ;
+	int countSubjectsWithPagination(ChaoSubjectQuery condtion) ;
 	
 	/**
 	 * 

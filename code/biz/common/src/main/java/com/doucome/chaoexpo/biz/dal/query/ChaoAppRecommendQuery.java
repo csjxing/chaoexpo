@@ -1,4 +1,4 @@
-package com.doucome.chaoexpo.biz.dal.condition;
+package com.doucome.chaoexpo.biz.dal.query;
 
 import java.util.HashMap;
 import java.util.Map;

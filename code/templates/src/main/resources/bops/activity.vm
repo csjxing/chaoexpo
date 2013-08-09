@@ -37,16 +37,19 @@
 							<div class="left-div dd-l">
 								<span class="lbl">专题：</span>
 								<div class="dd-l">
-									<select name="subjectId" data-subject-id="$!activity.subjectId" data-init="n">
-									</select>
+									<select name="subjectId" data-subject-id="$!activity.subjectId" data-init="n"></select>
 								</div>
 							</div>
-							<div>
-								<span class="lbl" style="">时间：</span>
-								<div class="dd-l">
-									<input class="gmt-activity width1" type="text" name="gmtActivity" value="$!dateUtils.format($!activity.gmtActivity,'yyyy-MM-dd')" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
-								</div>
-							</div>
+						</li>
+						<li>
+							<span class="lbl" style="">时间：</span>
+							<input class="gmt-activity width1" type="text" name="gmtActivityStart" value="$!dateUtils.format($!activity.gmtActivityStart,'yyyy-MM-dd')" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+							- 
+							<input class="gmt-activity width1" type="text" name="gmtActivityEnd" value="$!dateUtils.format($!activity.gmtActivityEnd,'yyyy-MM-dd')" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+							#if($fieldErrors.containsKey('gmtActivity'))
+							<div class="dc-red">&nbsp;&nbsp;&nbsp;* 开始时间必须小于结束时间</div>
+							#end
+							
 						</li>
 						<li class="">
 							<div class="left-div dd-l">

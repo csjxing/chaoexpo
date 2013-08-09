@@ -6,10 +6,10 @@ import java.util.Map;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.doucome.chaoexpo.biz.common.utils.NumberUtils;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoCultureQuery;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoCultureUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dao.ChaoCultureDAO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoCultureDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoCultureQuery;
 
 /**
  * 

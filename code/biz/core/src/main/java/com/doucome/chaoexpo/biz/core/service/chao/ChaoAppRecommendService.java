@@ -3,9 +3,9 @@ package com.doucome.chaoexpo.biz.core.service.chao;
 import com.doucome.chaoexpo.biz.core.model.ChaoAppRecommendDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoAppRecommendQuery;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoAppRecommendUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoAppRecommendDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoAppRecommendQuery;
 
 public interface ChaoAppRecommendService {
 

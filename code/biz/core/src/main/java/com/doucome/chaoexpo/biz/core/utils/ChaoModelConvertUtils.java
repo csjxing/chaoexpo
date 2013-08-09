@@ -9,10 +9,12 @@ import com.doucome.chaoexpo.biz.core.model.ChaoAppRecommendDTO;
 import com.doucome.chaoexpo.biz.core.model.ChaoNewsCategoryDTO;
 import com.doucome.chaoexpo.biz.core.model.ChaoTushuoCategoryDTO;
 import com.doucome.chaoexpo.biz.core.model.ChaoTushuoDTO;
+import com.doucome.chaoexpo.biz.core.model.ChaoUserFollowDTO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoAppRecommendDO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoNewsCategoryDO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoTushuoCategoryDO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoTushuoDO;
+import com.doucome.chaoexpo.biz.dal.dataobject.ChaoUserFollowDO;
 
 public class ChaoModelConvertUtils {
 
@@ -51,6 +53,16 @@ public class ChaoModelConvertUtils {
 		if(CollectionUtils.isNotEmpty(doList)) {
 			for(ChaoTushuoCategoryDO ts : doList) {
 				dtoList.add(new ChaoTushuoCategoryDTO(ts)) ;
+			}
+		}
+		return dtoList ;
+	}
+	
+	public static List<ChaoUserFollowDTO> toUserFollowDTOList(List<ChaoUserFollowDO> doList) {
+		List<ChaoUserFollowDTO> dtoList = new ArrayList<ChaoUserFollowDTO>() ;
+		if(CollectionUtils.isNotEmpty(doList)) {
+			for(ChaoUserFollowDO userFollow : doList) {
+				dtoList.add(new ChaoUserFollowDTO(userFollow)) ;
 			}
 		}
 		return dtoList ;

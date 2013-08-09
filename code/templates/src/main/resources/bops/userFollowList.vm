@@ -1,0 +1,96 @@
+#set($layout="bops/default_bops.vm")
+
+#set($navigation = "用户关注")
+
+<style>
+	.content {
+		text-overflow: ellipsis;
+        white-space: nowrap;
+        word-wrap: normal;
+        width: 300px;
+        overflow: hidden;
+	}
+</style>
+
+<input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
+<input type="hidden"  id="bopsPage" value="userFollowList"/>
+
+#set($pagination = $queryResult.pagination)
+
+#set($searchUrl = ${env.bopsRoot}+"/bops/query_user_follow_list.htm?")
+#set($searchQuery = ["id:$!id","userName:$!userName","type:$!type","activityId:$!activityId","subjectId:$!subjectId","tenantId:$!tenantId"])
+
+<div class="bops">
+    <div style="MT20 MB20">&nbsp;</div>
+	
+	<form action="${env.bopsRoot}/bops/query_user_follow_list.htm" method="get">
+		<div class="settleipt MB10 MT10">
+			活动ID： <input  type="text" name="activityId" value="$!activityId" class="ipt60"/>
+			&nbsp;&nbsp;
+			专题ID： <input  type="text" name="subjectId" value="$!subjectId" class="ipt60"/>
+			&nbsp;&nbsp;
+			商户ID： <input  type="text" name="tenantId" value="$!tenantId" class="ipt60"/>
+			&nbsp;&nbsp;
+			用户名： <input  type="text" name="userName" value="$!userName" class="ipt100"/>
+			&nbsp;&nbsp;
+			类型：
+			<select name="type">
+                <option value="">全部</option>
+				<option value="FOL_ACT" #if($type == "FOL_ACT") selected #end>关注活动</option>
+				<option value="FOL_SUBJ" #if($type == "FOL_SUBJ") selected #end>关注专题</option>
+				<option value="ACT_CHK" #if($type == "ACT_CHK") selected #end>活动签到</option>
+			</select>
+			
+			<input type="submit" value="查询"/>
+			
+		</div>
+	</form>
+	
+	#parse("/common/bops/page/userFollowPagination.vm")
+	
+	<div class="user-follow-list">
+    	<table width="1080">
+    		<tr>
+    			<th width="40">序号</th>
+        		<th width="140">用户</th>
+        		<th width="200">编号</th>
+				<th width="40">类型</th>
+				<th width="120">创建时间</th>
+    			<th width="80">操作</th>
+        	</tr>
+    		#if($queryResult.totalRecords > 0)
+        		#foreach($item in $!queryResult.items)
+					#set($idx = (($page - 1)*$size) + $velocityCount ) 
+                	<tr>
+    					<td align="center">$!idx</td>
+    					<td align="center">$!item.userName</td>
+						<td align="center">
+							#if($item.activityId)<span class="dc-gray">[活]</span> $!item.activityId #end 
+							#if($item.subjectId)<span class="dc-gray">[专]</span> $!item.subjectId #end
+							#if($item.tenantId)<span class="dc-gray">[商]</span> $!item.tenantId #end
+						</td>
+                		<td align="center">
+                            #if($!item.type == 'FOL_ACT')<span class="dc-gray">[关注活动]</span>
+                            #elseif($!item.type == "FOL_SUBJ")<span class="dc-gray">[关注专题]</span>
+                            #elseif($!item.type == "ACT_CHK")<span class="dc-gray"><i class="location-icon" title="$!item.locationCode"></i>$!item.location</span>#end
+						</td>
+						<td align="center">$!dateUtils.format($!item.gmtCreate, 'yyyy-MM-dd HH:mm')</td>
+    					<td align="center">
+							
+    					</td>
+                	</tr>
+        		#end
+    		#else
+                <tr><td colspan="15" align="center">没有查询到记录</td></tr>
+    		#end
+         </table>
+	</div>
+	
+	#parse("/common/bops/page/userFollowPagination.vm")
+	
+</div>
+<script>
+!(function($){
+	
+})(jQuery);
+</script>

@@ -10,17 +10,22 @@ public enum ChaoUserFollowTypeEnums {
 	/**
 	 * 活动关注
 	 */
-	ACTIVITY("ACT") ,
+	FOLLOW_ACTIVITY("FOL_ACT") ,
 	
 	/**
-	 * 专题关注
+	 * 收藏专题
 	 */
-	SUBJECT("SUBJ") ,
+	FOLLOW_SUBJECT("FOL_SUBJ") ,
+	
+	/**
+	 * 活动签到
+	 */
+	ACTIVITY_CHECKIN("ACT_CHK") ,
 	
 	/**
 	 * 商户
 	 */
-	TENANT("TEN") ,
+	FAVORITE_TENANT("FAV_TEN") ,
 	
 	UNKNOWN("") ,
 	;

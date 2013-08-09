@@ -48,4 +48,12 @@ public class ChaoUserFollowDTO extends AbstractModel {
 		return userFollow.getGmtCreate();
 	}
 	
+	public String getLocationCode() {
+		return userFollow.getLocationCode();
+	}
+
+	public String getLocation() {
+		return userFollow.getLocation();
+	}
+	
 }

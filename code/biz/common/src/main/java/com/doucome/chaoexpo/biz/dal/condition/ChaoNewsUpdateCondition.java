@@ -25,6 +25,8 @@ private String title ;
 	
 	private String source ;
 	
+	private Integer incrCommentCount ;
+	
 	public Map<String,Object> toMap() {
 		
 		Map<String,Object> map = new HashMap<String,Object>() ;
@@ -38,6 +40,7 @@ private String title ;
 		map.put("displayOrder", displayOrder) ;
 		map.put("isTop", isTop) ;
 		map.put("source", source) ;
+		map.put("incrCommentCount", incrCommentCount) ;
 
 		return map ;
 	}
@@ -56,6 +59,14 @@ private String title ;
 
 	public void setSummary(String summary) {
 		this.summary = summary;
+	}
+
+	public Integer getIncrCommentCount() {
+		return incrCommentCount;
+	}
+
+	public void setIncrCommentCount(Integer incrCommentCount) {
+		this.incrCommentCount = incrCommentCount;
 	}
 
 	public String getSummaryPics() {

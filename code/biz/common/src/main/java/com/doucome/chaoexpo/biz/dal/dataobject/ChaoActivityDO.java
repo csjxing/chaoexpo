@@ -20,7 +20,9 @@ public class ChaoActivityDO  extends AbstractModel{
 	/**
 	 * 
 	 */
-	private Date gmtActivity;
+	private Date gmtActivityStart;
+	
+	private Date gmtActivityEnd;
 	/**
 	 * 地点
 	 */
@@ -76,6 +78,11 @@ public class ChaoActivityDO  extends AbstractModel{
 	 */
 	private Integer commentCount ;
 	
+	/**
+	 * 签到数
+	 */
+	private Integer checkinCount ;
+	
 	private Date gmtCreate ;
 	
 	private Date gmtModified ;
@@ -96,12 +103,20 @@ public class ChaoActivityDO  extends AbstractModel{
 		this.name = name;
 	}
 
-	public Date getGmtActivity() {
-		return gmtActivity;
+	public Date getGmtActivityStart() {
+		return gmtActivityStart;
 	}
 
-	public void setGmtActivity(Date gmtActivity) {
-		this.gmtActivity = gmtActivity;
+	public void setGmtActivityStart(Date gmtActivityStart) {
+		this.gmtActivityStart = gmtActivityStart;
+	}
+
+	public Date getGmtActivityEnd() {
+		return gmtActivityEnd;
+	}
+
+	public void setGmtActivityEnd(Date gmtActivityEnd) {
+		this.gmtActivityEnd = gmtActivityEnd;
 	}
 
 	public String getLocation() {
@@ -207,6 +222,13 @@ public class ChaoActivityDO  extends AbstractModel{
 	public void setCommentCount(Integer commentCount) {
 		this.commentCount = commentCount;
 	}
-	
+
+	public Integer getCheckinCount() {
+		return checkinCount;
+	}
+
+	public void setCheckinCount(Integer checkinCount) {
+		this.checkinCount = checkinCount;
+	}
 	
 }

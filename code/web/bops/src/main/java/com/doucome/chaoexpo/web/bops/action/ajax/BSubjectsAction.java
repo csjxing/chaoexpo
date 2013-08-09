@@ -8,7 +8,7 @@ import com.doucome.chaoexpo.biz.core.model.ChaoSubjectDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoSubjectService;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoSubjectSearchCondition;
+import com.doucome.chaoexpo.biz.dal.query.ChaoSubjectQuery;
 import com.doucome.chaoexpo.web.bops.action.BopsBasicAction;
 import com.doucome.chaoexpo.web.common.model.JsonModel;
 
@@ -24,7 +24,7 @@ public class BSubjectsAction extends BopsBasicAction {
 	
 	@Override
 	public String execute() throws Exception {
-		ChaoSubjectSearchCondition condtion = new ChaoSubjectSearchCondition();
+		ChaoSubjectQuery condtion = new ChaoSubjectQuery();
 		QueryResult<ChaoSubjectDTO> temps = chaoSubjectService.getSubjectsWithPagination(condtion, new Pagination(1, 100));
 		json.setSuccess(temps.getItems());
 		return SUCCESS ;

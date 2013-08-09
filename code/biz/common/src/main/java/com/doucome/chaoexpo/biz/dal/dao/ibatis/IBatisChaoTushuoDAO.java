@@ -6,10 +6,10 @@ import java.util.Map;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.doucome.chaoexpo.biz.common.utils.NumberUtils;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoTushuoQuery;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoTushuoUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dao.ChaoTushuoDAO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoTushuoDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoTushuoQuery;
 
 public class IBatisChaoTushuoDAO  extends SqlMapClientDaoSupport implements ChaoTushuoDAO {
 

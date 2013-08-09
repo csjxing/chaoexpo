@@ -207,6 +207,10 @@ public class ChaoActivityDTO extends AbstractModel {
 		return activity.getCommentCount();
 	}
 	
+	public Integer getCheckinCount() {
+		return activity.getCheckinCount() ;
+	}
+	
 	public void setCommentCount(Integer commentCount) {
 		activity.setCommentCount(commentCount);
 	}
@@ -219,12 +223,20 @@ public class ChaoActivityDTO extends AbstractModel {
 		return activity.getGmtModified();
 	}
 	
-	public Date getGmtActivity() {
-		return activity.getGmtActivity();
+	public Date getGmtActivityStart() {
+		return activity.getGmtActivityStart();
 	}
 	
-	public void setGmtActivity(Date gmtActivity) {
-		activity.setGmtActivity(gmtActivity);
+	public Date getGmtActivityEnd() {
+		return activity.getGmtActivityEnd();
+	}
+	
+	public void setGmtActivityStart(Date gmtActivityStart) {
+		activity.setGmtActivityStart(gmtActivityStart);
+	}
+	
+	public void setGmtActivityEnd(Date gmtActivityEnd) {
+		activity.setGmtActivityEnd(gmtActivityEnd);
 	}
 
 	public ChaoSubjectDTO getSubject() {

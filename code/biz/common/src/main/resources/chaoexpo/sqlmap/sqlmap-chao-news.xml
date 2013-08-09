@@ -12,6 +12,8 @@
 		<result property="isTop" column="IS_TOP"/>
 		<result property="displayOrder" column="DISPLAY_ORDER"/>
 		<result property="source" column="SOURCE"/>
+		<result property="commentCount" column="COMMENT_COUNT"/>
+		<result property="status" column="STATUS"/>
 		<result property="gmtPublish" column="GMT_PUBLISH"/>		
 		<result property="gmtCreate" column="GMT_CREATE"/>
 		<result property="gmtModified" column="GMT_MODIFIED" />
@@ -26,21 +28,26 @@
 		<result property="picUrls" column="PIC_URLS"/>
 		<result property="categoryId" column="CATEGORY_ID"/>
 		<result property="isTop" column="IS_TOP"/>
+		<result property="commentCount" column="COMMENT_COUNT"/>
+		<result property="status" column="STATUS"/>
+		<result property="gmtPublish" column="GMT_PUBLISH"/>		
+		<result property="gmtCreate" column="GMT_CREATE"/>
+		<result property="gmtModified" column="GMT_MODIFIED" />
 	</resultMap>
 	
 	<sql id="chao_news_fields">
-		ID,TITLE,PIC_URLS,CONTENT,CATEGORY_ID,IS_TOP,DISPLAY_ORDER,SOURCE,GMT_PUBLISH,GMT_CREATE,GMT_MODIFIED
+		ID,TITLE,PIC_URLS,CONTENT,CATEGORY_ID,IS_TOP,DISPLAY_ORDER,SOURCE,COMMENT_COUNT,STATUS,GMT_PUBLISH,GMT_CREATE,GMT_MODIFIED
 	</sql>
 	
 	<sql id="chao_news_fields_summary">
-		ID,TITLE,PIC_URLS,CONTENT,CATEGORY_ID,IS_TOP,SOURCE,GMT_PUBLISH
+		ID,TITLE,PIC_URLS,CONTENT,CATEGORY_ID,IS_TOP,SOURCE,COMMENT_COUNT,STATUS,GMT_PUBLISH,GMT_CREATE,GMT_MODIFIED
 	</sql>
 
 	<insert id="insertNews">
 		INSERT INTO
-			CHAO_NEWS(ID,TITLE,PIC_URLS,CONTENT,CATEGORY_ID,IS_TOP,DISPLAY_ORDER,SOURCE,GMT_PUBLISH,GMT_CREATE,GMT_MODIFIED)
+			CHAO_NEWS(ID,TITLE,PIC_URLS,CONTENT,CATEGORY_ID,IS_TOP,DISPLAY_ORDER,SOURCE,STATUS,GMT_PUBLISH,GMT_CREATE,GMT_MODIFIED)
 		VALUES
-			(#id#,#title#,#picUrls#,#content#,#categoryId#,#isTop#,#displayOrder#,#source#,#gmtPublish#,now(),now())
+			(#id#,#title#,#picUrls#,#content#,#categoryId#,#isTop#,#displayOrder#,#source#,'N',#gmtPublish#,now(),now())
 		<selectKey resultClass="java.lang.Long" keyProperty="id">
    			<![CDATA[
 			SELECT LAST_INSERT_ID() AS ID
@@ -89,10 +96,10 @@
 		  <isNotEmpty property="orderColumn" prepend="">
 		      ORDER BY 
 		      <isEqual property="orderColumn" compareValue="GMT_PUBLISH">
-		          GMT_PUBLISH DESC, DISPLAY_ORDER DESC
+		          GMT_PUBLISH DESC, GMT_CREATE DESC
 		      </isEqual>
 		      <isNotEqual property="orderColumn" compareValue="GMT_PUBLISH">
-		          ORDER BY IS_TOP DESC, DISPLAY_ORDER DESC
+		          ORDER BY IS_TOP DESC, GMT_CREATE DESC
 		      </isNotEqual>
 		  </isNotEmpty>
 	      LIMIT #start#, #size#
@@ -263,6 +270,12 @@
 			</isNotEmpty>
 			<isNotEmpty property="source">
 				SOURCE = #source# ,
+			</isNotEmpty>
+			<isNotEmpty property="status">
+				STATUS = #status# ,
+			</isNotEmpty>
+			<isNotEmpty property="incrCommentCount">
+				COMMENT_COUNT = COMMENT_COUNT + #incrCommentCount# ,
 			</isNotEmpty>
 			GMT_MODIFIED = now()
 		WHERE

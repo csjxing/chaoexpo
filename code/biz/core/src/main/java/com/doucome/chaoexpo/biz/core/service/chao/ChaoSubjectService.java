@@ -3,9 +3,9 @@ package com.doucome.chaoexpo.biz.core.service.chao;
 import com.doucome.chaoexpo.biz.core.model.ChaoSubjectDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoSubjectSearchCondition;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoSubjectUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoSubjectDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoSubjectQuery;
 
 public interface ChaoSubjectService {
 
@@ -28,7 +28,7 @@ public interface ChaoSubjectService {
 	 * @param condtion
 	 * @return
 	 */
-	QueryResult<ChaoSubjectDTO> getSubjectsWithPagination(ChaoSubjectSearchCondition condtion , Pagination pagination) ;
+	QueryResult<ChaoSubjectDTO> getSubjectsWithPagination(ChaoSubjectQuery condtion , Pagination pagination) ;
 	
 	/**
 	 * 

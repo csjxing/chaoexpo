@@ -10,10 +10,10 @@ import com.doucome.chaoexpo.biz.core.model.ChaoSubjectDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoSubjectService;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoSubjectSearchCondition;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoSubjectUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dao.ChaoSubjectDAO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoSubjectDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoSubjectQuery;
 
 public class ChaoSubjectServiceImpl implements ChaoSubjectService {
 
@@ -35,7 +35,7 @@ public class ChaoSubjectServiceImpl implements ChaoSubjectService {
 	}
 
 	@Override
-	public QueryResult<ChaoSubjectDTO> getSubjectsWithPagination(ChaoSubjectSearchCondition condition, Pagination pagination) {
+	public QueryResult<ChaoSubjectDTO> getSubjectsWithPagination(ChaoSubjectQuery condition, Pagination pagination) {
 		int totalRecords = chaoSubjectDAO.countSubjectsWithPagination(condition);
         if (totalRecords <= 0) {
             return new QueryResult<ChaoSubjectDTO>(new ArrayList<ChaoSubjectDTO>(), pagination, totalRecords);

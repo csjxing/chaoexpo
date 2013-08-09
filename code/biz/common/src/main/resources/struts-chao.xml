@@ -9,6 +9,10 @@
 				 <interceptor-ref name="doucomeDefaultStack" />
 				 <interceptor-ref name="setChaoContextInterceptor" />
 			 </interceptor-stack>
+			 <interceptor-stack name="chaoUserAuthStack">
+				 <interceptor-ref name="chaoDefaultStack" />
+				 <interceptor-ref name="chaoAuthzContextInterceptor" />
+			 </interceptor-stack>
 		</interceptors>
 	</package>
 	
@@ -25,6 +29,11 @@
 		</action>
 		
 		<action name="query_subject_detail" class="com.doucome.chaoexpo.web.chao.action.ajax.QuerySubjectDetailAction">
+			<interceptor-ref name="chaoDefaultStack" />
+			<result name="success" type="json2"></result>
+		</action>
+		
+		<action name="query_subject_list" class="com.doucome.chaoexpo.web.chao.action.ajax.QuerySubjectListAction">
 			<interceptor-ref name="chaoDefaultStack" />
 			<result name="success" type="json2"></result>
 		</action>
@@ -62,15 +71,56 @@
 	
 	<package name="chao-user-remote" namespace="/chao/user/remote/rest" extends="chao">
 	
+		
+	
+		<action name="login_json" class="com.doucome.chaoexpo.web.chao.action.user.ajax.LoginAjaxAction">
+			<interceptor-ref name="chaoDefaultStack" />
+			<result name="success" type="json2"></result>
+		</action>
+	
 		<action name="register_user" class="com.doucome.chaoexpo.web.chao.action.user.ajax.RegisterUserAction">
 			<interceptor-ref name="chaoDefaultStack" />
 			<result name="success" type="json2"></result>
 		</action>
 		
-		<action name="follow_activity" class="com.doucome.chaoexpo.web.chao.action.user.ajax.AddUserFollowAction" method="followActivity">
-			<interceptor-ref name="chaoDefaultStack" />
+		<action name="my" class="com.doucome.chaoexpo.web.chao.action.user.ajax.MyAction">
+			<interceptor-ref name="chaoUserAuthStack" />
 			<result name="success" type="json2"></result>
 		</action>
 		
+		<action name="follow_activity" class="com.doucome.chaoexpo.web.chao.action.user.ajax.UserFollowAction">
+			<interceptor-ref name="chaoUserAuthStack" />
+			<result name="success" type="json2"></result>
+			<param name="type">FOL_ACT</param>
+		</action>
+		
+		<action name="checkin_activity" class="com.doucome.chaoexpo.web.chao.action.user.ajax.UserFollowAction">
+			<interceptor-ref name="chaoUserAuthStack" />
+			<result name="success" type="json2"></result>
+			<param name="type">ACT_CHK</param>
+		</action>
+		
+		<action name="follow_subject" class="com.doucome.chaoexpo.web.chao.action.user.ajax.UserFollowAction">
+			<interceptor-ref name="chaoUserAuthStack" />
+			<result name="success" type="json2"></result>
+			<param name="type">FOL_SUBJ</param>
+		</action>
+		
+		<action name="unfollow_activity" class="com.doucome.chaoexpo.web.chao.action.user.ajax.UserFollowAction" method="unfollow">
+			<interceptor-ref name="chaoUserAuthStack" />
+			<result name="success" type="json2"></result>
+			<param name="type">FOL_ACT</param>
+		</action>
+		
+		<action name="unfollow_subject" class="com.doucome.chaoexpo.web.chao.action.user.ajax.UserFollowAction" method="unfollow">
+			<interceptor-ref name="chaoUserAuthStack" />
+			<result name="success" type="json2"></result>
+			<param name="type">FOL_SUBJ</param>
+		</action>
+		
+		<action name="add_comment" class="com.doucome.chaoexpo.web.chao.action.user.ajax.UserCommentAction">
+			<interceptor-ref name="chaoUserAuthStack" />
+			<result name="success" type="json2"></result>
+		</action>
 	</package>
 </struts>

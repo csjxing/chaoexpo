@@ -20,5 +20,7 @@ public class Constant {
 	 * 每发送一封邮件的间隔（ms）
 	 */
 	public static final int SEND_EMAIL_INTERVAL = 4000;
+	
+	public static final int COMMENT_MAX_LENGTH = 250 ;
 
 }

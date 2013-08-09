@@ -6,7 +6,7 @@ import com.doucome.chaoexpo.biz.core.model.ChaoAppRecommendDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoAppRecommendService;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoAppRecommendQuery;
+import com.doucome.chaoexpo.biz.dal.query.ChaoAppRecommendQuery;
 
 /**
  * 应用推荐列表

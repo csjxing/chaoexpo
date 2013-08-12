@@ -73,7 +73,7 @@
 				}
 				var clickUrl = _this.find(".click-url").val();
 				clickUrl = clickUrl.trim().toLowerCase();
-				if (clickUrl != '' && !self._isValidLink(clickUrl)) {
+				if (clickUrl == '' || !self._isValidLink(clickUrl)) {
 				    _this.find(".error").html("链接无效，必须以http://开头");
 					return false;
 				}
@@ -87,21 +87,17 @@
 						if (clickUrl != '') {
 						    _picBox.find(".picture").html('<a href="' + clickUrl + '" target="_blank"><img src="' + data.url + '" /></a>'
 					    	  + '<div class="url-box"><span>跳转链接：</span><input type="text" class="click-url" value="' + clickUrl + '" />'
-					    	  + '<a class="mod-click-url-btn" href="javascript:;" >确认修改</a></div>');
+					    	  + '</div>');
 						} else {
 						    _picBox.find(".picture").html('<a href="javascript:;"><img src="' + data.url + '" /></a>'
-					    	  + '<div class="url-box"><span>跳转链接：</span><input type="text" class="click-url" value="" />'
-					    	  + '<a class="mod-click-url-btn" href="javascript:;" >确认修改</a></div>');
+					    	  + '<div class="url-box"><span>跳转链接：</span><input type="text" class="click-url" value="" /></div>');
 						}
 						var _container = _picBox.find(".pictures1");
-						var _picConfig = new Object();
-						_picConfig.picPath = data.path;
-						_picConfig.clickUrl = clickUrl;
-						var configJson = JSON.stringify(_picConfig);
-						_container.prepend('<li class="sum-banner-pic" data-pic-url="' + data.url + '" data-click-url="'
-						    + clickUrl + '"><a href="javascript:;" class="small-pic"><img src="' + data.sum100x000 + '" width="40" height="40"/></a>'
-							+ '<a class="del-btn del-icon" href="javascript:;" title="删除"></a>'
-							+ '<input type="hidden" name="picConfigs" value=\'' + configJson + '\'/></li>')
+						var idx = _container.find("li.sum-banner-pic").size();
+						_container.prepend('<li class="sum-banner-pic" data-idx="' + idx + '"><a href="javascript:;" class="small-pic"><img src="'
+						    + data.sum100x000 + '" width="40" height="40"/></a><a class="del-btn del-icon" href="javascript:;" title="删除"></a>'
+							+ '<input type="hidden" class="pic-path" name="picModels[' + idx + '].picPath" value="' + data.path
+							+ '"/><input type="hidden" class="click-url" name="picModels[' + idx + '].clickUrl" value="' + clickUrl + '"/></li>')
 						_container.find("li").removeClass("active");
 						_container.find("li:first").addClass("active");
 						_picConfigLayer.find(".close-btn").trigger("click");
@@ -123,11 +119,11 @@
 				});
 				return false;
 			});
-			_picDetailBox.find(".picture .click-url").blur(function() {
+			_picDetailBox.find(".picture .click-url").change(function() {
 			    var _this = $(this);
 				
 			});
-			_picDetailBox.find(".del-pic-config-btn").click(function() {
+			_picDetailBox.find(".del-btn").live('click', function() {
 			    var _curLi = $(this).closest("li");
 				if (_curLi.size () == 0) {
 				    return;
@@ -137,19 +133,20 @@
 				    _nextLi = _curLi.prev();
 				}
 				if (_nextLi.size() > 0 && _nextLi.hasClass("sum-banner-pic")) {
-				    var picUrl = _nextLi.data("pic-url");
-					var clickUrl = _nextLi.data("click-url");
+				    var picUrl = _nextLi.find(".pic-path").val();
+					var clickUrl = _nextLi.find("click-url").val();
+					if (clickUrl == undefined) {
+					    clickUrl = '';
+					}
 					if (!picUrl.startsWith("http://")) {
 						picUrl = pictureRoot + picUrl;
 					}
 					if (clickUrl != '') {
 						$(".pic-detail-box .picture").html('<a href="' + clickUrl + '" target="_blank"><img src="' + picUrl + '" /></a>'
-						  + '<div class="url-box"><span>跳转链接：</span><input type="text" class="click-url" value="' + clickUrl + '" />'
-						  + '<a class="mod-click-url-btn" href="javascript:;" >确认修改</a></div>');
+						  + '<div class="url-box"><span>跳转链接：</span><input type="text" class="click-url" value="' + clickUrl + '" /></div>');
 					} else {
 						$(".pic-detail-box .picture").html('<a href="javascript:;"><img src="' + picUrl + '" /></a>'
-						  + '<div class="url-box"><span>跳转链接：</span><input type="text" class="click-url" value="" />'
-						  + '<a class="mod-click-url-btn" href="javascript:;" >确认修改</a></div>');
+						  + '<div class="url-box"><span>跳转链接：</span><input type="text" class="click-url" value="" /></div>');
 					}
 					_nextLi.addClass("active");
 				} else {
@@ -159,25 +156,37 @@
 			});
 			_picDetailBox.find("li.sum-banner-pic").live("hover", function(event) {
 			    var _this = $(this);
-				$(".pic-detail-box .sum-pics").find("li.active").removeClass("active");
-				var picUrl = _this.data("pic-url");
-				var clickUrl = _this.data("click-url");
+				var idx = _this.data("idx");
+				var _latestLi = $(".pic-detail-box .sum-pics").find("li.active");
+				var latestClickUrl = _latestLi.find('click-url').val();
+				_latestLi.removeClass("active");
+				var picUrl = _this.find(".pic-path").val();
+				var clickUrl = _this.find(".click-url").val();
 				if (!picUrl.startsWith("http://")) {
 				    picUrl = pictureRoot + picUrl;
 				}
 				if (clickUrl != '') {
 					$(".pic-detail-box .picture").html('<a href="' + clickUrl + '" target="_blank"><img src="' + picUrl + '" /></a>'
-					  + '<div class="url-box"><span>跳转链接：</span><input type="text" class="click-url" value="' + clickUrl + '" />'
-					  + '<a class="mod-click-url-btn" href="javascript:;" >确认修改</a></div>');
+					  + '<div class="url-box"><span>跳转链接：</span><input type="text" class="click-url" value="'
+					  + clickUrl + '" data-idx="' + idx + '" /></div>');
 				} else {
 					$(".pic-detail-box .picture").html('<a href="javascript:;"><img src="' + picUrl + '" /></a>'
-					  + '<div class="url-box"><span>跳转链接：</span><input type="text" class="click-url" value="" />'
-					  + '<a class="mod-click-url-btn" href="javascript:;" >确认修改</a></div>');
+					  + '<div class="url-box"><span>跳转链接：</span><input type="text" class="click-url" value="" data-idx="'
+					  + idx + '"/></div>');
 				}
 				_this.addClass('active') ;
 			});
 		    _picDetailBox.find(".add-banner-pic-btn").click(function() {
 			    _picConfigLayer.removeClass("dd-hide");
+			});
+			_picDetailBox.find(".top-box .click-url").live("change", function() {
+			    var _this = $(this);
+			    var clickUrl = _this.val();
+				var idx = _this.data("idx");
+			    var _curLi = _picDetailBox.find('li[data-idx="' + idx + '"]');
+				if (_curLi.size() > 0) {
+					_curLi.find("input.click-url").val(clickUrl);
+				}
 			});
 		},
 		
@@ -195,7 +204,7 @@
 			    return false;
 			}
 		    var temp = link.trim().toLowerCase();
-		    return temp.startsWith("http://");
+		    return temp.startsWith("http://") || temp.startsWith("https://");
 		},
 		
 		end:0

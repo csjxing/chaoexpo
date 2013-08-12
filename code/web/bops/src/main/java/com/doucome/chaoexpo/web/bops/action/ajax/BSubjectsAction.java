@@ -25,6 +25,7 @@ public class BSubjectsAction extends BopsBasicAction {
 	@Override
 	public String execute() throws Exception {
 		ChaoSubjectQuery condtion = new ChaoSubjectQuery();
+		condtion.setStatus(status);
 		QueryResult<ChaoSubjectDTO> temps = chaoSubjectService.getSubjectsWithPagination(condtion, new Pagination(1, 100));
 		json.setSuccess(temps.getItems());
 		return SUCCESS ;

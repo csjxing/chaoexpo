@@ -12,7 +12,7 @@
 		},
 		
 		_initEvent: function() {
-			$("#activityTable .delete-btn").click(function() {
+			$("#bannerTable .delete-btn").click(function() {
 			    var _this = $(this);
 				var id = _this.data('id');
 				var status = _this.data('status');
@@ -30,7 +30,7 @@
 					return ;
 				}
 				$.ajax({
-					url: bopsRoot + '/bops/remote/reset_activity_status.htm',
+					url: bopsRoot + '/bops/remote/reset_banner_status.htm',
 					type: "post",
 					data: {id: id, status: status},
 					success: function(result) {

@@ -9,6 +9,8 @@ import com.doucome.chaoexpo.biz.dal.dataobject.ChaoSubjectDO;
 import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
 
 public class ChaoSubjectDTO extends AbstractModel {
+	
+	private static final long serialVersionUID = 1L;
 
 	private ChaoSubjectDO subject ;
 
@@ -69,7 +71,15 @@ public class ChaoSubjectDTO extends AbstractModel {
 	public void setWebUrl(String webUrl) {
 		subject.setWebUrl(webUrl);
 	}
-
+	
+	public String getStatus() {
+		return subject.getStatus();
+	}
+	
+	public void setStatus(String status) {
+		subject.setStatus(status);
+	}
+	
 	public Date getGmtCreate() {
 		return subject.getGmtCreate();
 	}

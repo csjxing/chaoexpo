@@ -118,7 +118,11 @@
 					<td align="center"><a href="${env.bopsRoot}/bops/query_user_follow_list.htm?activityId=$!activity.id&type=ACT_CHK" target="_blank">$!activity.checkinCount</a></td>
                     <td align="center"><a href="${env.bopsRoot}/bops/query_user_comment_list.htm?activityId=$!activity.id" target="_blank">$!activity.commentCount</a></td>
 					<td align="center">
-						<a class="delete-btn" href="javascript:;" data-id="$!activity.id" data-status="D" title="删除">删除</a>
+						#if($!activity.status == 'D')
+							<a class="delete-btn" href="javascript:;" data-id="$!activity.id" data-status="N" title="启用">启用</a>
+						#else
+						    <a class="delete-btn" href="javascript:;" data-id="$!activity.id" data-status="D" title="删除">删除</a>
+					    #end
 					</td>
             	</tr>
     		#end

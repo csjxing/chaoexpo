@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.doucome.chaoexpo.biz.core.enums.ChaoSubjectStatusEnum;
 import com.doucome.chaoexpo.biz.core.model.ChaoSubjectDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
@@ -21,8 +22,9 @@ public class ChaoSubjectServiceImpl implements ChaoSubjectService {
 	private ChaoSubjectDAO chaoSubjectDAO ;
 	
 	@Override
-	public Long createSubject(ChaoSubjectDO subject) {
-		return chaoSubjectDAO.insertSubject(subject) ;
+	public Long createSubject(ChaoSubjectDTO subject) {
+		subject.setStatus(ChaoSubjectStatusEnum.NORMAL.getValue());
+		return chaoSubjectDAO.insertSubject(subject.toDO()) ;
 	}
 
 	@Override

@@ -149,7 +149,11 @@
 								<li class="first"><span>操作</span></li>
 							    <li><a href="${env.bopsRoot}/bops/news.htm?id=$!news.id" target="_blank">修改</a></li>
 							    <li class=""><a class="move-first-btn" href="javascript:;" >排序靠前</a></li>
-							    <li class="last"><a class="delete-btn" href="javascript:;" data-id="$!news.id" data-status="D">删除</a></li>
+								#if($!news.status == "D")
+								    <li class="last"><a class="delete-btn" href="javascript:;" data-id="$!news.id" data-status="N">启用</a></li>
+								#else
+								    <li class="last"><a class="delete-btn" href="javascript:;" data-id="$!news.id" data-status="D">删除</a></li>
+								#end
 							</ul>
 						</div>
 					</td>

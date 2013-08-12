@@ -8,7 +8,11 @@ import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
 
 public class ChaoBannerCondition extends AbstractModel  {
 	
+	private static final long serialVersionUID = 1L;
+
 	private String bannerId;
+	
+	private String status = "N";
 	
 	private Date gmtCreateStart;
 	
@@ -17,6 +21,7 @@ public class ChaoBannerCondition extends AbstractModel  {
 	public Map<String, Object> toMap() {
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("bannerId", bannerId);
+		result.put("status", status);
 		result.put("gmtCreateStart", gmtCreateStart);
 		result.put("gmtCreateEnd", gmtCreateEnd);
 		return result;
@@ -45,6 +50,12 @@ public class ChaoBannerCondition extends AbstractModel  {
 	public void setGmtCreateEnd(Date gmtCreateEnd) {
 		this.gmtCreateEnd = gmtCreateEnd;
 	}
-	
-	
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 }

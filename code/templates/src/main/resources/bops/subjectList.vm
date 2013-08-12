@@ -3,8 +3,8 @@
 
 #set($navigation = "专题列表")
 
-<input type="hidden"  id="ddzBopsRoot" value="${env.bopsRoot}"/>
-<input type="hidden"  id="ddzBopsPage" value="subjectList"/>
+<input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
+<input type="hidden"  id="bopsPage" value="newsList"/>
 
 <style>
 	th a {
@@ -63,7 +63,11 @@
 						$!dateUtils.format($!subject.gmtCreate, 'yyyy-MM-dd HH:mm:ss')
 					</td>
 					<td align="center">
-						<a class="delete-btn" href="javascript:;" title="禁用">禁用</a>
+						#if($!subject.status == 'D')
+						    <a class="delete-btn" href="javascript:;" title="启用" data-id="$!subject.id" data-status="N">启用</a>
+						#else
+						    <a class="delete-btn" href="javascript:;" title="删除" data-id="$!subject.id" data-status="D">删除</a>
+						#end
 					</td>
             	</tr>
     		#end

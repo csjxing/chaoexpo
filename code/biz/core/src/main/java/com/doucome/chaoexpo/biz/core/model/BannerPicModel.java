@@ -1,7 +1,6 @@
 package com.doucome.chaoexpo.biz.core.model;
 
 import com.doucome.chaoexpo.biz.core.enums.PictureSizeEnums;
-import com.doucome.chaoexpo.biz.core.utils.JacksonHelper;
 import com.doucome.chaoexpo.biz.core.utils.PictureUtils;
 import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
 
@@ -15,6 +14,10 @@ public class BannerPicModel extends AbstractModel {
 	private static final long serialVersionUID = 1L;
 	
 	private BannerPicConfig picConfig;
+	
+	public BannerPicModel() {
+		this(null);
+	}
 	
 	public BannerPicModel(BannerPicConfig picConfig) {
 		if (picConfig == null) {
@@ -38,14 +41,6 @@ public class BannerPicModel extends AbstractModel {
 	public void setClickUrl(String clickUrl) {
 		picConfig.setClickUrl(clickUrl);
 	}
-	
-	public String getPicConfig() {
-		try {
-			return JacksonHelper.toJSON(this.picConfig);
-		} catch (Exception e) {
-			return "";
-		}
-	}
 
 	public String getPicUrl() {
 		return PictureUtils.getPicAbsoluteUrl(getPicPath(), PictureSizeEnums.NONE) ;
@@ -57,6 +52,10 @@ public class BannerPicModel extends AbstractModel {
 	
 	public String getSumPicUrl(String size) {
 		return PictureUtils.getPicAbsoluteUrl(getPicPath(), PictureSizeEnums.toEnum(size)) ;
+	}
+	
+	public BannerPicConfig toPicConfig() {
+		return this.picConfig;
 	}
 	
 }

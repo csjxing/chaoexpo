@@ -28,7 +28,7 @@ public class AddSubjectAction extends BopsBasicAction implements ModelDriven<Cha
 		List<String> temps = uploadPictures(subject.getPicUrlList());
 		subject.setPicUrlList(temps);
 		if (subject.getId() == null) {
-			chaoSubjectService.createSubject(subject.toDO());
+			chaoSubjectService.createSubject(subject);
 		} else {
 			chaoSubjectService.updateSubject(subject);
 		}

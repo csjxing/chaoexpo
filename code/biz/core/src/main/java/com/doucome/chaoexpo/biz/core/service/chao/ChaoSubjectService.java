@@ -14,7 +14,7 @@ public interface ChaoSubjectService {
 	 * @param subject
 	 * @return
 	 */
-	Long createSubject(ChaoSubjectDO subject) ;
+	Long createSubject(ChaoSubjectDTO subject) ;
 	
 	/**
 	 * 

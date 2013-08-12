@@ -14,6 +14,8 @@ public class ChaoTushuoCategoryDO extends AbstractModel {
 	private String intro ;
 	
 	private String picUrls ;
+	
+	private Integer tushuoCount ;
 		
 	private Date gmtCreate ;
 	
@@ -21,6 +23,14 @@ public class ChaoTushuoCategoryDO extends AbstractModel {
 
 	public Long getId() {
 		return id;
+	}
+
+	public Integer getTushuoCount() {
+		return tushuoCount;
+	}
+
+	public void setTushuoCount(Integer tushuoCount) {
+		this.tushuoCount = tushuoCount;
 	}
 
 	public void setId(Long id) {

@@ -67,4 +67,8 @@ public class ChaoTushuoCategoryDTO extends AbstractModel {
 	public String getPicUrls() {
 		return category.getPicUrls();
 	}
+	
+	public Integer getTushuoCount() {
+		return category.getTushuoCount();
+	}
 }

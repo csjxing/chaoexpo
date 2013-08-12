@@ -16,6 +16,10 @@ public class ChaoTushuoUpdateCondition {
 	
 	private String category ;
 	
+	private Integer incrTushuoCount ;
+	
+	private Integer decrTushuoCount ;
+	
 	private String status ;
 	
 	public static ChaoTushuoUpdateCondition fromTushuo(ChaoTushuoDO tushuo){
@@ -30,6 +34,8 @@ public class ChaoTushuoUpdateCondition {
 		map.put("picUrls", picUrls) ;
 		map.put("content", content) ;
 		map.put("category", category) ;
+		map.put("incrTushuoCount", incrTushuoCount) ;
+		map.put("decrTushuoCount", decrTushuoCount) ;
 		map.put("status", status) ;
 		return map ;
 	}
@@ -72,6 +78,22 @@ public class ChaoTushuoUpdateCondition {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Integer getIncrTushuoCount() {
+		return incrTushuoCount;
+	}
+
+	public void setIncrTushuoCount(Integer incrTushuoCount) {
+		this.incrTushuoCount = incrTushuoCount;
+	}
+
+	public Integer getDecrTushuoCount() {
+		return decrTushuoCount;
+	}
+
+	public void setDecrTushuoCount(Integer decrTushuoCount) {
+		this.decrTushuoCount = decrTushuoCount;
 	}
 	
 }

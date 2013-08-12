@@ -8,15 +8,16 @@
 		<result property="name" column="NAME" />
 		<result property="intro" column="INTRO" />
 		<result property="picUrls" column="PIC_URLS" />
+		<result property="tushuoCount" column="TUSHUO_COUNT" />
 		<result property="gmtCreate" column="GMT_CREATE"/>
 		<result property="gmtModified" column="GMT_MODIFIED"/>
 	</resultMap>
 	
 	<insert id="insertCategory">
 		INSERT INTO
-			CHAO_TUSHUO_CATEGORY(ID,NAME,INTRO,PIC_URLS,GMT_MODIFIED,GMT_CREATE)
+			CHAO_TUSHUO_CATEGORY(ID,NAME,INTRO,PIC_URLS,TUSHUO_COUNT,GMT_MODIFIED,GMT_CREATE)
 		VALUES
-			(#id#,#name#,#intro#,#picUrls#,now(),now())
+			(#id#,#name#,#intro#,#picUrls#,#tushuoCount#,now(),now())
 		<selectKey resultClass="java.lang.Long" keyProperty="id">
    			<![CDATA[
 			SELECT LAST_INSERT_ID() AS ID
@@ -26,7 +27,7 @@
 	
 	<select id="queryCategoryById" resultMap="RM-ChaoTushuoCategory">
 		SELECT 
-			ID,NAME,INTRO,PIC_URLS,GMT_MODIFIED,GMT_CREATE
+			ID,NAME,INTRO,PIC_URLS,TUSHUO_COUNT,GMT_MODIFIED,GMT_CREATE
 		FROM 
 			CHAO_TUSHUO_CATEGORY
 		WHERE
@@ -35,7 +36,7 @@
 	
 	<select id="queryCategories" resultMap="RM-ChaoTushuoCategory">
 		SELECT 
-			ID,NAME,INTRO,PIC_URLS,GMT_MODIFIED,GMT_CREATE
+			ID,NAME,INTRO,PIC_URLS,TUSHUO_COUNT,GMT_MODIFIED,GMT_CREATE
 		FROM 
 			CHAO_TUSHUO_CATEGORY
 	</select>
@@ -49,6 +50,12 @@
 			</isNotEmpty>
 			<isNotEmpty property="intro">
 				INTRO = #intro# ,
+			</isNotEmpty>
+			<isNotEmpty property="incrTushuoCount">
+				TUSHUO_COUNT = TUSHUO_COUNT + #incrTushuoCount# ,
+			</isNotEmpty>
+			<isNotEmpty property="decrTushuoCount">
+				TUSHUO_COUNT = TUSHUO_COUNT - #decrTushuoCount# ,
 			</isNotEmpty>
 			GMT_MODIFIED = now()
 		WHERE

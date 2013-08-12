@@ -27,7 +27,7 @@ public class BImageUploadAction extends BopsBasicAction {
 	private ImageUploadBO imageUploadBO;
 	
 	public String uploadLocalImage() {
-//		PicModel temp = new PicModel("/upload/product/201306/24/2128071105370156.jpg");
+//		PicModel temp = new PicModel("/upload/product/201307/12/1813372004731934.jpg");
 //		json.setSuccess(temp);
 		String extName = pictureFileName.substring(pictureFileName.lastIndexOf(".") + 1);
 		ResultModel<PicModel> model = imageUploadBO.uploadPicture(picture, extName);
@@ -40,6 +40,8 @@ public class BImageUploadAction extends BopsBasicAction {
 	}
 	
 	public String uploadUrlImage() {
+//		PicModel temp = new PicModel("/upload/product/201306/24/2128071105370156.jpg");
+//		json.setSuccess(temp);
 		ResultModel<PicModel> model = imageUploadBO.uploadPicture(pictureUrl);
 		if (model.isSucc()) {
 			json.setSuccess(model.getData());

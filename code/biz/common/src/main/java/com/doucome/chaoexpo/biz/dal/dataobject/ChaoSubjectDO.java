@@ -27,6 +27,8 @@ public class ChaoSubjectDO  extends AbstractModel{
 	 * 网页
 	 */
 	private String webUrl ;
+	
+	private String status;
 		
 	private Date gmtCreate ;
 	
@@ -62,6 +64,14 @@ public class ChaoSubjectDO  extends AbstractModel{
 
 	public void setWebUrl(String webUrl) {
 		this.webUrl = webUrl;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Date getGmtCreate() {

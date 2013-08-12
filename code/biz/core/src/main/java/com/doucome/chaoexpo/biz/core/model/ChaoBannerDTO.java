@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.collections.CollectionUtils;
 
-import com.doucome.chaoexpo.biz.core.utils.ArrayStringUtils;
 import com.doucome.chaoexpo.biz.core.utils.JacksonHelper;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoBannerDO;
 
 public class ChaoBannerDTO {
 
 	private ChaoBannerDO banner;
+	
+	private List<BannerPicModel> picModels;
 
 	public ChaoBannerDTO() {
 		this(null);
@@ -23,6 +24,19 @@ public class ChaoBannerDTO {
 			banner = new ChaoBannerDO();
 		}
 		this.banner = banner;
+		initPicModels(banner.getPicConfigs());
+	}
+	
+	private void initPicModels(String picConfigs) {
+		picModels = new ArrayList<BannerPicModel>();
+		try {
+			BannerPicConfig[] configs = JacksonHelper.fromJSON(picConfigs, BannerPicConfig[].class);
+			for (BannerPicConfig config: configs) {
+				picModels.add(new BannerPicModel(config));
+			}
+		} catch (Exception e) {
+			
+		}
 	}
 	
 	public Long getId() {
@@ -42,19 +56,11 @@ public class ChaoBannerDTO {
 	}
 	
 	public List<BannerPicModel> getPicModels() {
-		List<BannerPicModel> models = new ArrayList<BannerPicModel>();
-		String[] picConfigs = StringUtils.split(banner.getPicConfigs(), ";");
-		for (String temp: picConfigs) {
-			try {
-				models.add(new BannerPicModel(JacksonHelper.fromJSON(temp, BannerPicConfig.class)));
-			} catch (Exception e) {
-			}
-		}
-		return models;
+		return picModels;
 	}
 	
-	public void setPicConfigs(List<String> picConfigs) {
-		banner.setPicConfigs(ArrayStringUtils.toString(picConfigs, ";"));
+	public void setPicModels(List<BannerPicModel> picModels) {
+		this.picModels = picModels;
 	}
 
 	public String getStatus() {
@@ -90,6 +96,17 @@ public class ChaoBannerDTO {
 	}
 	
 	public ChaoBannerDO toDO() {
+		if (CollectionUtils.isNotEmpty(picModels)) {
+			BannerPicConfig[] picConfigs = new BannerPicConfig[picModels.size()];
+			for (int i = 0; i < picModels.size(); i++) {
+				picConfigs[i] = picModels.get(i).toPicConfig();
+			}
+			try {
+				banner.setPicConfigs(JacksonHelper.toJSON(picConfigs));
+			} catch(Exception e) {
+				
+			}
+		}
 		return banner;
 	}
 }

@@ -85,12 +85,18 @@
 				})
 			});
 			$("#newsTable .delete-btn").click(function() {
-			    if(!confirm('是否删除记录？')){
-					return ;
-				}
 			    var _this = $(this);
 				var id = _this.data('id');
 				var status = _this.data('status');
+				if (status == 'N') {
+					if(!confirm('是否启用新闻？')){
+						return ;
+					}
+				} else {
+				    if(!confirm('是否删除新闻？')){
+						return ;
+					}
+				}
 				if (id == undefined || isNaN(parseInt(id))) {
 				    alert('ID有误，请刷新页面后再试。');
 					return ;

@@ -43,6 +43,45 @@
 		LIMIT 1
 	</select>
 	
+	<select id="queryBannerPage" resultMap="RM-ChaoBanner">
+		SELECT <include refid="banner_fields" />
+		  FROM CHAO_BANNER
+		  <isParameterPresent open="WHERE" removeFirstPrepend="true">
+		      <isNotEmpty property="bannerId" prepend="AND">
+		          bannerId = #BANNER_ID#
+		      </isNotEmpty>
+		      <isNotEmpty property="status" prepend="AND">
+		          STATUS = #status#
+		      </isNotEmpty>
+		      <isNotNull property="gmtCreateStart" prepend="AND">
+		          GMT_CREATE <![CDATA[>=]]> #gmtCreateStart#
+		      </isNotNull>
+		      <isNotNull property="gmtCreateEnd" prepend="AND">
+		          GMT_CREATE <![CDATA[<]]> #gmtCreateEnd#
+		      </isNotNull>
+		  </isParameterPresent>
+		  LIMIT #start#, #size#
+	</select>
+	
+	<select id="countBanners" resultClass="java.lang.Integer">
+		SELECT COUNT(ID)
+		  FROM CHAO_BANNER
+		  <isParameterPresent open="WHERE" removeFirstPrepend="true">
+		      <isNotEmpty property="bannerId" prepend="AND">
+		          bannerId = #BANNER_ID#
+		      </isNotEmpty>
+		      <isNotEmpty property="status" prepend="AND">
+		          STATUS = #status#
+		      </isNotEmpty>
+		      <isNotNull property="gmtCreateStart" prepend="AND">
+		          GMT_CREATE <![CDATA[>=]]> #gmtCreateStart#
+		      </isNotNull>
+		      <isNotNull property="gmtCreateEnd" prepend="AND">
+		          GMT_CREATE <![CDATA[<]]> #gmtCreateEnd#
+		      </isNotNull>
+		  </isParameterPresent>
+	</select>
+	
 	<update id="updateBanner">
 		UPDATE
 			CHAO_BANNER

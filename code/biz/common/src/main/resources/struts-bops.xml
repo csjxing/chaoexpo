@@ -160,6 +160,11 @@
 			<result name="success" type="velocity">/bops/success.vm</result>
 		</action>
 		
+		<action name="bannerList" class="com.doucome.chaoexpo.web.bops.action.BannerListAction">
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/bannerList.vm</result>
+		</action>
+		
 		<action name="banner" class="com.doucome.chaoexpo.web.bops.action.BannerAction">
 			<interceptor-ref name="bopsDefaultStack" />
 			<result name="success" type="velocity">/bops/banner.vm</result>
@@ -262,6 +267,14 @@
 		</action>
 		
 		<action name="reset_activity_status" class="com.doucome.chaoexpo.web.bops.action.ajax.BActivityStatusAction">
+		    <interceptor-ref name="bopsDefaultStack" />
+		    <result name="success" type="json"></result>
+		</action>
+		<action name="reset_subject_status" class="com.doucome.chaoexpo.web.bops.action.ajax.BSubjectStatusAction">
+		    <interceptor-ref name="bopsDefaultStack" />
+		    <result name="success" type="json"></result>
+		</action>
+		<action name="reset_banner_status" class="com.doucome.chaoexpo.web.bops.action.ajax.BBannerStatusAction">
 		    <interceptor-ref name="bopsDefaultStack" />
 		    <result name="success" type="json"></result>
 		</action>

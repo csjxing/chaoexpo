@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.doucome.chaoexpo.biz.common.unittest.AbstractBaseJUnit4Test;
+import com.doucome.chaoexpo.biz.core.model.ChaoSubjectDTO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoSubjectDO;
 
 @ContextConfiguration(locations = { "classpath:biz-core-test.xml" })
@@ -19,7 +20,7 @@ public class ChaoSubjectServiceTest extends AbstractBaseJUnit4Test {
 			ChaoSubjectDO subject = new ChaoSubjectDO() ;
 			subject.setName("专题001") ;
 			subject.setWebUrl("http://baidu.com") ;
-			chaoSubjectService.createSubject(subject) ;
+			chaoSubjectService.createSubject(new ChaoSubjectDTO(subject)) ;
 		
 	}
 }

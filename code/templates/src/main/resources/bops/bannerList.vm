@@ -11,13 +11,31 @@
 		text-decoration:none;
 		color:#000 ;
 	}
-	
+	#bannerTable .pic-box img {
+	    width：60px;
+	    height: 60px;
+	}
+	#bannerTable .url-box {
+	    width: 200px;
+	    overflow: hidden;
+	    white-space: nowrap;
+	    text-overflow: ellipsis;
+	}
+	.memo-box {
+	    height: 60px;
+	    line-height: 20px;
+	    overflow: hidden;
+	}
 </style>
 
-#set($pagination = $newsResult.pagination)
+#set($gmtCreateStartFmt = $!dateUtils.format($!gmtCreateStart,'yyyy-MM-dd'))
+#set($gmtCreateEndFmt = $!dateUtils.format($!gmtCreateEnd,'yyyy-MM-dd'))
+
+#set($pagination = $bannerResult.pagination)
 
 #set($searchUrl = ${env.bopsRoot}+"/bops/banner_list.htm?")
-#set($searchQuery = [])
+#set($searchQuery = ["bannerId:$!bannerId","status:$!status","gmtCreateStart:$!gmtCreateStartFmt","gmtCreateEnd:$!gmtCreateEndFmt"])
+
 
 <div class="bops">
     <div style="MT20 MB20">&nbsp;</div>
@@ -25,13 +43,12 @@
 	<div class="MB20 MT20"><a href="${env.bopsRoot}/bops/banner.htm" target="_blank">新增Banner</a></div>
 	
 	#parse("/common/bops/page/bannerPagination.vm")
-	 <table width="1080" id="bannerTable">
+	 <table width="800" id="bannerTable">
 		<tr>
 			<th width="40">ID</th>
 			<th width="120" align="center">BannerId</th>
-			<th width="400">图片</th>
-    		<th width="120">URL</th>
-			<th width="100">状态</th>
+			<th width="100">图片</th>
+    		<th width="220">URL</th>
 			<th width="200">备注</th>
 			<th width="100">操作</th>
     	</tr>
@@ -41,10 +58,10 @@
 					<td class="id">$!banner.id</td>
             		<td class="">$!banner.bannerId</td>
                     <td>
-						<div class="banner-box">
+						<div class="pic-box">
 						    #if($!banner.picModels.size() > 0)
-						    	<a href="$!banner.picModels.get(0).picUrl" target="_blank">
-						    		<img src="$!banner.picModels.get(0).picUrl" />
+						    	<a #if($!banner.picModels.get(0).clickUrl != '')href="$!banner.picModels.get(0).clickUrl" target="_blank"#else href="javascript:;" #end>
+						    		<img src="$!banner.picModels.get(0).picUrl100x000" />
 						    	</a>
     						#end
 						</div>
@@ -55,27 +72,22 @@
 								#set($clickUrl = $!banner.picModels.get(0).clickUrl)
 								#if ($!clickUrl && $!clickUrl != '')
 							    	<a href="$!clickUrl" target="_blank">$!clickUrl</a>
+						        #else
+						            <span>无</span>
 						        #end
 						    #end
 					    </div>
-					</td>
-                    <td align="center">
-						<div class="status-box">
-							#if($!banner.status == 'D')
-								<span>已禁用</span>
-								<a href="${env.bopsRoot}/bops/update_banner_status.htm?id=$!banner.id&status=N">启用</a>
-							#else
-							    <span>已启用</span>
-								<a href="${env.bopsRoot}/bops/update_banner_status.htm?id=$!banner.id&status=D">禁用</a>
-							#end
-						    <div name="categoryId" data-category-id="$!banner.categoryId"></div>
-						</div>
 					</td>
 					<td align="center">
 						<div class="memo-box">$!banner.memo</div>
 					</td>
 					<td align="center">
 						<a href="${env.bopsRoot}/bops/banner.htm?id=$!banner.id" target="_blank">修改</a>
+						#if($!banner.status == "D")
+						    <a class="delete-btn" href="javascript:;" data-id="$!banner.id" data-status="N">启用</a>
+						#else
+						    <a class="delete-btn" href="javascript:;" data-id="$!banner.id" data-status="D">删除</a>
+						#end
 					</td>
             	</tr>
     		#end

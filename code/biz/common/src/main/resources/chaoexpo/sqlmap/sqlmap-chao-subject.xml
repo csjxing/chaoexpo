@@ -9,15 +9,16 @@
 		<result property="name" column="NAME" />
 		<result property="picUrls" column="PIC_URLS"/>
 		<result property="webUrl" column="WEB_URL"/>
+		<result property="status" column="STATUS"/>
 		<result property="gmtCreate" column="GMT_CREATE"/>
 		<result property="gmtModified" column="GMT_MODIFIED" />
 	</resultMap>
 
 	<insert id="insertSubject">
 		INSERT INTO
-			CHAO_SUBJECT(ID,NAME,PIC_URLS,WEB_URL,GMT_CREATE,GMT_MODIFIED)
+			CHAO_SUBJECT(ID,NAME,PIC_URLS,WEB_URL,STATUS,GMT_CREATE,GMT_MODIFIED)
 		VALUES
-			(#id#,#name#,#picUrls#,#webUrl#,now(),now())
+			(#id#,#name#,#picUrls#,#webUrl#,#status#,now(),now())
 		<selectKey resultClass="java.lang.Long" keyProperty="id">
    			<![CDATA[
 			SELECT LAST_INSERT_ID() AS ID
@@ -25,9 +26,12 @@
 	    </selectKey>
 	</insert>
 	
+	<sql id="subject_fields">
+	    ID,NAME,PIC_URLS,WEB_URL,STATUS,GMT_CREATE,GMT_MODIFIED
+	</sql>
+	
 	<select id="querySubjectById" resultMap="RM-ChaoSubject">
-		SELECT 
-			ID,NAME,PIC_URLS,WEB_URL,GMT_CREATE,GMT_MODIFIED
+		SELECT <include refid="subject_fields"/>
 		FROM
 			CHAO_SUBJECT
 		WHERE
@@ -35,12 +39,13 @@
 	</select>
 	
 	<select id="querySubjectsWithPagination" resultMap="RM-ChaoSubject">
-		SELECT 
-			ID,NAME,PIC_URLS,WEB_URL,GMT_CREATE,GMT_MODIFIED
+		SELECT <include refid="subject_fields"/>
 		FROM
 			CHAO_SUBJECT
 		<isParameterPresent open="WHERE" removeFirstPrepend="true">
-	    	
+	    	<isNotEmpty property="status" prepend="AND">
+	    	    STATUS = #status#
+	    	</isNotEmpty>
 		</isParameterPresent>
 		ORDER BY 
 	    	GMT_CREATE DESC
@@ -55,7 +60,9 @@
 		FROM
 			CHAO_SUBJECT
 		<isParameterPresent open="WHERE" removeFirstPrepend="true">
-	    	
+	    	<isNotEmpty property="status" prepend="AND">
+	    	    STATUS = #status#
+	    	</isNotEmpty>
 		</isParameterPresent>
 	</select>
 	
@@ -72,6 +79,9 @@
 			<isNotEmpty property="webUrl">
 				WEB_URL = #webUrl# ,
 			</isNotEmpty>
+			<isNotEmpty property="status">
+	    	    STATUS = #status#,
+	    	</isNotEmpty>
 			GMT_MODIFIED = now()
 		WHERE
 			ID = #id#
@@ -90,6 +100,9 @@
 			<isNotEmpty property="webUrl">
 				WEB_URL = #webUrl# ,
 			</isNotEmpty>
+			<isNotEmpty property="status">
+	    	    STATUS = #status#,
+	    	</isNotEmpty>
 			GMT_MODIFIED = now()
 		WHERE
 			ID = #id#

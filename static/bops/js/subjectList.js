@@ -12,16 +12,16 @@
 		},
 		
 		_initEvent: function() {
-			$("#activityTable .delete-btn").click(function() {
+			$("#subjectTable .delete-btn").click(function() {
 			    var _this = $(this);
 				var id = _this.data('id');
 				var status = _this.data('status');
 				if (status == 'N') {
-					if(!confirm('是否启用记录？')){
+				    if(!confirm('是否启用记录？')){
 						return ;
 					}
 				} else {
-				    if(!confirm('是否删除记录？')){
+					if(!confirm('是否删除记录？')){
 						return ;
 					}
 				}
@@ -30,11 +30,11 @@
 					return ;
 				}
 				$.ajax({
-					url: bopsRoot + '/bops/remote/reset_activity_status.htm',
+					url: bopsRoot + '/bops/remote/reset_subject_status.htm',
 					type: "post",
 					data: {id: id, status: status},
 					success: function(result) {
-					var json = result.json;
+					    var json = result.json;
 						if (json.success) {
 						    window.location.reload();
 						} else {

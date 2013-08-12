@@ -8,6 +8,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.doucome.chaoexpo.biz.common.utils.IDUtils;
+import com.doucome.chaoexpo.biz.core.enums.BannerStatusEnums;
 import com.doucome.chaoexpo.biz.core.model.ChaoBannerDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
@@ -31,6 +32,7 @@ public class ChaoBannerServiceImpl implements ChaoBannerService {
 		if (banner == null) {
 			return 0l;
 		}
+		banner.setStatus(BannerStatusEnums.NORMAL.getValue());
 		return chaoBannerDAO.insertBanner(banner.toDO());
 	}
 

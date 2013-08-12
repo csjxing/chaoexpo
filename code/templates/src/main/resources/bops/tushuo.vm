@@ -26,9 +26,10 @@
 						<li>
     						<span class="lbl" style="">分类：</span>
     						<div class="dd-l">
-								<select name="category">
+								<select name="categoryId" data-cate="$!tushuo.categoryId" >
+                                    <option value="0">无</option>
 									#foreach($cate in $cateList)
-                                    <option value="$!cate.name" #if($!tushuo.category == $cate.name) selected #end>$!cate.name</option>
+                                    <option value="$!cate.id" #if($!tushuo.categoryId == $cate.id) selected #end #if($cate.status == 'D') class="dc-light-gray" #end>#if($cate.status == 'D')[已删] #end$!cate.name </option>
 									#end
 								</select>
 							</div>

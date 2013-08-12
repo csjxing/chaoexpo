@@ -1,5 +1,6 @@
 package com.doucome.chaoexpo.biz.dal.dao.ibatis;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +44,14 @@ public class IBatisChaoTushuoDAO  extends SqlMapClientDaoSupport implements Chao
 		Map<String,Object> map = update.toMap() ;
 		map.put("id", id) ;
 		return getSqlMapClientTemplate().update("ChaoTushuo.updateTushuoById" , map) ;
+	}
+
+	@Override
+	public int updateTushuoCateById(Long id, Long newCateId) {
+		Map<String,Object> map = new HashMap<String,Object>() ;
+		map.put("id", id) ;
+		map.put("categoryId",newCateId) ;
+		return getSqlMapClientTemplate().update("ChaoTushuo.updateTushuoCateById" ,map);
 	}
 
 }

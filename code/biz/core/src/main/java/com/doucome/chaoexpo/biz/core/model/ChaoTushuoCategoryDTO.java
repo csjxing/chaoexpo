@@ -71,4 +71,8 @@ public class ChaoTushuoCategoryDTO extends AbstractModel {
 	public Integer getTushuoCount() {
 		return category.getTushuoCount();
 	}
+	
+	public String getStatus() {
+		return category.getStatus() ;
+	}
 }

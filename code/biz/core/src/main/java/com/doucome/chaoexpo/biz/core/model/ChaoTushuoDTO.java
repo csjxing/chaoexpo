@@ -59,8 +59,8 @@ public class ChaoTushuoDTO extends AbstractModel {
 		return tushuo.getContent();
 	}
 
-	public String getCategory() {
-		return tushuo.getCategory();
+	public Long getCategoryId() {
+		return tushuo.getCategoryId();
 	}
 	
 	public String getStatus(){

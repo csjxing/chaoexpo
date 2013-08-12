@@ -9,6 +9,7 @@ import com.doucome.chaoexpo.biz.common.utils.NumberUtils;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoTushuoCateUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dao.ChaoTushuoCategoryDAO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoTushuoCategoryDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoTushuoCategoryQuery;
 
 public class IBatisChaoTushuoCategoryDAO extends SqlMapClientDaoSupport implements ChaoTushuoCategoryDAO {
 
@@ -24,8 +25,9 @@ public class IBatisChaoTushuoCategoryDAO extends SqlMapClientDaoSupport implemen
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ChaoTushuoCategoryDO> queryCategories() {
-		return getSqlMapClientTemplate().queryForList("ChaoTushuoCategory.queryCategories") ;
+	public List<ChaoTushuoCategoryDO> queryCategories(ChaoTushuoCategoryQuery query) {
+		Map<String,Object> map = query.toMap() ;
+		return getSqlMapClientTemplate().queryForList("ChaoTushuoCategory.queryCategories" , map) ;
 	}
 	
 	@Override
@@ -34,12 +36,5 @@ public class IBatisChaoTushuoCategoryDAO extends SqlMapClientDaoSupport implemen
 		map.put("id", id) ;
 		return getSqlMapClientTemplate().update("ChaoTushuoCategory.updateCategoryById",map) ;
 	}
-
-	@Override
-	public int deleteCategoryById(long id) {
-		return getSqlMapClientTemplate().delete("ChaoTushuoCategory.deleteCategoryById" , id) ;
-	}
-
-	
 
 }

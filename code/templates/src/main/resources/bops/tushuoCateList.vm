@@ -24,9 +24,11 @@
     	<table width="980">
     		<tr>
     			<th width="40">序号</th>
-        		<th width="100">名称</th>
+				<th width="50">ID</th>
+        		<th width="200">名称</th>
         		<th width="100">图片</th>
 				<th width="300">简介</th>
+				<th width="60">图说数</th>
 				<th width="100">创建时间</th>
     			<th width="80">操作</th>
         	</tr>
@@ -34,13 +36,20 @@
         		#foreach($item in $cateList)
                 	<tr>
     					<td align="center">$!velocityCount</td>
-						<td align="center">$!item.name</td>
+						<td align="center">$!item.id</td>
+						<td align="center" #if($!item.status == 'D') class="dc-light-gray" #end>#if($!item.status == 'D') <span class="dc-red">[已删除]</span> #end$!item.name</td>
 						<td align="center"><img src="$!item.picModel.getSum('80x80')" alt="$!item.name" class="logo" width="60" height="60"></td>
 						<td><div class="content">$!item.getIntro(60)</div></td>
+						<td align="center">#if($item.tushuoCount) $!item.tushuoCount #else 0 #end</td>
 						<td align="center">$!dateUtils.format($!item.gmtCreate, 'yyyy-MM-dd HH:mm')</td>
-    					<td align="center">
+						<td align="center">
 							<a class="" href="${env.bopsRoot}/bops/add_tushuo_cate.htm?id=$!item.id" title="编辑" target="_blank">编辑</a>
-							<a class="delete-tushuo-cate-btn" href="javascript:;" title="删除" data-cate-id="$!item.id">彻底删除</a>
+														
+							#if($item.status == 'N')
+							<a class="update-tushuo-cate-status-btn" href="javascript:;" title="删除" data-cate-id="$!item.id" data-to-status='D'>删除</a>
+							#else
+							<a class="update-tushuo-cate-status-btn" href="javascript:;" title="恢复" data-cate-id="$!item.id" data-to-status='N'>恢复</a>
+							#end
     					</td>
                 	</tr>
 					

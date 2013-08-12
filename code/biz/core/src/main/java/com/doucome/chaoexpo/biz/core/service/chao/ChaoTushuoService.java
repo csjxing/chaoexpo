@@ -41,4 +41,12 @@ public interface ChaoTushuoService {
 	 */
 	int updateTushuoById(Long id , ChaoTushuoUpdateCondition update) ;
 	
+	/**
+	 * 
+	 * @param id
+	 * @param newCateId
+	 * @return
+	 */
+	int updateTushuoCateById(Long id , Long newCateId) ;
+	
 }

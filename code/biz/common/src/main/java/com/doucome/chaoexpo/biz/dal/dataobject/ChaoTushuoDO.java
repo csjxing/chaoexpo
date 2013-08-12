@@ -20,7 +20,7 @@ public class ChaoTushuoDO extends AbstractModel {
 	
 	private String content ;
 	
-	private String category ;
+	private Long categoryId ;
 	
 	private String status ;
 	
@@ -60,12 +60,12 @@ public class ChaoTushuoDO extends AbstractModel {
 		this.content = content;
 	}
 
-	public String getCategory() {
-		return category;
+	public Long getCategoryId() {
+		return categoryId;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public Date getGmtCreate() {

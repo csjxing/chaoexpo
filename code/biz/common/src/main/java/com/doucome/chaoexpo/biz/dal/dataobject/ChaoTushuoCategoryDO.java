@@ -16,6 +16,8 @@ public class ChaoTushuoCategoryDO extends AbstractModel {
 	private String picUrls ;
 	
 	private Integer tushuoCount ;
+	
+	private String status ;
 		
 	private Date gmtCreate ;
 	
@@ -76,5 +78,13 @@ public class ChaoTushuoCategoryDO extends AbstractModel {
 	public void setPicUrls(String picUrls) {
 		this.picUrls = picUrls;
 	}
-	
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 }

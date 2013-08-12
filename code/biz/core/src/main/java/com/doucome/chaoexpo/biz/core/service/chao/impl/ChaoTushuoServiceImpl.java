@@ -50,4 +50,9 @@ public class ChaoTushuoServiceImpl implements ChaoTushuoService {
 		return chaoTushuoDAO.updateTushuoById(id, update) ;
 	}
 
+	@Override
+	public int updateTushuoCateById(Long id, Long newCateId) {
+		return chaoTushuoDAO.updateTushuoCateById(id, newCateId) ;
+	}
+
 }

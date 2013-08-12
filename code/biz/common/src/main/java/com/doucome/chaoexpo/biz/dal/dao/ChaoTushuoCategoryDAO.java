@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.doucome.chaoexpo.biz.dal.condition.ChaoTushuoCateUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoTushuoCategoryDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoTushuoCategoryQuery;
 
 /**
  * 
@@ -23,7 +24,7 @@ public interface ChaoTushuoCategoryDAO {
 	 * 
 	 * @return
 	 */
-	List<ChaoTushuoCategoryDO> queryCategories() ;
+	List<ChaoTushuoCategoryDO> queryCategories(ChaoTushuoCategoryQuery query) ;
 	
 	/**
 	 * 
@@ -39,12 +40,5 @@ public interface ChaoTushuoCategoryDAO {
 	 * @return
 	 */
 	int updateCategoryById(long id , ChaoTushuoCateUpdateCondition condition) ;
-	
-	/**
-	 * 
-	 * @param id
-	 * @return
-	 */
-	int deleteCategoryById(long id) ;
 	
 }

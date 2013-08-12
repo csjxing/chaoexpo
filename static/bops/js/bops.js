@@ -187,21 +187,23 @@
 		
 		_initTushuoCate:function(){
 			if(bopsPage == 'tushuoCateList'){
-				$('.delete-tushuo-cate-btn').click(function(){
+				$('.update-tushuo-cate-status-btn').click(function(){
 					var _this = $(this) ;
 					var id = _this.attr('data-cate-id') ;
 					if(id == '') {
-						alert('还没有选择要删除的记录！');
+						alert('还没有选择要操作的记录！');
 						return ;
 					}
-					if(!confirm('是否删除记录？')){
+					if(!confirm('是否操作记录？')){
 						return ;
 					}
 					
+					var toStatus = _this.attr('data-to-status') ;
+					
 					$.ajax({
-						url : bopsRoot + '/bops/remote/rest/delete_tushuo_cate_ajax.htm' ,
+						url : bopsRoot + '/bops/remote/rest/update_tushuo_cate_status_ajax.htm' ,
 						type : 'post' ,
-						data: {id : id},
+						data: {id : id,status:toStatus},
 						success:function(result){
 							var code = result.code ;
 							var data = result.data ;
@@ -209,11 +211,11 @@
 							if(code == 'success') {
 								window.location.reload() ;
 							} else {
-								alert('删除失败！ Msg :' + detail) ;
+								alert('操作失败！ Msg :' + detail) ;
 							}
 						} , 
 						error :function (err){
-							alert('删除失败！ Msg :' + err) ;
+							alert('操作失败！ Msg :' + err) ;
 						}
 					});
 				}) ;

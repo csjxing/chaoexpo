@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.doucome.chaoexpo.biz.core.model.ChaoTushuoCategoryDTO;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoTushuoCategoryService;
+import com.doucome.chaoexpo.biz.dal.query.ChaoTushuoCategoryQuery;
 
 /**
  * 图说分类
@@ -24,7 +25,8 @@ public class TushuoCateListAction extends BopsBasicAction {
 	@Override
 	public String execute() throws Exception {
 		
-		cateList = chaoTushuoCategoryService.getCategories() ;
+		ChaoTushuoCategoryQuery cateQuery = new ChaoTushuoCategoryQuery() ;
+		cateList = chaoTushuoCategoryService.getCategories(cateQuery) ;
 		
 		return SUCCESS ;
 	}

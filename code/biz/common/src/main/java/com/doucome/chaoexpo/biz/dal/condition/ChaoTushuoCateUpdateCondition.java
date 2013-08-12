@@ -12,6 +12,12 @@ public class ChaoTushuoCateUpdateCondition {
 	
 	private String intro ;
 	
+	private String status ;
+	
+	private Integer incrTushuoCount ;
+	
+	private Integer decrTushuoCount ;
+	
 	public static ChaoTushuoCateUpdateCondition fromCate(ChaoTushuoCategoryDO cate){
 		ChaoTushuoCateUpdateCondition condition = new ChaoTushuoCateUpdateCondition() ;
 		ReflectUtils.reflectTo(cate, condition) ;
@@ -22,6 +28,9 @@ public class ChaoTushuoCateUpdateCondition {
 		Map<String,Object> map = new HashMap<String,Object>() ;
 		map.put("picUrls", picUrls) ;
 		map.put("intro", intro) ;
+		map.put("status", status) ;
+		map.put("incrTushuoCount", incrTushuoCount) ;
+		map.put("decrTushuoCount", decrTushuoCount) ;
 		return map ;
 	}
 
@@ -39,6 +48,30 @@ public class ChaoTushuoCateUpdateCondition {
 
 	public void setIntro(String intro) {
 		this.intro = intro;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Integer getIncrTushuoCount() {
+		return incrTushuoCount;
+	}
+
+	public void setIncrTushuoCount(Integer incrTushuoCount) {
+		this.incrTushuoCount = incrTushuoCount;
+	}
+
+	public Integer getDecrTushuoCount() {
+		return decrTushuoCount;
+	}
+
+	public void setDecrTushuoCount(Integer decrTushuoCount) {
+		this.decrTushuoCount = decrTushuoCount;
 	}
 
 }

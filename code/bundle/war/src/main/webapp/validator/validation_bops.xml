@@ -27,7 +27,7 @@
 	<form id="tushuoForm">
 		<item name="name" dataType="Require" msg="名称不为空" /> 
 		<item name="name" dataType="Limit" max="2048" msg="名称输入过长" />
-		<item name="category" dataType="Require" msg="分类必须选择" /> 		
+		<item name="categoryId" dataType="Require" msg="分类必须选择" /> 		
 		<item name="content" dataType="Require" msg="内容不为空" />
 		<item name="content" dataType="Limit" max="2048" msg="内容输入过长" />
 	</form>

@@ -3,6 +3,7 @@ package com.doucome.chaoexpo.web.bops.action.ajax;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.doucome.chaoexpo.biz.common.utils.IDUtils;
+import com.doucome.chaoexpo.biz.core.bo.ChaoTushuoBO;
 import com.doucome.chaoexpo.biz.core.enums.TushuoStatusEnums;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoTushuoService;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoTushuoUpdateCondition;
@@ -18,7 +19,7 @@ public class TushuoOperateAction extends BopsBasicAction {
 	private String status ;
 	
 	@Autowired
-	private ChaoTushuoService chaoTushuoService ;
+	private ChaoTushuoBO chaoTushuoBO ;
 	
 	public String updateStatus() {
 		
@@ -35,10 +36,7 @@ public class TushuoOperateAction extends BopsBasicAction {
 			return SUCCESS ;
 		}
 		
-		ChaoTushuoUpdateCondition condition = new ChaoTushuoUpdateCondition() ;
-		condition.setStatus(status) ;
-		
-		int effectCount = chaoTushuoService.updateTushuoById(id, condition) ;
+		int effectCount = chaoTushuoBO.updateStatus(id, e) ;
 		
 		if(effectCount <= 0) {
 			json.setCode(JsonModel.CODE_ILL_ARGS) ;

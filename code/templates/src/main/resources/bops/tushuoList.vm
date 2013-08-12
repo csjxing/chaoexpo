@@ -31,10 +31,10 @@
     	<table width="980">
     		<tr>
     			<th width="40">序号</th>
-        		<th width="230">名称</th>
+        		<th width="200">名称</th>
         		<th width="60">图片</th>
-    			<th width="80">分类</th>
-				<th width="350">正文</th>
+    			<th width="160">分类</th>
+				<th width="300">正文</th>
 				<th width="120">创建时间</th>
     			<th width="100">操作</th>
         	</tr>
@@ -45,7 +45,11 @@
     					<td align="center">$!idx</td>
 						<td>#if($item.status == 'D')<span class="dc-red">[已删除]</span>#end<span #if($item.status == 'D')class='dc-light-gray'#end>$!item.name</span></td>
     					<td align="center"><img src="$!item.picModel.getSum('80x80')" alt="$!item.name" class="logo" width="50" height="50"></td>
-                		<td align="center"><div class="category">$!item.category</div></td>
+                		<td align="center">
+							#set($cate = "")
+							#set($cate = $cateMap[$!item.categoryId])
+							<div class="category"> $!cate.name #if($cate.status == 'D')<span class='dc-red'>[已删]</span> #end </div>
+						</td>
 						<td><div class="content">$!item.getSubContent(60)</div></td>
 						<td align="center">$!dateUtils.format($!item.gmtCreate, 'yyyy-MM-dd HH:mm')</td>
     					<td align="center">

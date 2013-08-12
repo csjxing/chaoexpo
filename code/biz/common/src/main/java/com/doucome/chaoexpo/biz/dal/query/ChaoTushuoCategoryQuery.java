@@ -5,16 +5,13 @@ import java.util.Map;
 
 import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
 
-public class ChaoTushuoQuery extends AbstractModel {
+public class ChaoTushuoCategoryQuery extends AbstractModel {
 
 	private String status ;
-	
-	private Long categoryId ;
 	
 	public Map<String,Object> toMap(){
 		Map<String,Object> map = new HashMap<String,Object>() ;
 		map.put("status", status) ;
-		map.put("categoryId", categoryId) ;
 		return map ;
 	}
 
@@ -24,14 +21,6 @@ public class ChaoTushuoQuery extends AbstractModel {
 
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	public Long getCategoryId() {
-		return categoryId;
-	}
-
-	public void setCategoryId(Long categoryId) {
-		this.categoryId = categoryId;
 	}
 	
 }

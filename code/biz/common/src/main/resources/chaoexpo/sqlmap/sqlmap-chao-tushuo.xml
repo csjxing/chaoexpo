@@ -8,7 +8,7 @@
 		<result property="name" column="NAME" />
 		<result property="picUrls" column="PIC_URLS"/>
 		<result property="content" column="CONTENT"/>
-		<result property="category" column="CATEGORY"/>
+		<result property="categoryId" column="CATEGORY_ID"/>
 		<result property="status" column="STATUS"/>
 		<result property="gmtCreate" column="GMT_CREATE"/>
 		<result property="gmtModified" column="GMT_MODIFIED" />
@@ -16,9 +16,9 @@
 	
 	<insert id="insertTushuo">
 		INSERT INTO
-			CHAO_TUSHUO(ID,NAME,PIC_URLS,CONTENT,CATEGORY,GMT_CREATE,GMT_MODIFIED)
+			CHAO_TUSHUO(ID,NAME,PIC_URLS,CONTENT,CATEGORY_ID,GMT_CREATE,GMT_MODIFIED)
 		VALUES
-			(#id#,#name#,#picUrls#,#content#,#category#,now(),now())
+			(#id#,#name#,#picUrls#,#content#,#categoryId#,now(),now())
 		<selectKey resultClass="java.lang.Long" keyProperty="id">
    			<![CDATA[
 			SELECT LAST_INSERT_ID() AS ID
@@ -28,7 +28,7 @@
 	
 	<select id="queryTushuoById" resultMap="RM-ChaoTushuo">
 		SELECT 
-			ID,NAME,PIC_URLS,CONTENT,CATEGORY,STATUS,GMT_CREATE,GMT_MODIFIED
+			ID,NAME,PIC_URLS,CONTENT,CATEGORY_ID,STATUS,GMT_CREATE,GMT_MODIFIED
 		FROM 
 			CHAO_TUSHUO
 		WHERE 
@@ -37,15 +37,15 @@
 	
 	<select id="queryTushuosWithPagination" resultMap="RM-ChaoTushuo">
 		SELECT 
-			ID,NAME,PIC_URLS,CONTENT,CATEGORY,STATUS,GMT_CREATE,GMT_MODIFIED
+			ID,NAME,PIC_URLS,CONTENT,CATEGORY_ID,STATUS,GMT_CREATE,GMT_MODIFIED
 		FROM 
 			CHAO_TUSHUO
 		<isParameterPresent open="WHERE" removeFirstPrepend="true">
 			<isNotEmpty property="status" prepend="AND">
 				STATUS = #status#
 			</isNotEmpty>
-			<isNotEmpty property="category" prepend="AND">
-				CATEGORY = #category#
+			<isNotEmpty property="categoryId" prepend="AND">
+				CATEGORY_ID = #categoryId#
 			</isNotEmpty>
 		</isParameterPresent>
 		ORDER BY 
@@ -63,8 +63,8 @@
 			<isNotEmpty property="status" prepend="AND">
 				STATUS = #status#
 			</isNotEmpty>
-			<isNotEmpty property="category" prepend="AND">
-				CATEGORY = #category#
+			<isNotEmpty property="categoryId" prepend="AND">
+				CATEGORY_ID = #categoryId#
 			</isNotEmpty>
 		</isParameterPresent>
 	</select>
@@ -73,14 +73,14 @@
 		UPDATE
 			CHAO_TUSHUO
 		SET
+			<isNotEmpty property="name">
+				NAME = #name# ,
+			</isNotEmpty>
 			<isNotEmpty property="picUrls">
 				PIC_URLS = #picUrls# ,
 			</isNotEmpty>
 			<isNotEmpty property="content">
 				CONTENT = #content# ,
-			</isNotEmpty>
-			<isNotEmpty property="category">
-				CATEGORY = #category# ,
 			</isNotEmpty>
 			<isNotEmpty property="status">
 				STATUS = #status# ,
@@ -89,6 +89,19 @@
 		WHERE
 			ID = #id#
 	</update>	
+	
+	<update id="updateTushuoCateById">
+		UPDATE
+			CHAO_TUSHUO
+		SET
+			CATEGORY_ID = #categoryId#
+		WHERE
+			ID = #id#
+		AND
+		<![CDATA[
+			CATEGORY_ID <> #categoryId#
+			]]>
+	</update>
 	
 	<update id="deleteTushuoById">
 	    DELETE FROM

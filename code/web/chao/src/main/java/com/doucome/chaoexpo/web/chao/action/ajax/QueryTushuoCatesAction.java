@@ -6,8 +6,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.doucome.chaoexpo.biz.core.enums.TushuoCateStatusEnums;
 import com.doucome.chaoexpo.biz.core.model.ChaoTushuoCategoryDTO;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoTushuoCategoryService;
+import com.doucome.chaoexpo.biz.dal.query.ChaoTushuoCategoryQuery;
 import com.doucome.chaoexpo.web.chao.ChaoBasicAction;
 import com.doucome.chaoexpo.web.common.model.JsonModel;
 
@@ -23,7 +25,9 @@ public class QueryTushuoCatesAction extends ChaoBasicAction {
 	@Override
 	public String execute() throws Exception {
 		try {
-			List<ChaoTushuoCategoryDTO> cateList = chaoTushuoCategoryService.getCategories() ;
+			ChaoTushuoCategoryQuery query = new ChaoTushuoCategoryQuery() ;
+			query.setStatus(TushuoCateStatusEnums.NORMAL.getValue()) ;
+			List<ChaoTushuoCategoryDTO> cateList = chaoTushuoCategoryService.getCategories(query) ;
 			json.setData(cateList) ;
 			json.setCode(JsonModel.CODE_SUCCESS) ;
 		} catch (Exception e) {

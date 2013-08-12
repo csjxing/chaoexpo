@@ -9,6 +9,7 @@ import com.doucome.chaoexpo.biz.core.model.ChaoTushuoCategoryDTO;
 import com.doucome.chaoexpo.biz.core.model.ChaoTushuoDTO;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoTushuoCategoryService;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoTushuoService;
+import com.doucome.chaoexpo.biz.dal.query.ChaoTushuoCategoryQuery;
 
 
 public class QueryTushuoAction extends BopsBasicAction {
@@ -30,8 +31,8 @@ public class QueryTushuoAction extends BopsBasicAction {
 		if(IDUtils.isCorrect(id)) {
 			tushuo = chaoTushuoService.getTushuoById(id) ;
 		}
-		
-		cateList = chaoTushuoCategoryService.getCategories() ;
+		ChaoTushuoCategoryQuery cateQuery = new ChaoTushuoCategoryQuery() ;
+		cateList = chaoTushuoCategoryService.getCategories(cateQuery) ;
 		
 		return SUCCESS ;
 	}

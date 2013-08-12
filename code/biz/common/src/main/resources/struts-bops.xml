@@ -251,7 +251,7 @@
 		    <result name="success" type="json2"></result>
 		</action>
 		
-		<action name="delete_tushuo_cate_ajax" class="com.doucome.chaoexpo.web.bops.action.ajax.TushuoCateOperateAction" method="delete">
+		<action name="update_tushuo_cate_status_ajax" class="com.doucome.chaoexpo.web.bops.action.ajax.TushuoCateOperateAction" method="updateStatus">
 			<interceptor-ref name="bopsDefaultStack" />
 		    <result name="success" type="json2"></result>
 		</action>

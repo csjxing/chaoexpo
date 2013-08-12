@@ -3,6 +3,7 @@ package com.doucome.chaoexpo.web.bops.action;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.doucome.chaoexpo.biz.common.utils.IDUtils;
+import com.doucome.chaoexpo.biz.core.enums.TushuoCateStatusEnums;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoTushuoCategoryService;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoTushuoCateUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoTushuoCategoryDO;
@@ -26,6 +27,7 @@ public class AddTushuoCateAction extends BopsBasicAction implements ModelDriven<
 			ChaoTushuoCateUpdateCondition update = ChaoTushuoCateUpdateCondition.fromCate(cate) ;
 			int effectCount = chaoTushuoCategoryService.updateCategoryById(cate.getId(), update) ;
 		} else {
+			cate.setStatus(TushuoCateStatusEnums.NORMAL.getValue()) ;
 			long newId = chaoTushuoCategoryService.createCategory(cate) ;
 		}
 		return SUCCESS ;

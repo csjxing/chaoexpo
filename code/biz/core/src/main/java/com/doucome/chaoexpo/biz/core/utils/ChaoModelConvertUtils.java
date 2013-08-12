@@ -1,7 +1,9 @@
 package com.doucome.chaoexpo.biz.core.utils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
 
@@ -68,4 +70,13 @@ public class ChaoModelConvertUtils {
 		return dtoList ;
 	}
 	
+	public static Map<Long,ChaoTushuoCategoryDTO> toCateMap(List<ChaoTushuoCategoryDTO> cateList) {
+		Map<Long,ChaoTushuoCategoryDTO> cateMap = new HashMap<Long,ChaoTushuoCategoryDTO>() ;
+		if(CollectionUtils.isNotEmpty(cateList)) {
+			for(ChaoTushuoCategoryDTO cate : cateList) {
+				cateMap.put(cate.getId(), cate) ;
+			}
+		}
+		return cateMap ;
+	}
 }

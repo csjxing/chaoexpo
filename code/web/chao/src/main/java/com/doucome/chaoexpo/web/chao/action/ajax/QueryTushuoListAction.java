@@ -19,7 +19,7 @@ public class QueryTushuoListAction extends ChaoBasicAction {
 	
 	private JsonModel<QueryResult<ChaoTushuoDTO>> json = new JsonModel<QueryResult<ChaoTushuoDTO>>() ;
 	
-	private String cate ;
+	private Long cateId ;
 	
 	@Autowired
 	private ChaoTushuoService chaoTushuoService ;
@@ -31,7 +31,7 @@ public class QueryTushuoListAction extends ChaoBasicAction {
 		try {
 			ChaoTushuoQuery query = new ChaoTushuoQuery() ;
 			query.setStatus(TushuoStatusEnums.NORMAL.getValue()) ;
-			query.setCategory(cate) ;
+			query.setCategoryId(cateId) ;
 			QueryResult<ChaoTushuoDTO> result = chaoTushuoService.getTushuosWithPagination(query, new Pagination(page)) ;
 			json.setData(result) ;
 			json.setCode(JsonModel.CODE_SUCCESS) ;
@@ -51,8 +51,8 @@ public class QueryTushuoListAction extends ChaoBasicAction {
 		this.page = page;
 	}
 
-	public void setCate(String cate) {
-		this.cate = cate;
+	public void setCateId(Long cateId) {
+		this.cateId = cateId;
 	}
 	
 }

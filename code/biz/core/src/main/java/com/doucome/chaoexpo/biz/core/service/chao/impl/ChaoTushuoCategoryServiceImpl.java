@@ -10,6 +10,7 @@ import com.doucome.chaoexpo.biz.core.utils.ChaoModelConvertUtils;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoTushuoCateUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dao.ChaoTushuoCategoryDAO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoTushuoCategoryDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoTushuoCategoryQuery;
 
 public class ChaoTushuoCategoryServiceImpl implements ChaoTushuoCategoryService {
 
@@ -32,14 +33,9 @@ public class ChaoTushuoCategoryServiceImpl implements ChaoTushuoCategoryService 
 
 
 	@Override
-	public List<ChaoTushuoCategoryDTO> getCategories() {
-		List<ChaoTushuoCategoryDO> catList = chaoTushuoCategoryDAO.queryCategories() ;
+	public List<ChaoTushuoCategoryDTO> getCategories(ChaoTushuoCategoryQuery query) {
+		List<ChaoTushuoCategoryDO> catList = chaoTushuoCategoryDAO.queryCategories(query) ;
 		return ChaoModelConvertUtils.toTushuoCateDTOList(catList) ;
-	}
-
-	@Override
-	public int deleteCategoryById(long id) {
-		return chaoTushuoCategoryDAO.deleteCategoryById(id) ;
 	}
 
 	@Override

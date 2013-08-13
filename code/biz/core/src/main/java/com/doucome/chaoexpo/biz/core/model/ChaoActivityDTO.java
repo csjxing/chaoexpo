@@ -242,7 +242,7 @@ public class ChaoActivityDTO extends AbstractModel {
 		try {
 			activity.setGmtActivityStart(SimpleDateFormat.getDateInstance().parse(gmtActivityStart));
 		} catch (ParseException e) {
-			log.error(e.getMessage() , e) ;
+			log.error("input dateStr [" + gmtActivityStart + "] error " + e.getMessage() , e) ;
 		}
 	}
 	
@@ -250,17 +250,19 @@ public class ChaoActivityDTO extends AbstractModel {
 		activity.setGmtActivityStart(gmtActivityStart);
 	}
 	
-	public void setGmtActivityEnd(Date gmtActivityEnd) {
-		activity.setGmtActivityEnd(gmtActivityEnd);
-	}
-
 	public void setGmtActivityEnd(String gmtActivityEnd) {
 		try {
 			activity.setGmtActivityEnd(SimpleDateFormat.getDateInstance().parse(gmtActivityEnd));
 		} catch (ParseException e) {
-			log.error(e.getMessage() , e) ;
+			log.error("input dateStr [" + gmtActivityEnd + "] error " + e.getMessage() , e) ;
 		}
 	}
+	
+	public void setGmtActivityEnd(Date gmtActivityEnd) {
+		activity.setGmtActivityEnd(gmtActivityEnd);
+	}
+
+	
 	
 	public ChaoSubjectDTO getSubject() {
 		return subject;

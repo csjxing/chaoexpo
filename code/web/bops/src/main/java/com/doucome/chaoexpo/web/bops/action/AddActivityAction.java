@@ -80,4 +80,8 @@ public class AddActivityAction extends BopsBasicAction implements ModelDriven<Ch
 	public ChaoActivityDTO getActivity() {
 		return activity;
 	}
+
+	public void setActivity(ChaoActivityDTO activity) {
+		this.activity = activity;
+	}
 }

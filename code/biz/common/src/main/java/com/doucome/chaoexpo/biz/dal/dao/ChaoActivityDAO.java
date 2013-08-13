@@ -3,9 +3,9 @@ package com.doucome.chaoexpo.biz.dal.dao;
 import java.util.List;
 
 import com.doucome.chaoexpo.biz.dal.condition.ChaoActivityCondition;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoActivitySearchCondition;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoActivityUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoActivityDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoActivityQuery;
 
 /**
  * 活动
@@ -35,14 +35,14 @@ public interface ChaoActivityDAO{
 	 * @param size
 	 * @return
 	 */
-	List<ChaoActivityDO> queryActivityWithPagination(ChaoActivitySearchCondition condition , int start , int size) ;
+	List<ChaoActivityDO> queryActivityWithPagination(ChaoActivityQuery condition , int start , int size) ;
 	
 	/**
 	 * 
 	 * @param condition
 	 * @return
 	 */
-	int countActivityWithPagination(ChaoActivitySearchCondition condition) ;
+	int countActivityWithPagination(ChaoActivityQuery condition) ;
 	/**
 	 * CHAO_ACTIVITY全字段数据.
 	 * @param condition

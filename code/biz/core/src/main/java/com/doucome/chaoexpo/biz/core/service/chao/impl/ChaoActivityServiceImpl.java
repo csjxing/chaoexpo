@@ -11,10 +11,10 @@ import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoActivityService;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoActivityCondition;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoActivitySearchCondition;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoActivityUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dao.ChaoActivityDAO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoActivityDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoActivityQuery;
 
 /**
  * 
@@ -44,7 +44,7 @@ public class ChaoActivityServiceImpl implements ChaoActivityService {
 	}
 
 	@Override
-	public QueryResult<ChaoActivityDTO> getActivityWithPagination(ChaoActivitySearchCondition condition, Pagination pagination) {
+	public QueryResult<ChaoActivityDTO> getActivityWithPagination(ChaoActivityQuery condition, Pagination pagination) {
 		int totalRecords = chaoActivityDAO.countActivityWithPagination(condition);
         if (totalRecords <= 0) {
             return new QueryResult<ChaoActivityDTO>(new ArrayList<ChaoActivityDTO>(), pagination, totalRecords);

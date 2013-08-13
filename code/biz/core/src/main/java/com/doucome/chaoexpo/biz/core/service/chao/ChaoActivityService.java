@@ -4,9 +4,9 @@ import com.doucome.chaoexpo.biz.core.model.ChaoActivityDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoActivityCondition;
-import com.doucome.chaoexpo.biz.dal.condition.ChaoActivitySearchCondition;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoActivityUpdateCondition;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoActivityDO;
+import com.doucome.chaoexpo.biz.dal.query.ChaoActivityQuery;
 
 /**
  * 活动
@@ -32,7 +32,7 @@ public interface ChaoActivityService {
 	 * @param pagination
 	 * @return
 	 */
-	QueryResult<ChaoActivityDTO> getActivityWithPagination(ChaoActivitySearchCondition condition , Pagination pagination) ;
+	QueryResult<ChaoActivityDTO> getActivityWithPagination(ChaoActivityQuery condition , Pagination pagination) ;
 	/**
 	 * 获取了CHAO_ACTIVITY所有字段信息.
 	 * @param condition

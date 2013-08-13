@@ -1,4 +1,4 @@
-package com.doucome.chaoexpo.biz.dal.condition;
+package com.doucome.chaoexpo.biz.dal.query;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -7,7 +7,7 @@ import java.util.Map;
 
 import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
 
-public class ChaoActivitySearchCondition extends AbstractModel  {
+public class ChaoActivityQuery extends AbstractModel  {
 	
 	private Long id;
 	

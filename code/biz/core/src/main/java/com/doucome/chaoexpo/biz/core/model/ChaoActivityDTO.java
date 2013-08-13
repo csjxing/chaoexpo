@@ -1,7 +1,12 @@
 package com.doucome.chaoexpo.biz.core.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.doucome.chaoexpo.biz.core.enums.PictureSizeEnums;
 import com.doucome.chaoexpo.biz.core.utils.ArrayStringUtils;
@@ -10,6 +15,8 @@ import com.doucome.chaoexpo.biz.dal.dataobject.ChaoActivityDO;
 import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
 
 public class ChaoActivityDTO extends AbstractModel {
+	
+	private static final Log log = LogFactory.getLog(ChaoActivityDTO.class) ;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -231,6 +238,14 @@ public class ChaoActivityDTO extends AbstractModel {
 		return activity.getGmtActivityEnd();
 	}
 	
+	public void setGmtActivityStart(String gmtActivityStart) {
+		try {
+			activity.setGmtActivityStart(SimpleDateFormat.getDateInstance().parse(gmtActivityStart));
+		} catch (ParseException e) {
+			log.error(e.getMessage() , e) ;
+		}
+	}
+	
 	public void setGmtActivityStart(Date gmtActivityStart) {
 		activity.setGmtActivityStart(gmtActivityStart);
 	}
@@ -239,6 +254,14 @@ public class ChaoActivityDTO extends AbstractModel {
 		activity.setGmtActivityEnd(gmtActivityEnd);
 	}
 
+	public void setGmtActivityEnd(String gmtActivityEnd) {
+		try {
+			activity.setGmtActivityEnd(SimpleDateFormat.getDateInstance().parse(gmtActivityEnd));
+		} catch (ParseException e) {
+			log.error(e.getMessage() , e) ;
+		}
+	}
+	
 	public ChaoSubjectDTO getSubject() {
 		return subject;
 	}

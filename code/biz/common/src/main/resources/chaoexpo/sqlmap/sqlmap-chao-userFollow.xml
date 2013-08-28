@@ -7,6 +7,7 @@
 	<resultMap id="RM-ChaoUserFollow" class="TA-ChaoUserFollow">
 		<result property="id" column="ID" />
 		<result property="userName" column="USER_NAME" />
+		<result property="targetName" column="TARGET_NAME" />
 		<result property="activityId" column="ACTIVITY_ID" />
 		<result property="subjectId" column="SUBJECT_ID" />
 		<result property="tenantId" column="TENANT_ID" />
@@ -19,9 +20,9 @@
 
 	<insert id="insertFollow">
 		INSERT INTO
-			CHAO_USER_FOLLOW(ID,USER_NAME,ACTIVITY_ID,SUBJECT_ID,TENANT_ID,TYPE,LOCATION,LOCATION_CODE,GMT_CREATE,GMT_MODIFIED)
+			CHAO_USER_FOLLOW(ID,USER_NAME,TARGET_NAME,ACTIVITY_ID,SUBJECT_ID,TENANT_ID,TYPE,LOCATION,LOCATION_CODE,GMT_CREATE,GMT_MODIFIED)
 		VALUES
-			(#id#,#userName#,#activityId#,#subjectId#,#tenantId#,#type#,#location#,#locationCode#,now(),now())
+			(#id#,#userName#,#targetName#,#activityId#,#subjectId#,#tenantId#,#type#,#location#,#locationCode#,now(),now())
 		<selectKey resultClass="java.lang.Long" keyProperty="id">
    			<![CDATA[
 			SELECT LAST_INSERT_ID() AS ID
@@ -31,7 +32,7 @@
 	
 	<select id="queryFollowsWithPagination" resultMap="RM-ChaoUserFollow">
 		SELECT 
-			ID,USER_NAME,ACTIVITY_ID,SUBJECT_ID,TENANT_ID,TYPE,LOCATION,LOCATION_CODE,GMT_CREATE,GMT_MODIFIED
+			ID,USER_NAME,TARGET_NAME,ACTIVITY_ID,SUBJECT_ID,TENANT_ID,TYPE,LOCATION,LOCATION_CODE,GMT_CREATE,GMT_MODIFIED
 		FROM
 			CHAO_USER_FOLLOW
 		<isParameterPresent open="WHERE" removeFirstPrepend="true">

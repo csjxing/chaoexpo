@@ -122,5 +122,28 @@
 			<interceptor-ref name="chaoUserAuthStack" />
 			<result name="success" type="json2"></result>
 		</action>
+		
+		<action name="my_comments" class="com.doucome.chaoexpo.web.chao.action.user.ajax.MyCommentsAction">
+			<interceptor-ref name="chaoUserAuthStack" />
+			<result name="success" type="json2"></result>
+		</action>
+		
+		<action name="my_act_follows" class="com.doucome.chaoexpo.web.chao.action.user.ajax.MyFollowssAction">
+			<interceptor-ref name="chaoUserAuthStack" />
+			<result name="success" type="json2"></result>
+			<param name="type">FOL_ACT</param>
+		</action>
+		
+		<action name="my_subj_follows" class="com.doucome.chaoexpo.web.chao.action.user.ajax.MyFollowssAction">
+			<interceptor-ref name="chaoUserAuthStack" />
+			<result name="success" type="json2"></result>
+			<param name="type">FOL_SUBJ</param>
+		</action>
+		
+		<action name="my_act_checkins" class="com.doucome.chaoexpo.web.chao.action.user.ajax.MyFollowssAction">
+			<interceptor-ref name="chaoUserAuthStack" />
+			<result name="success" type="json2"></result>
+			<param name="type">ACT_CHK</param>
+		</action>
 	</package>
 </struts>

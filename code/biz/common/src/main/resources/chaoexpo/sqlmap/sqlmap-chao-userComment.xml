@@ -6,6 +6,7 @@
 
 	<resultMap id="RM-ChaoUserComment" class="TA-ChaoUserComment">
 		<result property="id" column="ID" />
+		<result property="targetName" column="TARGET_NAME" />
 		<result property="toCommentId" column="TO_COMMENT_ID" />
 		<result property="toUserName" column="TO_USER_NAME" />
 		<result property="userName" column="USER_NAME" />
@@ -20,9 +21,9 @@
 
 	<insert id="insertComment">
 		INSERT INTO
-			CHAO_USER_COMMENT(ID,TO_COMMENT_ID,TO_USER_NAME,USER_NAME,ACTIVITY_ID,NEWS_ID,TYPE,CONTENT,STATUS,GMT_CREATE,GMT_MODIFIED)
+			CHAO_USER_COMMENT(ID,TARGET_NAME,TO_COMMENT_ID,TO_USER_NAME,USER_NAME,ACTIVITY_ID,NEWS_ID,TYPE,CONTENT,STATUS,GMT_CREATE,GMT_MODIFIED)
 		VALUES
-			(#id#,#toCommentId#,#toUserName#,#userName#,#activityId#,#newsId#,#type#,#content#,#status#,now(),now())
+			(#id#,#targetName#,#toCommentId#,#toUserName#,#userName#,#activityId#,#newsId#,#type#,#content#,#status#,now(),now())
 		<selectKey resultClass="java.lang.Long" keyProperty="id">
    			<![CDATA[
 			SELECT LAST_INSERT_ID() AS ID
@@ -32,7 +33,7 @@
 	
 	<select id="queryCommentById" resultMap="RM-ChaoUserComment">
 		SELECT 
-			ID,TO_COMMENT_ID,TO_USER_NAME,USER_NAME,ACTIVITY_ID,NEWS_ID,TYPE,CONTENT,STATUS,GMT_CREATE,GMT_MODIFIED
+			ID,TARGET_NAME,TO_COMMENT_ID,TO_USER_NAME,USER_NAME,ACTIVITY_ID,NEWS_ID,TYPE,CONTENT,STATUS,GMT_CREATE,GMT_MODIFIED
 		FROM
 			CHAO_USER_COMMENT
 		WHERE
@@ -41,7 +42,7 @@
 	
 	<select id="queryCommentsWithPagination" resultMap="RM-ChaoUserComment">
 		SELECT 
-			ID,TO_COMMENT_ID,TO_USER_NAME,USER_NAME,ACTIVITY_ID,NEWS_ID,TYPE,CONTENT,STATUS,GMT_CREATE,GMT_MODIFIED
+			ID,TARGET_NAME,TO_COMMENT_ID,TO_USER_NAME,USER_NAME,ACTIVITY_ID,NEWS_ID,TYPE,CONTENT,STATUS,GMT_CREATE,GMT_MODIFIED
 		FROM
 			CHAO_USER_COMMENT
 		<isParameterPresent open="WHERE" removeFirstPrepend="true">

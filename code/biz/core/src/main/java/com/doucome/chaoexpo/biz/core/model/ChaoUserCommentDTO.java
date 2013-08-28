@@ -21,6 +21,10 @@ public class ChaoUserCommentDTO {
 		return StringUtils.substring(getContent(), 0, length) ;
 	}
 	
+	public String getSubTargetName(int length) {
+		return StringUtils.substring(getTargetName(), 0, length) ;
+	}
+	
 	/**
 	 * ----------------------------------------------------------------
 	 */
@@ -39,6 +43,10 @@ public class ChaoUserCommentDTO {
 
 	public String getUserName() {
 		return comment.getUserName();
+	}
+	
+	public String getTargetName() {
+		return comment.getTargetName() ;
 	}
 
 	public Long getActivityId() {

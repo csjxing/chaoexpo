@@ -53,13 +53,14 @@
 	<div class="user-comment-list">
     	<table width="1080">
     		<tr>
-    			<th width="40">序号</th>
-        		<th width="140">评论人</th>
+    			<th width="30">序号</th>
+        		<th width="80">评论人</th>
         		<th width="40">类型</th>
+				<th width="160">目标标题</th>
     			<th width="80">[活/新]编号</th>
 				<th width="350">内容</th>
 				<th width="140">回复</th>
-				<th width="120">创建时间</th>
+				<th width="100">创建时间</th>
     			<th width="80">操作</th>
         	</tr>
     		#if($queryResult.totalRecords > 0)
@@ -69,6 +70,7 @@
     					<td align="center">$!idx</td>
     					<td align="center">$!item.userName</td>
                 		<td align="center">#if($!item.type == 'NEWS')新闻#elseif($!item.type == "ACT")活动#end</td>
+                        <td>#if($item.targetName)$!item.getSubTargetName(10)..#end</td>
 						<td align="center">
 							#if($item.activityId)<span class="dc-gray">[活]</span> $!item.activityId #end 
 							#if($item.newsId)<span class="dc-gray">[新]</span> $!item.newsId #end

@@ -53,7 +53,8 @@
     		<tr>
     			<th width="40">序号</th>
         		<th width="140">用户</th>
-        		<th width="200">编号</th>
+        		<th width="120">编号</th>
+				<th width="160">目标标题</th>
 				<th width="40">类型</th>
 				<th width="120">创建时间</th>
     			<th width="80">操作</th>
@@ -69,6 +70,7 @@
 							#if($item.subjectId)<span class="dc-gray">[专]</span> $!item.subjectId #end
 							#if($item.tenantId)<span class="dc-gray">[商]</span> $!item.tenantId #end
 						</td>
+						<td>#if($item.targetName)$!item.getSubTargetName(10)..#end</td>
                 		<td align="center">
                             #if($!item.type == 'FOL_ACT')<span class="dc-gray">[关注活动]</span>
                             #elseif($!item.type == "FOL_SUBJ")<span class="dc-gray">[关注专题]</span>

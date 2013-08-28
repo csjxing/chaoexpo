@@ -2,6 +2,8 @@ package com.doucome.chaoexpo.biz.core.model;
 
 import java.util.Date;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoUserFollowDO;
 import com.doucome.chaoexpo.biz.dal.model.AbstractModel;
 
@@ -14,6 +16,10 @@ public class ChaoUserFollowDTO extends AbstractModel {
 			userFollow = new ChaoUserFollowDO() ;
 		}
 		this.userFollow = userFollow ;
+	}
+	
+	public String getSubTargetName(int length) {
+		return StringUtils.substring(getTargetName(), 0, length) ;
 	}
 	
 	public Long getId() {
@@ -54,6 +60,10 @@ public class ChaoUserFollowDTO extends AbstractModel {
 
 	public String getLocation() {
 		return userFollow.getLocation();
+	}
+	
+	public String getTargetName() {
+		return userFollow.getTargetName() ;
 	}
 	
 }

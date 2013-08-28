@@ -49,6 +49,7 @@ public class ChaoUserFollowBO {
 		Long tenantId = follow.getTenantId() ;
 		String location = follow.getLocation() ;
 		String locationCode = follow.getLocationCode() ;
+		String targetName = null ;
 		ChaoUserFollowTypeEnums type = ChaoUserFollowTypeEnums.toEnum(follow.getType()) ;
 		if(type == ChaoUserFollowTypeEnums.UNKNOWN) {
 			throw new ChaoUserFollowException("chao.user.follow.type.error") ;
@@ -83,6 +84,7 @@ public class ChaoUserFollowBO {
 			}
 			
 			try {
+				follow.setTargetName(activity.getName()) ;
 				chaoUserFollowService.createFollow(follow) ;
 			} catch (DuplicateKeyException e) {
 				throw new ChaoUserFollowException("chao.user.activity.follow.duplicate") ;
@@ -124,6 +126,7 @@ public class ChaoUserFollowBO {
 			}
 			
 			try {
+				follow.setTargetName(subject.getName()) ;
 				chaoUserFollowService.createFollow(follow) ;
 			} catch (DuplicateKeyException e) {
 				throw new ChaoUserFollowException("chao.user.subject.favorite.duplicate") ;
@@ -179,6 +182,7 @@ public class ChaoUserFollowBO {
 			}
 			
 			try {
+				follow.setTargetName(activity.getName()) ;
 				chaoUserFollowService.createFollow(follow) ;
 			} catch (DuplicateKeyException e) {
 				throw new ChaoUserFollowException("chao.user.activity.checkin.duplicate") ;

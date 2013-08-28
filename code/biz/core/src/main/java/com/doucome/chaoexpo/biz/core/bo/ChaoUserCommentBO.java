@@ -43,6 +43,7 @@ public class ChaoUserCommentBO {
 		Long toCommentId = comment.getToCommentId() ;
 		Long activityId = comment.getActivityId() ;
 		Long newsId = comment.getNewsId() ;
+		String targetName = null ;
 		String content = comment.getContent() ;
 		content = StringUtils.substring(content, 0 , Constant.COMMENT_MAX_LENGTH) ;
 		comment.setStatus(ChaoUserCommentStatusEnums.NORMAL.getValue()) ;
@@ -65,6 +66,7 @@ public class ChaoUserCommentBO {
 				throw new ChaoUserCommentException("chao.user.comment.activity.error") ;
 			}
 			type = ChaoUserCommentTypeEnums.ACTIVITY ;
+			targetName = act.getName() ;
 			
 		} else if(IDUtils.isCorrect(newsId)) {
 			ChaoNewsDTO news = chaoNewsService.getNewsById(newsId) ;
@@ -72,9 +74,11 @@ public class ChaoUserCommentBO {
 				throw new ChaoUserCommentException("chao.user.comment.news.error") ;
 			}
 			type = ChaoUserCommentTypeEnums.NEWS ;
+			targetName = news.getTitle() ;
 		}
 		
 		comment.setType(type.getValue()) ;
+		comment.setTargetName(targetName) ;
 		
 		if(IDUtils.isCorrect(toCommentId)) { //回复
 			ChaoUserCommentDTO toComment = chaoUserCommentService.getCommentById(toCommentId) ;

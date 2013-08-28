@@ -15,6 +15,8 @@ public class ChaoUserFollowDO extends AbstractModel {
 	
 	private String userName ;
 	
+	private String targetName ;
+	
 	/**
 	 * 活动ID
 	 */
@@ -121,6 +123,14 @@ public class ChaoUserFollowDO extends AbstractModel {
 
 	public void setGmtCreate(Date gmtCreate) {
 		this.gmtCreate = gmtCreate;
+	}
+
+	public String getTargetName() {
+		return targetName;
+	}
+
+	public void setTargetName(String targetName) {
+		this.targetName = targetName;
 	}
 	
 }

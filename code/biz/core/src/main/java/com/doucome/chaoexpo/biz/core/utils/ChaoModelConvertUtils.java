@@ -7,11 +7,13 @@ import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
 
+import com.doucome.chaoexpo.biz.core.model.ChaoActivitySignupDTO;
 import com.doucome.chaoexpo.biz.core.model.ChaoAppRecommendDTO;
 import com.doucome.chaoexpo.biz.core.model.ChaoNewsCategoryDTO;
 import com.doucome.chaoexpo.biz.core.model.ChaoTushuoCategoryDTO;
 import com.doucome.chaoexpo.biz.core.model.ChaoTushuoDTO;
 import com.doucome.chaoexpo.biz.core.model.ChaoUserFollowDTO;
+import com.doucome.chaoexpo.biz.dal.dataobject.ChaoActivitySignupDO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoAppRecommendDO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoNewsCategoryDO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoTushuoCategoryDO;
@@ -78,5 +80,15 @@ public class ChaoModelConvertUtils {
 			}
 		}
 		return cateMap ;
+	}
+	
+	public static List<ChaoActivitySignupDTO> toActSignupDTOList(List<ChaoActivitySignupDO> doList) {
+		List<ChaoActivitySignupDTO> dtoList = new ArrayList<ChaoActivitySignupDTO>() ;
+		if(CollectionUtils.isNotEmpty(doList)) {
+			for(ChaoActivitySignupDO signup : doList) {
+				dtoList.add(new ChaoActivitySignupDTO(signup)) ;
+			}
+		}
+		return dtoList ;
 	}
 }

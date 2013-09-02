@@ -24,5 +24,6 @@
 	<bean id="chaoTushuoService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoTushuoServiceImpl"/>
 	<bean id="chaoTushuoCategoryService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoTushuoCategoryServiceImpl"/>
 	<bean id="chaoBannerService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoBannerServiceImpl"/>
+	<bean id="chaoActivitySignupService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoActivitySignupServiceImpl"/>
 	
 </beans>

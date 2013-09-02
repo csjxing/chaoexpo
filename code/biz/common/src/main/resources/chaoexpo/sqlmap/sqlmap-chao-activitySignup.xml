@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ChaoActivitySignup">
+	<typeAlias alias="TA-ChaoActivitySignup"
+		type="com.doucome.chaoexpo.biz.dal.dataobject.ChaoActivitySignupDO" />
+
+	<resultMap id="RM-ChaoActivitySignup" class="TA-ChaoActivitySignup">
+		<result property="id" column="ID" />
+		<result property="activityId" column="ACTIVITY_ID" />
+		<result property="activityName" column="ACTIVITY_NAME" />
+		<result property="userName" column="USER_NAME"/>
+		<result property="contactName" column="CONTACT_NAME"/>
+		<result property="contactPhone" column="CONTACT_PHONE"/>
+		<result property="gmtCreate" column="GMT_CREATE"/>
+		<result property="gmtModified" column="GMT_MODIFIED" />
+	</resultMap>
+
+	<insert id="insertActivitySignup">
+		INSERT INTO
+			CHAO_ACTIVITY_SIGNUP(ID,ACTIVITY_ID,ACTIVITY_NAME,USER_NAME,CONTACT_NAME,CONTACT_PHONE,GMT_CREATE,GMT_MODIFIED)
+		VALUES
+			(#id#,#activityId#,#activityName#,#userName#,#contactName#,#contactPhone#,now(),now())
+		<selectKey resultClass="java.lang.Long" keyProperty="id">
+   			<![CDATA[
+			SELECT LAST_INSERT_ID() AS ID
+			]]>
+	    </selectKey>
+	</insert>
+	
+	<select id="queryActivitySignupWithPagination" resultMap="RM-ChaoActivitySignup">
+		SELECT 
+			ID,ACTIVITY_ID,ACTIVITY_NAME,USER_NAME,CONTACT_NAME,CONTACT_PHONE,GMT_CREATE,GMT_MODIFIED
+		FROM
+			CHAO_ACTIVITY_SIGNUP
+		<isParameterPresent open="WHERE" removeFirstPrepend="true">
+		    <isNotEmpty property="id" prepend="AND">
+	    		ID = #id#
+			</isNotEmpty>
+			<isNotEmpty property="activityId" prepend="AND">
+	    		ACTIVITY_ID = #activityId# 
+			</isNotEmpty>
+		</isParameterPresent>
+		ORDER BY 
+	    	GMT_CREATE DESC
+	    LIMIT 
+	    	#start#, #size#
+	</select>
+	
+	<select id="countActivitySignupWithPagination" resultClass="java.lang.Integer">
+		SELECT 
+			COUNT(ID)
+		FROM
+			CHAO_ACTIVITY_SIGNUP
+		<isParameterPresent open="WHERE" removeFirstPrepend="true">
+		    <isNotEmpty property="id" prepend="AND">
+	    		ID = #id#
+			</isNotEmpty>
+			<isNotEmpty property="activityId" prepend="AND">
+	    		ACTIVITY_ID = #activityId# 
+			</isNotEmpty>
+		</isParameterPresent>
+	</select>
+	
+</sqlMap>

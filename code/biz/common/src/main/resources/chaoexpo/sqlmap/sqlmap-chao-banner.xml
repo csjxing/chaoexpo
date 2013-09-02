@@ -43,6 +43,21 @@
 		LIMIT 1
 	</select>
 	
+	<select id="queryBannerByBannerIds" resultMap="RM-ChaoBanner">
+		SELECT 
+			<include refid="banner_fields" />
+		FROM 
+			CHAO_BANNER
+		WHERE 
+			BANNER_ID 
+		IN
+		<iterate property="bannerIds" open="("  close=")"  conjunction=",">
+		<![CDATA[
+			#bannerIds[]#
+		]]>
+		</iterate>
+	</select>
+	
 	<select id="queryBannerPage" resultMap="RM-ChaoBanner">
 		SELECT <include refid="banner_fields" />
 		  FROM CHAO_BANNER

@@ -52,4 +52,10 @@ public interface ChaoBannerDAO{
 	 * @return
 	 */
 	int updateBanner(ChaoBannerDO banner);
+	/**
+	 * 
+	 * @param bannerIds
+	 * @return
+	 */
+	List<ChaoBannerDO> queryBannerByBannerIds(String[] bannerIds);
 }

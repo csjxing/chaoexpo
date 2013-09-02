@@ -160,7 +160,7 @@
 			<result name="success" type="velocity">/bops/success.vm</result>
 		</action>
 		
-		<action name="bannerList" class="com.doucome.chaoexpo.web.bops.action.BannerListAction">
+		<action name="query_banner_list" class="com.doucome.chaoexpo.web.bops.action.BannerListAction">
 			<interceptor-ref name="bopsDefaultStack" />
 			<result name="success" type="velocity">/bops/bannerList.vm</result>
 		</action>
@@ -174,6 +174,7 @@
 			<interceptor-ref name="bopsDefaultStack" />
 			<result name="success" type="redirect">/bops/banner.htm</result>
 		</action>
+		
 		<action name="query_user_comment_list" class="com.doucome.chaoexpo.web.bops.action.UserCommentListAction">
 			<interceptor-ref name="bopsDefaultStack" />
 			<result name="success" type="velocity">/bops/userCommentList.vm</result>

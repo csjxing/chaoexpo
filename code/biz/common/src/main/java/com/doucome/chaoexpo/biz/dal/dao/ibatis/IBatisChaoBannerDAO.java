@@ -1,5 +1,6 @@
 package com.doucome.chaoexpo.biz.dal.dao.ibatis;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +44,14 @@ public class IBatisChaoBannerDAO extends SqlMapClientDaoSupport implements ChaoB
 	@Override
 	public int updateBanner(ChaoBannerDO banner) {
 		return (int) getSqlMapClientTemplate().update("chaoBanner.updateBanner", banner);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ChaoBannerDO> queryBannerByBannerIds(String[] bannerIds) {
+		Map<String,Object> map = new HashMap<String,Object>() ;
+		map.put("bannerIds", bannerIds) ;
+		return getSqlMapClientTemplate().queryForList("chaoBanner.queryBannerByBannerIds" , map) ;
 	}
 	
 	

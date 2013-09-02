@@ -92,4 +92,10 @@ public class ChaoBannerServiceImpl implements ChaoBannerService {
         }
         return result;
 	}
+
+	@Override
+	public List<ChaoBannerDTO> getBannerByBannerIds(String[] bannerIds) {
+		List<ChaoBannerDO> doList = chaoBannerDAO.queryBannerByBannerIds(bannerIds) ;
+		return convert(doList) ;
+	}
 }

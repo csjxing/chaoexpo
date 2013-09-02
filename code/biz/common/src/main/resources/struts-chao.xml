@@ -67,6 +67,12 @@
 			<interceptor-ref name="chaoDefaultStack" />
 			<result name="success" type="json2"></result>
 		</action>
+		
+		<action name="query_banner" class="com.doucome.chaoexpo.web.chao.action.ajax.QueryBannerAction">
+			<interceptor-ref name="chaoDefaultStack" />
+			<result name="success" type="json2"></result>
+		</action>
+		
 	</package>
 	
 	<package name="chao-user-remote" namespace="/chao/user/remote/rest" extends="chao">

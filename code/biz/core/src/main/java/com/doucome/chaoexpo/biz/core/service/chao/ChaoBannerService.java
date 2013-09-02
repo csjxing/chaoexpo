@@ -1,5 +1,7 @@
 package com.doucome.chaoexpo.biz.core.service.chao;
 
+import java.util.List;
+
 import com.doucome.chaoexpo.biz.core.model.ChaoBannerDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
@@ -29,6 +31,14 @@ public interface ChaoBannerService {
 	 * @return
 	 */
 	ChaoBannerDTO getBanner(String bannerId);
+	
+	/**
+	 * 
+	 * @param bannerId
+	 * @return
+	 */
+	List<ChaoBannerDTO> getBannerByBannerIds(String[] bannerIds) ;
+	
 	/**
 	 * 
 	 * @param condition

@@ -1,4 +1,4 @@
-package com.doucome.chaoexpo.web.chao.action.user.ajax;
+package com.doucome.chaoexpo.web.chao.action.ajax;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,7 +17,7 @@ import com.doucome.chaoexpo.web.common.model.JsonModel;
  * @author langben 2013-8-28
  *
  */
-public class MyCommentsAction extends ChaoBasicAction {
+public class QueryCommentsAction extends ChaoBasicAction {
 
 	private JsonModel<QueryResult<ChaoUserCommentDTO>> json = new JsonModel<QueryResult<ChaoUserCommentDTO>>() ;
 	
@@ -37,13 +37,11 @@ public class MyCommentsAction extends ChaoBasicAction {
 	@Override
 	public String execute() throws Exception {
 		
-		String userName = chaoAuthz.getUserName() ;
-		
 		ChaoUserCommentQuery query = new ChaoUserCommentQuery() ;
-		query.setUserName(userName) ;
 		query.setActivityId(activityId) ;
 		query.setNewsId(newsId) ;
 		query.setStatus(ChaoUserCommentStatusEnums.NORMAL.getValue()) ;
+		
 		ChaoUserCommentTypeEnums typeEnum = ChaoUserCommentTypeEnums.toEnum(type) ;
 		if(typeEnum != ChaoUserCommentTypeEnums.UNKNOWN) {
 			query.setType(type) ;

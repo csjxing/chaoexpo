@@ -307,6 +307,9 @@
 			<isNotEmpty property="decrCommentCount">
 				COMMENT_COUNT = COMMENT_COUNT - #decrCommentCount# ,
 			</isNotEmpty>
+			<isNotEmpty property="incrSignupCount">
+				SIGNUP_COUNT = SIGNUP_COUNT + #incrSignupCount# ,
+			</isNotEmpty>
 			<isNotNull property="gmtActivityStart">
 				GMT_ACTIVITY_START = #gmtActivityStart# ,
 			</isNotNull>

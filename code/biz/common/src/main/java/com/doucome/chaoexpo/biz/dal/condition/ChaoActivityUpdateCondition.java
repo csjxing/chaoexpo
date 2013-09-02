@@ -73,6 +73,8 @@ public class ChaoActivityUpdateCondition extends AbstractModel  {
 	
 	private Integer decrCommentCount ;
 	
+	private Integer incrSignupCount ;
+	
 	private Date gmtActivityStart ;
 	
 	private Date gmtActivityEnd ;
@@ -96,6 +98,7 @@ public class ChaoActivityUpdateCondition extends AbstractModel  {
 		map.put("incrCommentCount", incrCommentCount) ;
 		map.put("decrFollowCount", decrFollowCount) ;
 		map.put("decrCommentCount", decrCommentCount) ;
+		map.put("incrSignupCount", incrSignupCount) ;
 		
 		map.put("gmtActivityStart", gmtActivityStart) ;
 		map.put("gmtActivityEnd", gmtActivityEnd) ;
@@ -148,6 +151,14 @@ public class ChaoActivityUpdateCondition extends AbstractModel  {
 
 	public Integer getDecrCommentCount() {
 		return decrCommentCount;
+	}
+
+	public Integer getIncrSignupCount() {
+		return incrSignupCount;
+	}
+
+	public void setIncrSignupCount(Integer incrSignupCount) {
+		this.incrSignupCount = incrSignupCount;
 	}
 
 	public void setDecrCommentCount(Integer decrCommentCount) {

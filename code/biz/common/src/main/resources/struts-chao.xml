@@ -71,8 +71,6 @@
 	
 	<package name="chao-user-remote" namespace="/chao/user/remote/rest" extends="chao">
 	
-		
-	
 		<action name="login_json" class="com.doucome.chaoexpo.web.chao.action.user.ajax.LoginAjaxAction">
 			<interceptor-ref name="chaoDefaultStack" />
 			<result name="success" type="json2"></result>
@@ -145,5 +143,11 @@
 			<result name="success" type="json2"></result>
 			<param name="type">ACT_CHK</param>
 		</action>
+		
+		<action name="activity_signup" class="com.doucome.chaoexpo.web.chao.action.user.ajax.ActivitySignupAction">
+			<interceptor-ref name="chaoUserAuthStack" />
+			<result name="success" type="json2"></result>
+		</action>
+		
 	</package>
 </struts>

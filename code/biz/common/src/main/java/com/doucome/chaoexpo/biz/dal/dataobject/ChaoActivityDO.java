@@ -90,7 +90,7 @@ public class ChaoActivityDO  extends AbstractModel{
 	/**
 	 * 是否可报名
 	 */
-	private Boolean canSignup ;
+	private String canSignup ;
 	
 	/**
 	 * 报名人数
@@ -133,11 +133,11 @@ public class ChaoActivityDO  extends AbstractModel{
 		this.gmtActivityEnd = gmtActivityEnd;
 	}
 
-	public Boolean getCanSignup() {
+	public String getCanSignup() {
 		return canSignup;
 	}
 
-	public void setCanSignup(Boolean canSignup) {
+	public void setCanSignup(String canSignup) {
 		this.canSignup = canSignup;
 	}
 

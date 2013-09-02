@@ -3,6 +3,8 @@ package com.doucome.chaoexpo.biz.core.service.chao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.doucome.chaoexpo.biz.core.model.ChaoActivitySignupDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
@@ -14,6 +16,7 @@ import com.doucome.chaoexpo.biz.dal.query.ChaoActivitySignupQuery;
 
 public class ChaoActivitySignupServiceImpl implements ChaoActivitySignupService {
 
+	@Autowired
 	private ChaoActivitySignupDAO chaoActivitySignupDAO ;
 	
 	@Override

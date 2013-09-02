@@ -87,6 +87,16 @@ public class ChaoActivityDO  extends AbstractModel{
 	 */
 	private Integer checkinCount ;
 	
+	/**
+	 * 是否可报名
+	 */
+	private Boolean canSignup ;
+	
+	/**
+	 * 报名人数
+	 */
+	private Integer signupCount ;
+	
 	private Date gmtCreate ;
 	
 	private Date gmtModified ;
@@ -121,6 +131,14 @@ public class ChaoActivityDO  extends AbstractModel{
 
 	public void setGmtActivityEnd(Date gmtActivityEnd) {
 		this.gmtActivityEnd = gmtActivityEnd;
+	}
+
+	public Boolean getCanSignup() {
+		return canSignup;
+	}
+
+	public void setCanSignup(Boolean canSignup) {
+		this.canSignup = canSignup;
 	}
 
 	public String getLocation() {
@@ -241,6 +259,14 @@ public class ChaoActivityDO  extends AbstractModel{
 
 	public void setCheckinCount(Integer checkinCount) {
 		this.checkinCount = checkinCount;
+	}
+
+	public Integer getSignupCount() {
+		return signupCount;
+	}
+
+	public void setSignupCount(Integer signupCount) {
+		this.signupCount = signupCount;
 	}
 	
 }

@@ -22,15 +22,17 @@
 		<result property="followCount" column="FOLLOW_COUNT"/>
 		<result property="checkinCount" column="CHECKIN_COUNT"/>
 		<result property="commentCount" column="COMMENT_COUNT"/>
+		<result property="canSignup" column="CAN_SIGNUP"/>
+		<result property="signupCount" column="SIGNUP_COUNT"/>
 		<result property="gmtCreate" column="GMT_CREATE"/>
 		<result property="gmtModified" column="GMT_MODIFIED" />
 	</resultMap>
 
 	<insert id="insertActivity">
 		INSERT INTO
-			CHAO_ACTIVITY(ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,INTRO,PIC_URLS,NOTICE,COUNTESY_REMINDER,STAND_PIC_URLS,SUBJECT_ID,GMT_ACTIVITY_START,GMT_ACTIVITY_END,GMT_CREATE,GMT_MODIFIED)
+			CHAO_ACTIVITY(ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,INTRO,PIC_URLS,NOTICE,COUNTESY_REMINDER,STAND_PIC_URLS,SUBJECT_ID,GMT_ACTIVITY_START,GMT_ACTIVITY_END,CAN_SIGNUP,GMT_CREATE,GMT_MODIFIED)
 		VALUES
-			(#id#,#name#,#location#,#contactName#,#contactPhone#,#intro#,#picUrls#,#notice#,#countesyReminder#,#standPicUrls#,#subjectId#,#gmtActivityStart#,#gmtActivityEnd#,now(),now())
+			(#id#,#name#,#location#,#contactName#,#contactPhone#,#intro#,#picUrls#,#notice#,#countesyReminder#,#standPicUrls#,#subjectId#,#gmtActivityStart#,#gmtActivityEnd#,#canSignup#,now(),now())
 		<selectKey resultClass="java.lang.Long" keyProperty="id">
    			<![CDATA[
 			SELECT LAST_INSERT_ID() AS ID
@@ -39,7 +41,7 @@
 	</insert>
 	
 	<sql id="activity-fields">
-	    ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,INTRO,STATUS,PIC_URLS,NOTICE,COUNTESY_REMINDER,STAND_PIC_URLS,SUBJECT_ID,GMT_ACTIVITY_START,GMT_ACTIVITY_END,FOLLOW_COUNT,CHECKIN_COUNT,COMMENT_COUNT,GMT_CREATE,GMT_MODIFIED
+	    ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,INTRO,STATUS,PIC_URLS,NOTICE,COUNTESY_REMINDER,STAND_PIC_URLS,SUBJECT_ID,GMT_ACTIVITY_START,GMT_ACTIVITY_END,FOLLOW_COUNT,CHECKIN_COUNT,COMMENT_COUNT,CAN_SIGNUP,SIGNUP_COUNT,GMT_CREATE,GMT_MODIFIED
 	</sql>
 	
 	<select id="queryActivityById" resultMap="RM-ChaoActivity">

@@ -290,4 +290,13 @@ public class ChaoActivityDTO extends AbstractModel {
 	public void setStatus(String status) {
 		activity.setStatus(status);
 	}
+	
+	public Boolean getCanSignup() {
+		return activity.getCanSignup();
+	}
+
+
+	public Integer getSignupCount() {
+		return activity.getSignupCount();
+	}
 }

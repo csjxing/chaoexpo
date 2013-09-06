@@ -250,6 +250,9 @@
 			<isNotEmpty property="subjectId">
 				SUBJECT_ID = #subjectId# ,
 			</isNotEmpty>
+			<isNotEmpty property="canSignup">
+				CAN_SIGNUP = #canSignup#,
+			</isNotEmpty>
 			GMT_MODIFIED = now()
 		WHERE
 			ID = #id#

@@ -41,13 +41,13 @@
 			    selectedIndex = $(this).get(0).selectedIndex;
 			});
 		    $("#activityForm").find('select.can-signup').change(function() {
-		        var id = $("#activityForm").find('input[id="name"]').val();
+		        var id = $("#activityForm").find('input[name="id"]').val();
 		        if (id == undefined || isNaN(parseInt(id))) {
 		            return;
 		        }
 		        var _this = $(this);
 				var value = _this.children("option:selected").val();
-				if(value == 'N' && !confirm("修改将导致原活动参与数据失效，是否继续？")) {
+				if(value == 'N' && !confirm("此修改最终将导致原活动参与数据失效，确定修改？")) {
 				    _this.get(0).selectedIndex = selectedIndex;
 				    return;
 				}

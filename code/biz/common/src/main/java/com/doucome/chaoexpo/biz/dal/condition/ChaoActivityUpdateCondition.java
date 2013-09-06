@@ -75,6 +75,8 @@ public class ChaoActivityUpdateCondition extends AbstractModel  {
 	
 	private Integer incrSignupCount ;
 	
+	private String canSignup;
+	
 	private Date gmtActivityStart ;
 	
 	private Date gmtActivityEnd ;
@@ -91,6 +93,7 @@ public class ChaoActivityUpdateCondition extends AbstractModel  {
 		map.put("notice", notice) ;
 		map.put("countesyReminder", countesyReminder) ;
 		map.put("standPicUrls", standPicUrls) ;
+		map.put("canSignup", canSignup) ;
 		map.put("subjectIds", subjectIds) ;
 		
 		map.put("incrFollowCount", incrFollowCount) ;
@@ -255,6 +258,14 @@ public class ChaoActivityUpdateCondition extends AbstractModel  {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getCanSignup() {
+		return canSignup;
+	}
+
+	public void setCanSignup(String canSignup) {
+		this.canSignup = canSignup;
 	}
 	
 }

@@ -5,9 +5,9 @@ import java.util.Map;
 
 public class ChaoActivitySignupQuery {
 
-	private Long id ;
+	private Long id;
 	
-	private Long activityId ;
+	private Long activityId;
 	
 	public Map<String,Object> toMap() {
 		Map<String,Object> map = new HashMap<String,Object>() ;

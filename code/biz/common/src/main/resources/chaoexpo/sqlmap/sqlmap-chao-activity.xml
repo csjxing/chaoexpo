@@ -310,6 +310,9 @@
 			<isNotEmpty property="incrSignupCount">
 				SIGNUP_COUNT = SIGNUP_COUNT + #incrSignupCount# ,
 			</isNotEmpty>
+			<isNotEmpty property="canSignup">
+				CAN_SIGNUP = #canSignup#,
+			</isNotEmpty>
 			<isNotNull property="gmtActivityStart">
 				GMT_ACTIVITY_START = #gmtActivityStart# ,
 			</isNotNull>

@@ -14,6 +14,7 @@
 			String.prototype.endsWith = function(str) {
 			    return this.indexOf(str) == (this.length - str.length);
 			};
+			self._initCommonEvent();
 			self._initFormSubmit();
 		},
 		_validateForm: function() {
@@ -33,6 +34,24 @@
 					contactPhone: {maxlength: '太长'}
 				}
 			}).form();
+		},
+		_initCommonEvent: function() {
+			var selectedIndex;
+			$("#activityForm").find('select.can-signup').click(function() {
+			    selectedIndex = $(this).get(0).selectedIndex;
+			});
+		    $("#activityForm").find('select.can-signup').change(function() {
+		        var id = $("#activityForm").find('input[id="name"]').val();
+		        if (id == undefined || isNaN(parseInt(id))) {
+		            return;
+		        }
+		        var _this = $(this);
+				var value = _this.children("option:selected").val();
+				if(value == 'N' && !confirm("修改将导致原活动参与数据失效，是否继续？")) {
+				    _this.get(0).selectedIndex = selectedIndex;
+				    return;
+				}
+		    });
 		},
 		
 		_initFormSubmit: function() {

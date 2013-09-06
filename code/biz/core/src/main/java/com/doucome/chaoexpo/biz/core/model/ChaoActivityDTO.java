@@ -9,6 +9,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.doucome.chaoexpo.biz.core.enums.PictureSizeEnums;
+import com.doucome.chaoexpo.biz.core.enums.YesNoEnum;
 import com.doucome.chaoexpo.biz.core.utils.ArrayStringUtils;
 import com.doucome.chaoexpo.biz.core.utils.PictureUtils;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoActivityDO;
@@ -293,6 +294,13 @@ public class ChaoActivityDTO extends AbstractModel {
 	
 	public String getCanSignup() {
 		return activity.getCanSignup();
+	}
+	
+	public void setCanSignup(String canSignup) {
+		YesNoEnum tempEnum = YesNoEnum.toEnum(canSignup);
+		if (tempEnum != YesNoEnum.UNKNOWN) {
+			activity.setCanSignup(tempEnum.getValue());
+		}
 	}
 
 

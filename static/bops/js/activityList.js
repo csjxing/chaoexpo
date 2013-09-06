@@ -12,6 +12,43 @@
 		},
 		
 		_initEvent: function() {
+		    $("#activityTable .can-signup").click(function() {
+			    selectedIndex = $(this).get(0).selectedIndex;
+			});
+			$("#activityTable .can-signup").change(function() {
+			    var _this = $(this);
+				var value = _this.children("option:selected").val();
+				if(value == 'N' && !confirm("修改将导致原活动参与数据失效，是否继续？")) {
+				    _this.get(0).selectedIndex = selectedIndex;
+				    return;
+				}
+				var id = _this.data('id');
+				if (id == undefined || isNaN(parseInt(id))) {
+				    alert('ID有误，请刷新页面后再试。');
+					return ;
+				}
+				$.ajax({
+					url: bopsRoot + '/bops/remote/reset_activity_can_signup.htm',
+					type: "post",
+					data: {id: id, canSignup: value},
+					success: function(result) {
+					var json = result.json;
+						if (json.success) {
+						    window.location.reload();
+						} else {
+						    var detail = json.detail;
+							if (detail == 'param.error') {
+							    alert('参数有误，请刷新页面后再试');
+							} else {
+							    alert('未知错误');
+							}
+						}
+					},
+					error: function(error) {
+					    alert("删除活动失败: " + error);
+					}
+				});
+			});
 			$("#activityTable .delete-btn").click(function() {
 			    var _this = $(this);
 				var id = _this.data('id');
@@ -50,6 +87,10 @@
 					    alert("删除活动失败: " + error);
 					}
 				});
+			});
+			$("#activityTable .oper-btn").click(function() {
+			    $("#activityTable .btn-list").addClass('dd-hide');
+			    $(this).closest('.oper-box').find('.btn-list').removeClass('dd-hide');
 			});
 		},
 		

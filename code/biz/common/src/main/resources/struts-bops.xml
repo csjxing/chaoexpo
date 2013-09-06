@@ -72,6 +72,10 @@
 			<result name="success" type="redirect">/bops/activity.htm</result>
 			<result name="input" type="velocity">/bops/activity.vm</result>
 		</action>
+		<action name="activity_signup_list" class="com.doucome.chaoexpo.web.bops.action.ActivitySignupListAction" >
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/activitySignupList.vm</result>
+		</action>
 		<action name="subject_list" class="com.doucome.chaoexpo.web.bops.action.SubjectListAction" >
 			<interceptor-ref name="bopsDefaultStack" />
 			<result name="success" type="velocity">/bops/subjectList.vm</result>
@@ -276,6 +280,10 @@
 		    <result name="success" type="json"></result>
 		</action>
 		<action name="reset_banner_status" class="com.doucome.chaoexpo.web.bops.action.ajax.BBannerStatusAction">
+		    <interceptor-ref name="bopsDefaultStack" />
+		    <result name="success" type="json"></result>
+		</action>
+		<action name="reset_activity_can_signup" class="com.doucome.chaoexpo.web.bops.action.ajax.BActivityCanSignupAction">
 		    <interceptor-ref name="bopsDefaultStack" />
 		    <result name="success" type="json"></result>
 		</action>

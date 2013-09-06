@@ -1,0 +1,83 @@
+#set($bopsCss=["activitySignupList.css"])
+#set($layout="bops/default_bops.vm")
+
+#set($navigation = "分类列表")
+
+<input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
+<input type="hidden"  id="bopsPage" value="activitySignupList"/>
+
+<style>
+	th a {
+		text-decoration:none;
+		color:#000 ;
+	}
+	#signupTable td {
+	    padding: 8px 3px;
+	}
+</style>
+
+#set($pagination = $signupResult.pagination)
+
+#set($searchUrl = ${env.bopsRoot}+"/bops/activity_signup_list.htm?")
+#set($searchQuery = ["id:$!id","activityId:$!activityId"])
+
+<div class="bops">
+    <div style="MT20 MB20">&nbsp;</div>
+    
+	<form action="${env.bopsRoot}/bops/activity_signup_list.htm" method="GET">
+		<div class="settleipt MB10 MT10">
+			<span class="search-div">
+				<span class="lbl">活动ID： </span>
+				<input  type="text" class="activity-id" name="activityId" value="$!activityId" />
+			</span>
+			
+			<input type="submit" value="查询"/>
+		</div>
+	</form>
+	
+	 #parse("/common/bops/page/activitySignupPagination.vm")
+	 <table width="840" id="signupTable">
+		<tr>
+			<th width="40">ID</th>
+    		<th width="200">参与者</th>
+    		<th width="200"><span>活动名称</span></th>
+    		<th width="80">联系名称</th>
+			<th width="100">联系电话</th>
+            <th width="120"><span>创建时间</span></th>
+			<th width="80">操作</th>
+    	</tr>
+		#if($!signupResult.totalRecords > 0)
+    		#foreach($signup in $!signupResult.items)
+            	<tr class="#if($velocityCount%2 == 0)even#end" data-id="$!signup.id">
+					<td align="center">$!signup.id</td>
+					<td class="more">
+						<div class="activity-name" date-activity-id="$!signup.activityId">$!signup.activityName</div>
+					</td>
+					<td align="center">
+            		    <div class="user-name">$!signup.userName</div>
+            		</td>
+            		<td align="center">
+            		    <div class="contact-name">$!signup.contactName</div>
+            		</td>
+					<td align="center">
+            		    <div class="contact-phone">$!signup.contactPhone</div>
+            		</td>
+            		<td align="center">
+            		    <div class="gmt-create">$!dateUtils.format($!signup.gmtCreate,'yyyy-MM-dd hh:MM')</div>
+					</td>
+            		<td class="more">
+            		    <div class=""></div>
+            		</td>
+            	</tr>
+    		#end
+		#else
+            <tr><td colspan="7">没有查询到记录</td></tr>
+		#end
+     </table>
+     #parse("/common/bops/page/activitySignupPagination.vm")
+</div>
+<script>
+!(function($){
+	
+})(jQuery);
+</script>

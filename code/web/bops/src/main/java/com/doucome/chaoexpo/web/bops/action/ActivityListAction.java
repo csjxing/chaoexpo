@@ -7,7 +7,6 @@ import com.doucome.chaoexpo.biz.core.model.page.Pagination;
 import com.doucome.chaoexpo.biz.core.model.page.QueryResult;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoActivityService;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoActivityCondition;
-import com.doucome.chaoexpo.biz.dal.query.ChaoActivityQuery;
 import com.opensymphony.xwork2.ModelDriven;
 
 @SuppressWarnings("serial")

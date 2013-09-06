@@ -52,18 +52,19 @@
 	 <table width="1080" id="activityTable">
 		<tr>
 			<th width="40">ID</th>
-    		<th width="220">
+    		<th width="170">
     			<a class="sort-btn" href="${env.bopsRoot}/bops/activity_list.htm?sortColumn=GMT_MODIFIED&order=$tempOrder&id=$!id&keyword=$!keyword&subjectId=$!subjectId&gmtActivityStart=$!gmtActivityStartFmt&gmtActivityEnd=$!gmtActivityEndFmt">
-    				<span>活动名称<span class="split">|</span>修改时间<span>
+    				<span>活动名称<span class="split">|</span>修改时间</span>
     			    <span class="dbsort_none"></span>
     			</a>
     		</th>
     		<th width="60">活动图片</th>
     		<th width="60">展位图片</th>
-			<th width="200"><span>活动时间</span></th>
-            <th width="80">地点</th>
+			<th width="160"><span>活动时间</span></th>
+            <th width="60">能否报名</th>
+            <th width="100">地点</th>
 			<th width="80">联系人</th>
-			<th width="80">专题</th>
+			<th width="100">专题</th>
 			<th width="60">
 				<a class="sort-btn" href="${env.bopsRoot}/bops/activity_list.htm?sortColumn=FOLLOW_COUNT&order=$tempOrder&id=$!id&keyword=$!keyword&subjectId=$!subjectId&gmtActivityStart=$!gmtActivityStartFmt&gmtActivityEnd=$!gmtActivityEndFmt">
 					<span>关注</span>
@@ -77,8 +78,7 @@
 	    			<span class="dbsort_none"></span>
 	    		</a>
             </th>
-            
-			<th width="40">操作</th>
+			<th width="80">操作</th>
     	</tr>
 		#if($!activityResult.totalRecords > 0)
     		#foreach($activity in $!activityResult.items)
@@ -107,6 +107,12 @@
             		<td align="center">
             		    <div class="gmt-activity">$!dateUtils.format($!activity.gmtActivityStart,'yyyy-MM-dd') ~ $!dateUtils.format($!activity.gmtActivityEnd,'yyyy-MM-dd')</div>
             		</td>
+            		<td align="center">
+            		    <select name="canSignup" class="can-signup" data-id="$!activity.id">
+                            <option value="N" selected>不能</option>
+                            <option value="Y" #if($!activity.canSignup=='Y')selected#end>能</option>
+                        </select>
+            		</td>
             		<td class="more">
             		    <div class="location text-ellipsis content-detail" detail-content="$!activity.location">$!activity.location</div>
             		</td>
@@ -117,17 +123,27 @@
             		<td align="center"><a href="${env.bopsRoot}/bops/query_user_follow_list.htm?activityId=$!activity.id&type=FOL_ACT" target="_blank">$!activity.followCount</a></td>
 					<td align="center"><a href="${env.bopsRoot}/bops/query_user_follow_list.htm?activityId=$!activity.id&type=ACT_CHK" target="_blank">$!activity.checkinCount</a></td>
                     <td align="center"><a href="${env.bopsRoot}/bops/query_user_comment_list.htm?activityId=$!activity.id" target="_blank">$!activity.commentCount</a></td>
-					<td align="center">
-						#if($!activity.status == 'D')
-							<a class="delete-btn" href="javascript:;" data-id="$!activity.id" data-status="N" title="启用">启用</a>
-						#else
-						    <a class="delete-btn" href="javascript:;" data-id="$!activity.id" data-status="D" title="删除">删除</a>
-					    #end
+					<td class="" align="center">
+						<div class="oper-box">
+							<div><a class="oper-btn" href="javascript:;" title="操作">操作<i class="down-icon"></i></a></div>
+    						<ul class="btn-list dd-hide">
+								<li class="head">操作</li>
+    							<li><a href="${env.bopsRoot}/bops/activity.htm?id=$!activity.id" title="修改" target="_blank">修改</a></li>
+        						#if($!activity.status == 'D')
+        							<li><a class="delete-btn" href="javascript:;" data-id="$!activity.id" data-status="N" title="启用">启用</a></li>
+        						#else
+        						    <li><a class="delete-btn" href="javascript:;" data-id="$!activity.id" data-status="D" title="删除">删除</a></li>
+        						#end
+        						#if($!activity.canSignup == 'Y')
+        						    <li><a class="signup-detail" href="${env.bopsRoot}/bops/activity_signup_list.htm?activityId=$!activity.id" title="参与详情" target="_blank">参与详情</a></li>
+        						#end
+    						</ul>
+						</div>
 					</td>
             	</tr>
     		#end
 		#else
-            <tr><td colspan="15">没有查询到记录</td></tr>
+            <tr><td colspan="16">没有查询到记录</td></tr>
 		#end
      </table>
      #parse("/common/bops/page/activityPagination.vm")

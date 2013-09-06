@@ -40,6 +40,15 @@
 									<select name="subjectId" data-subject-id="$!activity.subjectId" data-init="n"></select>
 								</div>
 							</div>
+							<div>
+								<span class="lbl" style="">能否报名：</span>
+								<div class="dd-l">
+									<select class="can-signup width1"name="canSignup">
+                                        <option value="N">不能</option>
+										<option value="Y" #if($!activity.canSignup=='Y')selected#end>能</option>
+                                    </select>
+								</div>
+							</div>
 						</li>
 						<li>
 							<span class="lbl" style="">时间：</span>

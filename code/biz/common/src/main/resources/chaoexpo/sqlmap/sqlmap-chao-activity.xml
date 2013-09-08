@@ -162,7 +162,7 @@
 		    <isEqual property="sortColumn" compareValue="COMMENT_COUNT">COMMENT_COUNT</isEqual>
 		</isNotEmpty>
 		<isEmpty property="sortColumn" prepend="">
-		    ORDER BY GMT_MODIFIED
+		    ORDER BY GMT_ACTIVITY
 		</isEmpty>
 		<isNotEqual property="order" compareValue="ASC">
 		    DESC
@@ -249,6 +249,9 @@
 			</isNotEmpty>
 			<isNotEmpty property="subjectId">
 				SUBJECT_ID = #subjectId# ,
+			</isNotEmpty>
+			<isNotEmpty property="canSignup">
+				CAN_SIGNUP = #canSignup#,
 			</isNotEmpty>
 			GMT_MODIFIED = now()
 		WHERE

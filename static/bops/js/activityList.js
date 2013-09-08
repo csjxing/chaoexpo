@@ -92,6 +92,9 @@
 			    $("#activityTable .btn-list").addClass('dd-hide');
 			    $(this).closest('.oper-box').find('.btn-list').removeClass('dd-hide');
 			});
+			$("#activityTable .btn-list").mouseleave(function() {
+			    $(this).addClass('dd-hide');
+			});
 		},
 		
 		end:0

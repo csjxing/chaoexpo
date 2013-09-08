@@ -162,7 +162,7 @@
 		    <isEqual property="sortColumn" compareValue="COMMENT_COUNT">COMMENT_COUNT</isEqual>
 		</isNotEmpty>
 		<isEmpty property="sortColumn" prepend="">
-		    ORDER BY GMT_MODIFIED
+		    ORDER BY GMT_ACTIVITY
 		</isEmpty>
 		<isNotEqual property="order" compareValue="ASC">
 		    DESC

@@ -1,7 +1,10 @@
 package com.doucome.chaoexpo.web.chao.action.ajax;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,7 +21,7 @@ import com.doucome.chaoexpo.web.common.model.JsonModel;
  */
 public class QueryBannerAction extends ChaoBasicAction {
 
-	private JsonModel<List<ChaoBannerDTO>> json = new JsonModel<List<ChaoBannerDTO>>() ;
+	private JsonModel<Map<String,ChaoBannerDTO>> json = new JsonModel<Map<String,ChaoBannerDTO>>() ;
 	
 	private String banners ;
 	
@@ -37,13 +40,26 @@ public class QueryBannerAction extends ChaoBasicAction {
 		String[] bannerIds = ArrayStringUtils.toArray(banners) ;
 		
 		List<ChaoBannerDTO> banners = chaoBannerService.getBannerByBannerIds(bannerIds) ;
+		
+		Map<String,ChaoBannerDTO> map = convert2Map(banners) ;
+		
 		json.setCode(JsonModel.CODE_SUCCESS) ;
-		json.setData(banners) ;
+		json.setData(map) ;
 		
 		return SUCCESS ;
 	}
+	
+	private Map<String,ChaoBannerDTO> convert2Map(List<ChaoBannerDTO> banners) {
+		Map<String,ChaoBannerDTO> bannerMap = new HashMap<String,ChaoBannerDTO>() ;
+		if(CollectionUtils.isNotEmpty(banners)) {
+			for(ChaoBannerDTO dto : banners) {
+				bannerMap.put(dto.getBannerId(), dto) ;
+			}
+		}
+		return bannerMap ;
+	}
 
-	public JsonModel<List<ChaoBannerDTO>> getJson() {
+	public JsonModel<Map<String,ChaoBannerDTO>> getJson() {
 		return json;
 	}
 

@@ -13,6 +13,8 @@ public class BannerPicConfig extends AbstractModel {
 
 	private String picPath;
 	
+	private String name;
+	
 	private String clickUrl;
 
 	public String getPicPath() {
@@ -21,6 +23,14 @@ public class BannerPicConfig extends AbstractModel {
 
 	public void setPicPath(String picPath) {
 		this.picPath = picPath;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getClickUrl() {

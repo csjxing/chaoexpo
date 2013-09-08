@@ -55,6 +55,7 @@
 		    var _picConfigLayer = $("#picConfigLayer");
 			_picConfigLayer.find(".close-btn").click(function() {
 			    _picConfigLayer.find(".picture-url").val("");
+				_picConfigLayer.find(".name").val("");
 				_picConfigLayer.find(".click-url").val("");
 				_picConfigLayer.find(".error").html("");
 				_picConfigLayer.addClass("dd-hide")
@@ -71,6 +72,7 @@
 				    _this.find(".error").html("请选择jpg/jpeg/gif/png/bmp类型的图片");
 					return false;
 				}
+				var name = _this.find(".name").val();
 				var clickUrl = _this.find(".click-url").val();
 				clickUrl = clickUrl.trim().toLowerCase();
 				if (clickUrl == '' || !self._isValidLink(clickUrl)) {
@@ -84,20 +86,22 @@
 					_this.find(".error").html('');
 					if (json.success) {
 					    var data = json.data;
-						if (clickUrl != '') {
-						    _picBox.find(".picture").html('<a href="' + clickUrl + '" target="_blank"><img src="' + data.url + '" /></a>'
-					    	  + '<div class="url-box"><span>跳转链接：</span><input type="text" class="click-url" value="' + clickUrl + '" />'
-					    	  + '</div>');
-						} else {
-						    _picBox.find(".picture").html('<a href="javascript:;"><img src="' + data.url + '" /></a>'
-					    	  + '<div class="url-box"><span>跳转链接：</span><input type="text" class="click-url" value="" /></div>');
-						}
+					    if (clickUrl == undefined || clickUrl == '') {
+					        clickUrl = '';
+					    }
+					    if (name == undefined || name == '') {
+					        name = '';
+					    }
+						_picBox.find(".picture").html('<a href="' + clickUrl + '" target="_blank"><img src="' + data.url + '" /></a>'
+					      + '<div class="name-box"><span class="lbl">名称：</span><input type="text" class="name" value="' + name + '" /></div>'
+					      + '<div class="url-box"><span class="lbl">跳转链接：</span><input type="text" class="click-url" value="' + clickUrl + '" /></div>');
 						var _container = _picBox.find(".pictures1");
 						var idx = _container.find("li.sum-banner-pic").size();
 						_container.prepend('<li class="sum-banner-pic" data-idx="' + idx + '"><a href="javascript:;" class="small-pic"><img src="'
 						    + data.sum100x000 + '" width="40" height="40"/></a><a class="del-btn del-icon" href="javascript:;" title="删除"></a>'
 							+ '<input type="hidden" class="pic-path" name="picModels[' + idx + '].picPath" value="' + data.path
-							+ '"/><input type="hidden" class="click-url" name="picModels[' + idx + '].clickUrl" value="' + clickUrl + '"/></li>')
+							+ '"/><input type="hidden" class="name name="picModels[' + idx + '].name" value="' + name + '"/>'
+							+ '<input type="hidden" class="click-url" name="picModels[' + idx + '].clickUrl" value="' + clickUrl + '"/></li>')
 						_container.find("li").removeClass("active");
 						_container.find("li:first").addClass("active");
 						_picConfigLayer.find(".close-btn").trigger("click");
@@ -134,6 +138,7 @@
 				}
 				if (_nextLi.size() > 0 && _nextLi.hasClass("sum-banner-pic")) {
 				    var picUrl = _nextLi.find(".pic-path").val();
+				    var name = _nextLi.find(".name").val();
 					var clickUrl = _nextLi.find("click-url").val();
 					if (clickUrl == undefined) {
 					    clickUrl = '';
@@ -141,13 +146,15 @@
 					if (!picUrl.startsWith("http://")) {
 						picUrl = pictureRoot + picUrl;
 					}
-					if (clickUrl != '') {
-						$(".pic-detail-box .picture").html('<a href="' + clickUrl + '" target="_blank"><img src="' + picUrl + '" /></a>'
-						  + '<div class="url-box"><span>跳转链接：</span><input type="text" class="click-url" value="' + clickUrl + '" /></div>');
-					} else {
-						$(".pic-detail-box .picture").html('<a href="javascript:;"><img src="' + picUrl + '" /></a>'
-						  + '<div class="url-box"><span>跳转链接：</span><input type="text" class="click-url" value="" /></div>');
+					if (clickUrl == undefined || clickUrl == '') {
+					    clickUrl = '';
 					}
+					if (name == undefined || name == '') {
+					    name = '';
+					}
+					$(".pic-detail-box .picture").html('<a href="' + clickUrl + '" target="_blank"><img src="' + picUrl + '" /></a>'
+					  + '<div class="name-box"><span class="lbl">名称：</span><input type="text" class="name" value="' + clickUrl + '" /></div>'
+					  + '<div class="url-box"><span class="lbl">跳转链接：</span><input type="text" class="click-url" value="' + clickUrl + '" /></div>');
 					_nextLi.addClass("active");
 				} else {
 				    _picDetailBox.find(".picture").html('');
@@ -161,19 +168,15 @@
 				var latestClickUrl = _latestLi.find('click-url').val();
 				_latestLi.removeClass("active");
 				var picUrl = _this.find(".pic-path").val();
+				var name = _this.find(".name").val();
 				var clickUrl = _this.find(".click-url").val();
 				if (!picUrl.startsWith("http://")) {
 				    picUrl = pictureRoot + picUrl;
 				}
-				if (clickUrl != '') {
-					$(".pic-detail-box .picture").html('<a href="' + clickUrl + '" target="_blank"><img src="' + picUrl + '" /></a>'
-					  + '<div class="url-box"><span>跳转链接：</span><input type="text" class="click-url" value="'
-					  + clickUrl + '" data-idx="' + idx + '" /></div>');
-				} else {
-					$(".pic-detail-box .picture").html('<a href="javascript:;"><img src="' + picUrl + '" /></a>'
-					  + '<div class="url-box"><span>跳转链接：</span><input type="text" class="click-url" value="" data-idx="'
-					  + idx + '"/></div>');
-				}
+				$(".pic-detail-box .picture").html('<a href="' + clickUrl + '" target="_blank"><img src="' + picUrl + '" /></a>'
+				  + '<div class="name-box"><span class="lbl">名称：</span><input type="text" class="name" value="' + name + '" data-idx="' + idx + '" /></div>'
+				  + '<div class="url-box a"><span class="lbl">跳转链接：</span><input type="text" class="click-url" value="' + clickUrl
+			      + '" data-idx="' + idx + '" /></div>');
 				_this.addClass('active') ;
 			});
 		    _picDetailBox.find(".add-banner-pic-btn").click(function() {
@@ -186,6 +189,15 @@
 			    var _curLi = _picDetailBox.find('li[data-idx="' + idx + '"]');
 				if (_curLi.size() > 0) {
 					_curLi.find("input.click-url").val(clickUrl);
+				}
+			});
+			_picDetailBox.find(".top-box .name").live("change", function() {
+			    var _this = $(this);
+			    var name = _this.val();
+				var idx = _this.data("idx");
+			    var _curLi = _picDetailBox.find('li[data-idx="' + idx + '"]');
+				if (_curLi.size() > 0) {
+					_curLi.find("input.name").val(name);
 				}
 			});
 		},

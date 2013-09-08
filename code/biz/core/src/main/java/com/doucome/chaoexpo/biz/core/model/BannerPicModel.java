@@ -33,6 +33,14 @@ public class BannerPicModel extends AbstractModel {
 	public void setPicPath(String picPath) {
 		picConfig.setPicPath(picPath);
 	}
+	
+	public String getName() {
+		return picConfig.getName();
+	}
+
+	public void setName(String name) {
+		picConfig.setName(name);
+	}
 
 	public String getClickUrl() {
 		return picConfig.getClickUrl();

@@ -68,23 +68,12 @@
 
 .banner-box .pic-detail-box .picture {
     width: 400px;
-	height: 200px;
+	height: 250px;
 }
 
 .banner-box .pic-detail-box .picture img {
     max-width: 400px;
 	max-height: 150px;
-}
-
-.banner-box .pic-detail-box .picture .url-box {
-    text-align: left;
-	margin-top: 10px;
-	margin-left: 10px;
-}
-
-.banner-box .pic-detail-box .picture .url-box input {
-    padding: 2px 3px;
-	width: 250px;
 }
 
 .banner-box .pic-detail-box .picture .url-box .mod-click-url-btn {
@@ -94,4 +83,19 @@
 .banner-pic-layer .content .tip {
     margin-top: 5px;
 	margin-bottom: 0px;
+}
+.banner-box .pic-detail-box .name-box, .banner-box .pic-detail-box .url-box {
+    margin-top: 15px;
+}
+.banner-box .pic-detail-box .name-box, .banner-box .pic-detail-box .url-box {
+    text-align: left;
+    margin-left: 15px;
+}
+.banner-box .pic-detail-box .name-box input, .banner-box .pic-detail-box .url-box input {
+    width: 250px;
+    padding: 3px 5px;
+}
+.banner-box .pic-detail-box .name-box .lbl, .banner-box .pic-detail-box .url-box .lbl {
+    display: inline-block;
+    width: 70px;
 }

@@ -22,6 +22,8 @@
 						    <div class="tip"><span>上传网络图片</span></div>
 						    <div class="tip"><span class="error"></span></div>
 							<input class="picture-url" type="text" name="pictureUrl"/>
+							<div class="tip"><span>Banner名称</span></div>
+							<input type="text" class="name" name="name" />
 							<div class="tip"><span>Banner跳转链接</span></div>
 							<input type="text" class="click-url" name="clickUrl" />
 							<input class="confirm-btn" type="submit" value="上传"/>
@@ -32,6 +34,8 @@
 						    <div class="tip"><span>上传本地图片</span></div>
 						    <div class="tip"><span class="error"></span></div>
 							<input class="picture" type="file" name="picture"/>
+							<div class="tip"><span>Banner名称</span></div>
+							<input type="text" class="name" name="name" />
 							<div class="tip"><span>Banner跳转链接</span></div>
 							<input type="text" class="click-url" name="clickUrl" />
 							<input class="confirm-btn" type="submit" value="上传"/>
@@ -51,8 +55,12 @@
 					    		<a href="#if($!clickUrl0 && $!clickUrl0 != '')$!banner.picModels[0].clickUrl #else javascript:;#end" target="_blank">
 					    			<img src="$!banner.picModels[0].picUrl" />
 					    		</a>
+					    		<div class="name-box">
+					    		    <span class="lbl">名称：</span>
+					    		    <input type="text" class="name" value="$!banner.picModels[0].name" data-idx="0">
+					    		</div>
 					    		<div class="url-box">
-					    		    <span>跳转链接：</span>
+					    		    <span class="lbl">跳转链接：</span>
 					    		    <input type="text" class="click-url" value="$!banner.picModels[0].clickUrl" data-idx="0">
 					    		</div>
 					    	#end
@@ -68,6 +76,7 @@
 								        	</a>
 								        	<a class="del-btn del-icon" href="javascript:;" title="删除"></a>
 								        	<input type="hidden" class="pic-path" name="picModels[$idx].picPath" value='$!picModel.picPath'/>
+								        	<input type="hidden" class="name" name="picModels[$idx].name" value='$!picModel.name'/>
 								        	<input type="hidden" class="click-url" name="picModels[$idx].clickUrl" value='$!picModel.clickUrl'/>
 								        </li>
 								    #end

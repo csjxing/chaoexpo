@@ -11,20 +11,25 @@
 		text-decoration:none;
 		color:#000 ;
 	}
+	#bannerTable .name-box {
+	    width: 150px;
+	}
 	#bannerTable .pic-box img {
-	    width：60px;
-	    height: 60px;
+	    max-width: 200px;
 	}
 	#bannerTable .url-box {
-	    width: 200px;
+	    width: 150px;
 	    overflow: hidden;
 	    white-space: nowrap;
 	    text-overflow: ellipsis;
 	}
-	.memo-box {
+	#bannerTable ..memo-box {
 	    height: 60px;
 	    line-height: 20px;
 	    overflow: hidden;
+	}
+	#bannerTable .btn-list li {
+	    padding: 5px 5px;
 	}
 </style>
 
@@ -43,14 +48,15 @@
 	<div class="MB20 MT20"><a href="${env.bopsRoot}/bops/banner.htm" target="_blank">新增Banner</a></div>
 	
 	#parse("/common/bops/page/bannerPagination.vm")
-	 <table width="800" id="bannerTable">
+	 <table width="880" id="bannerTable">
 		<tr>
 			<th width="40">ID</th>
 			<th width="120" align="center">BannerId</th>
-			<th width="100">图片</th>
-    		<th width="220">URL</th>
-			<th width="200">备注</th>
-			<th width="100">操作</th>
+			<th width="160">名称</th>
+			<th width="200">图片</th>
+    		<th width="150">URL</th>
+			<th width="150">备注</th>
+			<th width="60">操作</th>
     	</tr>
 		#if($!bannerResult.totalRecords > 0)
     		#foreach($banner in $bannerResult.items)
@@ -58,10 +64,15 @@
 					<td class="id">$!banner.id</td>
             		<td class="">$!banner.bannerId</td>
                     <td>
+						#if($!banner.picModels.size() > 0)
+    						<div class="name-box text-ellipsis">$!banner.picModels.get(0).name</div>
+						#end
+					</td>
+                    <td>
 						<div class="pic-box">
 						    #if($!banner.picModels.size() > 0)
 						    	<a #if($!banner.picModels.get(0).clickUrl != '')href="$!banner.picModels.get(0).clickUrl" target="_blank"#else href="javascript:;" #end>
-						    		<img src="$!banner.picModels.get(0).picUrl100x000" />
+						    		<img src="$!banner.picModels.get(0).picUrl100x000"  max-width="150"/>
 						    	</a>
     						#end
 						</div>
@@ -82,12 +93,14 @@
 						<div class="memo-box">$!banner.memo</div>
 					</td>
 					<td align="center">
-						<a href="${env.bopsRoot}/bops/banner.htm?id=$!banner.id" target="_blank">修改</a>
-						#if($!banner.status == "D")
-						    <a class="delete-btn" href="javascript:;" data-id="$!banner.id" data-status="N">启用</a>
-						#else
-						    <a class="delete-btn" href="javascript:;" data-id="$!banner.id" data-status="D">删除</a>
-						#end
+						<ul class="btn-list">
+						    <li><a href="${env.bopsRoot}/bops/banner.htm?id=$!banner.id" target="_blank">修改</a></li>
+    						#if($!banner.status == "D")
+    						    <li><a class="delete-btn" href="javascript:;" data-id="$!banner.id" data-status="N">启用</a></li>
+    						#else
+    						    <li><a class="delete-btn" href="javascript:;" data-id="$!banner.id" data-status="D">删除</a></li>
+    						#end
+						</ul>
 					</td>
             	</tr>
     		#end

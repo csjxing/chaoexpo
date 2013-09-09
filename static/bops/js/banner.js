@@ -75,10 +75,6 @@
 				var name = _this.find(".name").val();
 				var clickUrl = _this.find(".click-url").val();
 				clickUrl = clickUrl.trim().toLowerCase();
-				if (clickUrl == '' || !self._isValidLink(clickUrl)) {
-				    _this.find(".error").html("链接无效，必须以http://开头");
-					return false;
-				}
 				
 				_this.ajaxSubmit(function(result) {
 				    var json = result.json;
@@ -100,7 +96,7 @@
 						_container.prepend('<li class="sum-banner-pic" data-idx="' + idx + '"><a href="javascript:;" class="small-pic"><img src="'
 						    + data.sum100x000 + '" width="40" height="40"/></a><a class="del-btn del-icon" href="javascript:;" title="删除"></a>'
 							+ '<input type="hidden" class="pic-path" name="picModels[' + idx + '].picPath" value="' + data.path
-							+ '"/><input type="hidden" class="name name="picModels[' + idx + '].name" value="' + name + '"/>'
+							+ '"/><input type="hidden" class="name" name="picModels[' + idx + '].name" value="' + name + '"/>'
 							+ '<input type="hidden" class="click-url" name="picModels[' + idx + '].clickUrl" value="' + clickUrl + '"/></li>')
 						_container.find("li").removeClass("active");
 						_container.find("li:first").addClass("active");

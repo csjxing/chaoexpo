@@ -23,10 +23,11 @@
 	    white-space: nowrap;
 	    text-overflow: ellipsis;
 	}
-	#bannerTable ..memo-box {
+	#bannerTable .memo-box {
 	    height: 60px;
 	    line-height: 20px;
 	    overflow: hidden;
+		text-align: left;
 	}
 	#bannerTable .btn-list li {
 	    padding: 5px 5px;

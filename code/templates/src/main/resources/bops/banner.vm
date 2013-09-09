@@ -100,7 +100,7 @@
 						<li class="">
 							<span class="lbl">备注：</span>
 							<div class="dd-l">
-								<textarea name="content"/>$!banner.memo</textarea>
+								<textarea name="memo"/>$!banner.memo</textarea>
 							</div>
 						</li>
 					</ul>

@@ -3,6 +3,7 @@ package com.doucome.chaoexpo.web.bops.action.ajax;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.doucome.chaoexpo.biz.common.utils.IDUtils;
+import com.doucome.chaoexpo.biz.core.enums.TrueOrFalseEnums;
 import com.doucome.chaoexpo.biz.core.enums.YesNoEnum;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoActivityService;
 import com.doucome.chaoexpo.biz.dal.condition.ChaoActivityUpdateCondition;
@@ -22,8 +23,8 @@ public class BActivityCanSignupAction extends BopsBasicAction {
 	private ChaoActivityService chaoActivityService;
 	
 	public String execute() {
-		YesNoEnum tempEnum = YesNoEnum.toEnum(canSignup);
-		if (IDUtils.isNotCorrect(id) || tempEnum == YesNoEnum.UNKNOWN) {
+		TrueOrFalseEnums tempEnum = TrueOrFalseEnums.toEnum(canSignup);
+		if (IDUtils.isNotCorrect(id) || tempEnum == TrueOrFalseEnums.UNKNOWN) {
 			json.setFail("param.error");
 			return SUCCESS;
 		}

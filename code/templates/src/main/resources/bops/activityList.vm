@@ -109,8 +109,8 @@
             		</td>
             		<td align="center">
             		    <select name="canSignup" class="can-signup" data-id="$!activity.id">
-                            <option value="N" selected>不能</option>
-                            <option value="Y" #if($!activity.canSignup=='Y')selected#end>能</option>
+                            <option value="F" selected>不能</option>
+                            <option value="T" #if($!activity.canSignup=='T')selected#end>能</option>
                         </select>
             		</td>
             		<td class="more">

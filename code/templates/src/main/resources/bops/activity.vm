@@ -44,8 +44,8 @@
 								<span class="lbl" style="">能否报名：</span>
 								<div class="dd-l">
 									<select class="can-signup width1"name="canSignup">
-                                        <option value="N">不能</option>
-										<option value="Y" #if($!activity.canSignup=='Y')selected#end>能</option>
+                                        <option value="F">不能</option>
+										<option value="T" #if($!activity.canSignup=='T')selected#end>能</option>
                                     </select>
 								</div>
 							</div>

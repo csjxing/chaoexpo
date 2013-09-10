@@ -134,7 +134,7 @@
         						#else
         						    <li><a class="delete-btn" href="javascript:;" data-id="$!activity.id" data-status="D" title="删除">删除</a></li>
         						#end
-        						#if($!activity.canSignup == 'Y')
+        						#if($!activity.canSignup == 'T' || $activity.signupCount > 0)
         						    <li><a class="signup-detail" href="${env.bopsRoot}/bops/activity_signup_list.htm?activityId=$!activity.id" title="参与详情" target="_blank">参与详情</a></li>
         						#end
     						</ul>

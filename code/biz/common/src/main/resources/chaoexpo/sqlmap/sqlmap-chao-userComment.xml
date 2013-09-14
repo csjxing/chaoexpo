@@ -109,10 +109,10 @@
 		UPDATE
 			CHAO_USER_COMMENT
 		SET
-		<isNotEmpty property="status" prepend="AND">
-    		STATUS = #status# 
+		<isNotEmpty property="status">
+			STATUS = #status#,
 		</isNotEmpty>
-			GMT_MODIFIED = now()
+			GMT_MODIFIED = now() 
 		WHERE
 			ID = #id#
 	</update>

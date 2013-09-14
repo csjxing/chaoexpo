@@ -287,5 +287,10 @@
 		    <interceptor-ref name="bopsDefaultStack" />
 		    <result name="success" type="json"></result>
 		</action>
+		
+		<action name="update_user_comment_status_ajax" class="com.doucome.chaoexpo.web.bops.action.ajax.UserCommentOperateAction" method="updateStatus">
+			<interceptor-ref name="bopsDefaultStack" />
+		    <result name="success" type="json2"></result>
+		</action>
 	</package>
 </struts>

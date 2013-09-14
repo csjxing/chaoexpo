@@ -70,12 +70,12 @@
     					<td align="center">$!idx</td>
     					<td align="center">$!item.userName</td>
                 		<td align="center">#if($!item.type == 'NEWS')新闻#elseif($!item.type == "ACT")活动#end</td>
-                        <td>#if($item.targetName)$!item.getSubTargetName(10)..#end</td>
+                        <td>#if($item.status == 'D')<span class="dc-red">[已删除]</span> #end <span #if($item.status == 'D') class="dc-gray" #end>#if($item.targetName)$!item.getSubTargetName(10)..#end</span></td>
 						<td align="center">
 							#if($item.activityId)<span class="dc-gray">[活]</span> $!item.activityId #end 
 							#if($item.newsId)<span class="dc-gray">[新]</span> $!item.newsId #end
 						</td>
-						<td><span class="">$!item.content</span></td>
+						<td><span #if($item.status == 'D') class="dc-gray" #end>$!item.content</span></td>
                         <td>#if($item.toCommentId)<span class="dc-gray">[回复]</span> $!item.toCommentId - $!item.userName   #end</td>
 						<td align="center">$!dateUtils.format($!item.gmtCreate, 'yyyy-MM-dd HH:mm')</td>
     					<td align="center">

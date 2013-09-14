@@ -34,7 +34,48 @@
 			
 			//用户
 			self._initUser() ;
+			
+			self._initComment() ;
 		},
+		
+		_initComment:function() {
+			if(bopsPage == 'userCommentList') {
+				$('.update-user-comment-status-btn').click(function(){
+					var _this = $(this) ;
+					var commentId = _this.attr('data-user-comment-id') ;
+					if(commentId == '') {
+						alert('还没有选择要操作的记录！');
+						return ;
+					}
+					if(!confirm('是否操作记录？')){
+						return ;
+					}
+					
+					var toStatus = _this.attr('data-to-status') ;
+					
+					$.ajax({
+						url : bopsRoot + '/bops/remote/rest/update_user_comment_status_ajax.htm' ,
+						type : 'post' ,
+						data: {commentId : commentId , status:toStatus},
+						success:function(result){
+							var code = result.code ;
+							var data = result.data ;
+							var detail = result.detail ;
+							if(code == 'success') {
+								if(confirm('更新成功，是否刷新页面?')) {
+									window.location.reload() ;
+								}
+							} else {
+								alert('操作失败！ Msg :' + detail) ;
+							}
+						} , 
+						error :function (err){
+							alert('操作失败！ 异常 :' + err) ;
+						}
+					});
+				}) ;
+			}
+		} ,
 		
 		_initUser:function(){
 			if(bopsPage == 'userList'){

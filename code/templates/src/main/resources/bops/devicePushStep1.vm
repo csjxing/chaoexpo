@@ -29,7 +29,10 @@
                     <span class="device-item">$!item.imei , </span>
 				#end
 			</div>
+			<br/>
+			<br/>
 			<div>推送信息（*）：</div>
+			<br/>
             <div><textarea cols="40" rows="3" name="pushMessage"></textarea></div>
         </div>
         <div class="submit"><input type="submit" value="发送消息"/></div>

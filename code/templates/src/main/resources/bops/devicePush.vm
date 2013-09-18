@@ -6,10 +6,10 @@
 
 <div class="bops">
 	<div class="device-push">
-        <h2>推送消息 （1/3）- 选择推送设备</h2>
+        <h2>推送消息 （1/3）- 选择推送组</h2>
 		#if($actionError)
     		#if($actionError == "chao.device.push.gourp.required")
-    			#set($errorMsg = "请选择要推送的设备")
+    			#set($errorMsg = "请选择要推送的组")
     		#elseif($actionError == "chao.device.push.device.empty")
     			#set($errorMsg = "该组下暂时还没有可以推送的设备")
     		#end
@@ -18,6 +18,8 @@
 		<form action="${env.bopsRoot}/bops/device_push_step1.htm" method="post">
             <div class="option">
     		    <input type="checkbox" value="IOS" checked="checked" name="pushGroup" /> IOS设备
+				<input type="checkbox" value="ANDROID" name="pushGroup" disabled/> 安卓设备
+				<input type="checkbox" value="WP"  name="pushGroup" disabled/> WP设备
         	</div>
     		<div class="submit"><input type="submit" value="下一步"/></div>
 		</form>

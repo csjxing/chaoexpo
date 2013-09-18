@@ -11,7 +11,7 @@
     		#if($actionError == "chao.device.push.gourp.required")
     			#set($errorMsg = "请选择要推送的设备")
     		#elseif($actionError == "chao.device.push.device.empty")
-    			#set($errorMsg = "没有要推送的设备")
+    			#set($errorMsg = "该组下暂时还没有可以推送的设备")
     		#end
         <div class="dc-red">$!errorMsg</div>
 		#end

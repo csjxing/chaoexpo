@@ -25,5 +25,10 @@
 	<bean id="chaoTushuoCategoryService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoTushuoCategoryServiceImpl"/>
 	<bean id="chaoBannerService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoBannerServiceImpl"/>
 	<bean id="chaoActivitySignupService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoActivitySignupServiceImpl"/>
+	<bean id="chaoUserPushService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoUserPushServiceImpl">
+		<property name="iosCertificatePassword" value="123456"/>
+	</bean>
 	
+	<bean id="chaoDeviceService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoDeviceServiceImpl"/>
+	<bean id="chaoPushLogService" class="com.doucome.chaoexpo.biz.core.service.chao.impl.ChaoPushLogServiceImpl"/>
 </beans>

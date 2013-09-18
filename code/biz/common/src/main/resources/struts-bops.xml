@@ -188,6 +188,29 @@
 			<interceptor-ref name="bopsDefaultStack" />
 			<result name="success" type="velocity">/bops/userFollowList.vm</result>
 		</action>
+		
+		<action name="device_push" class="com.doucome.chaoexpo.web.bops.action.DevicePushAction">
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/devicePush.vm</result>
+		</action>
+		
+		<action name="device_push_step1" class="com.doucome.chaoexpo.web.bops.action.DevicePushAction" method="step1">
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="input" type="velocity">/bops/devicePush.vm</result>
+			<result name="success" type="velocity">/bops/devicePushStep1.vm</result>
+		</action>
+		
+		<action name="device_push_submit" class="com.doucome.chaoexpo.web.bops.action.DevicePushAction" method="submit">
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="step0" type="redirect">/bops/device_push.htm</result>
+			<result name="input" type="velocity">/bops/devicePushStep1.vm</result>
+			<result name="success" type="redirect">/bops/device_push_success.htm?successCount=${successCount}</result>
+		</action>
+		
+		<action name="device_push_success" class="com.doucome.chaoexpo.web.bops.action.DevicePushAction">
+			<interceptor-ref name="bopsDefaultStack" />
+			<result name="success" type="velocity">/bops/devicePushSuccess.vm</result>
+		</action>
 	</package>
 	
 	<package name="bops-remote" namespace="/bops/remote" extends="default">

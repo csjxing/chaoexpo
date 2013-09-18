@@ -28,5 +28,7 @@
   	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-banner.xml"/>
   	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-userComment.xml"/>
   	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-activitySignup.xml"/>
+  	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-device.xml"/>
+  	<sqlMap resource="chaoexpo/sqlmap/sqlmap-chao-pushLog.xml"/>
   	
 </sqlMapConfig>

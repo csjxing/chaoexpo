@@ -96,6 +96,10 @@
 			<param name="type">ACT_CHK</param>
 		</action>
 		
+		<action name="register_device" class="com.doucome.chaoexpo.web.chao.action.ajax.RegisterDeviceAction">
+			<interceptor-ref name="chaoDefaultStack" />
+			<result name="success" type="json2"></result>
+		</action>
 	</package>
 	
 	<package name="chao-user-remote" namespace="/chao/user/remote/rest" extends="chao">

@@ -1255,3 +1255,30 @@ td .detail-layer {
 .bops .user-follow-list .location-icon {
 	margin-bottom: -3px;
 }
+
+.bops .device-push {
+	margin: 30px 0 0 30px;	
+}
+
+.bops .device-push .option {
+	border: 1px solid #bbb ;
+	width: 500px;
+	padding: 20px;
+}
+
+.bops .device-push .submit input {
+	margin-top: 20px;
+}
+
+.bops .device-push .expect {
+	color: #666;
+	font-size: 12px;
+	margin: 5px 0 5px 10px;
+}
+
+.bops .device-push .detail {
+	color: #aaa;
+	font-size: 12px;
+	margin: 5px 0 5px 10px;
+	border-top : 1px dotted #eee;  
+}

@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServlet;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.doucome.chaoexpo.web.common.utils.ServletContextUtils;
+
 @SuppressWarnings("serial")
 public class SystemINIT extends HttpServlet {
 
@@ -13,7 +15,10 @@ public class SystemINIT extends HttpServlet {
 	
 	@Override
 	public void init() throws ServletException {
-		//String path  = getServletContext().getContextPath() ;
+		String path  = getServletContext().getContextPath() ;
+		String realPath = getServletContext().getRealPath("/") ;
+		
+		ServletContextUtils.setRootRealPath(realPath) ;
 		super.init();
 	}
 }

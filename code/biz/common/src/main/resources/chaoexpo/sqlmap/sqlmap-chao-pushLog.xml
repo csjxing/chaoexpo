@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ChaoPushLog">
+	<typeAlias alias="TA-ChaoPushLog"
+		type="com.doucome.chaoexpo.biz.dal.dataobject.ChaoPushLogDO" />
+
+	<resultMap id="RM-ChaoPushLog" class="TA-ChaoPushLog">
+		<result property="id" column="ID" />
+		<result property="pushGroup" column="PUSH_GROUP" />
+		<result property="msg" column="MSG" />
+		<result property="succCount" column="SUCC_COUNT" />
+		<result property="gmtCreate" column="GMT_CREATE" />
+	</resultMap>
+
+	<insert id="insertPushLog" >
+		INSERT INTO
+			CHAO_PUSH_LOG(ID,PUSH_GROUP,MSG,SUCC_COUNT,GMT_CREATE)
+		VALUES
+			(#id#,#pushGroup#,#msg#,#succCount#,now())
+		<selectKey resultClass="java.lang.Long" keyProperty="id">
+   			<![CDATA[
+			SELECT LAST_INSERT_ID() AS ID
+			]]>
+	    </selectKey>
+	</insert>
+	
+</sqlMap>

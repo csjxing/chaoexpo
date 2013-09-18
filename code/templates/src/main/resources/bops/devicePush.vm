@@ -1,0 +1,27 @@
+#set($layout="bops/default_bops.vm")
+#set($navigation = "推送消息")
+
+<input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
+<input type="hidden"  id="bopsPage" value="devicePush"/>
+
+<div class="bops">
+	<div class="device-push">
+        <h2>推送消息 （1/3）- 选择推送设备</h2>
+		#if($actionError)
+    		#if($actionError == "chao.device.push.gourp.required")
+    			#set($errorMsg = "请选择要推送的设备")
+    		#elseif($actionError == "chao.device.push.device.empty")
+    			#set($errorMsg = "没有要推送的设备")
+    		#end
+        <div class="dc-red">$!errorMsg</div>
+		#end
+		<form action="${env.bopsRoot}/bops/device_push_step1.htm" method="post">
+            <div class="option">
+    		    <input type="checkbox" value="IOS" checked="checked" name="pushGroup" /> IOS设备
+        	</div>
+    		<div class="submit"><input type="submit" value="下一步"/></div>
+		</form>
+    </div>
+</div>
+
+#set($bopsJs=[])

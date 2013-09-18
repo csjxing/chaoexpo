@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ChaoDevice">
+	<typeAlias alias="TA-ChaoDevice"
+		type="com.doucome.chaoexpo.biz.dal.dataobject.ChaoDeviceDO" />
+
+	<resultMap id="RM-ChaoDevice" class="TA-ChaoDevice">
+		<result property="id" column="ID" />
+		<result property="imei" column="IMEI" />
+		<result property="osType" column="OS_TYPE" />
+		<result property="pushParam" column="PUSH_PARAM" />
+		<result property="status" column="STATUS" />
+		<result property="gmtCreate" column="GMT_CREATE" />
+		<result property="gmtModified" column="GMT_MODIFIED" />
+	</resultMap>
+
+	<insert id="insertDevice" >
+		INSERT INTO
+			CHAO_DEVICE(ID,IMEI,OS_TYPE,PUSH_PARAM,GMT_CREATE,GMT_MODIFIED)
+		VALUES
+			(#id#,#imei#,#osType#,#pushParam#,now(),now())
+		<selectKey resultClass="java.lang.Long" keyProperty="id">
+   			<![CDATA[
+			SELECT LAST_INSERT_ID() AS ID
+			]]>
+	    </selectKey>
+	</insert>
+	
+	<select id="queryDeviceByIMEI" resultMap="RM-ChaoDevice">
+		SELECT 
+			ID,IMEI,OS_TYPE,PUSH_PARAM,STATUS,GMT_CREATE,GMT_MODIFIED
+		FROM
+			CHAO_DEVICE
+		WHERE
+			IMEI = #imei#
+	</select>
+	
+	<select id="queryDeviceWithPagination" resultMap="RM-ChaoDevice">
+		SELECT 
+			ID,IMEI,OS_TYPE,PUSH_PARAM,STATUS,GMT_CREATE,GMT_MODIFIED
+		FROM
+			CHAO_DEVICE
+		<isParameterPresent open="WHERE" removeFirstPrepend="true">
+			<isNotEmpty property="imei" prepend="AND">
+			    IMEI = #imei#
+			</isNotEmpty>
+			<isNotEmpty property="osType" prepend="AND">
+			    OS_TYPE = #osType#
+			</isNotEmpty>
+			<isNotEmpty property="osTypes" prepend="AND">
+	    		OS_TYPE IN
+			    <iterate property="osTypes" open="("  close=")"  conjunction=",">
+					#osTypes[]#
+				</iterate>
+			</isNotEmpty>
+		</isParameterPresent>
+		LIMIT 
+			#start#, #size#
+	</select>
+	
+	<select id="countDeviceWithPagination" resultClass="java.lang.Integer">
+		SELECT 
+			COUNT(ID)
+		FROM
+			CHAO_DEVICE
+		<isParameterPresent open="WHERE" removeFirstPrepend="true">
+			<isNotEmpty property="imei" prepend="AND">
+			    IMEI = #imei#
+			</isNotEmpty>
+			<isNotEmpty property="osType" prepend="AND">
+			    OS_TYPE = #osType#
+			</isNotEmpty>
+			<isNotEmpty property="osTypes" prepend="AND">
+	    		OS_TYPE IN
+			    <iterate property="osTypes" open="("  close=")"  conjunction=",">
+					#osTypes[]#
+				</iterate>
+			</isNotEmpty>
+		</isParameterPresent>
+	</select>
+	
+	<update id="updateDeviceByImei" >
+		UPDATE 
+			CHAO_DEVICE
+		SET
+		<isNotEmpty property="pushParam" >
+		    PUSH_PARAM = #pushParam# ,
+		</isNotEmpty>
+			GMT_MODIFIED = now()
+		WHERE
+			IMEI = #imei#
+	</update>
+</sqlMap>

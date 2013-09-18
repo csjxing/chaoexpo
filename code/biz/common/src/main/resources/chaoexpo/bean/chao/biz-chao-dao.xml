@@ -25,6 +25,8 @@
 	<bean id="chaoTushuoCategoryDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoTushuoCategoryDAO"/>
 	<bean id="chaoBannerDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoBannerDAO"/>
 	<bean id="chaoActivitySignupDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoActivitySignupDAO" />
+	<bean id="chaoDeviceDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoDeviceDAO" />
+	<bean id="chaoPushLogDAO" class="com.doucome.chaoexpo.biz.dal.dao.ibatis.IBatisChaoPushLogDAO" />
 	
 	
 </beans>

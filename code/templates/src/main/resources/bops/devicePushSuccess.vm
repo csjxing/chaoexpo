@@ -1,0 +1,17 @@
+#set($layout="bops/default_bops.vm")
+#set($navigation = "设备推送")
+
+<input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
+<input type="hidden"  id="bopsPage" value="devicePush"/>
+
+<div class="bops">
+	<div class="device-push">
+        <h2>设备推送 （3/3）- 推送完成</h2>
+		<div class="option">
+			
+            <h4>本次成功推送设备数: $successCount</h4>
+        </div>
+    </div>
+</div>
+
+#set($bopsJs=[])

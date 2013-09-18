@@ -1,0 +1,40 @@
+#set($layout="bops/default_bops.vm")
+#set($navigation = "设备推送")
+
+<input type="hidden"  id="bopsRoot" value="${env.bopsRoot}"/>
+<input type="hidden"  id="bopsPage" value="devicePush"/>
+
+<div class="bops">
+	<form action="${env.bopsRoot}/bops/device_push_submit.htm" method="post">
+	<div class="device-push">
+        <h2>设备推送 （2/3）- 设定推送消息</h2>
+		#if($actionError)
+    		#if($actionError == "chao.device.push.gourp.required")
+    			#set($errorMsg = "请选择要推送的设备")
+    		#elseif($actionError == "chao.device.push.device.empty")
+    			#set($errorMsg = "没有要推送的设备")
+			#elseif($actionError == "chao.device.push.msg.required")
+				#set($errorMsg = "推送的消息必须填写")
+    		#end
+        <div class="dc-red">$!errorMsg</div>
+		#end
+		<div class="option">
+			#foreach($g in $pushGroup)
+				<input type="hidden" name="pushGroup" value="$g"/>
+			#end
+            <div>推送组： #foreach($g in $pushGroup) $g , #end</div>
+            <div class="expect">预计推送设备：$!queryResult.totalRecords </div>
+			<div class="detail">
+				#foreach($item in $queryResult.items)
+                    <span class="device-item">$!item.imei , </span>
+				#end
+			</div>
+			<div>推送信息（*）：</div>
+            <div><textarea cols="40" rows="3" name="pushMessage"></textarea></div>
+        </div>
+        <div class="submit"><input type="submit" value="发送消息"/></div>
+    </div>
+	</form>
+</div>
+
+#set($bopsJs=[])

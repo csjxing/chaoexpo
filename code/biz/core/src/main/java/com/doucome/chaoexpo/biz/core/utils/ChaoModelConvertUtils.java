@@ -9,12 +9,14 @@ import org.apache.commons.collections.CollectionUtils;
 
 import com.doucome.chaoexpo.biz.core.model.ChaoActivitySignupDTO;
 import com.doucome.chaoexpo.biz.core.model.ChaoAppRecommendDTO;
+import com.doucome.chaoexpo.biz.core.model.ChaoDeviceDTO;
 import com.doucome.chaoexpo.biz.core.model.ChaoNewsCategoryDTO;
 import com.doucome.chaoexpo.biz.core.model.ChaoTushuoCategoryDTO;
 import com.doucome.chaoexpo.biz.core.model.ChaoTushuoDTO;
 import com.doucome.chaoexpo.biz.core.model.ChaoUserFollowDTO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoActivitySignupDO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoAppRecommendDO;
+import com.doucome.chaoexpo.biz.dal.dataobject.ChaoDeviceDO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoNewsCategoryDO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoTushuoCategoryDO;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoTushuoDO;
@@ -87,6 +89,16 @@ public class ChaoModelConvertUtils {
 		if(CollectionUtils.isNotEmpty(doList)) {
 			for(ChaoActivitySignupDO signup : doList) {
 				dtoList.add(new ChaoActivitySignupDTO(signup)) ;
+			}
+		}
+		return dtoList ;
+	}
+	
+	public static List<ChaoDeviceDTO> toDeviceDTOList(List<ChaoDeviceDO> doList) {
+		List<ChaoDeviceDTO> dtoList = new ArrayList<ChaoDeviceDTO>() ;
+		if(CollectionUtils.isNotEmpty(doList)) {
+			for(ChaoDeviceDO signup : doList) {
+				dtoList.add(new ChaoDeviceDTO(signup)) ;
 			}
 		}
 		return dtoList ;

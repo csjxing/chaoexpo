@@ -27,4 +27,9 @@
 			<li id="culture_list"><a href="${env.bopsRoot}/bops/culture_list.htm" >文化周边</a></li>
     	</ul>
     </li>
+	<li><a href="javascript:">推送</a>
+		<ul>
+			<li id="device_push"><a href="${env.bopsRoot}/bops/device_push.htm" >设备推送</a></li>
+    	</ul>
+    </li>
 </ul>

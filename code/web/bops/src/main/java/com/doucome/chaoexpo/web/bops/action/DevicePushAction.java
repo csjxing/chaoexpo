@@ -85,7 +85,7 @@ public class DevicePushAction extends BopsBasicAction {
 				ChaoDeviceQuery query = new ChaoDeviceQuery() ;
 				query.setOsType(group) ;
 				List<ChaoDeviceDTO> deviceList = chaoDeviceService.getDeviceNoPagination(query, 10000 ) ;
-				String p12File = ServletContextUtils.getRealPath("/WEB-INF/iPhoneChao.p12") ;
+				String p12File = ServletContextUtils.getRealPath("/WEB-INF/ChaoPushDev.p12") ;
 				List<String> deviceTokens = ChaoDeviceUtils.getDeviceTokens(deviceList) ;
 				int subCount = chaoUserPushService.pushToIOS(deviceTokens, pushMessage, p12File) ;
 				succCount += subCount ;

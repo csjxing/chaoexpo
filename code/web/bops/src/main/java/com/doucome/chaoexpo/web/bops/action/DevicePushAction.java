@@ -95,6 +95,14 @@ public class DevicePushAction extends BopsBasicAction {
 			return INPUT ;
 		}
 		
+		if(viewTypeEnums != DevicePushViewtypeEnums.DEFAULT && StringUtils.isBlank(viewTypeId)) {
+			addActionError("chao.device.push.viewTypeId.error") ;
+			ChaoDeviceQuery query = new ChaoDeviceQuery() ;
+			query.setOsTypes(pushGroup) ;
+			queryResult = chaoDeviceService.getDeviceWithPagination(query, new Pagination(1,20)) ;
+			return INPUT ;
+		}
+		
 		int succCount = 0 ;
 		Map<String,String> customParam = new HashMap<String,String>() ;
 		customParam.put("viewtype", viewType) ;

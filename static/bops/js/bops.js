@@ -36,7 +36,25 @@
 			self._initUser() ;
 			
 			self._initComment() ;
+			
+			self._initDevicePush() ;
 		},
+		
+		_initDevicePush:function(){
+			if(bopsPage != 'devicePush') {
+				return ;
+			}
+			
+			$('.notify-type select').change(function(){
+				var val = $(this).val() ;
+				if(val != '') {
+					$('.notify-param').removeClass('dd-hide') ;
+				} else {
+					$('.notify-param').find('input[name=viewTypeId]').val('') ;
+					$('.notify-param').addClass('dd-hide') ;
+				}
+			}) ;
+		} ,
 		
 		_initComment:function() {
 			if(bopsPage == 'userCommentList') {

@@ -15,6 +15,10 @@
     			#set($errorMsg = "该组下暂时还没有可以推送的设备")
 			#elseif($actionError == "chao.device.push.msg.required")
 				#set($errorMsg = "推送的消息必须填写")
+			#elseif($actionError == "chao.device.push.viewType.error")
+				#set($errorMsg = "通知类型选择错误")
+			#elseif($actionError == "chao.device.push.viewTypeId.error")
+				#set($errorMsg = "通知参数必须填写")
     		#end
         <div class="dc-red">$!errorMsg</div>
 		#end
@@ -31,9 +35,24 @@
 			</div>
 			<br/>
 			<br/>
+            <div class="notify-type">通知类型：
+				<select name="viewType">
+                    <option value="">默认</option>
+					<option value="activity" #if($viewType == 'activity') selected #end>activity</option>
+					<option value="news" #if($viewType == 'news') selected #end>news</option>
+					<option value="imagestory" #if($viewType == 'imagestory') selected #end>imagestory</option>
+					<option value="web" #if($viewType == 'web') selected #end>web</option>
+				</select>
+			</div>
+            <div class="notify-param #if(!$viewType || $viewType == '') dd-hide #end">
+                <ul>
+                    <li>通知参数： <input type="text" name="viewTypeId" value="$!viewTypeId" /></li>
+                    <li class="desc">> 当类型为activity、news、imagestory时，此处填写ID；类型为web时，填写网页url。</li>
+				</ul>
+			</div>
 			<div>推送信息（*）：</div>
 			<br/>
-            <div><textarea cols="40" rows="3" name="pushMessage"></textarea></div>
+            <div><textarea cols="40" rows="3" name="pushMessage">$!pushMessage</textarea></div>
         </div>
         <div class="submit"><input type="submit" value="发送消息"/></div>
     </div>

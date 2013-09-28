@@ -1282,3 +1282,21 @@ td .detail-layer {
 	margin: 5px 0 5px 10px;
 	border-top : 1px dotted #eee;  
 }
+
+.bops .device-push .notify-type {
+	margin-bottom: 10px;
+}
+
+.bops .device-push .notify-param {
+	margin-bottom: 10px;
+}
+
+.bops .device-push .notify-param input {
+	width: 400px;
+}
+
+.bops .device-push .notify-param .desc {
+	color:#aaa;
+	font-size: 12px;
+	margin: 3px 0 3px 5px;
+}

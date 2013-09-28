@@ -18,7 +18,7 @@ public class ChaoUserPushServiceImplTest extends AbstractBaseJUnit4Test {
 	public void test_pushToIOS() {
 		String p12File = "d:/iPhoneChao.p12" ;
 		String deviceToken = "3862eb877960b158f257cc0b00baa9b4e12dc1f4135eb8948aac2c224fa3ee69" ;
-		int count = chaoUserPushService.pushToIOS(Arrays.asList(deviceToken), "潮博会测试消息，收到回复", p12File) ;
+		int count = chaoUserPushService.pushToIOS(Arrays.asList(deviceToken), "潮博会测试消息，收到回复", p12File , null) ;
 		System.out.println(count);
 	}
 }

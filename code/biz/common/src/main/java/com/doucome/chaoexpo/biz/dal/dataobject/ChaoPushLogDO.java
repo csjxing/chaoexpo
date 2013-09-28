@@ -12,6 +12,10 @@ public class ChaoPushLogDO {
 	
 	private Integer succCount ;
 	
+	private String viewType ;
+	
+	private String pushParam ;
+	
 	private Date gmtCreate ;
 
 	public Long getId() {
@@ -42,6 +46,22 @@ public class ChaoPushLogDO {
 		return pushGroup;
 	}
 
+	public String getViewType() {
+		return viewType;
+	}
+
+	public void setViewType(String viewType) {
+		this.viewType = viewType;
+	}
+
+	public String getPushParam() {
+		return pushParam;
+	}
+
+	public void setPushParam(String pushParam) {
+		this.pushParam = pushParam;
+	}
+
 	public void setPushGroup(String pushGroup) {
 		this.pushGroup = pushGroup;
 	}
@@ -53,6 +73,5 @@ public class ChaoPushLogDO {
 	public void setGmtCreate(Date gmtCreate) {
 		this.gmtCreate = gmtCreate;
 	}
-	
 	
 }

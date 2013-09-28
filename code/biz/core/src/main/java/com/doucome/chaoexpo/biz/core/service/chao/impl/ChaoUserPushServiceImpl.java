@@ -2,6 +2,7 @@ package com.doucome.chaoexpo.biz.core.service.chao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javapns.devices.Device;
 import javapns.devices.implementations.basic.BasicDevice;
@@ -10,6 +11,7 @@ import javapns.notification.PushNotificationManager;
 import javapns.notification.PushNotificationPayload;
 import javapns.notification.PushedNotification;
 
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -25,7 +27,7 @@ public class ChaoUserPushServiceImpl implements ChaoUserPushService {
 	private String iosCertificatePassword ;
 
 	@Override
-	public int pushToIOS(List<String> deviceTokens, String alert , String p12File) {
+	public int pushToIOS(List<String> deviceTokens, String alert , String p12File , Map<String,String> customParam ) {
 		
 		int badge = 1;// 图标小红圈的数值
 		String sound = "default";// 铃音
@@ -41,6 +43,11 @@ public class ChaoUserPushServiceImpl implements ChaoUserPushService {
 			payLoad.addBadge(badge); // iphone应用图标上小红圈上的数值
 			if (!StringUtils.isBlank(sound)) {
 				payLoad.addSound(sound);// 铃音
+			}
+			if(MapUtils.isNotEmpty(customParam)) {
+				for(Map.Entry<String, String> e : customParam.entrySet()) {
+					payLoad.addCustomDictionary(e.getKey()	, e.getValue()) ;
+				}
 			}
 			PushNotificationManager pushManager = new PushNotificationManager();
 			// true：表示的是产品发布推送服务 false：表示的是产品测试推送服务

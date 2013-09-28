@@ -9,14 +9,16 @@
 		<result property="pushGroup" column="PUSH_GROUP" />
 		<result property="msg" column="MSG" />
 		<result property="succCount" column="SUCC_COUNT" />
+		<result property="viewType" column="VIEW_TYPE" />
+		<result property="pushParam" column="PUSH_PARAM" />
 		<result property="gmtCreate" column="GMT_CREATE" />
 	</resultMap>
 
 	<insert id="insertPushLog" >
 		INSERT INTO
-			CHAO_PUSH_LOG(ID,PUSH_GROUP,MSG,SUCC_COUNT,GMT_CREATE)
+			CHAO_PUSH_LOG(ID,PUSH_GROUP,MSG,SUCC_COUNT,VIEW_TYPE,PUSH_PARAM,GMT_CREATE)
 		VALUES
-			(#id#,#pushGroup#,#msg#,#succCount#,now())
+			(#id#,#pushGroup#,#msg#,#succCount#,#viewType#,#pushParam#,now())
 		<selectKey resultClass="java.lang.Long" keyProperty="id">
    			<![CDATA[
 			SELECT LAST_INSERT_ID() AS ID

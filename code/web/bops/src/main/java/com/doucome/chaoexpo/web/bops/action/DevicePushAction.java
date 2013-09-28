@@ -172,5 +172,9 @@ public class DevicePushAction extends BopsBasicAction {
 	public void setViewTypeId(String viewTypeId) {
 		this.viewTypeId = viewTypeId;
 	}
+
+	public String getPushMessage() {
+		return pushMessage;
+	}
 	
 }

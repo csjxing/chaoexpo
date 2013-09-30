@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 
+import com.doucome.chaoexpo.biz.core.constant.EnvConstant;
 import com.doucome.chaoexpo.biz.core.enums.DevicePushViewtypeEnums;
 import com.doucome.chaoexpo.biz.core.enums.OsTypeEnums;
 import com.doucome.chaoexpo.biz.core.model.ChaoDeviceDTO;
@@ -18,6 +19,7 @@ import com.doucome.chaoexpo.biz.core.service.chao.ChaoPushLogService;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoUserPushService;
 import com.doucome.chaoexpo.biz.core.utils.ArrayStringUtils;
 import com.doucome.chaoexpo.biz.core.utils.ChaoDeviceUtils;
+import com.doucome.chaoexpo.biz.core.utils.EnvPropertiesUtil;
 import com.doucome.chaoexpo.biz.core.utils.JacksonHelper;
 import com.doucome.chaoexpo.biz.dal.dataobject.ChaoPushLogDO;
 import com.doucome.chaoexpo.biz.dal.query.ChaoDeviceQuery;
@@ -113,6 +115,9 @@ public class DevicePushAction extends BopsBasicAction {
 				query.setOsType(group) ;
 				List<ChaoDeviceDTO> deviceList = chaoDeviceService.getDeviceNoPagination(query, Integer.MAX_VALUE ) ;
 				String p12File = ServletContextUtils.getRealPath("/WEB-INF/ChaoPushDev.p12") ;
+				if("true".equalsIgnoreCase(EnvPropertiesUtil.getProperty(EnvConstant.CHAOEXPO_PRODUCTION))) {
+					p12File = ServletContextUtils.getRealPath("/WEB-INF/ChaoPushRelease.p12") ;
+				} 
 				List<String> deviceTokens = ChaoDeviceUtils.getDeviceTokens(deviceList) ;
 				int subCount = chaoUserPushService.pushToIOS(deviceTokens, pushMessage, p12File , customParam) ;
 				succCount += subCount ;

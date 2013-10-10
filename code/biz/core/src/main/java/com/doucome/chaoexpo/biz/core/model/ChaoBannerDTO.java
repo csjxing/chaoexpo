@@ -99,6 +99,10 @@ public class ChaoBannerDTO {
 		if (CollectionUtils.isNotEmpty(picModels)) {
 			BannerPicConfig[] picConfigs = new BannerPicConfig[picModels.size()];
 			for (int i = 0; i < picModels.size(); i++) {
+				BannerPicModel bpm = picModels.get(i) ;
+				if(bpm == null) {
+					continue ;
+				}
 				picConfigs[i] = picModels.get(i).toPicConfig();
 			}
 			try {

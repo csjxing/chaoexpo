@@ -97,15 +97,15 @@ public class ChaoBannerDTO {
 	
 	public ChaoBannerDO toDO() {
 		if (CollectionUtils.isNotEmpty(picModels)) {
-			BannerPicConfig[] picConfigs = new BannerPicConfig[picModels.size()];
+			List<BannerPicConfig> picConfigList = new ArrayList<BannerPicConfig>() ;
 			for (int i = 0; i < picModels.size(); i++) {
 				BannerPicModel bpm = picModels.get(i) ;
-				if(bpm == null) {
-					continue ;
+				if(bpm != null) {
+					picConfigList.add(picModels.get(i).toPicConfig()) ;
 				}
-				picConfigs[i] = picModels.get(i).toPicConfig();
 			}
 			try {
+				BannerPicConfig[] picConfigs = picConfigList.toArray(new BannerPicConfig[picConfigList.size()]);
 				banner.setPicConfigs(JacksonHelper.toJSON(picConfigs));
 			} catch(Exception e) {
 				

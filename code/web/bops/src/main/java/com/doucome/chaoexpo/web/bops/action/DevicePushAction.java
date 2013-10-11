@@ -10,6 +10,7 @@ import org.springframework.util.CollectionUtils;
 
 import com.doucome.chaoexpo.biz.core.constant.EnvConstant;
 import com.doucome.chaoexpo.biz.core.enums.DevicePushViewtypeEnums;
+import com.doucome.chaoexpo.biz.core.enums.DeviceStatusEnums;
 import com.doucome.chaoexpo.biz.core.enums.OsTypeEnums;
 import com.doucome.chaoexpo.biz.core.model.ChaoDeviceDTO;
 import com.doucome.chaoexpo.biz.core.model.page.Pagination;
@@ -62,7 +63,7 @@ public class DevicePushAction extends BopsBasicAction {
 				
 		ChaoDeviceQuery query = new ChaoDeviceQuery() ;
 		query.setOsTypes(pushGroup) ;
-		
+		query.setStatus(DeviceStatusEnums.NORMAL.getValue()) ;
 		queryResult = chaoDeviceService.getDeviceWithPagination(query, new Pagination(1,20)) ;
 		
 		if(CollectionUtils.isEmpty(queryResult.getItems())) {
@@ -84,6 +85,7 @@ public class DevicePushAction extends BopsBasicAction {
 			addActionError("chao.device.push.msg.required") ;
 			ChaoDeviceQuery query = new ChaoDeviceQuery() ;
 			query.setOsTypes(pushGroup) ;
+			query.setStatus(DeviceStatusEnums.NORMAL.getValue()) ;
 			queryResult = chaoDeviceService.getDeviceWithPagination(query, new Pagination(1,20)) ;
 			return INPUT ;
 		}
@@ -93,6 +95,7 @@ public class DevicePushAction extends BopsBasicAction {
 			addActionError("chao.device.push.viewType.error") ;
 			ChaoDeviceQuery query = new ChaoDeviceQuery() ;
 			query.setOsTypes(pushGroup) ;
+			query.setStatus(DeviceStatusEnums.NORMAL.getValue()) ;
 			queryResult = chaoDeviceService.getDeviceWithPagination(query, new Pagination(1,20)) ;
 			return INPUT ;
 		}
@@ -101,6 +104,7 @@ public class DevicePushAction extends BopsBasicAction {
 			addActionError("chao.device.push.viewTypeId.error") ;
 			ChaoDeviceQuery query = new ChaoDeviceQuery() ;
 			query.setOsTypes(pushGroup) ;
+			query.setStatus(DeviceStatusEnums.NORMAL.getValue()) ;
 			queryResult = chaoDeviceService.getDeviceWithPagination(query, new Pagination(1,20)) ;
 			return INPUT ;
 		}
@@ -113,6 +117,7 @@ public class DevicePushAction extends BopsBasicAction {
 			if(OsTypeEnums.toEnum(group) == OsTypeEnums.IOS) { //只推送IOS
 				ChaoDeviceQuery query = new ChaoDeviceQuery() ;
 				query.setOsType(group) ;
+				query.setStatus(DeviceStatusEnums.NORMAL.getValue()) ;
 				List<ChaoDeviceDTO> deviceList = chaoDeviceService.getDeviceNoPagination(query, Integer.MAX_VALUE ) ;
 				String p12File = ServletContextUtils.getRealPath("/WEB-INF/ChaoPushDev.p12") ;
 				if("true".equalsIgnoreCase(EnvPropertiesUtil.getProperty(EnvConstant.CHAOEXPO_PRODUCTION))) {

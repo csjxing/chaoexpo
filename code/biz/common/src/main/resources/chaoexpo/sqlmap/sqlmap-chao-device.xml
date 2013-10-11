@@ -47,6 +47,9 @@
 			<isNotEmpty property="osType" prepend="AND">
 			    OS_TYPE = #osType#
 			</isNotEmpty>
+			<isNotEmpty property="status" prepend="AND">
+			    STATUS = #status#
+			</isNotEmpty>
 			<isNotEmpty property="osTypes" prepend="AND">
 	    		OS_TYPE IN
 			    <iterate property="osTypes" open="("  close=")"  conjunction=",">
@@ -69,6 +72,9 @@
 			</isNotEmpty>
 			<isNotEmpty property="osType" prepend="AND">
 			    OS_TYPE = #osType#
+			</isNotEmpty>
+			<isNotEmpty property="status" prepend="AND">
+			    STATUS = #status#
 			</isNotEmpty>
 			<isNotEmpty property="osTypes" prepend="AND">
 	    		OS_TYPE IN

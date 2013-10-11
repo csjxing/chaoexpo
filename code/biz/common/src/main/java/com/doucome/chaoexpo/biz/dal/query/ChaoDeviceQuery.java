@@ -14,11 +14,14 @@ public class ChaoDeviceQuery extends AbstractModel  {
 	
 	private List<String> osTypes ;
 	
+	private String status ;
+	
 	public Map<String, Object> toMap() {
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("imei", imei);
 		result.put("osType", osType) ;
 		result.put("osTypes", osTypes) ;
+		result.put("status", status) ;
 		return result;
 	}
 
@@ -44,6 +47,14 @@ public class ChaoDeviceQuery extends AbstractModel  {
 
 	public void setOsType(String osType) {
 		this.osType = osType;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

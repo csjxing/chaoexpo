@@ -24,13 +24,18 @@
 	    text-overflow: ellipsis;
 	}
 	#bannerTable .memo-box {
-	    height: 60px;
 	    line-height: 20px;
 	    overflow: hidden;
 		text-align: left;
 	}
 	#bannerTable .btn-list li {
-	    padding: 5px 5px;
+		float:left ;
+		margin:0 5px;
+	}
+	#bannerTable .btn-list {
+		margin:0 auto;
+		text-align:center ;
+		width:80px;
 	}
 </style>
 
@@ -49,21 +54,22 @@
 	<div class="MB20 MT20"><a href="${env.bopsRoot}/bops/banner.htm" target="_blank">新增Banner</a></div>
 	
 	#parse("/common/bops/page/bannerPagination.vm")
-	 <table width="880" id="bannerTable">
+	 <table width="1080" id="bannerTable">
 		<tr>
 			<th width="40">ID</th>
-			<th width="120" align="center">BannerId</th>
-			<th width="160">名称</th>
-			<th width="200">图片</th>
+			<th width="160" align="center">BannerId</th>
+			<th width="120">名称</th>
+			<th width="70">图片</th>
     		<th width="150">URL</th>
 			<th width="150">备注</th>
-			<th width="60">操作</th>
+			<th width="60">状态</th>
+			<th width="120">操作</th>
     	</tr>
 		#if($!bannerResult.totalRecords > 0)
     		#foreach($banner in $bannerResult.items)
             	<tr data-id="$!banner.id" class="#if($velocityCount % 2 == 0)even#end">
 					<td class="id">$!banner.id</td>
-            		<td class="">$!banner.bannerId</td>
+            		<td class="">#if($!banner.status == "D")<span class="dc-red">[已删除]</span>#end<span #if($!banner.status == "D")class="dc-gray"#end > $!banner.bannerId</span></td>
                     <td>
 						#if($!banner.picModels.size() > 0)
     						<div class="name-box text-ellipsis">$!banner.picModels.get(0).name</div>
@@ -73,7 +79,7 @@
 						<div class="pic-box">
 						    #if($!banner.picModels.size() > 0)
 						    	<a #if($!banner.picModels.get(0).clickUrl != '')href="$!banner.picModels.get(0).clickUrl" target="_blank"#else href="javascript:;" #end>
-						    		<img src="$!banner.picModels.get(0).picUrl100x000"  max-width="150"/>
+						    		<img src="$!banner.picModels.get(0).picUrl60x000"  max-width="60"/>
 						    	</a>
     						#end
 						</div>
@@ -94,10 +100,17 @@
 						<div class="memo-box">$!banner.memo</div>
 					</td>
 					<td align="center">
+						#if($!banner.status == "D")
+                            <span class="dc-gray">已删除</span>
+						#else
+                            <span>正常</span>
+						#end
+					</td>
+					<td align="center">
 						<ul class="btn-list">
 						    <li><a href="${env.bopsRoot}/bops/banner.htm?id=$!banner.id" target="_blank">修改</a></li>
     						#if($!banner.status == "D")
-    						    <li><a class="delete-btn" href="javascript:;" data-id="$!banner.id" data-status="N">启用</a></li>
+    						    <li><a class="delete-btn" href="javascript:;" data-id="$!banner.id" data-status="N">恢复</a></li>
     						#else
     						    <li><a class="delete-btn" href="javascript:;" data-id="$!banner.id" data-status="D">删除</a></li>
     						#end

@@ -58,6 +58,10 @@ public class BannerPicModel extends AbstractModel {
 		return PictureUtils.getPicAbsoluteUrl(getPicPath(), PictureSizeEnums._100x000) ;
 	}
 	
+	public String getPicUrl60x000() {
+		return PictureUtils.getPicAbsoluteUrl(getPicPath(), PictureSizeEnums._60x000) ;
+	}
+	
 	public String getSumPicUrl(String size) {
 		return PictureUtils.getPicAbsoluteUrl(getPicPath(), PictureSizeEnums.toEnum(size)) ;
 	}

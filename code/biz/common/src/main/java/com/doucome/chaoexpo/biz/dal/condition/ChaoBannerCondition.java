@@ -12,7 +12,7 @@ public class ChaoBannerCondition extends AbstractModel  {
 
 	private String bannerId;
 	
-	private String status = "N";
+	private String status ;
 	
 	private Date gmtCreateStart;
 	

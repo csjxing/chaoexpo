@@ -1,6 +1,7 @@
 package com.doucome.chaoexpo.web.chao.action.ajax;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.doucome.chaoexpo.biz.core.enums.BannerStatusEnums;
 import com.doucome.chaoexpo.biz.core.model.ChaoBannerDTO;
 import com.doucome.chaoexpo.biz.core.service.chao.ChaoBannerService;
 import com.doucome.chaoexpo.biz.core.utils.ArrayStringUtils;
@@ -40,6 +42,13 @@ public class QueryBannerAction extends ChaoBasicAction {
 		String[] bannerIds = ArrayStringUtils.toArray(banners) ;
 		
 		List<ChaoBannerDTO> banners = chaoBannerService.getBannerByBannerIds(bannerIds) ;
+		
+		for(Iterator<ChaoBannerDTO> i = banners.iterator() ; i.hasNext() ;) {
+			ChaoBannerDTO banner = i.next() ;
+			if(BannerStatusEnums.toEnum(banner.getStatus()) != BannerStatusEnums.NORMAL) {
+				i.remove() ;
+			}
+		}
 		
 		Map<String,ChaoBannerDTO> map = convert2Map(banners) ;
 		

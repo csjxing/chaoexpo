@@ -148,10 +148,10 @@
 	    		STATUS = #status# 
 			</isNotEmpty>
 			<isNotNull property="gmtActivityStart" prepend="AND">
-	    		GMT_ACTIVITY <![CDATA[>=]]> #gmtActivityStart# 
+	    		GMT_ACTIVITY_START <![CDATA[>=]]> #gmtActivityStart# 
 			</isNotNull>
 			<isNotNull property="gmtActivityEnd" prepend="AND">
-	    		GMT_ACTIVITY <![CDATA[<]]> #gmtActivityEnd# 
+	    		GMT_ACTIVITY_START <![CDATA[<]]> #gmtActivityEnd# 
 			</isNotNull>
 		</isParameterPresent>
 		<isNotEmpty property="sortColumn" prepend="">
@@ -162,7 +162,7 @@
 		    <isEqual property="sortColumn" compareValue="COMMENT_COUNT">COMMENT_COUNT</isEqual>
 		</isNotEmpty>
 		<isEmpty property="sortColumn" prepend="">
-		    ORDER BY GMT_ACTIVITY
+		    ORDER BY GMT_ACTIVITY_START
 		</isEmpty>
 		<isNotEqual property="order" compareValue="ASC">
 		    DESC
@@ -199,10 +199,10 @@
 	    		STATUS = #status# 
 			</isNotEmpty>
 			<isNotNull property="gmtActivityStart" prepend="AND">
-	    		GMT_ACTIVITY <![CDATA[>=]]> #gmtActivityStart# 
+	    		GMT_ACTIVITY_START <![CDATA[>=]]> #gmtActivityStart# 
 			</isNotNull>
 			<isNotNull property="gmtActivityEnd" prepend="AND">
-	    		GMT_ACTIVITY <![CDATA[<]]> #gmtActivityEnd# 
+	    		GMT_ACTIVITY_START <![CDATA[<]]> #gmtActivityEnd# 
 			</isNotNull>
 		</isParameterPresent>
 	</select>

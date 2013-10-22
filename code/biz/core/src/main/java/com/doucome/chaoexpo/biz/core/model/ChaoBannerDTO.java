@@ -31,9 +31,11 @@ public class ChaoBannerDTO {
 		picModels = new ArrayList<BannerPicModel>();
 		try {
 			BannerPicConfig[] configs = JacksonHelper.fromJSON(picConfigs, BannerPicConfig[].class);
+			CollectionUtils.reverseArray(configs) ;
 			for (BannerPicConfig config: configs) {
 				picModels.add(new BannerPicModel(config));
 			}
+			
 		} catch (Exception e) {
 			
 		}

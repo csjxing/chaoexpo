@@ -307,4 +307,8 @@ public class ChaoActivityDTO extends AbstractModel {
 	public Integer getSignupCount() {
 		return activity.getSignupCount();
 	}
+
+	public String getIsTop() {
+		return activity.getIsTop() ;
+	}
 }

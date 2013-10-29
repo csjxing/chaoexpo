@@ -83,6 +83,11 @@ public class ChaoActivityDO  extends AbstractModel{
 	private String status;
 	
 	/**
+	 * 
+	 */
+	private String isTop ;
+	
+	/**
 	 * 签到数
 	 */
 	private Integer checkinCount ;
@@ -267,6 +272,14 @@ public class ChaoActivityDO  extends AbstractModel{
 
 	public void setSignupCount(Integer signupCount) {
 		this.signupCount = signupCount;
+	}
+
+	public String getIsTop() {
+		return isTop;
+	}
+
+	public void setIsTop(String isTop) {
+		this.isTop = isTop;
 	}
 	
 }

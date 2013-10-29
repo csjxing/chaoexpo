@@ -53,8 +53,8 @@
 		<tr>
 			<th width="40">ID</th>
     		<th width="170">
-    			<a class="sort-btn" href="${env.bopsRoot}/bops/activity_list.htm?sortColumn=GMT_MODIFIED&order=$tempOrder&id=$!id&keyword=$!keyword&subjectId=$!subjectId&gmtActivityStart=$!gmtActivityStartFmt&gmtActivityEnd=$!gmtActivityEndFmt">
-    				<span>活动名称<span class="split">|</span>修改时间</span>
+    			<a class="sort-btn" href="${env.bopsRoot}/bops/activity_list.htm?sortColumn=GMT_CREATE&order=$tempOrder&id=$!id&keyword=$!keyword&subjectId=$!subjectId&gmtActivityStart=$!gmtActivityStartFmt&gmtActivityEnd=$!gmtActivityEndFmt">
+    				<span>活动名称<span class="split">|</span>创建时间</span>
     			    <span class="dbsort_none"></span>
     			</a>
     		</th>
@@ -85,9 +85,9 @@
             	<tr class="#if($velocityCount%2 == 0)even#end" data-id="$!activity.id">
 					<td align="center">$!activity.id</td>
 					<td class="more">
-						<div class="name text-ellipsis content-detail" data-content="$!activity.name"><a href="${env.bopsRoot}/bops/activity.htm?id=$!activity.id" target="_blank" style="text-decoration: underline; color:#444;">$!activity.name</a></div>
+						<div class="name text-ellipsis content-detail" data-content="$!activity.name">#if($activity.isTop == "T")<span class="dc-red">[置顶]</span>#end<a href="${env.bopsRoot}/bops/activity.htm?id=$!activity.id" target="_blank" style="text-decoration: underline; color:#444;">$!activity.name</a></div>
 						<div class="other" style="margin-top: 3px">
-							<span>$!dateUtils.format($!activity.gmtModified,'yyyy-MM-dd HH:mm')</span>
+							<span>$!dateUtils.format($!activity.gmtCreate,'yyyy-MM-dd HH:mm')</span>
 						</div>
 					</td>
 					<td align="center">
@@ -136,6 +136,11 @@
         						#end
         						#if($!activity.canSignup == 'T' || $activity.signupCount > 0)
         						    <li><a class="signup-detail" href="${env.bopsRoot}/bops/activity_signup_list.htm?activityId=$!activity.id" title="参与详情" target="_blank">参与详情</a></li>
+								#end
+								#if($!activity.isTop == 'T')
+        							<li><a class="top-btn" href="javascript:;" data-id="$!activity.id" data-top="F" title="取消置顶">取消置顶</a></li>
+        						#else
+        						    <li><a class="top-btn" href="javascript:;" data-id="$!activity.id" data-top="T" title="置顶">置顶</a></li>
         						#end
     						</ul>
 						</div>

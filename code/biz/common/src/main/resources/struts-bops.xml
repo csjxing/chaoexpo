@@ -315,5 +315,10 @@
 			<interceptor-ref name="bopsDefaultStack" />
 		    <result name="success" type="json2"></result>
 		</action>
+		
+		<action name="update_activity_top_ajax" class="com.doucome.chaoexpo.web.bops.action.ajax.ActivityOperateAction" method="updateTop">
+			<interceptor-ref name="bopsDefaultStack" />
+		    <result name="success" type="json2"></result>
+		</action>
 	</package>
 </struts>

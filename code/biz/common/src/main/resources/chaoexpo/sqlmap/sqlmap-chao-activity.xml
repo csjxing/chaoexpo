@@ -14,6 +14,7 @@
 		<result property="picUrls" column="PIC_URLS"/>
 		<result property="notice" column="NOTICE"/>
 		<result property="status" column="STATUS"/>
+		<result property="isTop" column="IS_TOP"/>
 		<result property="countesyReminder" column="COUNTESY_REMINDER"/>
 		<result property="standPicUrls" column="STAND_PIC_URLS"/>
 		<result property="subjectId" column="SUBJECT_ID"/>
@@ -41,7 +42,7 @@
 	</insert>
 	
 	<sql id="activity-fields">
-	    ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,INTRO,STATUS,PIC_URLS,NOTICE,COUNTESY_REMINDER,STAND_PIC_URLS,SUBJECT_ID,GMT_ACTIVITY_START,GMT_ACTIVITY_END,FOLLOW_COUNT,CHECKIN_COUNT,COMMENT_COUNT,CAN_SIGNUP,SIGNUP_COUNT,GMT_CREATE,GMT_MODIFIED
+	    ID,NAME,LOCATION,CONTACT_NAME,CONTACT_PHONE,INTRO,STATUS,IS_TOP,PIC_URLS,NOTICE,COUNTESY_REMINDER,STAND_PIC_URLS,SUBJECT_ID,GMT_ACTIVITY_START,GMT_ACTIVITY_END,FOLLOW_COUNT,CHECKIN_COUNT,COMMENT_COUNT,CAN_SIGNUP,SIGNUP_COUNT,GMT_CREATE,GMT_MODIFIED
 	</sql>
 	
 	<select id="queryActivityById" resultMap="RM-ChaoActivity">
@@ -83,6 +84,7 @@
 			</isNotNull>
 		</isParameterPresent>
 		ORDER BY 
+			IS_TOP DESC ,
 	    	GMT_CREATE DESC
 	    LIMIT 
 	    	#start#, #size#
@@ -162,7 +164,7 @@
 		    <isEqual property="sortColumn" compareValue="COMMENT_COUNT">COMMENT_COUNT</isEqual>
 		</isNotEmpty>
 		<isEmpty property="sortColumn" prepend="">
-		    ORDER BY GMT_ACTIVITY_START
+		    ORDER BY IS_TOP DESC , GMT_CREATE
 		</isEmpty>
 		<isNotEqual property="order" compareValue="ASC">
 		    DESC
@@ -238,8 +240,11 @@
 			<isNotEmpty property="notice">
 				NOTICE = #notice# ,
 			</isNotEmpty>
-			<isNotEmpty property="status" prepend="AND">
-	    		STATUS = #status# 
+			<isNotEmpty property="status">
+	    		STATUS = #status# ,
+			</isNotEmpty>
+			<isNotEmpty property="isTop">
+	    		IS_TOP = #isTop# ,
 			</isNotEmpty>
 			<isNotEmpty property="countesyReminder">
 				COUNTESY_REMINDER = #countesyReminder# ,
@@ -285,6 +290,9 @@
 			</isNotEmpty>
 			<isNotEmpty property="status">
 				STATUS = #status# ,
+			</isNotEmpty>
+			<isNotEmpty property="isTop">
+	    		IS_TOP = #isTop# ,
 			</isNotEmpty>
 			<isNotEmpty property="countesyReminder">
 				COUNTESY_REMINDER = #countesyReminder# ,

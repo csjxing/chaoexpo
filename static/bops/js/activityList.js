@@ -95,6 +95,45 @@
 			$("#activityTable .btn-list").mouseleave(function() {
 			    $(this).addClass('dd-hide');
 			});
+			
+			$("#activityTable .top-btn").click(function(){
+				var _this = $(this);
+				var id = _this.data('id');
+				var top = _this.data('top');
+				if (top == 'T') {
+					if(!confirm('是否置顶记录？')){
+						return ;
+					}
+				} else {
+				    if(!confirm('是否取消置顶？')){
+						return ;
+					}
+				}
+				
+				$.ajax({
+					url: bopsRoot + '/bops/remote/update_activity_top_ajax.htm',
+					type: "post",
+					data: {id: id, top: top},
+					success: function(result) {
+						var json = result ;
+						if (json.success) {
+							if(confirm('操作成功，是否刷新页面？')) {
+								window.location.reload();
+							}
+						} else {
+						    var detail = json.detail;
+							if (detail == 'param.error') {
+							    alert('参数有误，请刷新页面后再试');
+							} else {
+							    alert('操作出现错误！');
+							}
+						}
+					},
+					error: function(error) {
+					    alert("操作出现错误: " + error);
+					}
+				}) ;
+			}) ;
 		},
 		
 		end:0

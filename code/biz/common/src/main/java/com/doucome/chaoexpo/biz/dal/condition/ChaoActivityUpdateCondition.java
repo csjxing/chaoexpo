@@ -44,6 +44,8 @@ public class ChaoActivityUpdateCondition extends AbstractModel  {
 	private String notice ;
 	
 	private String status;
+	
+	private String isTop ;
 
 	/**
 	 * 温馨提示
@@ -89,6 +91,7 @@ public class ChaoActivityUpdateCondition extends AbstractModel  {
 		map.put("contactPhone", contactPhone) ;
 		map.put("intro", intro) ;
 		map.put("status", status) ;
+		map.put("isTop", isTop) ;
 		map.put("picUrls", picUrls) ;
 		map.put("notice", notice) ;
 		map.put("countesyReminder", countesyReminder) ;
@@ -150,6 +153,14 @@ public class ChaoActivityUpdateCondition extends AbstractModel  {
 
 	public void setDecrFollowCount(Integer decrFollowCount) {
 		this.decrFollowCount = decrFollowCount;
+	}
+
+	public String getIsTop() {
+		return isTop;
+	}
+
+	public void setIsTop(String isTop) {
+		this.isTop = isTop;
 	}
 
 	public Integer getDecrCommentCount() {
